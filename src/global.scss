@@ -1,0 +1,153 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+//For TOAST
+.my-custom-class{
+  --background: var(--ion-color-primary);
+  --color: var(--ion-color-secondary);
+  --ion-font-family: "Metropolis Medium";
+  --font-max-size:16px!important;
+}
+
+
+//For ALERT
+.alert{
+  --color: var(--ion-color-primary);
+  --background: var(--ion-color-secondary);
+  --ion-font-family: "Metropolis Medium";
+  --font-max-size:18px!important;
+}
+
+//For Toolbar-title
+.toolbar-title{
+  color: var(--ion-color-secondary);
+  font-family: "Metropolis Medium";
+  font-size: 20px;
+}
+
+.toolbar-titleNew{
+  color: var(--ion-color-secondary);
+  font-family: "Metropolis Medium";
+  font-size: 20px;
+  background-color:  #652D90;
+}
+
+//For TOAST Sucess
+.my-custom-toastSuceess{
+  --background: green;
+  color: white;
+  --ion-font-family: "Metropolis Medium";
+  --font-max-size: 16px !important;
+}
+
+//For TOAST Red
+.my-custom-toastError{
+  --background: red;
+  color: white;
+  --ion-font-family: "Metropolis Medium";
+  --font-max-size: 16px !important;
+}
+
+//For TOAST
+.my-custom-toast{
+  --background: black;
+  --ion-font-family: "Metropolis Medium";
+  --font-max-size: 16px !important;
+}
+
+
+//For Home TOAST
+.my-custom-toast-homeSuccess{
+  --background: green;
+  --color: var(--ion-color-main-white);
+  --ion-font-family: "Metropolis Medium";
+  --font-max-size: 16px!important;
+  padding-bottom: 120%;
+  position: initial;
+  margin-bottom: 27%;
+  box-shadow: none;
+}
+ion-loading.custom-loading {
+  .loading-wrapper {
+    background: transparent;
+    box-shadow: none;
+  }
+}
+
+ion-toolbar {
+  --background: #f2f2f2;
+}
+.TITLETOOLBAR{
+  font-family: "Metropolis Medium";
+  font-size: 18px;
+  color: black;
+  padding-top: 10px;
+  margin-left: -32px;
+}
+.srcIMGLOGO{
+  text-align: right;
+  margin-right: 0px;
+  width: 30%!important;
+}
+
+/*Alert Successfully(Sukrut02/10/2019)*/
+/*
+.alert-wrapper {
+  position: absolute;
+  z-index: 10004;
+  .alert-head {
+    &::before {
+      content: '';
+      background: url("assets/checked.svg") no-repeat;
+      background-size: cover;
+      height: 70px;
+      width: 70px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20004;
+    }
+  }
+}
+
+.alert-message {
+  margin-top: 60px!important;
+  padding-top: 10px!important;
+  margin-left:20PX!important;
+  font-family: "Metropolis Semi Bold";
+  font-size: 16px!important;
+  color: var(--ion-color-primary);
+}
+
+.alertDanger{
+  button{
+    color: var(--ion-color-primary);
+    font-family: "Metropolis Medium";
+    font-size: 16px!important;
+  }
+}
+*/

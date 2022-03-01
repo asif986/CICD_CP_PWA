@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="navigation_drawer_logout_icon" transform="translate(-17732 -5681)">
+    <g id="Group_2269" data-name="Group 2269" transform="translate(93 127)">
+      <g id="reminder" transform="translate(44 44)">
+        <g id="location" transform="translate(-49 67)">
+          <g id="payment" transform="translate(-121 -27)">
+            <rect id="Rectangle_1056" data-name="Rectangle 1056" width="24" height="24" transform="translate(17765 5470)" fill="none"/>
+          </g>
+        </g>
+      </g>
+      <g id="Group_2266" data-name="Group 2266" transform="translate(17643.02 5557.91)">
+        <path id="Path_4924" data-name="Path 4924" d="M9.48-.011V1.9H1.821V15.318H9.48v1.917H1.832A1.912,1.912,0,0,1-.035,15.811,1.984,1.984,0,0,1-.1,15.285V1.939a1.862,1.862,0,0,1,.076-.562A1.881,1.881,0,0,1,1.386.042a1.87,1.87,0,0,1,.45-.05q3.8-.006,7.593,0Z" transform="translate(0 0)"/>
+        <path id="Path_4925" data-name="Path 4925" d="M400.2,405.552v-1.916h7.66V399.8l5.752,4.792-5.748,4.79v-3.83Z" transform="translate(-396.465 -395.98)"/>
+      </g>
+    </g>
+  </g>
+</svg>

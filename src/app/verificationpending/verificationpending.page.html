@@ -1,0 +1,80 @@
+<ion-header >
+  <ion-toolbar color="color_d" >
+  <ion-row>
+    <ion-col>
+      <div>
+        <ion-buttons slot="start" style="margin-left: 3%">
+         
+           </ion-buttons>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: start;margin-left: 20px!important;">
+      <div>
+        <ion-title class="TITLETOOLBAR" style="margin-left:20px!important;">Verification Pending</ion-title>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: end;margin-right: 10px;">
+      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 100%!important;">
+    </ion-col>
+  </ion-row>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-text-center">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="Pull to refresh"
+            refreshingSpinner="circles"
+            refreshingText="Refreshing Data">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div style="margin-top: 40%!important;">
+  <div>
+    <ion-label  class="circle" >1</ion-label>
+  </div>
+  <div style="margin-top: 6%!important;">
+    <ion-label class="titletextmessage" margin-top="10%">You have successfully registered with us!</ion-label>
+  </div>
+
+  </div>
+
+
+
+<div style="margin-top: 10%!important;">
+  <div style="margin-top: 10%!important;">
+    <ion-label  class="circlenew" >2</ion-label>
+  </div>
+  <div style="margin-top: 6%!important;">
+    <ion-label style="margin-top: 20%" margin-top="10%" class="titletextmessage3" >Pending Verification From VJ Team!</ion-label>
+  </div>
+</div>
+
+  <!--Verification Mesaage-->
+  <ion-card-title style="margin-top: 30%!important;">
+    <div class="titletextmessage2" padding-start="40px" >
+      <strong class="titletextmessage2" padding-start="40px" padding-horizontal="10px" >Note:</strong>For any query contact VJ Team
+    </div>
+  </ion-card-title>
+
+
+</ion-content>
+<ion-footer class="footerNav" style="position: fixed">
+  <div class="toolbar-background"></div>
+  <div class="appbar appbar__bottom appbar__bottom--center-cut ">
+    <div class="appbar__bottom--normal" style="background: #F5A22C !important">
+      <a style="padding: 15px;width: 80%;" (click)="sideNavMenu()">
+        <svg fill="currentColor" viewBox="0 0 24 24" width="30" height="30"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path></svg>
+      </a>
+    </div>
+    <div class="appbar__bottom--cutout"></div>
+  </div>
+</ion-footer>
+
+
+<svg id="appbar" width="0" height="0" viewBox="0 0 72 36" xmlns="http://www.w3.org/2000/svg">
+  <clipPath id="appbar__cutout">
+    <path fill="none" d="M36 36C55.8823 36 72 19.8823 72 0V112H0V0C0 19.8823 16.1177 36 36 36Z" />
+  </clipPath>
+</svg>

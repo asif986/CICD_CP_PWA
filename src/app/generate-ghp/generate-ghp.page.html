@@ -1,0 +1,168 @@
+<!-- <ion-header>
+  <ion-toolbar color="primary" class="toolbar-text">
+    <ion-buttons slot="start" style="margin-left: 3%">
+      <ion-icon name="close" (click)="goback()" style="padding-top: 3%;color: var(--ion-color-close);width: 24px;height: 24px;padding: 16px!important" ></ion-icon>
+    </ion-buttons>
+    <ion-title class="toolbar-title">Generate GHP</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+<ion-header>
+  <ion-toolbar color="color_d" >
+  <ion-row>
+    <ion-col>
+      <div>
+        <ion-buttons slot="start" style="margin-left: 3%">
+          <i class="material-icons icon"  (click)="goback()">arrow_back_ios</i>
+           </ion-buttons>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: start;margin-left: -30px!important;">
+      <div>
+        <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;">Generate GHP</ion-title>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: end;margin-right: 10px;">
+      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 30%!important;">
+    </ion-col>
+  </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!--Select Customer ID-->
+  <div>
+    <p class="p">Selected Customer ID</p>
+    <mat-form-field appearance="outline" style="width: 100%;padding-left: 10px;padding-right: 10px!important;margin-top: -10px!important;" (click)="goTOcuid()">
+      <input class="inputForFormField" matInput type="email"  name="email" [(ngModel)]="postGenenateGHP.cuid" readonly >
+      <mat-icon matSuffix>keyboard_arrow_right</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <!--Select Customer Name-->
+  <div style="margin-top: -20px!important;">
+    <p class="p">Selected Customer Name</p>
+    <mat-form-field appearance="outline" style="width: 100%;padding-left: 10px;padding-right: 10px!important;margin-top: -10px!important;">
+      <input class="inputForFormField" matInput type="email"  name="email" [(ngModel)]="postGenenateGHP.name" readonly>
+    </mat-form-field>
+  </div>
+
+  <!--Project Name-->
+  <div style="padding-left: 10px!important;padding-right: 10px!important;">
+    <mat-form-field appearance="outline" style="width:100%">
+      <mat-label class="inputForFormField">Select Project Name<font class="font_star">*</font></mat-label>
+      <mat-select class="inputForFormField">
+        <mat-option *ngFor="let projectnames of getghpgenerate.projects let i= index" [value]="projectnames.project_id" (click)="getProjectsvalue(i)">
+          {{projectnames.project_name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!--Event Name-->
+  <div style="padding-left: 10px!important;padding-right: 10px!important;">
+    <mat-form-field appearance="outline" style="width:100%">
+      <mat-label class="inputForFormField">Select Event</mat-label>
+      <mat-select class="inputForFormField">
+        <mat-option *ngFor="let eventnames of getghpgenerate.events let i= index" [value]="eventnames.event_id" (click)="getEventsvalue(i)">
+          {{eventnames.event_title}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!--GHP Type-->
+  <div style="padding-left: 10px!important;padding-right: 10px!important;">
+    <mat-form-field appearance="outline" style="width:100%">
+      <mat-label class="inputForFormField">Select GHP Type</mat-label>
+      <mat-select class="inputForFormField">
+        <mat-option *ngFor="let tokennames of tokens let i= index" [value]="tokennames.token_type_id" (click)="getTokenvalue(i)">
+          {{tokennames.token_type}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!--GHP Type(AMOUNT)-->
+  <div style="padding-left: 10px!important;padding-right: 10px!important;">
+    <mat-form-field appearance="outline" style="width:100%">
+      <mat-label class="inputForFormField">GHP Amount</mat-label>
+      <input class="inputForFormField" matInput type="number"  [(ngModel)]="selectedTokenAmount" readonly>
+    </mat-form-field>
+  </div>
+  <!--:- {{tokennames.default_amount}}/- -->
+
+  <div style="padding-left: 20px!important;padding-right: 20px!important;margin-bottom: 15px;">
+    <mat-radio-group required="" name="radioButtons" aria-label="Select an option"  class="example-radio-group" >
+      <mat-radio-button value="5" checked="true" (change)="setMethod(5)"  style="font-family: 'Metropolis Light';">Payment Link</mat-radio-button>
+      <p style="font-family: Metropolis Light;font-size: 17px;color: black;">Note: This link will be shared with the client to make the payment, once clicked on generate GHP/GHP plus  button below.</p>
+      <!-- <mat-radio-button value="4" (change)="setMethod(4)" style="float: right;font-family: 'Metropolis Light'">Online Payment</mat-radio-button> -->
+    </mat-radio-group>
+</div>
+
+
+
+  <!--Expand Panel for  KYC Documents-->
+  <mat-expansion-panel style="padding-top: 10px!important;box-shadow:none!important;padding-bottom: 10px!important;margin-bottom: 5px!important;margin-top: 5px!important;" [expanded]="true" *ngIf="is_kyc_uploaded!=1">
+
+    <mat-expansion-panel-header>
+      <mat-panel-title class="mat-panel-title"  style="margin-top: 30px;margin-bottom: 30px">
+        KYC Documents
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <!--KYC Documents-->
+    <ion-list style="margin-top: -30px!important;">
+      <p class="Mandetory" style="margin-left: 20px!important;">(*Any one is Mandatory)</p>
+      <ion-card style="box-shadow: none!important;margin-top: -20px!important" *ngFor="let kycdoc of getghpgenerate.kyc_doc_types">
+        <ion-grid>
+          <ion-row (click)="presentActionSheet(kycdoc.doc_type_id)" >
+            <ion-col class="ion-text-start" size="10">
+              <div class="newusertext" >
+                <ion-label class="inputtextfield">{{kycdoc.docs_type}}</ion-label>
+                <p class="newusertext1 "  style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{kycdoc.doc_path}}</p>
+                <!-- <img class="centered" src={{kycdoc.doc_path}}>-->
+              </div>
+            </ion-col>
+            <ion-col class="ion-text-end" size="2">
+              <div>
+                <ion-icon style="margin-top: 5px;zoom: 2.0" name="attach"></ion-icon>
+                <!-- <mat-icon style="margin-top: 5px" (click)="chooseFile(kycdoc.doc_type_id)">attachment</mat-icon>-->
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <mat-divider style="margin-top: -10px!important"></mat-divider>
+
+      </ion-card>
+    </ion-list>
+  </mat-expansion-panel>
+
+
+  <!--Remark GHP-->
+  <div style="padding-left: 10px!important;padding-right: 10px!important;">
+    <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label class="inputForFormField"> GHP Remarks(If Any)</mat-label>
+        <textarea matInput placeholder="" rows="4" cols="20" name="purpose"  type="text" class="inputForFormField"></textarea>
+      </mat-form-field>
+    </div>
+
+
+  <div style="align-content: center!important;alignment: center!important;text-align: center!important;justify-content: center!important;" *ngIf="selectedTokenId==1 && mode == 4">
+    <button mat-stroked-button class="registerbutton" (click)="generateGHP('Are you sure to pay and generate this GHP?')" routerDirection="forward">Pay & Generate GHP</button>
+  </div>
+
+  <div style="align-content: center!important;alignment: center!important;text-align: center!important;justify-content: center!important;" *ngIf="selectedTokenId==3 && mode == 4">
+    <button mat-stroked-button class="registerbutton" (click)="generateGHP('Are you sure to pay and  generate this GHP + ?')" routerDirection="forward">Pay & Generate GHP +</button>
+  </div>
+
+
+
+  <div style="align-content: center!important;alignment: center!important;text-align: center!important;justify-content: center!important;" *ngIf="selectedTokenId==1 && mode == 5">
+    <button mat-stroked-button class="registerbutton" (click)="generateGHP('Are you sure to generate this GHP request?')" routerDirection="forward">Generate GHP request</button>
+  </div>
+
+  <div style="align-content: center!important;alignment: center!important;text-align: center!important;justify-content: center!important;" *ngIf="selectedTokenId==3 && mode == 5">
+    <button mat-stroked-button class="registerbutton" (click)="generateGHP('Are you sure to generate this GHP + request?')" routerDirection="forward">Generate GHP+ request</button>
+  </div>
+
+</ion-content>

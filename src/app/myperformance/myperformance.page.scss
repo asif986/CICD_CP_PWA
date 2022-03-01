@@ -1,0 +1,110 @@
+.toolbar-text {
+  color: var(--ion-color-primary);
+  font-family: "Metropolis Medium";
+  font-size: medium;
+  background-color: #652D90;
+
+}
+.toolbar-title{
+  color: #606060ba;
+  font-family: "Metropolis Medium";
+  font-size: 20px;
+}
+.matLabel{
+  color: var(--ion-color-primary);
+  font-family: "Metropolis Light";
+  font-size: 16px!important;
+}
+.title{
+  color: #606060;
+  font-family: "Metropolis Medium";
+  font-size: 14px!important;
+}
+.count_leads{
+  color:#1ABC71;
+  font-family: "Metropolis Extra Bold";
+  font-size: 25px!important;
+}
+.count_siteVisit{
+  color: #F5D400;
+  font-family: "Metropolis Extra Bold";
+  font-size: 25px!important;
+}
+.count_Ghpgenerated{
+  color: #924DCF;
+  font-family: "Metropolis Extra Bold";
+  font-size: 25px!important;
+}
+
+.count_GhpgPulsenerated{
+  color: #4E0291;
+  font-family: "Metropolis Extra Bold";
+  font-size: 25px!important;
+}
+.count_allotments{
+  color: #2C408B;
+  font-family: "Metropolis Extra Bold";
+  font-size: 25px!important;
+  padding-top: 40px!important;
+}
+.outline_card{
+  // width: 80%!important;
+  // height: 115px!important;
+  // box-shadow: none!important;
+  // border-radius: 10px!important;
+  // border-bottom: 2px solid gray!important;
+  // border-top: 2px solid gray!important;
+  // border-left: 2px solid gray!important;
+  // border-right: 2px solid gray!important;
+  width: 95% !important;
+  height: 115px !important;
+  box-shadow: none !important;
+  border-radius: 5px !important;
+  border-bottom: 2px solid gray !important;
+  border-top: 2px solid gray !important;
+  border-left: 2px solid gray !important;
+  border-right: 2px solid gray !important;
+  margin-left: 6px;
+  margin-top: -5px;
+}
+
+.outline_card_ForAllotment{
+  width: 87%!important;
+  height: 115px!important;
+  box-shadow: none!important;
+  border-radius: 10px!important;
+  border-bottom: 2px solid gray!important;
+  border-top: 2px solid gray!important;
+  border-left: 2px solid gray!important;
+  border-right: 2px solid gray!important;
+}
+::ng-deep.mat-select-panel .mat-optgroup-label{
+  color: black;
+}
+::ng-deep.mat-select-panel .mat-option-text{
+  color: black;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+}
+::ng-deep.mat-select-panel .mat-select-arrow-wrapper{
+  color: black;
+}
+::ng-deep.mat-form-field-appearance-legacy .mat-form-field-underline{
+  color: black;
+}
+::ng-deep.mat-select-value{
+  color: black;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+}
+::ng-deep.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-datepicker-toggle-default-icon {
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  font-size: 15px;
+}
+
+.ion-content {
+ background: black!important;
+ background-color: black!important;
+}

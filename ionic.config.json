@@ -1,0 +1,7 @@
+{
+  "name": "cpSideApp",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

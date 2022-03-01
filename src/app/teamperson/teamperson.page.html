@@ -1,0 +1,97 @@
+<ion-header >
+  <ion-toolbar color="color_d" >
+  <ion-row>
+    <ion-col>
+      <div>
+        <ion-buttons slot="start" style="margin-left: 3%">
+          <i class="material-icons icon"  (click)="goback()">arrow_back_ios</i>
+           </ion-buttons>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: start;margin-left: -30px!important;">
+      <div>
+        <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;">Team Person</ion-title>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: end;margin-right: 10px;">
+      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 37%!important;">
+    </ion-col>
+  </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+
+<!-- Whole Page Changed On 19/03/2020 -->
+<ion-content>
+  <p style="font-family: Metropolis Medium;font-size:21px!important;padding-top: 10px!important;padding-left: 10px!important;">Team Leader Information:-</p>
+  <ion-card style="background: #d9d9d9 !important;margin-left: 25px;margin-right: 25px;border-radius: 20px;margin-bottom: 30px;" class="card">
+   
+    <ion-card-subtitle  role="heading" aria-level="2" style="margin-top: 10px;">
+      <ion-row >
+        <ion-col size="2" style="text-align: center!important;">
+          <ion-icon src="assets/channelPartner_Icons/user_Photo_Icon/user_white.svg" style="margin-right: 2%!important;width: 16px;height: 22px;"></ion-icon>
+        </ion-col>
+        <ion-col size="10" style="margin-top: -7px!important;margin-left: -10px!important;">
+        <p class="margintexttitle" >{{full_name}}</p>
+        </ion-col >
+      </ion-row>
+  </ion-card-subtitle>
+
+    <ion-card-subtitle  role="heading" aria-level="2" style="margin-top: -16px;" >
+      <ion-row >
+        <ion-col size="2" style="text-align: center!important;">
+          <ion-icon src="assets/channelPartner_Icons/mobile_Phone_Icon/call-outline.svg" style="margin-right: 2%!important;width: 16px;height: 22px;margin-top: -5px;"></ion-icon>
+        </ion-col>
+        <ion-col size="10" style="margin-top: -3px!important;margin-left: -15px!important;">
+        <p class="margintextsubtitle" style="letter-spacing: 0.7px!important;" >{{mobile}}</p>
+        </ion-col >
+      </ion-row>
+  </ion-card-subtitle>
+
+  <ion-card-subtitle  role="heading" aria-level="2" style="margin-top: -18px;">
+    <ion-row >
+      <ion-col size="2" style="text-align: center!important;">
+        <ion-icon src="assets/channelPartner_Icons/email_Icon/mail-outline.svg" style="margin-right: 2%!important;width: 16px;height: 22px;margin-top: -5px;"></ion-icon>
+      </ion-col>
+      <ion-col size="10" style="margin-top: -3px!important;margin-left: -15px!important;">
+      <p class="margintextsubtitle"  >{{email}}</p>
+      </ion-col >
+    </ion-row>
+  </ion-card-subtitle>
+</ion-card>
+  <mat-divider style="font-size: 1px!important;"></mat-divider>
+  
+  <p style="font-family: Metropolis Medium;font-size: 20px!important;padding-top: 10px!important;padding-left: 10px!important;">Team Members:-</p>
+
+       <!--Check If Data is available or not-->
+       <div *ngIf="teamMembers.length==0 && isSpinner==false" class="ion-text-center">
+        <div class="datanotfound">
+          <img src="assets/channelPartner_Icons/user_Photo_Icon/user-grey.svg" style="width: 90px;height: 90px">
+          <ion-card-title class="noData">Team Members Not Available!</ion-card-title>
+        </div>
+      </div>
+  
+
+  <ion-list style="padding-bottom: 25%!important;padding-left: 10px;">
+
+    <mat-chip-list #chipList>
+     
+      <mat-chip *ngFor="let c of teamMembers let i=index" 
+            style="font-family: Metropolis Light;font-size: 16px;padding-left: 5px; padding-top: 20px;padding-bottom: 20px; width: auto;white-space: pre-wrap;font-weight: 900;margin-top: 10px;">  
+            <ion-icon src="assets/channelPartner_Icons/user_Photo_Icon/user_white.svg" style="color: var(--ion-color-primary);width: 18px;height:18px;margin-left: 5px;margin-right: 10px;">
+              </ion-icon>
+              {{c.full_name}}
+               <ion-icon name="close-circle"  style="margin-left: 6px!important;margin-top:0px!important;color: var(--ion-color-primary);font-size: 20px!important;width: 30px;height: 30px;" (click)="deleteData(c.cp_team_member_id,c.full_name,c.mobile_number)" ></ion-icon>
+            </mat-chip>
+      
+    </mat-chip-list>
+    </ion-list>
+  </ion-content>
+  
+<ion-footer style="background-color: transparent;height: 0px">
+  <div style="align-content: right!important;alignment: right!important;text-align: right!important;justify-content: right!important;margin-top: -22%!important;">
+    <button mat-raised-button class="teamleaderFabtype"  (click)="addTeamPerson()" routerDirection="forward"><ion-icon name="add" style="margin-right: 3%!important;color: black; width: 24px;height: 24px;margin-top: -2px;"></ion-icon>Team Members</button>
+  </div>
+</ion-footer>
+
+    

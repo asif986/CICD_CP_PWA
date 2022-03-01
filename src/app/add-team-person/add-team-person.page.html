@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar color="color_d" >
+  <ion-row>
+    <ion-col>
+      <div>
+        <ion-buttons slot="start" style="margin-left: 3%">
+          <i class="material-icons icon"  (click)="goback()">arrow_back_ios</i>
+           </ion-buttons>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: start;margin-left: -40px;">
+      <div>
+        <ion-title class="TITLETOOLBAR" style="margin-left: 0px!important;">Select Team Members</ion-title>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: end;margin-right: 10px;">
+      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 60%!important;">
+    </ion-col>
+  </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-searchbar class="Search" style="font-family: Metropolis Light;font-size: 18px;"
+                    (ionInput)="searchEvent($event)"
+                    (ionChange)="searchEvent($event)"
+                    (ionClear)="getTeamPersonData();">
+            </ion-searchbar>
+
+<ion-content style="padding-bottom: 20%!important;" class="ion-text-center">
+ 
+
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content
+          pullingIcon=""
+          pullingText=""
+          refreshingSpinner=""
+          refreshingText="">
+  </ion-refresher-content>
+</ion-refresher>
+
+<div *ngFor="let data of teamPersonData , let i = index ">
+    <ion-list class="outline" style="margin-bottom:10px!important;margin-left: 5%;margin-right: 5%;"  *ngIf="isSpinner==false" >
+  
+   <ion-row style="margin-bottom: 5px!important;">
+      <ion-col class="ion-text-start" size="2" style="margin-top: 5px!important;">
+        <div style="margin-left: 5px!important;" >
+          
+    <mat-checkbox (click)="Checked(i)" style="margin-left: 5%!important;padding-top: 5%!important;margin-top: 10%!important;" ></mat-checkbox>
+        </div>
+      </ion-col>
+      <ion-col class="ion-text-start" size="10">
+        <div class="ion-text-start" style="margin-right:13px!important;margin-top: 3px!important;margin-bottom: -10px;">
+          <div class="persons"><p class="margintexttitle" style="margin-top: 9px;">{{data.full_name}}</p></div>
+          <div>
+            <p class="margintextSubtitle" style="margin-top: -10px;">{{data.mobile_number}}</p>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-list>
+  <mat-divider style="font-size: 1px!important;margin-top: -10px!important;"></mat-divider>
+
+</div>
+
+
+<div *ngIf="teamPersonData.length==0 && isSpinner==false" class="ion-text-center" style="margin-top: 50%!important;">
+    <div class="datanotfound">
+      <img src="assets/channelPartner_Icons/user_Photo_Icon/user-grey.svg" style="width: 90px;height: 90px">
+      <ion-card-title class="noData" style="font-family: Metropolis Medium!important;">No Team Members Available!</ion-card-title>
+    </div>
+   </div>
+
+</ion-content>
+
+<ion-footer style="background-color: transparent;height: 0px"  *ngIf="team_person_array.length!==0" >
+  <div style="align-content: right!important;alignment: center!important;text-align: center!important;justify-content: right!important;margin-top: -22%!important;">
+    <button  mat-raised-button  class="loginbutton" (click)="addTeamMember()" routerDirection="forward">Add Team Member</button>
+  </div>
+</ion-footer>
+
+
+

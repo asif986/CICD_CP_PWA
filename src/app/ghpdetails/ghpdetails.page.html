@@ -1,0 +1,152 @@
+<ion-header>
+  <ion-buttons slot="start" style="margin-left: 3%">
+    <ion-icon name="close" (click)="goback()" style="padding-top: 3% ; color: #b1a7a7;width: 24px;height: 28px" ></ion-icon>
+  </ion-buttons>
+</ion-header>
+
+
+
+<ion-content style="padding-bottom: 20%!important;" class="ion-text-center" *ngIf="isSpinner==false">
+
+
+  <div style="margin-top: 30px;">
+    <img  style="width: 110px!important" src="assets/channelPartner_Icons/success_Tick/tick.svg">
+    <p *ngIf="lead_status_id==6 && token_type_id!==3" style="color:#00bb0b;font-family: 'Metropolis Medium';font-size: 20px!important;"> GHP Generated Successfully !</p>
+    <p *ngIf="lead_status_id==6 && token_type_id==3" style="color:#00bb0b;font-family: 'Metropolis Medium';font-size: 20px!important;"> GHP+ Generated Successfully !</p>
+    <p *ngIf="lead_status_id==6 && token_type_id!==3" style="color:#4E0291A3;font-size: 18px !important; margin-top: -5px !important;font-family: Metropolis Bold;letter-spacing: 0.8px;"> {{token}}</p>
+    <p *ngIf="lead_status_id==6 && token_type_id==3" style="color:#4E0291;font-size: 18px !important; margin-top: -5px !important;font-family: Metropolis Bold;letter-spacing: 0.8px;"> {{token}}</p>
+    <div *ngIf="lead_status_id==6 && token_type_id!==3">
+      <button mat-stroked-button class="matButton"  (click)="generateGHP()" routerDirection="forward">Upgrade to GHP+</button>
+    </div>
+    
+   <!-- <ion-button color="dark" style="width: 180px;font-family:Metropolis Light">Upgrade to GHP+</ion-button>-->
+  </div>
+
+  <ion-list>
+
+    <ion-card style="background: #d9d9d9 !important;" class="cardClass">
+      <ion-card-header no-padding>
+        <!--FOS_NAME-->
+        <!-- <ion-card-title style="padding-top: 3%!important;" role="heading" aria-level="3"><div class="margintexttitle" style="margin-left: 3%!important;margin-right: 3%!important;">dd</div></ion-card-title> -->
+
+        <!--name-->
+        <ion-card-subtitle  role="heading" aria-level="2">
+          <div  class="name" style="color: var(--ion-color-primary) !important;">
+            <ion-icon style="color: var(--ion-color-primary) !important;font-family: Metropolis Medium;font-size: 14px!important;padding-right: 10px!important" class="data" src="assets/channelPartner_Icons/user_Photo_Icon/person-circle.svg"></ion-icon>
+            {{name}}
+          </div>
+        </ion-card-subtitle>
+
+        <!--mobile-->
+        <ion-card-subtitle  role="heading" aria-level="2" >
+          <div  class="margintextsubtitle">
+            <ion-icon class="data" src="assets/channelPartner_Icons/mobile_Phone_Icon/call-outline copy.svg" style="color: var(--ion-color-primary);margin-right: 2%!important;width: 18px;height: 18px;padding-right: 0px!important;font-family: Metropolis Medium;font-size: 14px!important"></ion-icon>
+            {{mobile}}
+          </div>
+        </ion-card-subtitle>
+
+        <!--email-->
+        <ion-card-subtitle  role="heading" aria-level="2" >
+          <div  class="margintextsubtitle">
+            <ion-icon class="data" src="assets/channelPartner_Icons/email_Icon/mail-outline.svg" style="padding-right: 7px!important;font-family: Metropolis Medium;" ></ion-icon>
+            {{email}}
+          </div>
+        </ion-card-subtitle>
+
+        <!--property-->
+        <ion-card-subtitle  role="heading" aria-level="2" >
+          <div  class="margintextsubtitle">
+            <ion-icon class="data" src="assets/channelPartner_Icons/other_Used_CardIcons/business.svg" style="padding-right: 7px!important;font-family: Metropolis Medium;font-size: 14px!important"></ion-icon>
+            {{projectname}}
+          </div>
+        </ion-card-subtitle>
+
+
+
+        <!--event-->
+        <ion-card-subtitle  role="heading" aria-level="2" >
+          <div  class="margintextsubtitle">
+            <ion-icon class="data" src="assets/channelPartner_Icons/other_Used_CardIcons/today.svg" style="padding-right: 7px!important;font-family: Metropolis Medium;font-size: 14px!important" ></ion-icon>
+            {{eventtitle}}
+          </div>
+        </ion-card-subtitle>
+
+
+        <mat-divider style="font-size: 1px!important; margin-top: 15px; margin-bottom: 15px;"></mat-divider>
+
+
+
+        <ion-card-subtitle  role="heading" aria-level="2" *ngIf="ghp_date">
+          <div  class="margintextsubtitle">
+          GHP Generated On:- <b>{{ghp_date}}</b>
+          </div>
+        </ion-card-subtitle>
+        <ion-card-subtitle  role="heading" aria-level="2" *ngIf="ghp_amount">
+          <div  class="margintextsubtitle">
+          GHP Amount Paid :- <b>{{ghp_amount}}</b>
+          </div>
+        </ion-card-subtitle>
+        <ion-card-subtitle  role="heading" aria-level="2" *ngIf="ghp_plus_date">
+          <div  class="margintextsubtitle">
+          GHP+ Upgrade On :- <b>{{ghp_plus_date}}</b>
+          </div>
+        </ion-card-subtitle>
+        <ion-card-subtitle  role="heading" aria-level="2" *ngIf="ghp_plus_amount">
+          <div  class="margintextsubtitle">
+          GHP+ Amount Paid :- <b>{{ghp_plus_amount}}</b>
+          </div>
+        </ion-card-subtitle>
+
+     
+      <mat-divider style="font-size: 1px!important; margin-top: 15px; margin-bottom: 15px;" *ngIf="remarks"></mat-divider>
+
+
+
+      <ion-card-subtitle  role="heading" aria-level="2" *ngIf="remarks">
+        <div  class="margintextsubtitle">
+        Remarks :- <b>{{remarks}}</b>
+        </div>
+      </ion-card-subtitle>
+
+    </ion-card-header>
+
+    </ion-card>
+  </ion-list>
+
+
+
+  <ion-grid>
+    <ion-row style="margin-right: 6px;">
+      <ion-col size='3'>
+        <ion-button (click)="download()"color="warning">  <ion-icon class="btn1" src="assets/channelPartner_Icons/download/cloud-download-outline.svg" ></ion-icon></ion-button>
+      </ion-col>
+      <ion-col size='3'>
+        <ion-button (click)="viewDoc()" color="danger">  <ion-icon class="btn1" src="assets/channelPartner_Icons/password_Icon/eye-outline.svg" ></ion-icon></ion-button>
+      </ion-col>
+      <ion-col size='3' *ngIf="lead_status_id==6 && token_type_id!==3">
+        <ion-button color="success" href="https://wa.me/91{{mobile}}?text=Welcome to VJ family! 
+        %0a %0aThank you for Golden Hour Pass( {{token}} ) of {{projectname}}.
+        %0a %0aDownload your GHP here %0a %0a{{token_media_path}}">  <ion-icon class="btn1" src="assets/channelPartner_Icons/whatsApp_Icon/whatsapp.svg" ></ion-icon></ion-button>
+      </ion-col>
+      <ion-col size='3' *ngIf="lead_status_id==6 && token_type_id==3">
+        <ion-button color="success" href="https://wa.me/91{{mobile}}?text=Welcome to VJ family! 
+        %0a %0aThank you for Golden Hour Pass%2B( {{token}} ) of {{projectname}}.
+        %0a %0aDownload your GHP%2B here %0a %0a{{token_media_path}}">  <ion-icon class="btn1" src="assets/channelPartner_Icons/whatsApp_Icon/whatsapp.svg" ></ion-icon></ion-button>
+      </ion-col>
+      <ion-col style="padding-bottom: 20px;" size='3'  *ngIf="lead_status_id==6 && token_type_id!==3">
+        <ion-button color="tertiary" (click)="shareUsing(token,projectname,token_media_path)"><ion-icon class="btn1" src="assets/channelPartner_Icons/apps_Icon/apps.svg" ></ion-icon></ion-button>
+      </ion-col>
+      <ion-col style="padding-bottom: 20px;" size='3' *ngIf="lead_status_id==6 && token_type_id==3" >
+        <ion-button color="tertiary" (click)="shareUsingPlus(token,projectname,token_media_path)"><ion-icon class="btn1" src="assets/channelPartner_Icons/apps_Icon/apps.svg" ></ion-icon></ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
+
+
+
+
+
+
+

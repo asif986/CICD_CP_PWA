@@ -1,0 +1,165 @@
+<ion-header>
+  <ion-toolbar color="color_d" >
+  <ion-row>
+    <ion-col>
+      <div>
+        <ion-buttons slot="start" style="margin-left: 3%">
+          <i class="material-icons icon"  (click)="goback()">arrow_back_ios</i>
+           </ion-buttons>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: start;margin-left: -30px!important;">
+      <div>
+        <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;">FOS List</ion-title>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: end;margin-right: 10px;">
+      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 30%!important;">
+    </ion-col>
+  </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+        <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+                <ion-refresher-content
+                        pullingIcon=""
+                        pullingText=""
+                        refreshingSpinner="circles"
+                        refreshingText="">
+                </ion-refresher-content>
+              </ion-refresher>
+    <!--My Lead List-->
+
+    <ion-list style="padding-bottom: 25%!important;">
+
+        <ion-card *ngFor="let c of fosList let i=index" style="border-radius: 10px!important;margin-top: 20px!important;">
+          <div *ngIf="c.is_team_lead===2 && FOS==1">
+
+         
+            <div  class="status " *ngIf="c.is_team_lead===1" style="width: 35%!important;text-align: start;color: white;font-family: 'Metropolis Medium';padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px;margin-top: 20px;">
+                Team Leader
+              </div>
+              <div  *ngIf="c.is_team_lead===2" style="padding-bottom: 7px;">
+                
+              </div>
+            <ion-card-header no-padding >
+
+                <ion-row style="margin-top: 5px;">
+                    <ion-col size='2' style="margin-left: 5px;">
+                      <ion-icon src="assets/channelPartner_Icons/user_Photo_Icon/user_white.svg" style="color: gray;margin-right: 2%!important;width: 24px;height:  24px"></ion-icon>
+                    </ion-col>
+                    <ion-col size='10'  style="margin-left: -30px;">
+                      <div class="margintexttitle" style="margin-left: 3%!important;margin-right: 3%!important;">
+                          {{c.full_name}}
+                      </div>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row >
+                    <ion-col size='2' style="margin-left: 7px;margin-top: -5px">
+                      <ion-icon src="assets/channelPartner_Icons/email_Icon/mail.svg" style="color: gray;margin-right: 2%!important;width: 18px;height:  18px"></ion-icon>
+                    </ion-col>
+                    <ion-col size='10'  style="margin-left: -30px;">
+                      <div class="margintextsubtitle" style="margin-left: 3%!important;margin-right: 3%!important;">
+                        {{c.email}}
+                      </div>
+                    </ion-col>
+                </ion-row>
+
+                <ion-row >
+                    <ion-col size='1.5' style="margin-left: 7px;margin-top: -5px">
+                      <ion-icon src="assets/channelPartner_Icons/mobile_Phone_Icon/phone.svg" style="color: gray;margin-right: 2%!important;width: 18px;height:  18px"></ion-icon>
+                    </ion-col>
+                    <ion-col size='5.5'  style="margin-left: -10px;">
+                      <div class="margintextsubtitle" style="margin-left: 3%!important;margin-right: 3%!important;">
+                        {{c.mobile_number}}
+                      </div>
+                    </ion-col>
+                   
+                        <div class="ion-text-end" (click)="updateFosData(i,c.cp_executive_id)" style="margin-top: 15px;margin-left: 50px;" >
+                          <ion-icon src="assets/channelPartner_Icons/card_Update_Delete_Icon/edit_icon.svg" style="width: 24px;height: 24px;padding-bottom: 10px;" (click)="updateFosData(i,c.cp_executive_id)"></ion-icon>
+                      </div>
+                     
+                     
+                        <div class="ion-text-end"  *ngIf="is_team_lead!==1||is_admin==1" style="margin-top: 15px;margin-left: 25px;" >
+                          <ion-icon src="assets/channelPartner_Icons/card_Update_Delete_Icon/delete_icon.svg" style="width: 24px;height: 24px;padding-bottom: 10px;" (click)="deleteFosData(c.cp_executive_id,c.full_name)" ></ion-icon>
+                      </div>
+            
+                </ion-row>
+            </ion-card-header>
+            </div>
+
+
+            <div *ngIf="FOS==2">
+
+         
+              <div  class="status " *ngIf="c.is_team_lead===1" style="width: 35%!important;text-align: start;color: white;font-family: 'Metropolis Medium';padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px;margin-top: 20px;">
+                  Team Leader
+                </div>
+                <div  *ngIf="c.is_team_lead===2" style="padding-bottom: 7px;">
+                  
+                </div>
+              <ion-card-header no-padding >
+  
+                  <ion-row style="margin-top: 5px;">
+                      <ion-col size='2' style="margin-left: 5px;">
+                        <ion-icon src="assets/channelPartner_Icons/user_Photo_Icon/user_white.svg" style="color: gray;margin-right: 2%!important;width: 24px;height:  24px"></ion-icon>
+                      </ion-col>
+                      <ion-col size='10'  style="margin-left: -30px;">
+                        <div class="margintexttitle" style="margin-left: 3%!important;margin-right: 3%!important;">
+                            {{c.full_name}}
+                        </div>
+                      </ion-col>
+                  </ion-row>
+  
+                  <ion-row >
+                      <ion-col size='2' style="margin-left: 7px;margin-top: -5px">
+                        <ion-icon src="assets/channelPartner_Icons/email_Icon/mail.svg" style="color: gray;margin-right: 2%!important;width: 18px;height:  18px"></ion-icon>
+                      </ion-col>
+                      <ion-col size='10'  style="margin-left: -30px;">
+                        <div class="margintextsubtitle" style="margin-left: 3%!important;margin-right: 3%!important;">
+                          {{c.email}}
+                        </div>
+                      </ion-col>
+                  </ion-row>
+  
+                  <ion-row >
+                      <ion-col size='1.5' style="margin-left: 7px;margin-top: -5px">
+                        <ion-icon src="assets/channelPartner_Icons/mobile_Phone_Icon/phone.svg" style="color: gray;margin-right: 2%!important;width: 18px;height:  18px"></ion-icon>
+                      </ion-col>
+                      <ion-col size='5.5'  style="margin-left: -10px;">
+                        <div class="margintextsubtitle" style="margin-left: 3%!important;margin-right: 3%!important;">
+                          {{c.mobile_number}}
+                        </div>
+                      </ion-col>
+                     
+                          <div class="ion-text-end" (click)="updateFosData(i,c.cp_executive_id)" style="margin-top: 15px;margin-left: 50px;" *ngIf="is_team_lead!==1||is_admin==1">
+                            <ion-icon src="assets/channelPartner_Icons/card_Update_Delete_Icon/edit_icon.svg" style="width: 24px;height: 24px;padding-bottom: 10px;" (click)="updateFosData(i,c.cp_executive_id)"></ion-icon>
+                        </div>
+                       
+                       
+                          <div class="ion-text-end"  *ngIf="is_team_lead!==1||is_admin==1" style="margin-top: 15px;margin-left: 25px;" >
+                            <ion-icon src="assets/channelPartner_Icons/card_Update_Delete_Icon/delete_icon.svg" style="width: 24px;height: 24px;padding-bottom: 10px;" (click)="deleteFosData(c.cp_executive_id,c.full_name)" ></ion-icon>
+                        </div>
+                       
+                  </ion-row>
+              </ion-card-header>
+              </div>
+        </ion-card>
+    </ion-list>
+    
+     <!--Check If Data is available or not-->
+     <div *ngIf="fosList.length==0 && isSpinner==false" class="ion-text-center">
+        <div class="datanotfound">
+          <img src="assets/channelPartner_Icons/user_Photo_Icon/user-grey.svg" style="width: 90px;height: 90px">
+          <ion-card-title class="noData">Currently,No FOS Available!</ion-card-title>
+        </div>
+      </div>
+</ion-content>
+
+<ion-footer style="background-color: transparent;height: 0px" *ngIf="FOS!=1  && isSpinner==false">
+    <div style="align-content: right!important;alignment: right!important;text-align: right!important;justify-content: right!important;margin-top: -22%!important;">
+      <button mat-raised-button class="teamleaderFabtype" (click)="addFOS()" routerDirection="forward"><ion-icon name="add" style="margin-right: 3%!important;color: black; width: 24px;height: 24px;margin-top: -2px;"></ion-icon>Add FOS</button>
+    </div>
+  </ion-footer>

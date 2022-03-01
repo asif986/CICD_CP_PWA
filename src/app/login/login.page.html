@@ -1,0 +1,74 @@
+<ion-header>
+
+</ion-header>
+
+<ion-content class="ion-text-center" *ngIf="verifyStatusId==0">
+  <div class="col-md-12 col-lg-12 ion-text-center" style="margin-top: 20%!important;">
+    <img src="assets/channelPartner_Icons/allPNGImages/cp_logo.png" class="img-responsive" style="object-fit: contain;margin: 0 auto;width:165px;">
+  </div>
+  
+  <div class="input-field" style="margin-top: 10%!important;">
+
+    <ion-row>
+      <ion-col  size="3" class="ion-text-center" style="margin-top: 5px!important;">
+        <div class="countrycode"  style="width: 100%;margin-right: 5px!important;">
+          <mat-label class="countrycodetext">
+            +91
+          </mat-label>
+        </div>
+      </ion-col>
+      <ion-col size="9">
+        <!--Enter Mobile Number-->
+        <div [formGroup]="credentialsForm">
+          <mat-form-field appearance="outline" style="width: 100%;margin-left: 5px!important;margin-top: 5px!important;">
+            <mat-label class="inputtextfield">Mobile Number</mat-label>
+            <input matInput [formControl]="credentialsForm.controls['mobile']" max="10" min="10" type="number" class="inputtextfield" required>
+            <mat-hint>
+              <div *ngIf="!credentialsForm.controls.mobile.valid && credentialsForm.controls.mobile.dirty"
+                   class="error">
+                Please enter a valid mobile number.
+              </div>
+            </mat-hint>
+          </mat-form-field>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <!--Password-->
+    <div [formGroup]="credentialsForm" class="input-field-text" style="margin-top: 5px!important;">
+      <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label class="inputtextfield">Password</mat-label>
+        <input class="inputtextfield" matInput [formControl]="credentialsForm.controls['pwd']" [type]="getType()" [(ngModel)]="loginifo.password" name="password" required>
+        <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword()">
+          <mat-icon><ion-icon [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'" ></ion-icon></mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <!--Forgot Password Button-->
+    <div style="text-align: right!important;margin-top: -30px!important;margin-right: -15px!important;">
+      <button mat-button id="forgotButton" style="text-align: right!important;font-family: 'Metropolis Medium';font-size: 14px!important;color: black!important;" (click)="forgotPassword()">Forgot Password</button>
+    </div>
+
+
+    <!--Login Button-->
+    <button mat-button class="loginbutton" (click)="login(credentialsForm.value)" routerDirection="forward">Login</button><br>
+
+
+
+    <!--Create New User-->
+   <!-- <ion-card-title>
+      <div class="newusertext">
+        New User ?
+      </div>
+    </ion-card-title>-->
+
+    <!--Register Now-->
+    <button mat-stroked-button  class="registerbutton" (click)="register()" routerDirection="forward">Register Now</button>
+
+  </div>
+  <div style="margin-top: -200px;">
+    <img  src="assets/channelPartner_Icons/allPNGImages/myPerformance.png"/>
+  </div>
+
+</ion-content>

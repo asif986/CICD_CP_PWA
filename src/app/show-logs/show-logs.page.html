@@ -1,0 +1,489 @@
+<ion-header>
+  <ion-toolbar color="color_d" >
+  <ion-row>
+    <ion-col>
+      <div>
+        <ion-buttons slot="start" style="margin-left: 3%">
+          <i class="material-icons icon"  (click)="goback()">arrow_back_ios</i>
+           </ion-buttons>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: start;margin-left: -20px!important;">
+      <div>
+        <ion-title class="TITLETOOLBAR" >Show Logs</ion-title>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: end;margin-right: 10px;">
+      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 37%!important;">
+    </ion-col>
+  </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="isSpinner==false">
+  <div style="padding-top: 10px!important;padding-left: 10px!important;">
+    <ion-row>
+      <ion-col size='2'>
+        <img src="assets/channelPartner_Icons/user_Photo_Icon/person-circle.svg" style="width: 20px;height: 20px">
+       </ion-col>
+       <ion-col size='10' style="text-align: left;padding-top: 7px;margin-left: -25px;">
+        <ion-label class="nameOfCustomer">{{full_name}}</ion-label>
+       </ion-col>
+    </ion-row>
+  </div>
+  <div style="margin-top: -5px!important;padding-left: 12px!important;">
+    <ion-row style="margin-top: -10px!important;">
+      <ion-col size='2'>
+        <img src="assets/channelPartner_Icons/other_Used_CardIcons/business.svg" style="width: 17px;height: 17px">
+       </ion-col>
+       <ion-col size='10' style="text-align: left;padding-top: 7px!important;margin-left: -25px;">
+        <ion-label class="subTitleOther">{{block_name}} - {{unit}}</ion-label>
+       </ion-col>
+    </ion-row>
+  </div>
+  <div style="margin-top: -3px!important;padding-left: 10px!important;">
+    <ion-row style="margin-top: -5px!important;">
+      <ion-col size='2'>
+        <img src="assets/channelPartner_Icons/other_Used_CardIcons/rupee-indian.svg" style="width: 17px;height: 17px">
+       </ion-col>
+       <ion-col size='10' style="text-align: left;padding-top: 6px;margin-left: -25px;">
+        <ion-label class="subTitleOther">{{bsp}}</ion-label>
+       </ion-col>
+    </ion-row>
+  </div>
+<div *ngFor="let logsdata of logs let i=index" style="margin-top: -2px!important;">
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dotGreen">
+
+      </div>
+      <div class = "verticalGreen">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitleBold">{{logsdata.bill_stage}}</div>
+      <div class="mediumSubTitleDate">{{logsdata.log_date}}</div>
+    </ion-col>
+  </ion-row>
+</div>
+
+
+<div *ngIf="(logs.length > 0 ) && (logs.length <= 1)">
+  <ion-row >
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Sales Approval</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Approval By Accounts</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Submitted to payment department</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment process initiated</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment under process(will be paid in --days)</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment ready or payment transferred</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row style="margin-bottom: 20px!important;">
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "verticalLast">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment process completed</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+</div>
+  
+<div *ngIf="(logs.length > 1 ) && (logs.length <= 2)">
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Approval By Accounts</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Submitted to payment department</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment process initiated</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment under process(will be paid in --days)</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment ready or payment transferred</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row style="margin-bottom: 20px!important;">
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "verticalLast">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment process completed</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+</div>
+
+<div *ngIf="(logs.length > 2 ) && (logs.length <= 3)">
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Submitted to payment department</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment process initiated</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment under process(will be paid in --days)</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment ready or payment transferred</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row style="margin-bottom: 20px!important;">
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "verticalLast">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment process completed</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+</div>
+
+<div *ngIf="(logs.length > 3 ) && (logs.length <= 4)">
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment process initiated</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment under process(will be paid in --days)</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment ready or payment transferred</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row style="margin-bottom: 20px!important;">
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "verticalLast">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment process completed</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+</div>
+
+<div *ngIf="(logs.length > 4 ) && (logs.length <= 5)">
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment under process(will be paid in --days)</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment ready or payment transferred</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row style="margin-bottom: 20px!important;">
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "verticalLast">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment process completed</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+</div>
+
+<div *ngIf="(logs.length > 5 ) && (logs.length <= 6)">
+<ion-row>
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "vertical">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment ready or payment transferred</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+  <ion-row style="margin-bottom: 20px!important;">
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "verticalLast">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment process completed</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+</div>
+
+<div *ngIf="(logs.length > 6 ) && (logs.length <= 7)">
+  <ion-row style="margin-bottom: 20px!important;">
+    <ion-col size='3'>
+      <div class = "dot">
+
+      </div>
+      <div class = "verticalLast">
+
+      </div>
+    </ion-col>
+    <ion-col size='9' style="margin-left: -30px!important;">
+      <div class="mediumSubTitle">Payment process completed</div>
+      <div class="mediumSubTitle">Not Done Yet!</div>
+    </ion-col>
+  </ion-row>
+</div>
+
+<div *ngIf="(logs.length > 7 ) && (logs.length <= 8)">
+</div>
+
+</ion-content>
+

@@ -1,0 +1,344 @@
+
+<ion-header >
+  <ion-toolbar color="color_d" >
+  <ion-row>
+    <ion-col>
+      <div>
+        <ion-buttons slot="start" style="margin-left: 3%">
+          <i class="material-icons icon"  (click)="goback()">arrow_back_ios</i>
+           </ion-buttons>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: start;margin-left: -30px!important;">
+      <div>
+        <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;">Team Lead Stats</ion-title>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: end;margin-right: 10px;">
+      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 37%!important;">
+    </ion-col>
+  </ion-row>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+
+
+  <div style="padding-left: 10px; padding-right: 10px;padding-top: 20px!important;font-size: 10px;">
+    <mat-form-field appearance="outline" style="width:100%">
+      <mat-label class="matLabel">Project Name</mat-label>
+      <mat-select  [(ngModel)]="selectedCategory" >
+        <mat-option *ngFor="let performance of PerformanceList let i= index" [value]="performance.project_name" (click)="getmyPerformancevalue(i)">
+          {{performance.project_name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <ion-row style="padding-left: 5px;padding-right: 7px;margin-top: -10px;">
+    <ion-col size='6'>
+      <div class="input-field-text" style="font-size: 10px;">
+        <mat-form-field appearance="outline" style="width: 100%" (click)="picker2.open()">
+            <mat-label class="input-field-text" style="font-size: 15px;">From Date</mat-label>
+            <input matInput [matDatepicker]="picker2" [(ngModel)]="fromdate"  style="font-size: 15px" [max]="minDate" (dateChange)="Click()" readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2 [(ngModel)]="fromdate" ngDefaultControl></mat-datepicker>
+        </mat-form-field>
+    </div>
+    </ion-col>
+
+    <ion-col size='6' >
+      <div class="input-field-text" style="font-size: 10px;">
+        <mat-form-field appearance="outline" style="width: 100%" *ngIf="fromdate!==undefined && fromdate !==null" (click)="picker3.open()">
+            <mat-label class="input-field-text" style="font-size: 15px;">To Date</mat-label>
+            <input  matInput [matDatepicker]="picker3" [(ngModel)]="todate" style="font-size: 15px" [min]="fromdate" (dateChange)="Click()" readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-datepicker #picker3 [(ngModel)]="todate" ngDefaultControl></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 100%" *ngIf="fromdate==undefined && fromdate ==null" (click)="picker3.open()">
+          <mat-label class="input-field-text" style="font-size: 15px;">To Date</mat-label>
+          <input  matInput [matDatepicker]="picker3" [(ngModel)]="todate" style="font-size: 15px" [min]="minDate" [max]="minDate"  readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3 [(ngModel)]="todate" ngDefaultControl></mat-datepicker>
+      </mat-form-field>
+    </div>
+    </ion-col>
+  </ion-row>
+
+  
+  <ion-row style="margin-left: 10px;">
+    <ion-col size="1">
+      <div class="square_leads"></div>
+    </ion-col>
+    <ion-col size="4" style="margin-left: -20px!important">
+      <ion-title class="shortformofname">L-Leads</ion-title>
+    </ion-col>
+
+    <ion-col size="1" style="margin-left: 10px;">
+      <div class="square_siteVisit"></div>
+    </ion-col>
+    <ion-col size="6" style="margin-left: -15px!important;">
+      <ion-title class="shortformofname">S-Site Visits</ion-title>
+    </ion-col>
+  </ion-row>
+
+
+  <ion-row style="margin-left: 10px;margin-top: 5px;" >
+ <ion-col size="1">
+      <div class="square_Ghpgenerated"></div>
+    </ion-col>
+    <ion-col size="4" style="margin-left: -20px!important;">
+      <ion-title class="shortformofname">G-GHP</ion-title>
+    </ion-col>
+
+    <ion-col size="1" style="margin-left: 10px;">
+      <div class="square_Ghpplusgenerated"></div>
+    </ion-col>
+    <ion-col size="6" style="margin-left: -20px!important;">
+      <ion-title class="shortformofname">G+-GHP+</ion-title>
+    </ion-col>
+ </ion-row>
+ 
+ <ion-row style="margin-left: 10px;margin-top: 5px;margin-bottom: 15px;">
+  <ion-col size="1">
+    <div class="square_allotments"></div>
+  </ion-col>
+  <ion-col size="6" style="margin-left: -20px!important;">
+    <ion-title class="shortformofname">A-Allotments</ion-title>
+  </ion-col>
+  <ion-col size="5">
+
+  </ion-col>
+</ion-row>
+
+
+
+  <ion-list style="padding-top: 10px;padding-left: 5px;padding-right: 5px;" >
+    <ion-card class="outlineForNewCard" *ngFor="let list of teamStats,let i=index">
+  <!-- Main Top Divs -->
+      <div class="mainCrd" style="background-color:#bbb5b521!important;padding-top: 10px;padding-bottom: 5px;" >
+        <div class="teamPersonName ">
+          <div style="color: black!important;">Team Person</div>
+          <div class="verticalLineforPerson"></div>
+        </div>
+        <div class="leads">
+          <div>L</div>
+          <div class="verticalLine"></div>
+        </div>
+      <div class="sitevisit">
+          <div>S</div>
+          <div class="verticalLine"></div>
+        </div>
+        <div class="ghp">
+          <div>G</div>
+          <div class="verticalLine"></div>
+        </div>
+        <div class="ghpplus">
+          <div>G+</div>
+          <div class="verticalLine"></div>
+        </div>
+        <div class="allotments">
+          <div>A</div>
+        </div>
+      </div>
+      <mat-divider style="margin-top: 0px!important;"></mat-divider>
+
+<!-- With For Loop Div -->
+      <div *ngFor="let c of list.stats,let j=index">
+      <div class="mainCrd_count" >
+        <div class="teamPersonName_count" *ngIf="c.is_team_lead==1" >
+          <div  >{{c.full_name}} (TL)</div>
+          <div class="verticalLineforPerson"></div>
+        </div>
+        <div class="teamPersonName_count" *ngIf="c.is_team_lead!==1">
+          <div >{{c.full_name}} </div>
+          <div class="verticalLineforPerson"></div>
+        </div>
+        <!-- (click)="leadListData(1,c.cp_executive_id,c.full_name)"  -->
+        <div class="leads_count" (click)="leadListData(1,c.cp_executive_id,c.full_name)">
+          <div>{{c.leads}}</div>
+          <div class="verticalLine" ></div>
+        </div>
+        <!-- (click)="leadListData(2,c.cp_executive_id,c.full_name)"  -->
+        <div class="sitevisit_count" (click)="leadListData(2,c.cp_executive_id,c.full_name)" >
+          <div>{{c.leads_site_visits}}</div>
+          <div class="verticalLine"></div>
+        </div>
+        <!-- (click)="leadListData(3,c.cp_executive_id,c.full_name)"  -->
+        <div class="ghp_count" (click)="leadListData(3,c.cp_executive_id,c.full_name)" >
+          <div>{{c.lead_tokens_ghp}}</div>
+          <div class="verticalLine"></div>
+        </div>
+        <!-- (click)="leadListData(4,c.cp_executive_id,c.full_name)"  -->
+        <div class="ghpplus_count" (click)="leadListData(4,c.cp_executive_id,c.full_name)" >
+          <div>{{c.lead_tokens_ghp_plus}}</div>
+          <div class="verticalLine"></div>
+        </div>
+        <!-- (click)="leadListData(5,c.cp_executive_id,c.full_name)" -->
+        <div class="allotments_count" (click)="leadListData(5,c.cp_executive_id,c.full_name)">
+          <div>{{c.booking_master}}</div>
+        </div>
+        <mat-divider style="margin-top: 5px!important;margin-bottom: 5px!important;"></mat-divider>
+      </div>
+      </div>
+
+
+<!-- With Total Count Div -->
+        <div class="mainCrd_bottom">
+        <div class="teamPersonName_total" >
+          <div >Total</div>
+          <div class="verticalLineforPerson"></div>
+        </div>
+        <div class="leads_total">
+          <div>{{list.totalstats.leads}}</div>
+          <div class="verticalLineforTotal"></div>
+        </div>
+        <div class="sitevisit_total">
+          <div>{{list.totalstats.leads_site_visits}}</div>
+          <div class="verticalLineforTotal"></div>
+        </div>
+        <div class="ghp_total">
+          <div>{{list.totalstats.lead_tokens_ghp}}</div>
+          <div class="verticalLineforTotal"></div>
+        </div>
+        <div class="ghpplus_total">
+          <div>{{list.totalstats.lead_tokens_ghp_plus}}</div>
+          <div class="verticalLineforTotal"></div>
+        </div>
+        <div class="allotments_total">
+          <div>{{list.totalstats.booking_master}}</div>
+        </div>
+        </div>
+
+  
+     
+    
+    </ion-card>
+    </ion-list>
+
+
+
+</ion-content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div  class="table-responsive" style="padding: 5px; overflow-x:auto!important;margin-top: 10px!important;" >
+  <ion-list style="padding-top: 10px;" >
+      <ion-card class="outline" style="margin-top: 5px;" *ngFor="let list of teamStats let i=index">
+    <table class="table round" style="width: 100% !important" >
+    <thead>
+    <tr style="background-color: #cbcbcb!important;border-top-left-radius: 10px!important;border-top-right-radius: 10px!important;" >
+      <td scope="col" class="title" style="width: 33%!important;white-space: pre-line!important;padding-top: 20px;font-family: Metropolis Medium;font-size: 15px;color: black;">Team Person</td>
+        <td scope="col" class="count_leads" style="padding-top: 20px;font-family: Metropolis Medium;font-size: 20px;   padding-left: 13px;
+        padding-right: 13px;width: 14%!important;">L</td>
+        <td scope="col" class="count_siteVisit" style="padding-top: 20px;font-family: Metropolis Medium;font-size: 20px;   padding-left: 16px;
+        padding-right: 16px;width: 14%!important;">S</td>
+        <td scope="col" class="count_Ghpgenerated" style="padding-top: 20px;font-family: Metropolis Medium;font-size: 20px;   padding-left: 16px;
+        padding-right: 16px;width: 14%!important;">G</td>
+        <td scope="col" class="count_Ghpplusgenerated" style="padding-top: 20px;font-family: Metropolis Medium;font-size: 20px;width: 14%!important;">G+</td>
+        <td scope="col" class="count_allotments" style="margin-right: 3px;   padding-left: 13px;
+        padding-right: 22px;padding-top: 20px;font-family: Metropolis Medium;font-size: 20px;width: 14%!important;">A</td>
+    </tr>
+    </thead>
+    <tbody class="f-12-m color-lighter-gray ion-text-center" *ngFor="let c of list.stats let j=index" > -->
+     <!-- <tr *ngIf="username!==c.full_name">
+        <td class="title" style="width: 33%!important;white-space: pre-line!important;font-family: Metropolis Medium;font-size: 13px;color: black;">{{c.full_name}}</td>
+        <td class="count_leads" style="font-family: Metropolis Bold;font-size: 15px;">{{c.leads}}</td>
+        <td class="count_siteVisit"  style="font-family: Metropolis Bold;font-size: 15px;">{{c.leads_site_visits}}</td>
+        <td class="count_Ghpgenerated"  style="font-family: Metropolis Bold;font-size: 15px;">{{c.lead_tokens_ghp}}</td>
+        <td class="count_Ghpplusgenerated"  style="font-family: Metropolis Bold;font-size: 15px;">{{c.lead_tokens_ghp_plus}}</td>
+        <td class="count_allotments"  style="font-family: Metropolis Bold;font-size: 15px;;padding-right: 21px;">{{c.booking_master}}</td>
+      </tr> -->
+      <!-- <tr >
+        <td class="title"  *ngIf="c.is_team_lead==1"  style="width: 33%!important;white-space: pre-line!important;font-family: Metropolis Bold;font-size:  13px;color: black;word-break: break-all!important">{{c.full_name}} (TL)</td>
+        <td class="title"  *ngIf="c.is_team_lead!==1" style="width: 33%!important;white-space: pre-line!important;font-family: Metropolis Medium;font-size:  13px;color: black;">{{c.full_name}}</td>
+        
+        <td class="count_leads" *ngIf="c.is_team_lead==1" (click)="leadListData(1,c.cp_executive_id,c.full_name)" style="font-family: Metropolis Bold;font-size: 15px;   padding-left: 13px;
+        padding-right: 13px;width: 14%!important;">{{c.leads}}</td>
+        <td class="count_leads" *ngIf="c.is_team_lead!==1" (click)="leadListData(1,c.cp_executive_id,c.full_name)" style=" font-family: Metropolis Bold;font-size: 15px;   padding-left: 13px;
+        padding-right: 13px;width: 14%!important;">{{c.leads}}</td>
+       
+        <td class="count_siteVisit" *ngIf="c.is_team_lead==1" (click)="leadListData(2,c.cp_executive_id,c.full_name)" style="font-family: Metropolis Bold;font-size: 15px;  padding-left: 16px;
+        padding-right: 16px;width: 14%!important;">{{c.leads_site_visits}}</td>
+        <td class="count_siteVisit" *ngIf="c.is_team_lead!==1" (click)="leadListData(2,c.cp_executive_id,c.full_name)" style="font-family: Metropolis Bold;font-size: 15px;  padding-left: 16px;
+        padding-right: 16px;width: 14%!important;">{{c.leads_site_visits}}</td>
+        
+        <td class="count_Ghpgenerated" *ngIf="c.is_team_lead==1" (click)="leadListData(3,c.cp_executive_id,c.full_name)" style="font-family: Metropolis Bold;font-size: 15px;   padding-left: 16px;
+        padding-right: 16px;width: 14%!important; ">{{c.lead_tokens_ghp}}</td>
+        <td class="count_Ghpgenerated" *ngIf="c.is_team_lead!==1" (click)="leadListData(3,c.cp_executive_id,c.full_name)" style="font-family: Metropolis Bold;font-size: 15px;  padding-left: 16px;
+        padding-right: 16px;width: 14%!important;">{{c.lead_tokens_ghp}}</td>
+       
+        <td class="count_Ghpplusgenerated" *ngIf="c.is_team_lead==1" (click)="leadListData(4,c.cp_executive_id,c.full_name)" style="font-family: Metropolis Bold;font-size: 15px; width: 14%!important;">{{c.lead_tokens_ghp_plus}}</td>
+        <td class="count_Ghpplusgenerated" *ngIf="c.is_team_lead!==1" (click)="leadListData(4,c.cp_executive_id,c.full_name)"  style="font-family: Metropolis Bold;font-size: 15px; width: 14%!important;">{{c.lead_tokens_ghp_plus}}</td>
+       
+        <td class="count_allotments" *ngIf="c.is_team_lead==1" (click)="leadListData(5,c.cp_executive_id,c.full_name)"  style="font-family: Metropolis Bold;font-size: 15px;   padding-left: 13px;
+        padding-right: 22px;width: 14%!important;">{{c.booking_master}}</td>
+        <td class="count_allotments" *ngIf="c.is_team_lead!==1" (click)="leadListData(5,c.cp_executive_id,c.full_name)"  style="font-family: Metropolis Bold;font-size: 15px;   padding-left: 13px;
+        padding-right: 22px;width: 14%!important;">{{c.booking_master}}</td>
+    
+      </tr>
+    </tbody>
+    <thead>
+      <tr class="title" style="border-bottom-left-radius: 10px!important;border-bottom-right-radius: 10px!important;" >
+        <th scope="col" class="title" style="padding-top: 10px;font-size: 17px;font-family: Metropolis Bold;color: black;padding-bottom: 10px;">Total</th>
+        <th scope="col" class="count_leads" style="padding-top: 10px;font-size: 19px;font-family: Metropolis Bold;padding-bottom: 10px;   padding-left: 13px;
+        padding-right: 13px;width: 14%!important;">{{list.totalstats.leads}}</th>
+        <th scope="col" class="count_siteVisit" style="padding-top: 10px;font-size: 19px;font-family: Metropolis Bold;padding-bottom: 10px; padding-left: 16px;
+        padding-right: 16px;width: 14%!important;">{{list.totalstats.leads_site_visits}}</th>
+        <th scope="col" class="count_Ghpgenerated" style="padding-top: 10px;font-size: 19px;font-family:Metropolis Bold;padding-bottom: 10px;   padding-left: 16px;
+        padding-right: 16px;width: 14%!important;">{{list.totalstats.lead_tokens_ghp}}</th>
+        <th scope="col" class="count_Ghpplusgenerated" style="padding-top: 10px;font-size: 19px;font-family: Metropolis Bold;padding-bottom: 10px;width: 14%!important;">{{list.totalstats.lead_tokens_ghp_plus}}</th>
+        <th scope="col" class="count_allotments" style="padding-top: 10px;font-size: 19px;font-family: Metropolis Bold;padding-bottom: 10px;   padding-left: 13px;
+        padding-right: 22px;width: 14%!important;">{{list.totalstats.booking_master}}</th>
+      </tr>
+    </thead>
+  </table> 
+  </ion-card>
+  </ion-list>
+  </div> -->
+
+
+
+
+
+
+
+
+
+

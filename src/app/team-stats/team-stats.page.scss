@@ -1,0 +1,1187 @@
+
+//New Code With New CSS For Card Look
+.datanotfound {
+  alignment: center;
+  margin-top: 50%;
+}
+.noData{
+  margin-top: 3%!important;
+  font-size:15px;
+  font-family: "Google Sans Medium";
+  color: var(--ion-color-sutextTitle);
+}
+.toolbar-text {
+  color: var(--ion-color-primary);
+  font-family: "Metropolis Medium";
+  font-size: medium;
+  background-color: var(--ion-color-secondary);
+}
+.toolbar-title{
+  color: var(--ion-color-secondary);
+  font-family: "Metropolis Medium";
+  font-size: 20px;
+}
+.toolbar-title{
+  color: var(--ion-color-secondary);
+  font-family: "Metropolis Medium";
+  font-size: 20px;
+}
+.count_leads{
+  color: #1ABC71;
+  font-family: "Metropolis Medium";
+  
+  text-align: center!important;
+}
+.count_siteVisit{
+  color: #F5D400;
+  font-family: "Metropolis Medium";
+ 
+  text-align: center!important;
+}
+.count_Ghpgenerated{
+color: #924DCF;
+font-family: "Metropolis Medium";
+
+text-align: center!important;
+}
+.count_Ghpplusgenerated{
+color: #4E0291;
+font-family: "Metropolis Medium";
+
+text-align: center!important;
+}
+.count_allotments{
+color: #2C408B;
+font-family: "Metropolis Medium";
+
+text-align: center!important;
+}
+.square_leads{
+height: 15px;
+width: 15px;
+background-color: #1ABC71;
+}
+.square_siteVisit{
+height: 15px!important;
+width: 15px!important;
+background-color: #F5D400;
+}
+.square_leads{
+height: 15px!important;
+width: 15px!important;
+background-color: #1ABC71;
+}
+.square_Ghpgenerated{
+height: 15px!important;
+width: 15px!important;
+background-color: #924DCF;
+}
+.square_Ghpplusgenerated{
+height: 15px!important;
+width: 15px!important;
+background-color: #4E0291;
+}
+.square_allotments{
+height: 15px!important;
+width: 15px!important;
+background-color: #2C408B;
+}
+.shortformofname{
+color: var(--ion-color-primary);
+font-family: "Metropolis Medium";
+font-size: 14px!important;
+}
+.parent {
+width: 100%;
+}
+.block1 {
+width: 31%;
+float: left;
+}
+
+.block2 {
+width: 40%;
+float: left;
+margin-left: 1px!important;
+}
+.block3 {
+width: 30%;
+float: left;
+margin-left: -20px!important;
+}
+.parent1 {
+width: 100%;
+}
+.block11{
+width: 50%;
+float: left;
+}
+.block12 {
+width: 50%;
+float: left;
+margin-left: -65px!important;
+}
+.outline {
+  margin-bottom: 6%!important;
+  border-radius: 16px;
+  background: #fff;
+ 
+}
+.vertical { 
+  border-left: 6px solid black; 
+  height: 200px; 
+  position:absolute; 
+  left: 50%; 
+} 
+//table
+  table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      border-radius: 15px;
+      min-width: 344px;
+    }
+    td {
+      text-align: left;
+      padding: 8px;
+      border: 1px solid darkgray;
+      text-align: center;
+    }
+    th{
+      border: 1px solid darkgray;
+    }
+    .table-responsive {
+width: 100%;
+margin-bottom: 15px;
+overflow-y: hidden;
+-ms-overflow-style: -ms-autohiding-scrollbar;
+margin-top: 20px!important;
+//border: 1px solid #ddd;
+}
+
+::ng-deep.mat-select-panel .mat-optgroup-label{
+  color: black;
+}
+::ng-deep.mat-select-panel .mat-option-text{
+  color: black;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+}
+::ng-deep.mat-select-panel .mat-select-arrow-wrapper{
+  color: black;
+}
+::ng-deep.mat-form-field-appearance-legacy .mat-form-field-underline{
+  color: black;
+}
+::ng-deep.mat-select-value{
+  color: black;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+}
+
+::ng-deep.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-datepicker-toggle-default-icon {
+  display: block;
+  width: 1.5em;
+  height: 1.5em;
+  font-size: 15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .toolbar-text {
+//   color: var(--ion-color-primary);
+//   font-family: "Metropolis Medium";
+//   font-size: medium;
+//   background-color: var(--ion-color-secondary);
+// }
+// .toolbar-title{
+//   color: var(--ion-color-secondary);
+//   font-family: "Metropolis Medium";
+//   font-size: 20px;
+// }
+
+// // table {
+// //   border-collapse: collapse;
+// //   border-spacing: 0;
+// //   border-radius: 15px;
+// //   min-width: 350px;
+// // }
+// // .round{
+// // border-radius: 20px;
+// // }
+// // th, td {
+// //   text-align: left;
+// //   padding: 8px;
+// //   border: 1px solid #ddd;
+
+// // }
+
+// //tr:nth-child(even){background-color: #f2f2f2}
+
+// .datanotfound {
+//   alignment: center;
+//   margin-top: 50%;
+// }
+// .noData{
+//   margin-top: 3%!important;
+//   font-size:15px;
+//   font-family: "Google Sans Medium";
+//   color: var(--ion-color-sutextTitle);
+// }
+// // .table-responsive>.table {
+// //   margin-bottom: 0;
+// // }
+// // .table>caption+thead>tr:first-child>td, .table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>td, .table>colgroup+thead>tr:first-child>th, .table>thead:first-child>tr:first-child>td, .table>thead:first-child>tr:first-child>th {
+// //   border-top: 0;
+// // }
+
+// // .table-responsive>.table>tbody>tr>td, .table-responsive>.table>tbody>tr>th, .table-responsive>.table>tfoot>tr>td, .table-responsive>.table>tfoot>tr>th, .table-responsive>.table>thead>tr>td, .table-responsive>.table>thead>tr>th {
+// //   white-space: nowrap;
+// // }
+// // .table>thead>tr> td:first-child {
+// //   vertical-align: bottom;
+// //   border-bottom: 2px solid #ddd;
+// //   border-radius: 15px 0 0 0;
+// // }
+// // .table>thead>tr> td:last-child {
+// //   vertical-align: bottom;
+// //   border-bottom: 2px solid #ddd;
+// //   border-radius: 0 15px 0 0;
+// // }
+// // .table>tr> th:last-child{
+// //   vertical-align: bottom;
+// //   border-bottom: 2px solid #ddd;
+// //   border-radius: 0 0 0 15px;
+// // }
+// // .table>tr> th:first-child{
+// //   vertical-align: bottom;
+// //   border-bottom: 2px solid #ddd;
+// //   border-radius: 0 0 15px 0;
+// // }
+// // .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+// //   padding: 8px;
+// //   line-height: 1.42857143;
+// //   vertical-align: top;
+// //   border-top: 1px solid #ddd;
+// // }
+// // .table-responsive {
+// //   width: 100%;
+// //   margin-bottom: 15px;
+// //   overflow-y: hidden;
+// //   -ms-overflow-style: -ms-autohiding-scrollbar;
+// //   margin-top: 20px!important;
+// //   //border: 1px solid #ddd;
+// // }
+// // .table-responsive {
+// //   min-height: .01%;
+// //   overflow-x: auto;
+// // }
+
+// // .table thead th {
+// //   padding: 10px;
+// //   text-align: left;
+// //   margin-left: 10px;
+// //   margin-right: 10px;
+// // }
+// // .table tbody td {
+// //   //border: solid 1px black;
+// //   padding: 10px;
+ 
+// // }
+// // .table-rounded {
+// //   border: none;
+  
+// //   border-radius: 15px;
+// // }
+// // .table-rounded thead th {
+// //   border-bottom-color: solid 1px gray;
+// //   background-color: #ededed;
+// // }
+
+// // .table-rounded thead td:first-child {
+// //   border-radius: 15px 0 0 0;
+// // }
+// // .table-rounded thead td:last-child {
+// //   border-radius: 0 15px 0 0;
+// // }
+// // .table-rounded tbody td {
+// //   border: none;
+// // }
+// // .table-rounded thead  th:first-child {
+// //   border-radius: 0 0 0 15px;
+// // }
+// // .table-rounded thead th:last-child {
+// //   border-radius: 0 0 15px 0;
+// // }
+// // .zui-table {
+// //   border: solid 1px black;
+// //   border-collapse: collapse;
+// //   border-spacing: 0;
+// //   font: normal 13px Arial, sans-serif;
+// //  border-radius: 15px;
+// //   min-width: 350px;
+// // }
+// // .zui-table th, td {
+// //   padding: 0.25rem;
+// //   text-align: left;
+// //   border: 1px solid black;
+// // }
+// // .zui-table thead th {
+// //   padding: 10px;
+// //   text-align: left;
+// //   margin-left: 10px;
+// //   margin-right: 10px;
+// // }
+// // .zui-table tbody td {
+// //   border: solid 1px black;
+// //   padding: 10px;
+ 
+// // }
+// // .zui-table-rounded {
+// //   border: none;
+  
+// //   border-radius: 15px;
+// // }
+// // .zui-table-rounded thead th {
+// //   border-bottom-color: solid 1px gray;
+// //   background-color: #ededed;
+// // }
+
+// // .zui-table-rounded thead td:first-child {
+// //   border-radius: 15px 0 0 0;
+// // }
+// // .zui-table-rounded thead td:last-child {
+// //   border-radius: 0 15px 0 0;
+// // }
+// // .zui-table-rounded tbody td {
+// //   border: none;
+// // }
+// // .zui-table-rounded thead  th:first-child {
+// //   border-radius: 0 0 0 15px;
+// // }
+// // .zui-table-rounded thead th:last-child {
+// //   border-radius: 0 0 15px 0;
+// // }
+// .title{
+//   color: var(--ion-color-primary);
+//   font-family: "Metropolis Light";
+//   font-size: 14px!important;
+// }
+// .count_leads{
+//   color: #1ABC71;
+//   font-family: "Metropolis Medium";
+//   font-size: 16px!important;
+//   text-align: center!important;
+// }
+// .count_siteVisit{
+//   color: #F5D400;
+//   font-family: "Metropolis Medium";
+//   font-size: 16px!important;
+//   text-align: center!important;
+// }
+// .count_Ghpgenerated{
+//   color: #924DCF;
+//   font-family: "Metropolis Medium";
+//   font-size: 16px!important;
+//   text-align: center!important;
+// }
+// .count_Ghpplusgenerated{
+//   color: #4E0291;
+//   font-family: "Metropolis Medium";
+//   font-size: 16px!important;
+//   text-align: center!important;
+// }
+// .count_allotments{
+//   color: #2C408B;
+//   font-family: "Metropolis Medium";
+//   font-size: 16px!important;
+//   text-align: center!important;
+// }
+// .square_leads{
+//   height: 15px;
+//   width: 15px;
+//   background-color: #1ABC71;
+// }
+// .square_siteVisit{
+//   height: 10px!important;
+//   width: 10px!important;
+//   background-color: #F5D400;
+// }
+// .square_leads{
+//   height: 10px!important;
+//   width: 10px!important;
+//   background-color: #1ABC71;
+// }
+// .square_Ghpgenerated{
+//   height: 10px!important;
+//   width: 10px!important;
+//   background-color: #924DCF;
+// }
+// .square_Ghpplusgenerated{
+//   height: 10px!important;
+//   width: 10px!important;
+//   background-color: #4E0291;
+// }
+// .square_allotments{
+//   height: 10px!important;
+//   width: 10px!important;
+//   background-color: #2C408B;
+// }
+// .shortformofname{
+//   color: var(--ion-color-primary);
+//   font-family: "Metropolis Medium";
+//   font-size: 12px!important;
+// }
+// .parent {
+//   width: 100%;
+// }
+// .block1 {
+//   width: 31%;
+//   float: left;
+// }
+
+// .block2 {
+//   width: 40%;
+//   float: left;
+//   margin-left: 1px!important;
+// }
+// .block3 {
+//   width: 30%;
+//   float: left;
+//   margin-left: -20px!important;
+// }
+// .parent1 {
+//   width: 100%;
+// }
+// .block11{
+//   width: 50%;
+//   float: left;
+// }
+// .block12 {
+//   width: 50%;
+//   float: left;
+//   margin-left: -65px!important;
+// }
+// .outline {
+//   margin-bottom: 6%!important;
+//   border-radius: 16px;
+//   background: #fff;
+//   padding-bottom: 10px;
+// }
+// .vertical { 
+//   border-left: 6px solid black; 
+//   height: 200px; 
+//   position:absolute; 
+//   left: 50%; 
+// } 
+
+
+// Common css
+.verticalLine {
+  width: 0.4px;
+  height: 35px;
+  background: 1px solid gray !important;
+  background: #6060605e!important;
+  margin-top: -25px;
+  position: relative;
+  margin-left: 45px !important;
+  //margin-bottom: -10px;
+}
+.verticalLineforPerson{
+  width: 0.4px;
+  height: 35px;
+  background: 1px solid gray !important;
+  background: #6060605e!important;
+  margin-top: -25px;
+  position: relative;
+  margin-left: 100px !important;
+ // margin-bottom: -10px;
+}
+.verticalLineforTotal{
+  width: 0.4px;
+  height: 35px;
+  background: 1px solid gray !important;
+  background: #6060605e!important;
+  margin-top: -25px;
+  position: relative;
+  margin-left: 45px !important;
+ // margin-bottom: -10px;
+}
+.outlineForNewCard {
+  margin-bottom: 6%!important;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid gray!important;
+  box-shadow: none!important;
+}
+
+
+
+// Top Level Divs
+.mainCrd {
+  width:auto;
+  height:auto;
+  padding-top: 15px!important;
+  padding-bottom: 5px!important;
+}
+.leads {
+  width:14%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: #1ABC71;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+.sitevisit {
+  width:14%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: #F5D400;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+.ghp{
+  width:14%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: #924DCF;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+.ghpplus {
+  width:14%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: #4E0291;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+.allotments {
+  width:14%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: #2C408B;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+.teamPersonName {
+  width: 30%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: black!important;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+
+
+.leads > div {
+  color: #1ABC71;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+.sitevisit > div {
+  color: #F5D400;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+  // height:auto;
+  // margin-top: 9px!important;
+  // margin-bottom: 9px!important;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+.ghp > div {
+  color: #924DCF;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+  //height:auto;
+  // margin-top: 9px!important;
+  // margin-bottom: 9px!important;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+.ghpplus > div {
+  color: #4E0291;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+  //height:auto;
+  // margin-top: 9px!important;
+  // margin-bottom: 9px!important;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+.allotments > div {
+  color: #2C408B;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+  //height:auto;
+  // margin-top: 9px!important;
+  // margin-bottom: 9px!important;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+.teamPersonName > div {
+  font-family: "Metropolis Light";
+  font-size: 13px;
+  text-align: center!important;
+  //height:auto;
+  text-align: center!important;
+  font-weight: 200!important;
+ 
+}
+
+
+
+
+
+// With For Loop Div css
+.mainCrd_count{
+  width:auto;
+  height:auto;
+  margin-top: 8px;
+  margin-bottom: 5px;
+}
+
+.leads_count {
+  width:14%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: #1ABC71;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+.sitevisit_count{
+  width:14%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: #F5D400;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+.ghp_count{
+  width:14%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: #924DCF;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+.ghpplus_count {
+  width:14%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: #4E0291;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+.allotments_count {
+  width:14%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: #2C408B;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+.teamPersonName_count {
+  width: 30%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: black!important;
+  text-align: center!important;
+  font-weight: bold!important;
+  word-break: break-word;
+}
+
+.teamPersonName_total{
+  width: 30%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: black!important;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+
+
+.leads_count> div {
+  color: #1ABC71;
+  font-family: "Metropolis Medium";
+  font-size: 14px;
+  //height:auto;
+  text-align: center!important;
+  // margin-top: 10px!important;
+  // margin-bottom: 3px!important;
+  font-weight: bold!important;
+}
+.sitevisit_count> div {
+  color: #F5D400;
+  font-family: "Metropolis Medium";
+  font-size: 14px;
+ // height:auto;
+  text-align: center!important;
+ // margin-top: 10px!important;
+ // margin-bottom: 3px!important;
+ font-weight: bold!important;
+}
+.ghp_count> div {
+  color: #924DCF;
+  font-family: "Metropolis Medium";
+  font-size: 14px;
+ // height:auto;
+  text-align: center!important;
+ // margin-top: 10px!important;
+ // margin-bottom: 3px!important;
+ font-weight: bold!important;
+}
+.ghpplus_count> div {
+  color: #4E0291;
+  font-family: "Metropolis Medium";
+  font-size: 14px;
+// height:auto;
+  text-align: center!important;
+ //margin-top: 10px!important;
+ // margin-bottom: 3px!important;
+ font-weight: bold!important;
+}
+.allotments_count> div {
+  color: #2C408B;
+  font-family: "Metropolis Medium";
+  font-size: 14px;
+ // height:auto;
+//  margin-top: 10px!important;
+ // margin-bottom: 3px!important;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+.teamPersonName_count> div {
+  font-family: "Metropolis Medium";
+  font-size: 11px;
+  text-align: center !important;
+  text-align: center !important;
+  color: black !important;
+  font-weight: bolder !important;
+  /* word-break: break-all; */
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+
+
+// Div For Bottom
+.mainCrd_bottom {
+  width:auto;
+  height:auto;
+  padding-bottom: 5px;
+  padding-top: 8px;
+  //margin-bottom: -2px;
+}
+
+.teamPersonName_total> div{
+  font-family: "Metropolis Medium";
+  font-size: 18px;
+  text-align: center !important;
+  //height: auto;
+  // margin-top: 12px !important;
+  // margin-bottom: 3px !important;
+  text-align: center !important;
+  color: black !important;
+  font-weight: bold!important;
+  
+}
+
+.leads_total {
+  width:14%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: #1ABC71;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+.sitevisit_total{
+  width:14%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: #F5D400;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+.ghp_total{
+  width:14%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: #924DCF;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+.ghpplus_total {
+  width:14%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: #4E0291;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+.allotments_total {
+  width:14%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: #2C408B;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+.teamPersonName_count {
+  width: 30%;
+  display:inline-block;
+  box-sizing: border-box;
+  color: black!important;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+
+
+
+
+.leads_total> div {
+  color: #1ABC71;
+  font-family: "Metropolis Medium";
+  font-size: 18px;
+  //height:auto;
+  text-align: center!important;
+  // margin-top: 10px!important;
+  // margin-bottom: 3px!important;
+  font-weight: bold!important;
+}
+.sitevisit_total> div {
+  color: #F5D400;
+  font-family: "Metropolis Medium";
+  font-size: 18px;
+ // height:auto;
+  text-align: center!important;
+ // margin-top: 10px!important;
+ // margin-bottom: 3px!important;
+ font-weight: bold!important;
+}
+.ghp_total> div {
+  color: #924DCF;
+  font-family: "Metropolis Medium";
+  font-size: 18px;
+ // height:auto;
+  text-align: center!important;
+ // margin-top: 10px!important;
+ // margin-bottom: 3px!important;
+ font-weight: bold!important;
+}
+.ghpplus_total> div {
+  color: #4E0291;
+  font-family: "Metropolis Medium";
+  font-size: 18px;
+// height:auto;
+  text-align: center!important;
+ //margin-top: 10px!important;
+ // margin-bottom: 3px!important;
+ font-weight: bold!important;
+}
+.allotments_total> div {
+  color: #2C408B;
+  font-family: "Metropolis Medium";
+  font-size: 18px;
+ // height:auto;
+//  margin-top: 10px!important;
+ // margin-bottom: 3px!important;
+  text-align: center!important;
+  font-weight: bold!important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#container {
+  display: flex;                  /* establish flex container */
+  flex-direction: row;            /* default value; can be omitted */
+  flex-wrap: nowrap;              /* default value; can be omitted */
+  justify-content: space-between; /* switched from default (flex-start, see below) */
+  //background-color: lightyellow;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#container > div {
+  width: auto;
+  height: auto;
+  //border: 2px dashed red;
+  border-right:  1px solid red;
+  text-align: center;
+}
+.center {
+  text-align: center;
+  border: 3px solid green;
+}
+.divofdiv{
+  color: black;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+  text-align: center!important;
+}
+.divofdivLeads{
+  color: #1ABC71;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+  text-align: center!important;
+}
+.divofdivSitevisits{
+  color: #F5D400;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+  text-align: center!important;
+}
+.divofdivGHP{
+  color: #924DCF;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+  text-align: center!important;
+}
+.divofdivGHPPlus{
+  color: #4E0291;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+  text-align: center!important;
+}
+.divofdivAllotments{
+  color: #2C408B;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+  text-align: center!important;
+}

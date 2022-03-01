@@ -1,0 +1,46 @@
+.countryname {
+  text-align: start;
+  color: var(--ion-color-primary);
+  font-size: 16px;
+  font-family: "Metropolis Medium";
+  margin-top: 2px;
+  margin-bottom: 10px;
+
+}
+.countrynumber {
+  text-align: end;
+  color: var(--ion-color-primary);
+  font-size: 14px;
+  font-family: "Metropolis Light";
+}
+.nodata{
+  text-align: center;
+  color: var(--ion-color-primary);
+  font-size: 20px;
+  font-family: "Metropolis Semi Bold";
+  margin-top: 60%!important;
+  margin-bottom: 10px;
+}
+.divider{
+  border: 1px solid grey;
+}
+.toolbar-text {
+  color: var(--ion-color-secondary);
+  font-family: "Metropolis Medium";
+  font-size: medium;
+  background-color: #652D90;
+
+}
+.toolbar-title{
+  color: var(--ion-color-secondary);
+  font-family: "Metropolis Medium";
+  font-size: 20px;
+}
+/*Internal text size*/
+.cuid {
+  text-align: start;
+  color: black;
+  font-size: 14px;
+  font-family: "Metropolis Medium";
+  margin-top: 10px;
+}

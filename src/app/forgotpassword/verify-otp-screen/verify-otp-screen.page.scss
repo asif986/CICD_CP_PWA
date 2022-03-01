@@ -1,0 +1,70 @@
+.buttons{
+    margin-top: 10%;
+    width: 50%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 25px;
+    background-color: #F5A22C;
+    color: var(--ion-color-primary);
+    font-size:18px;
+    font-family: "Metropolis Medium";
+}
+.Resendbuttons{
+    margin-top: 10%;
+    width: 50%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 25px;
+    background-color:#F5A22C;
+    color: var(--ion-color-primary);
+    font-size:18px;
+    font-family: "Metropolis Medium";
+}
+#otpMessage{
+    margin-top: 10%;
+    margin-left: 2%;
+    margin-left: 2%;
+    font-size:18px;
+    font-family: "Metropolis Medium";
+}
+.input-field{
+    margin: 5%;
+    margin-top: 50%;
+}
+.input-field-text{
+    color: var(--ion-color-primary);
+    font-family: "Metropolis Light";
+    font-size: large;
+    text-align: start;
+    margin: 3%;
+}
+.inputtextfield
+{
+    padding: 2px;
+    color: #000000;
+    font-family: "Metropolis Light";
+    font-size: 16px;
+}
+.toolbar-text {
+    color: var(--ion-color-secondary);
+    font-family: "Metropolis Medium";
+    font-size: medium;
+    background-color: #652D90;
+
+}
+.Resendbuttons:disabled, Resendbuttonss[disabled]{
+    color: white;
+    opacity: 1;
+    background: #b3b3b3;
+}
+::ng-deep.swal2-title {
+    font-family: "Metropolis Medium";
+    font-size: 16px;
+    border-radius: 16px!important;
+}
+.error{
+    color:red;
+    text-align: start;
+    font-family: "Metropolis Light";
+    font-size: 11px;
+}

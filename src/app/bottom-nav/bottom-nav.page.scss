@@ -1,0 +1,41 @@
+.newusertext
+{
+  padding: 2px;
+  alignment: center;
+  color: #000000;
+  font-family: "Metropolis Light";
+  margin-top: 5%;
+  margin-left: 3%;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+.newusertext1
+{
+  padding: 2px;
+  alignment: center;
+  color: var(--ion-color-primary);
+  font-family: "Metropolis Medium";
+  margin-right: 3%;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+.newusertext2
+{
+  padding: 2px;
+  alignment: center;
+  color: var(--ion-color-medium_grey);
+  font-family: "Metropolis Bold";
+  margin-right: 3%;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
+
+// .pane {
+//   --background: url('/assets/navigationNewBG.png') no-repeat center center fixed !important;
+//   background-size: cover !important;
+//   position: fixed;
+//   alignment: top;
+// }

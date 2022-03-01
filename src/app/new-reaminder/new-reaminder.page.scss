@@ -1,0 +1,132 @@
+.toolbar-text {
+    color: var(--ion-color-secondary);
+    font-family: "Metropolis Medium";
+    background-color: #652D90;
+
+    font-size: 18px
+  }
+  .texttitle{
+    color: var(--ion-color-primary);
+    font-size: 20px;
+    font-family: "Metropolis Medium";
+    font-weight: bold;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 1%;
+  }
+  .textsubtitle{
+    color: var(--ion-color-primary);
+    font-size: 16px;
+    font-family: "Metropolis Medium";
+    margin-bottom: 1%;
+  }
+  .borderline{
+    margin-top: 5% !important;
+    margin-bottom: 5% !important;
+    border: 0.5px solid;
+    border-color: var(--ion-color-medium_grey);
+    width: 98%!important;
+    margin-left: auto!important;
+    margin-right: auto!important;
+  }
+  .error{
+    color:red;
+    text-align: start;
+    font-size: small;
+    font-family: "Metropolis Medium";
+  }
+  .input-field-text{
+    color: var(--ion-color-primary);
+    font-family: "Metropolis Medium";
+    font-size: 16px;
+    text-align: start;
+    width: 100%!important;
+  }
+  .registerbutton{
+    margin-top: 5%!important;
+    margin-bottom: 5%!important;
+    margin-left: auto!important;
+    margin-right: auto!important;
+    width: 50%;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size:16px;
+    border-radius: 25px;
+    background-color: #F5A22C;
+    color: var(--ion-color-primary);
+    font-family: "Metropolis Medium";
+  }
+  .registerbuttonoutline{
+    width: 100%!important;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-right: 1px;
+    padding-left: 1px;
+    border-radius: 25px;
+    margin-left: 2%!important;
+    margin-right: 2%!important;
+    border-color: var(--ion-color-light_outline_card);
+    border: 1px solid var(--ion-color-light_outline_card);
+    font-size:16px;
+    font-family: "Metropolis Medium";
+    alignment: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .input-field-textarea{
+    color: var(--ion-color-primary);
+    font-family: "Metropolis Medium";
+    font-size: 16px;
+    text-align: start;
+    margin-top: 2% !important;
+  }
+  .selectName{
+    padding: 2px;
+    alignment: center;
+    color: var(--ion-color-primary);
+    font-family: "Metropolis Medium";
+    margin-top: 5%;
+    margin-left: 1%;
+    justify-content: center;
+    text-align: left;
+    font-size: 16px;
+    position: relative;
+  }
+  
+  /*Mat text field Gap*/
+  /*::ng-deep.mat-form-field-infix {
+    padding: .5em 0;
+    border-top: 0px;
+  }*/
+  ::ng-deep.mat-select-panel .mat-optgroup-label{
+    color: var(--ion-color-primary);
+  }
+  ::ng-deep.mat-select-panel .mat-option-text{
+    color: var(--ion-color-primary);
+    font-family: "Metropolis Medium";
+    font-size: 17px;
+  }
+  ::ng-deep.mat-select-panel .mat-select-arrow-wrapper{
+    color: var(--ion-color-primary);
+  }
+  ::ng-deep.mat-form-field-appearance-legacy .mat-form-field-underline{
+    color: var(--ion-color-primary);
+  }
+  ::ng-deep.mat-select-value{
+    color: var(--ion-color-primary);
+    font-family: "Metropolis Medium";
+    font-size: 17px;
+  }
+  /*::ng-deep.mat-form-field-wrapper {
+    padding-bottom: 0px!important;
+  }*/
+  ::ng-deep.swal2-title {
+    font-family: "Metropolis Medium";
+    font-size: 16px;
+    border-radius: 16px!important;
+  }
+  ::ng-deep.mat-form-field-wrapper {
+    padding-bottom: 1.34375em !important;
+  }

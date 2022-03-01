@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-toolbar color="color_d" >
+  <ion-row>
+    <ion-col>
+      <div>
+        <ion-buttons slot="start" style="margin-left: 3%">
+          <i class="material-icons icon"  (click)="goback()">arrow_back_ios</i>
+           </ion-buttons>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: start;margin-left: -30px!important;">
+      <div>
+        <ion-title class="TITLETOOLBAR" style="margin-left: 0px!important;">Select Customer ID</ion-title>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: end;margin-right: 10px;">
+      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 50%!important;">
+    </ion-col>
+  </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-searchbar  style="font-family: 'Metropolis Light';box-shadow: none!important;" placeholder="Search Customer" [(ngModel)]="searchVal" debounce="270"
+(ionInput)="search($event)" (ionClear)="customerList=[];getCUID();"></ion-searchbar>
+
+<ion-content style="padding-bottom: 20%!important;" class="ion-text-center">
+ 
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+            pullingIcon=""
+            pullingText=""
+            refreshingSpinner=""
+            refreshingText="">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+<!-- List of Text Items -->
+<ion-list>
+    <ion-item *ngFor="let val of customerList let i=index" (click)="CustomerLead(i)">
+
+        <ion-label>
+            <p class="cuid">{{val.lead_uid}}</p>
+            <p class="name">{{val.full_name}}</p>
+            <p class="addedBy">Added by : {{val.sales_person_name}}</p>
+
+          </ion-label>
+
+      </ion-item>
+
+    <mat-divider style="font-size: 1px!important;" *ngIf="customerList.length!==0"></mat-divider>
+
+</ion-list>
+
+
+     <!--Check If Data is available or not-->
+     <div *ngIf="customerList.length==0 && isSpinner==false" class="ion-text-center">
+      <div class="datanotfound">
+        <img src="assets/channelPartner_Icons/user_Photo_Icon/user-grey.svg" style="width: 90px;height: 90px">
+        <ion-card-title class="noData">No Customer ID Available!</ion-card-title>
+      </div>
+    </div>
+
+
+
+
+  <ion-infinite-scroll threshold="100px" id="infinite-scroll"  *ngIf="customerList.length!=0"   (ionInfinite)="loadMore($event)"><!---- (ionInfinite)="doInfinite($event)"-->
+    <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+

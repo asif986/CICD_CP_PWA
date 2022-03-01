@@ -1,0 +1,64 @@
+import {NgModule} from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {RouteReuseStrategy} from '@angular/router';
+
+import {IonicModule, IonicRouteStrategy} from '@ionic/angular';
+import {SplashScreen} from '@ionic-native/splash-screen/ngx';
+import {StatusBar} from '@ionic-native/status-bar/ngx';
+
+import {AppComponent} from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
+import {Network} from '@ionic-native/network/ngx';
+import {IonicStorageModule} from '@ionic/storage';
+import {MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+
+import {DatePipe} from '@angular/common';
+import { Camera } from '@ionic-native/camera/ngx';
+import { Push } from '@ionic-native/push/ngx';
+import { AmazingTimePickerModule } from 'amazing-time-picker';
+import {UniqueDeviceID} from '@ionic-native/unique-device-id/ngx';
+import {BottomNavPageModule} from './bottom-nav/bottom-nav.module';
+// import {AppVersion} from '@ionic-native/app-version/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { PopupalertPageModule } from './popupalert/popupalert.module';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { PhotoViewer } from '@ionic-native/photo-viewer/ngx';
+import {DocumentViewer} from '@ionic-native/document-viewer/ngx';
+import {FileChooser} from '@ionic-native/file-chooser/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
+import { MobileAccessibility } from '@ionic-native/mobile-accessibility/ngx';
+import { HTTP } from '@ionic-native/http/ngx';
+import { PopUpRaiseBillPageModule } from './pop-up-raise-bill/pop-up-raise-bill.module';
+import { ShowLogsPageModule } from './show-logs/show-logs.module';
+
+
+
+@NgModule({
+  declarations: [AppComponent],
+  entryComponents: [],
+  imports: [BrowserModule, MatDatepickerModule,
+    MatNativeDateModule, HttpClientModule,
+    IonicModule.forRoot(),
+    IonicStorageModule.forRoot(),
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    BottomNavPageModule, AmazingTimePickerModule,PopupalertPageModule,ShowLogsPageModule,
+  ],
+  providers: [
+
+    StatusBar,
+    SplashScreen,
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    Network,  DatePipe, Push, Camera, UniqueDeviceID,FileTransfer,
+    File, InAppBrowser,SocialSharing, PhotoViewer, FilePath,
+    FileChooser,  HTTP,
+    FileOpener,DocumentViewer,MobileAccessibility,
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}

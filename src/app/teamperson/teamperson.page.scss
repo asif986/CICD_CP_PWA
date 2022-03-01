@@ -1,0 +1,73 @@
+.toolbar-text {
+  color: var(--ion-color-secondary);
+  font-family: "Metropolis Medium";
+  font-size: medium;
+  background-color: var(--ion-color-primary);
+}
+.card{
+  padding-left: 20px!important;
+  padding-right: 20px!important;
+}
+.margintexttitle {
+  text-align: start;
+  color: var(--ion-color-primary);
+  font-size: 18px;
+  font-family: "Metropolis Medium";
+  margin-top: 10px;
+  margin-left: 5px;
+}
+.margintextsubtitle {
+  text-align: start;
+  color: gray!important;
+  font-size: 16px;
+  font-family: "Metropolis Medium";
+  margin-top: 5px;
+  margin-left: 10px;
+}
+.fabmargin {
+  margin: 5%;
+}
+.registerbutton{
+  margin-top: 5%!important;
+  margin-bottom: 5%!important;
+  margin-left: auto!important;
+  margin-right: auto!important;
+  width: 70%!important;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size:16px;
+  border-radius: 25px;
+  background-color: var(--ion-color-primary);
+  color: var(--ion-color-secondary);
+  font-family: "Metropolis Medium";
+}
+/*No Data Found*/
+.datanotfound {
+  alignment: center;
+  margin-top: 25%;
+}
+.noData{
+  margin-top: 3%!important;
+  font-size: 20px;
+  font-family: "Metropolis Light";
+  color: gray!important;
+}
+.teamleaderFabtype{
+  margin-top: 0%; 
+  text-align: center;
+  width: 50%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 16px;
+  font-family: "Metropolis Medium";
+  background-color: #F5A22C;
+  color: var(--ion-color-main-black);
+  border-radius: 25px;
+  box-shadow: 3px 1.5px 4px rgba(0, 0, 0, 0.4) !important;
+  margin-right: 5%;
+  color: black;
+  font-weight: 900;
+  box-shadow: none;
+}

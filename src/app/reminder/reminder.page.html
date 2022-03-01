@@ -1,0 +1,90 @@
+<ion-header >
+  <ion-toolbar color="color_d" >
+  <ion-row>
+    <ion-col>
+      <div>
+        <ion-buttons slot="start" style="margin-left: 3%">
+          <i class="material-icons icon"  (click)="goback()">arrow_back_ios</i>
+           </ion-buttons>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: start;margin-left: -30px!important;">
+      <div>
+        <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;">Reminders</ion-title>
+      </div>
+    </ion-col>
+    <ion-col style="text-align: end;margin-right: 10px;">
+      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 37%!important;">
+    </ion-col>
+  </ion-row>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content style="padding-bottom: 20%!important;" class="ion-text-center">
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+            pullingIcon=""
+            pullingText=""
+            refreshingSpinner="circles"
+            refreshingText="">
+    </ion-refresher-content>
+  </ion-refresher>
+  <div *ngFor="let val of reminderList" >
+  <ion-card class="outline" style="margin-bottom:10px!important;margin-left: 5%;margin-right: 5%;margin-top: 20px;"  >
+
+    <ion-row style="margin-bottom: 5px!important;">
+
+    </ion-row>
+    <ion-card-header class="ReminderName">
+     {{val.reminder_comments}}
+    </ion-card-header>
+    <ion-card-content class="ReminderDate">
+      {{val.remind_at|date: 'dd-MMM-yyyy  hh:mm a'}}
+    </ion-card-content>
+
+    <mat-divider style="font-size: 1px!important;"></mat-divider>
+    <ion-row style="margin-bottom: 5px!important;">
+      <ion-col class="ion-text-start" size="2" style="margin-top: 5px!important;">
+        <div style="margin-left: 5px!important;" >
+          <ion-icon src="assets/edit_icon.svg" style="margin-left: 6px!important;margin-top:13px!important;font-size: 20px!important;color: var(--ion-color-primary)" (click)="updateReminder(val)" ></ion-icon>
+        </div>
+      </ion-col>
+      <ion-col class="ion-text-end" size="2">
+        <div class="ion-text-end" style="margin-right:13px!important;margin-top: 3px!important;">
+          <ion-icon src="assets/delete_icon.svg"  style="margin-left: 6px!important;margin-top:15px!important;color: var(--ion-color-primary);font-size: 20px!important;" (click)="deleteReminder(val.reminder_id)" ></ion-icon>
+        </div>
+      </ion-col>
+      <ion-col class="ion-text-end" size="8">
+        <div>
+          <button mat-button (click)="doneReminder(val.reminder_id)" style="color: var(--ion-color-primary);margin-top:15px!important;margin-right: 5px!important;font-size: 16px!important;font-family: 'Metropolis Medium'">Mark as done</button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+    </div>
+
+
+  <!--Data Not Found-->
+  <div *ngIf="reminderList.length==0 && isSpinner==false" class="ion-text-center">
+    <div class="datanotfound">
+      <img src="assets/channelPartner_Icons/reminder_Icon/time_clock_icon_reminder.svg" style="color: gray;width: 100px;height: 100px">
+      <ion-card-title class="noData">No Reminders Available!</ion-card-title>
+    </div>
+  </div>
+ 
+
+
+
+  <ion-infinite-scroll threshold="100px" id="infinite-scroll"  *ngIf="reminderList.length!=0"   (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading data..." style="font-family: Metropolis Light!important;font-size: 16px!important;font-weight: bolder!important;color: black!important;">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+
+
+<ion-fab horizontal="end" vertical="bottom" slot="fixed" class="fabmargin" style="padding-top: 25%!important">
+  <ion-fab-button color='fab' (click)="addReminder()" style="color: #F5A22C!important;">
+    <ion-icon name="add" style="color: black!important; font-size: large"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

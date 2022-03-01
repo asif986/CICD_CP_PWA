@@ -1,0 +1,298 @@
+
+
+// For Card ==>Leads
+.outline {
+  margin-bottom: 6%!important;
+  border-radius: 16px;
+  background: #fff;
+  padding-bottom: 10px;
+}
+
+// For Lead_Date==>>
+.leaddate{
+  text-align: end;
+  font-size: 12px;
+  font-family: "Metropolis Light";
+  color: #7A7A7A;
+  margin-top: 5px!important;
+  padding-top: 5px!important;
+  padding-right: 20px!important;
+}
+.cuid {
+  text-align: start;
+  color: var(--ion-color-primary);
+  font-size: 14px;
+  font-family: "Metropolis Medium";
+  margin-top: 10px;
+}
+.leadname {
+  text-align: start;
+  color: var(--ion-color-primary);
+  font-size: 20px;
+  font-family: "Metropolis Semi Bold";
+  margin-top: 5px;
+  margin-bottom: 3px;
+}
+.projectname {
+  text-align: start;
+  color: var(--ion-color-primary);
+  font-size: 16px;
+  font-family: "Metropolis Light";
+  margin-bottom: 5px;
+}
+// Sales Person Name==>>
+.salesPersonName_datealso {
+  text-align: start;
+  color: #7A7A7A;
+  font-size: 12px;
+  font-family: "Metropolis Light";
+}
+// For MatMenu
+.menu{
+  text-align: start;
+  color: var(--ion-color-primary);
+  font-size: 14px;
+  font-family: "Metropolis Medium";
+  margin-bottom: 5px;
+  font-weight: bolder!important;
+  border-radius: 16px!important;
+}
+// Status Tag ==>>
+.status {
+  width: auto;
+  height: 30px;
+  font-size: 14px;
+  text-align: start;
+  text-transform: capitalize;
+  border-radius: 0px!important;
+}
+.bg-1 {
+//FOR UNCLAIMED
+background-color: #FF5050;
+}
+.bg-2 {
+//FOR CLAIMED
+background-color: #4E0291;
+}
+.bg-5 {
+//FOR SITE VISIT
+background-color: #EAA800;
+}
+.bg-6 {
+//FOR GHP GENERATED WITH TOKEN TYPE ID ==1
+background-color: #1ABC71;
+}
+.bg-7 {
+//For On Token Cancelled(ITS AN DOUBTFUL ID)
+background-color: #A5A5A5;
+}
+.bg-8 {
+//FOR ON HOLD FLAT
+background-color: #E69200;
+}
+.bg-9 {
+//FOR ALLOT FLAT
+background-color: #2C408B;
+}
+.bg-10 {
+//For CANCELLED ALLOTMENT
+background-color: grey;
+}
+.bg-15{
+//TOKEN+ GENERATED WITH TOKEN TYPE ID ==3 && ITS AND COLOR CODE FROM MY SIDE
+background-color:#4E0291
+}
+.bg-13 {
+//FOR GHP PENDING OR GHP+ PENDING(PAYMENT)
+background-color: #87C7DE;
+}
+
+// /*Set Tag and lapse Time*/ Flex Container ==>>1 For Unclaimed,2 For Claimed
+.flex-container > div {
+  width: 120px;
+  text-align: center;
+  margin-right: 15px!important;
+  margin-top: 10px!important;
+
+}
+// /*Set Tag and lapse Time*/ Flex Container ==>>1 For Unclaimed,2 For Claimed
+.tagtext {
+    font-size: 12px;
+    font-family: "Metropolis Light";
+    color: var(--ion-color-primary);
+    text-align: start;
+    padding-top: 3px;
+    text-transform: capitalize;
+  }
+
+  
+/*Expansion Panel */
+.expansion-panel-title {
+  text-align: start;
+  color: var(--ion-color-primary);
+  font-size: 14px;
+  font-family: "Metropolis Semi Bold";
+}
+
+.expansion-panel-subtitle {
+  text-align: start;
+  color: var(--ion-color-primary);
+  font-size: 14px;
+  font-family: "Metropolis Light";
+}
+
+/*No Data Found*/
+.datanotfound {
+  alignment: center;
+  margin-top:12%;
+}
+.noData{
+  margin-top: 3%!important;
+  font-size: 20px;
+  font-family: "Metropolis Medium";
+  color:white!important;
+}
+
+
+::ng-deep.mat-expansion-indicator::after {
+  border-style: solid;
+  border-width: 0 3px 3px 0!important;
+  content: '';
+  display: inline-block;
+  padding: 5px!important;
+  transform: rotate(45deg);
+  vertical-align: middle;
+  margin-bottom: 10px;
+  color: gray;
+}
+
+
+
+
+
+
+
+
+
+.toolbar-text {
+    color: var(--ion-color-secondary);
+    font-family: "Metropolis Medium";
+    font-size: medium;
+    background-color: var(--ion-color-primary);
+  }
+  .margintexttitle {
+    text-align: start;
+    color: var(--ion-color-primary);
+    font-size: 18px;
+    font-family: "Metropolis Medium";
+  }
+  .margintextsubtitle {
+    text-align: start;
+    color: gray!important;
+    font-size: 15px!important;
+    font-family: "Metropolis Medium";
+    
+  
+  }
+  .fabmargin {
+    margin: 5%;
+  }
+  .registerbutton{
+    margin-top: 5%!important;
+    margin-bottom: 5%!important;
+    margin-left: auto!important;
+    margin-right: auto!important;
+    width: 70%!important;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size:16px;
+    border-radius: 25px;
+    background-color: var(--ion-color-primary);
+    color: var(--ion-color-secondary);
+    font-family: "Metropolis Medium";
+  }
+  
+  .dot-1{
+    height: 15px;
+    width: 15px;
+    background-color: #1ABC71;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot-2 {
+    height: 15px;
+    width: 15px;
+    background-color: #E69200;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot-3 {
+    height: 15px;
+    width: 15px;
+    background-color: #924DCF;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot-4 {
+    height: 15px;
+    width: 15px;
+    background-color: #4E0291;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .dot-5 {
+    height: 15px;
+    width: 15px;
+    background-color: #2C408B;
+    border-radius: 50%;
+    display: inline-block;
+  }
+ 
+  .outline {
+    margin-bottom: 6%!important;
+    border-radius: 16px;
+    background: #fff;
+    padding-bottom: 10px;
+  }
+  ion-content{
+    –ion-background-color:#000!important;
+    }
+::ng-deep.searchbar-input.sc-ion-searchbar-md {
+  padding-left: 55px;
+  padding-right: 55px;
+  padding-top: 21px!important;
+  padding-bottom: 21px!important;
+  border-radius: 2px;
+  background-position: left 8px center;
+  height: auto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 30px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+::ng-deep.searchbar-search-icon.sc-ion-searchbar-md {
+  left: 16px;
+  top: 13px!important;
+  width: 21px;
+  height: 21px;
+}
+/*Ionic Refresh*/
+ion-refresher ion-refresher-content {
+  --color:#000 !important;
+  .refresher-pulling-text, .refresher-refreshing-text, .refresher-refreshing-icon, .refresher-pulling-icon {
+    color: #000 !important;
+  }
+}
+// ion-refresher-content {
+//   position: relative;
+//   padding-bottom: 200px;
+//   background-color: red!important;
+
+//   .refresher-pulling, .refresher-refreshing {
+//     position: relative;
+//     top: 30px;
+//     background-color: red!important;
+//   }
+// }

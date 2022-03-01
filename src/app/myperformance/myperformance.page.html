@@ -1,0 +1,137 @@
+ <ion-header>
+    <ion-toolbar color="color_d" >
+    <ion-row>
+      <ion-col>
+        <div>
+          <ion-buttons slot="start" style="margin-left: 3%">
+            <i class="material-icons icon"  (click)="goback()">arrow_back_ios</i>
+             </ion-buttons>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: start;margin-left: -30px!important;">
+        <div>
+          <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;">My Performance</ion-title>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: end;margin-right: 10px;">
+        <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 37%!important;">
+      </ion-col>
+    </ion-row>
+    </ion-toolbar>
+  </ion-header>
+
+
+
+  
+<ion-content>
+  <div style="padding-left: 10px; padding-right: 10px;padding-top: 10px!important;font-size: 10px;">
+    <mat-form-field appearance="outline" style="width:100%">
+      <mat-label class="matLabel">Select Project</mat-label>
+      <mat-select  [(ngModel)]="selectedCategory" >
+        <mat-option *ngFor="let performance of PerformanceList let i= index" [value]="performance.project_name" (click)="getmyPerformancevalue(i)">
+          {{performance.project_name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <ion-row style="padding-left: 5px;padding-right: 7px;margin-top: -10px;">
+    <ion-col size='6'>
+      <div class="input-field-text" style="font-size: 10px;">
+        <mat-form-field appearance="outline" style="width: 100%" (click)="picker2.open()">
+            <mat-label class="input-field-text" style="font-size: 15px;">From Date</mat-label>
+            <input  matInput [matDatepicker]="picker2" [(ngModel)]="fromdate"  style="font-size: 15px" [max]="minDate" (dateChange)="Click()" readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2 [(ngModel)]="fromdate" ngDefaultControl></mat-datepicker>
+        </mat-form-field>
+    </div>
+    </ion-col>
+
+    <ion-col size='6' >
+      <div class="input-field-text" style="font-size: 10px;">
+        <mat-form-field appearance="outline" style="width: 100%" *ngIf="fromdate!==undefined" (click)="picker3.open()">
+            <mat-label class="input-field-text" style="font-size: 15px;">To Date</mat-label>
+            <input  matInput [matDatepicker]="picker3" [(ngModel)]="todate" style="font-size: 15px" [min]="fromdate" (dateChange)="Click()" readonly>
+            <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+            <mat-datepicker #picker3 [(ngModel)]="todate" ngDefaultControl></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline" style="width: 100%" *ngIf="fromdate==undefined" (click)="picker3.open()">
+          <mat-label class="input-field-text" style="font-size: 15px;">To Date</mat-label>
+          <input  matInput [matDatepicker]="picker3" [(ngModel)]="todate" style="font-size: 15px" [min]="minDate" [max]="minDate"  readonly>
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3 [(ngModel)]="todate" ngDefaultControl></mat-datepicker>
+      </mat-form-field>
+    </div>
+    </ion-col>
+
+  </ion-row>
+
+<!-- Changes In Design -->
+  <ion-row >
+    <ion-col size="4">
+      <ion-card class="outline_card" (click)="GoToFilter(0,null)" >
+        <ion-card-title class="count_leads" style="text-align: center!important;vertical-align: center!important;padding-top: 30px!important;">
+          {{leads}}
+        </ion-card-title>
+        <ion-card-title class="title" style="text-align: center!important;padding-top: 10px!important;">
+          Leads
+        </ion-card-title>
+      </ion-card>
+    </ion-col>
+
+    <ion-col size="4" >
+      <ion-card class="outline_card" (click)="GoToFilter(5,null)" style="margin-left: 2px;">
+        <ion-card-title  class="count_siteVisit" style="text-align: center!important;vertical-align: center!important;padding-top: 28px!important;">
+          {{leads_site_visits}}
+        </ion-card-title>
+        <ion-card-title class="title" style="text-align: center!important;padding-top: 10px!important;">
+          Site Visit
+        </ion-card-title>
+      </ion-card>
+    </ion-col>
+
+    <ion-col size="4">
+      <ion-card class="outline_card" (click)="GoToFilter(6,1)" style="margin-left: -2px;">
+        <ion-card-title class="count_Ghpgenerated" style="text-align: center!important;vertical-align: center!important;padding-top: 26px!important;" >
+          {{lead_tokens}}
+        </ion-card-title>
+        <ion-card-title class="title" style="text-align: center!important;padding-top: 10px!important;">
+          GHP <br> Generated
+        </ion-card-title>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row >
+    
+
+    <ion-col size="4" >
+      <ion-card class="outline_card" (click)="GoToFilter(6,3)">
+        <ion-card-title class="count_GhpgPulsenerated" style="text-align: center!important;vertical-align: center!important;padding-top: 26px!important;font-size: 25px!important;" >
+          {{lead_tokens_ghp_plus}}
+        </ion-card-title>
+        <ion-card-title class="title" style="text-align: center!important;padding-top: 10px!important;">
+          GHP Plus<br> Generated
+        </ion-card-title>
+      </ion-card>
+    </ion-col>
+    <ion-col size="4" style="margin-left: -4px;">
+      <ion-card class="outline_card" (click)="GoToFilter(9,null)">
+          <ion-card-title  class="count_allotments" style="text-align: center!important;vertical-align: center!important;padding-top: 30px!important;">
+            {{booking_master}}
+          </ion-card-title>
+          <ion-card-title class="title" style="text-align: center!important;padding-top: 10px!important;">
+            Allotments
+          </ion-card-title>
+      </ion-card>
+     </ion-col>
+     <ion-col size="4">
+     </ion-col>
+  </ion-row>  
+
+  <div style="margin-top: -70px;">
+    <img  src="assets/channelPartner_Icons/allPNGImages/myPerformance.png"/>
+  </div>
+</ion-content>
+
+
+

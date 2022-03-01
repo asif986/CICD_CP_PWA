@@ -1,0 +1,150 @@
+<ion-header>
+  <ion-buttons slot="start" style="margin-left: 3%">
+    <ion-icon name="close" (click)="goback()" style="padding-top: 3% ; color: #b1a7a7;width: 24px;height: 28px" ></ion-icon>
+  </ion-buttons>
+</ion-header>
+
+
+
+<ion-content style="padding-bottom: 20%!important;" class="ion-text-center" *ngIf="isSpinner==false">
+
+
+  <div >
+    <i class="material-icons" style="font-size:100px;color: #ffb00f;">report</i>
+    <p *ngIf="ghpplus == 1" style="margin-top: 0px !important; 
+    padding-top: 0px !important;padding: 10px;margin: 10px; color:#ffb00f;font-family: 'Metropolis Medium';font-size: 20px!important;"> GHP+ Request Generated  </p>
+
+    <p *ngIf="ghpplus == 1" style="margin-top: 0px !important; 
+  padding-top: 0px !important;padding: 5px;margin: 5px; color:#ffb00f;font-family: 'Metropolis Medium';font-size: 15px!important;"> Payment Pending ! </p>
+
+    <p *ngIf="ghpplus == 0" style="margin-top: 0px !important; 
+  padding-top: 0px !important;padding: 10px;margin: 10px; color:#ffb00f;font-family: 'Metropolis Medium';font-size: 20px!important;"> GHP+ Request Generated </p>
+    
+    <p *ngIf="ghpplus == 0" style="margin-top: 0px !important; 
+  padding-top: 0px !important;padding: 5px;margin: 5px; color:#ffb00f;font-family: 'Metropolis Medium';font-size: 15px!important;">  Payment Pending ! </p>
+
+    
+   <!-- <ion-button color="dark" style="width: 180px;font-family:Metropolis Light">Upgrade to GHP+</ion-button> -->
+  </div>
+
+  <ion-list>
+
+    <ion-card style="background: #d9d9d9 !important;" class="cardClass">
+      <ion-card-header no-padding>
+        <!--FOS_NAME-->
+        <!-- <ion-card-title style="padding-top: 3%!important;" role="heading" aria-level="3"><div class="margintexttitle" style="margin-left: 3%!important;margin-right: 3%!important;">dd</div></ion-card-title> -->
+
+        <!--name-->
+        <ion-card-subtitle  role="heading" aria-level="2">
+          <div  class="name" style="color: var(--ion-color-primary) !important;">
+            <ion-icon style="color: var(--ion-color-primary) !important;font-family: Metropolis Medium;font-size: 14px!important;padding-right: 10px!important" class="data" src="assets/channelPartner_Icons/user_Photo_Icon/person-circle.svg"></ion-icon>
+            {{name}}
+          </div>
+        </ion-card-subtitle>
+
+        <!--mobile-->
+        <ion-card-subtitle  role="heading" aria-level="2" >
+          <div  class="margintextsubtitle">
+            <ion-icon class="data" src="assets/channelPartner_Icons/mobile_Phone_Icon/call-outline.svg" style="color: var(--ion-color-primary);margin-right: 2%!important;width: 18px;height: 18px;padding-right: 0px!important;font-family: Metropolis Medium;font-size: 14px!important"></ion-icon>
+            {{mobile}}
+          </div>
+        </ion-card-subtitle>
+
+        <!--email-->
+        <ion-card-subtitle  role="heading" aria-level="2" >
+          <div  class="margintextsubtitle">
+            <ion-icon class="data" src="assets/channelPartner_Icons/email_Icon/mail-outline.svg" style="padding-right: 7px!important;font-family: Metropolis Medium;" ></ion-icon>
+            {{email}}
+          </div>
+        </ion-card-subtitle>
+
+        <!--property-->
+        <ion-card-subtitle  role="heading" aria-level="2" >
+          <div  class="margintextsubtitle">
+            <ion-icon class="data" src="assets/channelPartner_Icons/other_Used_CardIcons/business.svg" style="padding-right: 7px!important;font-family: Metropolis Medium;font-size: 14px!important"></ion-icon>
+            {{projectname}}
+          </div>
+        </ion-card-subtitle>
+
+
+
+        <!--event-->
+        <ion-card-subtitle  role="heading" aria-level="2" >
+          <div  class="margintextsubtitle">
+            <ion-icon class="data" src="assets/channelPartner_Icons/other_Used_CardIcons/today.svg" style="padding-right: 7px!important;font-family: Metropolis Medium;font-size: 14px!important" ></ion-icon>
+            {{eventtitle}}
+          </div>
+        </ion-card-subtitle>
+
+
+        <mat-divider style="font-size: 1px!important; margin-top: 15px; margin-bottom: 15px;"></mat-divider>
+
+
+
+
+        <ion-card-subtitle  role="heading" aria-level="2" >
+          <div  class="margintextsubtitle">
+          GHP+ Request Date  :- <b>{{ghp_plus_date}}</b>
+          </div>
+        </ion-card-subtitle>
+
+        
+        <ion-card-subtitle  role="heading" aria-level="2" >
+          <div  class="margintextsubtitle">
+            GHP+ Amount Payable:- <b>{{ghp_plus_amount}}</b>
+          </div>
+        </ion-card-subtitle>
+
+      </ion-card-header>
+
+
+    </ion-card>
+  </ion-list>
+
+
+  <ion-grid>
+
+  <ion-row style="padding: 5px;color:#404040;font-size: 17px !important; margin-top: 3px !important;font-family: Metropolis Light;letter-spacing: 0.8px;" >
+    <ion-col size="3" style="text-align: right;">
+      <span style="color: black;font-size: 18px !important;">Note : </span>
+        </ion-col>
+
+    <ion-col size="9" style="text-align: left;font-size: 15px;letter-spacing: 1px; color: #404040;
+    ">
+        Send payment link to the customer. So that they can pay the GHP+ amount and get GHP+ generated.     </ion-col>
+  </ion-row>
+
+
+</ion-grid>
+
+
+
+
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button color="success " href="https://wa.me/91{{mobile}}?text=Hello {{name}},
+        %0a %0aGreetings from Vilas Javdekar Developers. Thank you for showing your interest in upgrading your ‘Golden Hour Pass’ to Golden Hour Pass%2B of the project {{projectname}}.
+        %0a %0aYou are now just 2 steps away from becoming a member of the VJ Parivaar!
+        %0a %0aKindly click on the below link and pay balnce amount to upgrade to Golden Hour Pass%2B (GHP%2B). Once done, you will be confimed as the GHP%2B holder for the {{eventtitle}}.
+         %0a%0a{{payment_link}}%0a%0aThank You,%0aTeam VJ.">  <ion-icon class="btn1" src="assets/channelPartner_Icons/whatsApp_Icon/whatsapp.svg" ></ion-icon></ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="danger" (click)="gmail()">  <ion-icon class="btn1" src="assets/channelPartner_Icons/email_Icon/mail2.svg" ></ion-icon></ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="tertiary" (click)="shareUsing()">  <ion-icon class="btn1" src="assets/channelPartner_Icons/apps_Icon/apps.svg" ></ion-icon></ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>
+
+
+
+
+
+
+
