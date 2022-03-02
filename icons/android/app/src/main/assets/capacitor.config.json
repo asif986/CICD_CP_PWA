@@ -1,0 +1,21 @@
+{
+  "appId": "com.vjd.attendance",
+  "appName": "VJ Attendance",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "linuxAndroidStudioPath": "/snap/bin/android-studio",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    },
+    "PushNotifications": {
+      "presentationOptions": [
+        "bagde",
+        "sound",
+        "alert"
+      ]
+    }
+  },
+  "cordova": {}
+}
