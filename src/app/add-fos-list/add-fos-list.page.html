@@ -1,276 +1,323 @@
 <ion-header *ngIf="Leader!==1 ">
-  <ion-toolbar color="color_d" >
-    
-  <ion-row>
-    <ion-col>
-      <div>
-        <ion-buttons slot="start" style="margin-left: 3%">
-          <i class="material-icons icon" *ngIf="ID==1 " (click)="goback('Are you sure you want to abort Adding FOS?')">arrow_back_ios</i>
-          <i class="material-icons icon" *ngIf="ID==2"(click)="goback('Are you sure you want to abort Updating FOS?')" >arrow_back_ios</i>
-          <i class="material-icons icon" *ngIf=" ID==3" (click)="goback('Are you sure you want to abort Adding TeamLeader?')">arrow_back_ios</i>
-        </ion-buttons>
-      </div>
-      
-    </ion-col>
-    
-    <ion-col style="text-align: start;margin-left: -45px!important;">
-      <div>
-        <ion-title class="TITLETOOLBAR" *ngIf="ID==1">Add FOS</ion-title>
-        <ion-title class="TITLETOOLBAR" *ngIf="ID==2">Update FOS</ion-title>
-        <ion-title class="TITLETOOLBAR" *ngIf="ID==3">Add Team Leader</ion-title>
-       
-      </div>
-    </ion-col>
+    <ion-toolbar color="color_d">
 
-    <ion-col style="text-align: end;margin-right: 10px;">
-      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 38%!important;">
-    </ion-col>
-  </ion-row>
-     
-  </ion-toolbar>
+        <ion-row>
+            <ion-col>
+                <div>
+                    <ion-buttons slot="start" style="margin-left: 3%">
+                        <i class="material-icons icon" *ngIf="ID==1 " (click)="goback('Are you sure you want to abort Adding FOS?')">arrow_back_ios</i>
+                        <i class="material-icons icon" *ngIf="ID==2" (click)="goback('Are you sure you want to abort Updating FOS?')">arrow_back_ios</i>
+                        <i class="material-icons icon" *ngIf=" ID==3" (click)="goback('Are you sure you want to abort Adding TeamLeader?')">arrow_back_ios</i>
+                    </ion-buttons>
+                </div>
+
+            </ion-col>
+
+            <ion-col style="text-align: start;margin-left: -45px!important;">
+                <div>
+                    <ion-title class="TITLETOOLBAR" *ngIf="ID==1">Add FOS</ion-title>
+                    <ion-title class="TITLETOOLBAR" *ngIf="ID==2">Update FOS</ion-title>
+                    <ion-title class="TITLETOOLBAR" *ngIf="ID==3">Add Team Leader</ion-title>
+
+                </div>
+            </ion-col>
+
+            <ion-col style="text-align: end;margin-right: 10px;">
+                <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO' style="text-align: right;width: 38%!important;">
+            </ion-col>
+        </ion-row>
+
+    </ion-toolbar>
 </ion-header>
 
 <ion-header *ngIf="Leader==1">
-  <ion-toolbar color="color_d" >
-  <ion-row>
-    <ion-col>
-      <div>
-        <ion-buttons slot="start" style="margin-left: 3%">
-          <i class="material-icons icon" *ngIf="Leader==1 && ID==1" (click)="goback('Are you sure you want to abort Adding FOS?')">arrow_back_ios</i>
-          <i class="material-icons icon" *ngIf="Leader==1 && ID==2"(click)="goback('Are you sure you want to abort Updating FOS?')" >arrow_back_ios</i>
-          <i class="material-icons icon" *ngIf="Leader==1 && ID==3" (click)="goback('Are you sure you want to abort Adding TeamLeader?')">arrow_back_ios</i>
-        </ion-buttons>
-      </div>
-      
-    </ion-col>
-    
-    <ion-col style="text-align: start;margin-left: -45px!important;">
-      <div>
-        <ion-title class="TITLETOOLBAR" *ngIf="ID==1">Add FOS</ion-title>
-        <ion-title class="TITLETOOLBAR" *ngIf="ID==2">Update FOS</ion-title>
-        <ion-title class="TITLETOOLBAR" *ngIf="ID==3">Add Team Leader</ion-title>
-       
-      </div>
-    </ion-col>
+    <ion-toolbar color="color_d">
+        <ion-row>
+            <ion-col>
+                <div>
+                    <ion-buttons slot="start" style="margin-left: 3%">
+                        <i class="material-icons icon" *ngIf="Leader==1 && ID==1" (click)="goback('Are you sure you want to abort Adding FOS?')">arrow_back_ios</i>
+                        <i class="material-icons icon" *ngIf="Leader==1 && ID==2" (click)="goback('Are you sure you want to abort Updating FOS?')">arrow_back_ios</i>
+                        <i class="material-icons icon" *ngIf="Leader==1 && ID==3" (click)="goback('Are you sure you want to abort Adding TeamLeader?')">arrow_back_ios</i>
+                    </ion-buttons>
+                </div>
 
-    <ion-col style="text-align: end;margin-right: 10px;">
-      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 35%!important;">
-    </ion-col>
-  </ion-row>
-  </ion-toolbar>
+            </ion-col>
+
+            <ion-col style="text-align: start;margin-left: -45px!important;">
+                <div>
+                    <ion-title class="TITLETOOLBAR" *ngIf="ID==1">Add FOS</ion-title>
+                    <ion-title class="TITLETOOLBAR" *ngIf="ID==2">Update FOS</ion-title>
+                    <ion-title class="TITLETOOLBAR" *ngIf="ID==3">Add Team Leader</ion-title>
+
+                </div>
+            </ion-col>
+
+            <ion-col style="text-align: end;margin-right: 10px;">
+                <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO' style="text-align: right;width: 35%!important;">
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
 </ion-header>
-  
-
-<ion-content class="ion-text-left" >
-  <div style="margin-left: 2%!important;margin-right: 2%!important;">
-    <!--Full Name-->
-    <!--Two mat-form-field in one line-->
-    <ion-row style="margin-top: 20px">
 
 
-      <ion-col size="3" style="margin-top: 5px!important;height: 50px!important;">
-        <mat-form-field appearance="outline" style="width:100%;margin-left: 5px;">
-          <mat-label class="inputtextfield" >Mr/Mrs</mat-label>
-          <mat-select class="inputtextfield" >
-            <mat-option  *ngFor="let nameprefix of addFOS.person_name_prefix let i= index" [value]="nameprefix.name_prefix_id" (click)="getNamePrefixvalue(i)">
-              {{nameprefix.name_prefix}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </ion-col>
+<ion-content class="ion-text-left">
+    <div style="margin-left: 2%!important;margin-right: 2%!important;">
+        <!--Full Name-->
+        <!--Two mat-form-field in one line-->
+        <ion-row>
+            <ion-col size="12" class="pt-4">
+                <p class="mb-0" *ngIf="ID==1">Add FOS</p>
+            </ion-col>
+        </ion-row>
+        <ion-row style="">
 
 
-      <ion-col size="9" [formGroup]="credentialsForm" style="margin-top: 2px!important;" *ngIf="ID!==2">
-        <mat-form-field appearance="outline" style="width:100%;padding-right: 5px" class="inputtextfield">
-          <mat-label class="inputtextfield">First Name</mat-label>
-          <input    [formControl]="credentialsForm.controls['first_name']" (keypress)="onKeyPress($event)"  matInput type="text" class="inputtextfield"   [(ngModel)]="postFOS.first_name"  required>
-          <mat-hint>
-            <div *ngIf="!credentialsForm.controls.first_name.valid &&
-        credentialsForm.controls.first_name.dirty"
-                 class="error">
-              Please enter a valid first name!.
-            </div>
-          </mat-hint>
-        </mat-form-field>
-      </ion-col>
+            <!-- <ion-col size="3" style="margin-top: 5px!important;height: 50px!important;">
+                <mat-form-field appearance="outline"  style="width:100%;margin-left: 5px;">
+                    <mat-label class="inputtextfield">Mr/Mrs</mat-label>
+                    <mat-select class="inputtextfield">
+                        <mat-option *ngFor="let nameprefix of addFOS.person_name_prefix let i= index" [value]="nameprefix.name_prefix_id" (click)="getNamePrefixvalue(i)">
+                            {{nameprefix.name_prefix}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ion-col> -->
+
+            <ion-col size="10" offset="1" class="p-0" [formGroup]="credentialsForm" style="margin-top: 2px!important;" *ngIf="ID!==2">
+                <mat-form-field appearance="outline" style="width:100%;" class="inputtextfield">
+                    <!-- <mat-label class="inputtextfield">First Name</mat-label> -->
+                    <input [formControl]="credentialsForm.controls['first_name']" (keypress)="onKeyPress($event)" matInput placeholder="First name" type="text" class="inputtextfield" [(ngModel)]="postFOS.first_name" required>
+                    <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
+                      <mat-icon><ion-icon name="person" color="dark"></ion-icon></mat-icon>
+                    </button>
+                    <mat-hint>
+                        <div *ngIf="!credentialsForm.controls.first_name.valid &&
+        credentialsForm.controls.first_name.dirty" class="error">
+                            Please enter a valid first name!.
+                        </div>
+
+                    </mat-hint>
+                </mat-form-field>
+            </ion-col>
 
 
-    <ion-col size="9" style="margin-top: 2px!important;">
-    <mat-form-field appearance="outline" style="width:100%;padding-right: 5px" *ngIf="ID==2 && first_name!==null" class="inputtextfield">
-      <mat-label class="inputtextfield" >First Name</mat-label>
-      <input (keypress)="onKeyPress($event)"  matInput type="text" class="inputtextfield"   [(ngModel)]="first_name" required>
-    </mat-form-field>
-   </ion-col>
+            <ion-col size="10" offset="1" class="p-0" style="margin-top: 2px!important;">
+                <mat-form-field appearance="outline" style="width:100%;" *ngIf="ID==2 && first_name!==null" class="inputtextfield">
+                    <!-- <mat-label class="inputtextfield">First Name</mat-label> -->
+                    <input (keypress)="onKeyPress($event)" matInput placeholder="First name" type="text" class="inputtextfield" [(ngModel)]="first_name" required>
+
+                </mat-form-field>
+                <div *ngIf="ID!==2">
+                    <mat-form-field appearance="outline" style="width: 100%; ">
+                        <!-- <mat-label class="inputtextfield">Middle Name</mat-label> -->
+                        <input (keypress)="onKeyPress($event)" matInput type="text" placeholder="Middle name" class="inputtextfield" [(ngModel)]="postFOS.middle_name">
+                        <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
+                          <mat-icon><ion-icon name="person" color="dark"></ion-icon></mat-icon>
+                        </button>
+                        <mat-hint>
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div *ngIf="ID==2 && middle_name!==null">
+                    <mat-form-field appearance="outline" style="width: 100%; ">
+                        <!-- <mat-label class="inputtextfield">Middle Name</mat-label> -->
+                        <input (keypress)="onKeyPress($event)" matInput type="text" placeholder="Middle name" class="inputtextfield" [(ngModel)]="middle_name">
+                        <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
+                          <mat-icon><ion-icon name="person" color="dark"></ion-icon></mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+                <!--Last Name-->
+                <div [formGroup]="credentialsForm" *ngIf="ID!==2">
+                    <mat-form-field appearance="outline" style="width: 100%; ">
+                        <!-- <mat-label class="inputtextfield">Last Name</mat-label> -->
+                        <input [formControl]="credentialsForm.controls['last_name']" placeholder="Last name" (keypress)="onKeyPress($event)" matInput type="text" class="inputtextfield" [(ngModel)]="postFOS.last_name" required>
+                        <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
+                          <mat-icon><ion-icon name="person" color="dark"></ion-icon></mat-icon>
+                        </button>
+                        <mat-hint>
+                            <div *ngIf="!credentialsForm.controls.last_name.valid &&
+      credentialsForm.controls.last_name.dirty" class="error">
+                                Please enter a valid lastname!.
+                            </div>
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div *ngIf="ID==2 && last_name!==null">
+                    <mat-form-field appearance="outline" style="width: 100%; ">
+                        <!-- <mat-label class="inputtextfield">Last Name</mat-label> -->
+                        <input (keypress)="onKeyPress($event)" matInput type="text" placeholder="Last name" class="inputtextfield" [(ngModel)]="last_name" required>
+                        <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
+                          <mat-icon><ion-icon name="person" color="dark"></ion-icon></mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+            </ion-col>
+
+            <!--Middle Name-->
+
+        </ion-row>
+
+        <!--Enter Mobile Number With Country Code-->
+        <ion-row>
+            <!-- <ion-col size="3" class="ion-text-center" *ngIf="ID!==2">
+                <div class="Countrycode" style="width: 100%; margin-right: 10px;margin-bottom: 1px !important;">
+                    <mat-label class="countrycodetext">{{countrycode}}</mat-label>
+                </div>
+            </ion-col>
+            <ion-col size="3" class="ion-text-center" *ngIf="ID==2 && mobile!==null">
+                <div class="Countrycode" style="width: 100%; margin-right: 10px;margin-bottom: 1px !important;">
+                    <mat-label class="countrycodetext">{{countrycode}}</mat-label>
+                </div>
+            </ion-col> -->
+            <ion-col size="10" offset="1" class="p-0" *ngIf="ID!==2">
+
+                <div [formGroup]="credentialsForm">
+                    <mat-form-field appearance="outline" style="width: 100%; ">
+                        <!-- <mat-label class="inputtextfield">Mobile Number</mat-label> -->
+                        <input (keypress)="numberOnly($event)" matInput placeholder="Mobile" [formControl]="credentialsForm.controls['mobile']" [ngModel]="mobile" maxlength="10" min="10" type="tel" pattern="[0-9]*" class="inputtextfield" required>
+                        <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
+                          <mat-icon>
+                            <ion-icon name="phone-portrait" color="dark"></ion-icon></mat-icon>
+                        </button>
+                        <mat-hint>
+                            <div *ngIf="!credentialsForm.controls.mobile.valid && credentialsForm.controls.mobile.dirty" class="error">
+                                Please enter a valid mobile number.
+                            </div>
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+            </ion-col>
+
+
+            <ion-col size="10" offset="1" class="p-0" *ngIf="ID==2 && mobile!==null">
+
+                <div>
+                    <mat-form-field appearance="outline" style="width: 100%; ">
+                        <!-- <mat-label class="inputtextfield">Mobile Number</mat-label> -->
+                        <input (keypress)="numberOnly($event)" matInput placeholder="Mobile" type="tel" pattern="[0-9]*" maxlength="10" min="10" class="inputtextfield" [ngModel]="mobile" required readonly>
+                        <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
+                          <mat-icon>
+                            <ion-icon name="phone-portrait" color="dark"></ion-icon></mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col size="10" offset="1" class="p-0">
+
+                <div [formGroup]="credentialsForm" *ngIf="ID!==2">
+                    <mat-form-field appearance="outline" style="width: 100%; ">
+                        <input matInput [formControl]="credentialsForm.controls['email']" placeholder="Email" type="email" class="inputtextfield" name="email" [(ngModel)]="postFOS.email" required>
+                        <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
+                          <mat-icon>
+                          <ion-icon name="mail" color="dark"></ion-icon>
+                          </mat-icon>
+                        </button>
+                        <mat-hint>
+                            <div *ngIf="!credentialsForm.controls.email.valid &&
+              credentialsForm.controls.email.dirty" class="error">
+                                Please enter a valid Email!.
+                            </div>
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <div *ngIf="ID==2 && email!==null">
+                    <mat-form-field appearance="outline" style="width: 100%; ">
+                        <input matInput type="email" class="inputtextfield" name="email" placeholder="Email" [(ngModel)]="email" required>
+                        <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
+                          <mat-icon>
+                          <ion-icon name="mail" color="dark"></ion-icon>
+                          </mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
+
+                <div class="input-field" *ngIf="ID!==2">
+                    <!--Enter Password-->
+                    <!-- <mat-label class="inputtextfield">Password</mat-label> -->
+                    <div class="inputtextfield" style="">
+                        <mat-form-field appearance="outline" style="width: 100%">
+                            <input matInput [type]="getType()" [(ngModel)]="postFOS.password" placeholder="Password" name="password" class="inputtextfield" required>
+                            <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword()">
+                  <mat-icon><ion-icon [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'" color="dark" ></ion-icon></mat-icon>
+                </button>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="input-field" *ngIf="ID==2">
+                    <!--Enter Password-->
+                    <!-- <mat-label class="inputtextfield">Password</mat-label> -->
+                    <div class="inputtextfield" style="">
+                        <mat-form-field appearance="outline" style="width: 100%">
+                            <input matInput [type]="getType()" [(ngModel)]="updateFos.password" placeholder="Password" name="password" class="inputtextfield">
+                            <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword()">
+                  <mat-icon><ion-icon [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'" color="dark" ></ion-icon></mat-icon>
+                </button>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+
+                <div class="input-field" *ngIf="ID!==2">
+                    <!--Enter Password-->
+                    <!-- <mat-label class="inputtextfield">Confirm Password</mat-label> -->
+                    <div class="inputtextfield">
+                        <mat-form-field appearance="outline" class="mb-0" style="width: 100%">
+                            <input matInput [type]="getType1()" [(ngModel)]="postFOS.confirm_password" placeholder="Confirm Password" name="password" class="inputtextfield" required>
+                            <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword1()">
+                  <mat-icon><ion-icon [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'" color="dark" ></ion-icon></mat-icon>
+                </button>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="input-field" *ngIf="ID==2">
+                    <!--Enter Password-->
+                    <!-- <mat-label class="inputtextfield">Confirm Password</mat-label> -->
+                    <div class="inputtextfield">
+                        <mat-form-field appearance="outline" class="mb-0" style="width: 100%">
+                            <input matInput [type]="getType1()" [(ngModel)]="updateFos.confirm_password" placeholder="Confirm Password" name="password" class="inputtextfield">
+                            <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword1()">
+                  <mat-icon><ion-icon [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'" color="dark" ></ion-icon></mat-icon>
+                </button>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="10" offset="1" class="pb-3 margin-bt pt-2 d-flex justify-content-center">
+                <mat-checkbox *ngIf="ID!==3" [(ngModel)]="isChecked" (click)="Checked()" style="font-size: 16px !important;font-family: Metropolis Medium;letter-spacing: 0.5px !important;">Is Team Lead</mat-checkbox>
+
+            </ion-col>
+        </ion-row>
+        <!--Email ID-->
+        <!-- <mat-label class="inputtextfield">Email Address</mat-label> -->
+        <!-- <mat-label class="inputtextfield">Email Address</mat-label> -->
+
+        <form [formGroup]="credentialsForm">
+            <ion-row>
+                <ion-col size="10" offset="1" class="p-0">
+                    <button mat-button [ngClass]="{'common-btn p-2':!credentialsForm.invalid,'common-btn-disabled':credentialsForm.invalid}" (click)="addPostFOS(credentialsForm.value)" [disabled]="credentialsForm.invalid" routerDirection="forward" *ngIf="ID==1">Add FOS</button><br>
+                    <button mat-button class="common-btn p-2" routerDirection="forward" *ngIf="ID==2" (click)="addPostFOS(credentialsForm.value)">Update FOS</button><br>
+                    <button mat-button [ngClass]="{'common-btn p-2':!credentialsForm.invalid,'common-btn-disabled':credentialsForm.invalid}" (click)="addPostFOS(credentialsForm.value)" [disabled]="credentialsForm.invalid" routerDirection="forward" *ngIf="ID==3">Add Team Leader</button><br>
+                    <!-- </div> -->
+                </ion-col>
+            </ion-row>
+        </form>
+
+    </div>
+    <ion-row>
+        <ion-col size="12">
+            <!-- <ion-img src="image"></ion-img> -->
+        </ion-col>
     </ion-row>
-
-
-
-    <!--Middle Name-->
-    <div  *ngIf="ID!==2" >
-      <mat-form-field appearance="outline" style="width: 100%;padding-left: 10px;padding-right: 10px">
-        <mat-label class="inputtextfield" >Middle Name</mat-label>
-        <input   (keypress)="onKeyPress($event)"  matInput type="text" class="inputtextfield" [(ngModel)]="postFOS.middle_name" >
-        <mat-hint>
-        </mat-hint>
-      </mat-form-field>
-    </div>
-
-    <div *ngIf="ID==2 && middle_name!==null" >
-      <mat-form-field appearance="outline" style="width: 100%;padding-left: 10px;padding-right: 10px">
-        <mat-label class="inputtextfield" >Middle Name</mat-label>
-        <input (keypress)="onKeyPress($event)"  matInput type="text" class="inputtextfield" [(ngModel)]="middle_name" >
-      </mat-form-field>
-    </div>
-
-
-    <!--Last Name-->
-    <div [formGroup]="credentialsForm" *ngIf="ID!==2" >
-      <mat-form-field appearance="outline" style="width: 100%;padding-left: 10px;padding-right: 10px">
-        <mat-label class="inputtextfield" >Last Name</mat-label>
-        <input  [formControl]="credentialsForm.controls['last_name']" (keypress)="onKeyPress($event)"  matInput type="text" class="inputtextfield" [(ngModel)]="postFOS.last_name" required>
-        <mat-hint>
-          <div *ngIf="!credentialsForm.controls.last_name.valid &&
-        credentialsForm.controls.last_name.dirty"
-               class="error">
-            Please enter a valid lastname!.
-          </div>
-        </mat-hint>
-      </mat-form-field>
-    </div>
-
-    <div *ngIf="ID==2 && last_name!==null" >
-      <mat-form-field appearance="outline" style="width: 100%;padding-left: 10px;padding-right: 10px">
-        <mat-label class="inputtextfield" >Last Name</mat-label>
-        <input  (keypress)="onKeyPress($event)"  matInput type="text" class="inputtextfield" [(ngModel)]="last_name" required>
-      </mat-form-field>
-    </div>
-
-    <!--Enter Mobile Number With Country Code-->
-    <ion-row >
-      <ion-col  size="3" class="ion-text-center" *ngIf="ID!==2" >
-        <div class="Countrycode"  style="width: 100%;margin-right: 10px;margin-bottom: 1px !important;" >
-          <mat-label class="countrycodetext">{{countrycode}}</mat-label>
-        </div>
-      </ion-col>
-      <ion-col  size="3" class="ion-text-center" *ngIf="ID==2 && mobile!==null" >
-        <div class="Countrycode" style="width: 100%;margin-right: 10px;margin-bottom: 1px !important;" >
-          <mat-label class="countrycodetext">{{countrycode}}</mat-label>
-        </div>
-      </ion-col>
-      <ion-col size="9" *ngIf="ID!==2" >
-
-        <div [formGroup]="credentialsForm">
-          <mat-form-field appearance="outline" style="width: 100%;padding-right: 5px">
-            <mat-label class="inputtextfield">Mobile Number</mat-label>
-            <input (keypress)="numberOnly($event)" matInput  [formControl]="credentialsForm.controls['mobile']" [ngModel]="mobile" maxlength="10" min="10" type="tel"  pattern="[0-9]*" class="inputtextfield" required>
-            <mat-hint>
-              <div *ngIf="!credentialsForm.controls.mobile.valid && credentialsForm.controls.mobile.dirty"
-                   class="error">
-                Please enter a valid mobile number.
-              </div>
-            </mat-hint>
-          </mat-form-field>
-        </div>
-      </ion-col>
-
-
-      <ion-col size="9" *ngIf="ID==2 && mobile!==null" >
-
-        <div >
-          <mat-form-field appearance="outline" style="width: 100%;padding-right: 5px">
-            <mat-label class="inputtextfield">Mobile Number</mat-label>
-            <input (keypress)="numberOnly($event)" matInput    type="tel"  pattern="[0-9]*" maxlength="10" min="10" class="inputtextfield" [ngModel]="mobile" required readonly>
-          </mat-form-field>
-        </div>
-      </ion-col>
-    </ion-row>
-
-
-    <!--Email ID-->
-    <div [formGroup]="credentialsForm" *ngIf="ID!==2" >
-      <mat-form-field appearance="outline" style="width: 100%;padding-left: 10px;padding-right: 10px">
-        <mat-label class="inputtextfield">Email Address</mat-label>
-        <input matInput [formControl]="credentialsForm.controls['email']" type="email" class="inputtextfield" name="email" [(ngModel)]="postFOS.email" required>
-        <mat-hint>
-          <div *ngIf="!credentialsForm.controls.email.valid &&
-        credentialsForm.controls.email.dirty"
-               class="error">
-            Please enter a valid Email!.
-          </div>
-        </mat-hint>
-      </mat-form-field>
-    </div>
-
-    <div *ngIf="ID==2 && email!==null" >
-      <mat-form-field appearance="outline" style="width: 100%;padding-left: 10px;padding-right: 10px">
-        <mat-label class="inputtextfield">Email Address</mat-label>
-        <input matInput  type="email" class="inputtextfield" name="email" [(ngModel)]="email" required>
-      </mat-form-field>
-    </div>
-
-    <div class="input-field" *ngIf="ID!==2" >
-      <!--Enter Password-->
-      <div class="inputtextfield" style="margin-left: 10px;margin-right: 10px">
-        <mat-form-field appearance="outline" style="width: 100%">
-          <mat-label class="inputtextfield">Password</mat-label>
-          <input matInput [type]="getType()" [(ngModel)]="postFOS.password" name="password" class="inputtextfield" required >
-          <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword()">
-            <mat-icon><ion-icon [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'" ></ion-icon></mat-icon>
-          </button>
-        </mat-form-field>
-      </div>
-    </div>
-
-    <div class="input-field" *ngIf="ID==2" >
-      <!--Enter Password-->
-      <div class="inputtextfield" style="margin-left: 10px;margin-right: 10px">
-        <mat-form-field appearance="outline" style="width: 100%">
-          <mat-label class="inputtextfield">Password</mat-label>
-          <input matInput [type]="getType()" [(ngModel)]="updateFos.password" name="password" class="inputtextfield" >
-          <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword()">
-            <mat-icon><ion-icon [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'" ></ion-icon></mat-icon>
-          </button>
-        </mat-form-field>
-      </div>
-    </div>
-
-
-    <div class="input-field" *ngIf="ID!==2" > 
-      <!--Enter Password-->
-      <div class="inputtextfield" style="margin-left: 10px;margin-right: 10px">
-        <mat-form-field appearance="outline" style="width: 100%">
-          <mat-label class="inputtextfield">Confirm Password</mat-label>
-          <input matInput [type]="getType1()" [(ngModel)]="postFOS.confirm_password" name="password" class="inputtextfield" required >
-          <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword1()">
-            <mat-icon><ion-icon [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'" ></ion-icon></mat-icon>
-          </button>
-        </mat-form-field>
-      </div>
-    </div>
-
-    <div class="input-field"  *ngIf="ID==2" >
-      <!--Enter Password-->
-      <div class="inputtextfield" style="margin-left: 10px;margin-right: 10px">
-        <mat-form-field appearance="outline" style="width: 100%">
-          <mat-label class="inputtextfield">Confirm Password</mat-label>
-          <input matInput [type]="getType1()" [(ngModel)]="updateFos.confirm_password" name="password" class="inputtextfield" >
-          <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword1()">
-            <mat-icon><ion-icon [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'" ></ion-icon></mat-icon>
-          </button>
-        </mat-form-field>
-      </div>
-    </div>
-
-    <mat-checkbox *ngIf="ID!==3" [(ngModel)]="isChecked" (click)="Checked()" style="margin-left: 5%!important;padding-top: 5%!important;margin-top: 10%!important;font-size: 16px !important;font-family: Metropolis Medium;letter-spacing: 0.5px !important;" >Is Team Lead</mat-checkbox>
-  
-    <form [formGroup]="credentialsForm">
-    <div class="ion-text-center" style="padding-bottom: 20%;padding-top: 10%">
-      <button mat-raised-button class="loginbutton" (click)="addPostFOS(credentialsForm.value)" [disabled]="credentialsForm.invalid" routerDirection="forward"  *ngIf="ID==1">Add FOS</button><br>
-      <button mat-raised-button class="loginbutton"  routerDirection="forward" *ngIf="ID==2" (click)="addPostFOS(credentialsForm.value)">Update FOS</button><br>
-      <button mat-raised-button class="loginbutton" (click)="addPostFOS(credentialsForm.value)" [disabled]="credentialsForm.invalid" routerDirection="forward" *ngIf="ID==3">Add Team Leader</button><br>
-    </div>
-    </form>
-
-  </div>
-
 </ion-content>

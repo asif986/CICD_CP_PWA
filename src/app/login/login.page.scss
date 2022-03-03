@@ -1,123 +1,131 @@
-
-h1{
-  font-size: xx-large;
-}
-.titleLogin
-{
-  padding: 5px;
-  alignment: center;
-  color: var(--ion-color-primary);
-  font-family: "Metropolis Medium";
-  margin-top: 10%!important;
-  margin-bottom: 7%;
-  justify-content: center;
-  align-items: center;
-  font-size: x-large;
+h1 {
+    font-size: xx-large;
 }
 
-.input-field{
-  margin: 5%;
-}
-.input-field-text{
-  color: var(--ion-color-primary);
-  font-family: "Metropolis Light";
-  font-size: 16px;
-  text-align: start;
+p {
+    font-family: "Metropolis Light";
 }
 
-.loginbutton{
-  margin-top: 7%;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  font-size:18px;
-  border-radius: 25px;
-  border-color: #F5A22C;
-  font-family: "Metropolis Medium";
-  border: 1px solid #F5A22C;
-  color: black;
+p>a {
+    text-decoration: underline;
 }
 
+.titleLogin {
+    padding: 5px;
+    alignment: center;
+    color: var(--ion-color-primary);
+    font-family: "Metropolis Medium";
+    margin-top: 10%!important;
+    margin-bottom: 7%;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+}
 
-#forgotButton{
-  color: #F5A22C;
-  letter-spacing: 0.8px;
-  margin-top: 5%;
-  font-family: "Metropolis Medium";
-  font-size: 16px;
+::ng-deep .mat-form-field-outline-start {
+    border-radius: 28px 0 0 28px !important;
+    min-width: 28px !important;
 }
-.error{
-  color:red;
-  text-align: start;
-  font-family: "Metropolis Light";
-  font-size: 11px!important;
-  margin-top: 2px!important;
+
+::ng-deep .mat-form-field-outline-end {
+    border-radius: 0 28px 28px 0 !important;
 }
-.newusertext
-{
-  padding: 2px;
-  alignment: center;
-  color: #000000;
-  font-family: "Metropolis Light";
-  margin-top: 5%;
-  margin-left: 3%;
-  justify-content: center;
-  align-items: center;
-  font-size: 16px;
+
+.input-field {
+    margin: 5%;
 }
-.newusertext1
-{
-  padding: 2px;
-  alignment: center;
-  color: var(--ion-color-medium_grey);
-  font-family: "Metropolis Light";
-  margin-right: 3%;
-  justify-content: center;
-  align-items: center;
-  font-size: 14px;
+
+.input-field-text {
+    color: var(--ion-color-primary);
+    font-family: "Metropolis Light";
+    font-size: 16px;
+    text-align: start;
 }
-.registerbutton{
-  margin-top: 8%;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  font-size:large;
-  border-radius: 25px;
-  background-color: #F5A22C;
-  color: var(--ion-color-primary);
-  font-size:large;
-  font-family: "Metropolis Medium";
+
+.loginbutton {
+    margin-top: 7%;
 }
+
+#forgotButton {
+    color: #F5A22C;
+    letter-spacing: 0.8px;
+    margin-top: 5%;
+    font-family: "Metropolis Medium";
+    font-size: 16px;
+}
+
+.error {
+    color: red;
+    text-align: start;
+    font-family: "Metropolis Light";
+    font-size: 11px!important;
+    margin-top: 2px!important;
+}
+
+.newusertext {
+    padding: 2px;
+    alignment: center;
+    color: #000000;
+    font-family: "Metropolis Light";
+    margin-top: 5%;
+    margin-left: 3%;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+
+.newusertext1 {
+    padding: 2px;
+    alignment: center;
+    color: var(--ion-color-medium_grey);
+    font-family: "Metropolis Light";
+    margin-right: 3%;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.registerbutton {
+    margin-top: 8%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: large;
+    border-radius: 25px;
+    background-color: #F5A22C;
+    color: var(--ion-color-primary);
+    font-size: large;
+    font-family: "Metropolis Medium";
+}
+
 .activated {
-  background-color: var(--ion-color-primary);
+    background-color: var(--ion-color-primary);
 }
 
-.countrycode{
-
-  width:50%;
-  height: 60px;
-  font-size: 14px;
-  background-color:  var(--ion-color-secondary);;
-  border: 1px solid var(--ion-color-light_outline_card);
-  margin-right: 10px;
-  margin-top: 5px!important;
-  border-radius: 8%;
-  padding-top: 20px;
-}
-.countrycodetext{
-  font-size: 14px;
-  font-family: "Metropolis Medium";
-  margin-top: 10px!important;
-}
-.inputtextfield
-{
-  padding: 2px;
-  color: #000000;
-  font-family: "Metropolis Light";
-  font-size: 16px;
+.countrycode {
+    width: 50%;
+    height: 60px;
+    font-size: 14px;
+    background-color: var(--ion-color-secondary);
+    ;
+    border: 1px solid var(--ion-color-light_outline_card);
+    margin-right: 10px;
+    margin-top: 5px!important;
+    border-radius: 8%;
+    padding-top: 20px;
 }
 
+.countrycodetext {
+    font-size: 14px;
+    font-family: "Metropolis Medium";
+    margin-top: 10px!important;
+}
+
+.inputtextfield {
+    padding: 2px;
+    color: #000000;
+    font-family: "Metropolis Light";
+    font-size: 16px;
+}
