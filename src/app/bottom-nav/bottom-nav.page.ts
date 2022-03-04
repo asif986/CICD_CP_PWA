@@ -1,91 +1,106 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Helper} from '../services/Helper';
-import {AlertController, ModalController, NavController, Platform, ToastController, Events} from '@ionic/angular';
-import {Storage} from '@ionic/storage';
-import {ActivatedRoute, Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {UniqueDeviceID} from '@ionic-native/unique-device-id/ngx';
-
+import { Component, Input, OnInit } from "@angular/core";
+import { Helper } from "../services/Helper";
+import {
+  AlertController,
+  ModalController,
+  NavController,
+  Platform,
+  ToastController,
+  Events,
+} from "@ionic/angular";
+import { Storage } from "@ionic/storage";
+import { ActivatedRoute, Router } from "@angular/router";
+import { HttpClient } from "@angular/common/http";
+import { UniqueDeviceID } from "@ionic-native/unique-device-id/ngx";
 
 @Component({
-  selector: 'app-bottom-nav',
-  templateUrl: './bottom-nav.page.html',
-  styleUrls: ['./bottom-nav.page.scss'],
+  selector: "app-bottom-nav",
+  templateUrl: "./bottom-nav.page.html",
+  styleUrls: ["./bottom-nav.page.scss"],
 })
 export class BottomNavPage implements OnInit {
-
   isLogin: any = 0;
   isVerfied: any = 0;
   is_team_lead: any = 0;
   is_admin: any = 0;
-  CPLoginData: any = '';
-  username = '';
-  name = '';
-  apiToken = '';
+  CPLoginData: any = "";
+  username = "";
+  name = "";
+  apiToken = "";
   userId = 0;
   uuid = 0;
   fcmToken: any;
+
+  menusList: any;
   @Input() value: number;
 
   // tslint:disable-next-line:max-line-length
-  constructor(public helper: Helper, private uniqueDeviceID: UniqueDeviceID, private http: HttpClient, private toastCtrl: ToastController, private storage: Storage, platform: Platform, public alertController: AlertController, public router: Router, private route: ActivatedRoute, public navCtrl: NavController, public modalController: ModalController,public events: Events) {
-   /* alert('b');*/
-    this.uniqueDeviceID.get()
-        .then((uuid: any) => {this.uuid = uuid; })
-        .catch((error: any) => {});
+  constructor(
+    public helper: Helper,
+    private uniqueDeviceID: UniqueDeviceID,
+    private http: HttpClient,
+    private toastCtrl: ToastController,
+    private storage: Storage,
+    platform: Platform,
+    public alertController: AlertController,
+    public router: Router,
+    private route: ActivatedRoute,
+    public navCtrl: NavController,
+    public modalController: ModalController,
+    public events: Events
+  ) {
+    /* alert('b');*/
+    this.uniqueDeviceID
+      .get()
+      .then((uuid: any) => {
+        this.uuid = uuid;
+      })
+      .catch((error: any) => {});
 
-
-        events.subscribe('TeamLeaderOrNot', () => {
-          console.log('isnotResolved','TeamLeaderOrNot');
-          this.storage.get('is_team_lead').then((val3) => {
-            this.is_team_lead = val3;
-            console.log(this.is_team_lead);
-          });
-          this.storage.get('is_admin').then((val4) => {
-            this.is_admin = val4;
-            console.log(this.is_admin);
-          });
-        });
-
-        
-
+    events.subscribe("TeamLeaderOrNot", () => {
+      console.log("isnotResolved", "TeamLeaderOrNot");
+      this.storage.get("is_team_lead").then((val3) => {
+        this.is_team_lead = val3;
+        console.log(this.is_team_lead);
+      });
+      this.storage.get("is_admin").then((val4) => {
+        this.is_admin = val4;
+        console.log(this.is_admin);
+      });
+    });
   }
-
-
 
   async presentAlertConfirm() {
     const alert = await this.alertController.create({
-
-      message: 'Do you want to Logout?',
+      message: "Do you want to Logout?",
       buttons: [
         {
-          text: 'Cancel',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: (blah) => {
-
-          }
-        }, {
-          text: 'Logout',
+          text: "Cancel",
+          role: "cancel",
+          cssClass: "secondary",
+          handler: (blah) => {},
+        },
+        {
+          text: "Logout",
           handler: () => {
             this.updateToken();
-            setTimeout( ()=>{
-              this.storage.remove('data');
-              this.storage.remove('cpLoginData');
-              this.storage.remove('cp_executive_id');
-              this.storage.remove('apiToken');
-              this.storage.remove('cp_id');
-              this.storage.remove('verification_status_id');
-              this.storage.remove('fullname');
-              this.storage.remove('channelname');
-              this.helper.presentToastSuccess('Logout Successfully!');
-              this.navCtrl.navigateRoot('login');
+            setTimeout(() => {
+              this.storage.remove("data");
+              this.storage.remove("cpLoginData");
+              this.storage.remove("cp_executive_id");
+              this.storage.remove("apiToken");
+              this.storage.remove("cp_id");
+              this.storage.remove("verification_status_id");
+              this.storage.remove("fullname");
+              this.storage.remove("channelname");
+              this.helper.presentToastSuccess("Logout Successfully!");
+              this.navCtrl.navigateRoot("login");
               this.alertController.dismiss();
               this.modalController.dismiss();
             }, 500);
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
 
     await alert.present();
@@ -96,32 +111,37 @@ export class BottomNavPage implements OnInit {
   }
 
   ngOnInit() {
+    this.http.get("assets/json/menus.json").subscribe((res) => {
+      console.log(res);
+      this.menusList = res;
+    });
+
     const me = this;
-    this.storage.get('verification_status_id').then((val2) => {
-      this.storage.get('cpLoginData').then((val1) => {
-        this.storage.get('login').then((val) => {
+    this.storage.get("verification_status_id").then((val2) => {
+      this.storage.get("cpLoginData").then((val1) => {
+        this.storage.get("login").then((val) => {
           me.CPLoginData = val1;
           me.isLogin = val;
           me.isVerfied = val2;
         });
       });
     });
-    this.storage.get('fullname').then((val) => {
+    this.storage.get("fullname").then((val) => {
       this.username = val;
       console.log(this.username);
     });
-    this.storage.get('channelname').then((val) => {
+    this.storage.get("channelname").then((val) => {
       this.name = val;
       console.log(this.name);
     });
   }
 
   ionViewDidEnter() {
-    this.storage.get('is_team_lead').then((val3) => {
+    this.storage.get("is_team_lead").then((val3) => {
       this.is_team_lead = val3;
       console.log(this.is_team_lead);
     });
-    this.storage.get('is_admin').then((val4) => {
+    this.storage.get("is_admin").then((val4) => {
       this.is_admin = val4;
       console.log(this.is_admin);
     });
@@ -145,44 +165,66 @@ export class BottomNavPage implements OnInit {
       console.log(this.name);
     });*/
   }
-  
+
   // || val=='readytosubmit-bills'|| val=='submitted-bill-page'
   navigateMenu(val) {
     this.modalController.dismiss();
-    if ((val == 'home' || val == 'reminder' || val == 'notification'|| val == 'myperformance'|| val == 'team-stats'|| val == 'teamlist'|| val=='projectbrochures'|| val=='readytosubmit-bills'|| val=='submitted-bill-page'|| val=='incentive-bills'|| val =='cpawards'|| val =='claim-awards') && this.isLogin != 1) {
-      this.navCtrl.navigateForward('login');
-      
+    if (
+      (val == "home" ||
+        val == "reminder" ||
+        val == "notification" ||
+        val == "myperformance" ||
+        val == "team-stats" ||
+        val == "teamlist" ||
+        val == "projectbrochures" ||
+        val == "readytosubmit-bills" ||
+        val == "submitted-bill-page" ||
+        val == "incentive-bills" ||
+        val == "cpawards" ||
+        val == "claim-awards") &&
+      this.isLogin != 1
+    ) {
+      this.navCtrl.navigateForward("login");
     } else {
-      this.storage.set('FOS', 2);
-      this.storage.set('FromLeadList',0);
+      this.storage.set("FOS", 2);
+      this.storage.set("FromLeadList", 0);
       this.navCtrl.navigateRoot([val]);
     }
   }
 
-    goback(){
-        this.modalController.dismiss();
-    }
+  goback() {
+    this.modalController.dismiss();
+  }
   updateToken() {
     // alert(1);
     const me = this;
-    this.storage.get('user_id').then((val) => {
-     /* alert('user_id' + val);*/
+    this.storage.get("user_id").then((val) => {
+      /* alert('user_id' + val);*/
       if (val) {
-        console.log('user_id', val);
+        console.log("user_id", val);
         this.userId = val;
-        this.storage.get('apiToken').then((data) => {
-       /*   alert('apiToken' + data);*/
+        this.storage.get("apiToken").then((data) => {
+          /*   alert('apiToken' + data);*/
           this.apiToken = data;
-              const param = {user_id: this.userId, device_id: this.uuid, device_type: 'android', fcm_token: '',
-                api_token: this.apiToken};
-              console.log(param);
-              me.http.post('http://vjpartners.co.in/ongoing/v7_new/vj-sales-modules/public/api/addAndUpdateFcmToken', param)
-                  .subscribe(res => {
-                    // alert('Success');
-                    console.log('token updated', res);
-                  });
-            } );
-        }
-      });
+          const param = {
+            user_id: this.userId,
+            device_id: this.uuid,
+            device_type: "android",
+            fcm_token: "",
+            api_token: this.apiToken,
+          };
+          console.log(param);
+          me.http
+            .post(
+              "http://vjpartners.co.in/ongoing/v7_new/vj-sales-modules/public/api/addAndUpdateFcmToken",
+              param
+            )
+            .subscribe((res) => {
+              // alert('Success');
+              console.log("token updated", res);
+            });
+        });
+      }
+    });
   }
 }

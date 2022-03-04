@@ -16,7 +16,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 @import "~@ionic/angular/css/padding.css";
@@ -26,38 +26,37 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 //For TOAST
-.my-custom-class{
+.my-custom-class {
   --background: var(--ion-color-primary);
   --color: var(--ion-color-secondary);
   --ion-font-family: "Metropolis Medium";
-  --font-max-size:16px!important;
+  --font-max-size: 16px !important;
 }
 
-
 //For ALERT
-.alert{
+.alert {
   --color: var(--ion-color-primary);
   --background: var(--ion-color-secondary);
   --ion-font-family: "Metropolis Medium";
-  --font-max-size:18px!important;
+  --font-max-size: 18px !important;
 }
 
 //For Toolbar-title
-.toolbar-title{
+.toolbar-title {
   color: var(--ion-color-secondary);
   font-family: "Metropolis Medium";
   font-size: 20px;
 }
 
-.toolbar-titleNew{
+.toolbar-titleNew {
   color: var(--ion-color-secondary);
   font-family: "Metropolis Medium";
   font-size: 20px;
-  background-color:  #652D90;
+  background-color: #652d90;
 }
 
 //For TOAST Sucess
-.my-custom-toastSuceess{
+.my-custom-toastSuceess {
   --background: green;
   color: white;
   --ion-font-family: "Metropolis Medium";
@@ -65,7 +64,7 @@
 }
 
 //For TOAST Red
-.my-custom-toastError{
+.my-custom-toastError {
   --background: red;
   color: white;
   --ion-font-family: "Metropolis Medium";
@@ -73,19 +72,18 @@
 }
 
 //For TOAST
-.my-custom-toast{
+.my-custom-toast {
   --background: black;
   --ion-font-family: "Metropolis Medium";
   --font-max-size: 16px !important;
 }
 
-
 //For Home TOAST
-.my-custom-toast-homeSuccess{
+.my-custom-toast-homeSuccess {
   --background: green;
   --color: var(--ion-color-main-white);
   --ion-font-family: "Metropolis Medium";
-  --font-max-size: 16px!important;
+  --font-max-size: 16px !important;
   padding-bottom: 120%;
   position: initial;
   margin-bottom: 27%;
@@ -101,17 +99,17 @@ ion-loading.custom-loading {
 ion-toolbar {
   --background: #f2f2f2;
 }
-.TITLETOOLBAR{
+.TITLETOOLBAR {
   font-family: "Metropolis Medium";
   font-size: 18px;
   color: black;
   padding-top: 10px;
   margin-left: -32px;
 }
-.srcIMGLOGO{
+.srcIMGLOGO {
   text-align: right;
   margin-right: 0px;
-  width: 30%!important;
+  width: 30% !important;
 }
 
 /*Alert Successfully(Sukrut02/10/2019)*/
@@ -151,3 +149,15 @@ ion-toolbar {
   }
 }
 */
+
+ion-action-sheet {
+  ion-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .ion-ios-approve,
+  .ion-md-approve {
+    content: url("./assets/new_icons/approve.png");
+  }
+}

@@ -1,48 +1,52 @@
-<ion-header style="--background:#000;" *ngIf="IDFromPerformance!==1">
-  <ion-searchbar style="background: #000;" [(ngModel)]="searchVal" debounce="270"
-    (ionInput)="search($event)" (ionClear)="leadlist=[];searchVal='';getFeedData();"  class="search" >
- </ion-searchbar>
+<ion-header style="" *ngIf="IDFromPerformance!==1">
+  <ion-searchbar [(ngModel)]="searchVal" debounce="270" (ionInput)="search($event)"
+    (ionClear)="leadlist=[];searchVal='';getFeedData();" class="search">
+  </ion-searchbar>
 </ion-header>
 
 <ion-header *ngIf="IDFromPerformance==1">
-  <ion-toolbar color="color_d" >
-  <ion-row>
-    <ion-col>
-      <div>
-        <ion-buttons slot="start" style="margin-left: 3%">
-          <i class="material-icons icon"  (click)="goBack()">arrow_back_ios</i>
-           </ion-buttons>
-      </div>
-    </ion-col>
-    <ion-col style="text-align: start;margin-left: -30px!important;">
-      <div>
-        <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;" *ngIf="lead_status_id_FromFilter==0">Leads</ion-title>
-        <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;" *ngIf="lead_status_id_FromFilter==5">Site Visits</ion-title>
-        <ion-title class="TITLETOOLBAR"  style="margin-left: -40px!important;" *ngIf="lead_status_id_FromFilter==6 && token_type_id_FromFilter==1">GHP</ion-title>
-        <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;" *ngIf="lead_status_id_FromFilter==6 && token_type_id_FromFilter==3">GHP+</ion-title>
-        <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;" *ngIf="lead_status_id_FromFilter==9">Allotments</ion-title>
-        <!-- <ion-title class="TITLETOOLBAR" >Reminders</ion-title> -->
-      </div>
-    </ion-col>
-    <ion-col style="text-align: end;margin-right: 10px;">
-      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 37%!important;">
-    </ion-col>
-  </ion-row>
+  <ion-toolbar color="color_d">
+    <ion-row>
+      <ion-col>
+        <div>
+          <ion-buttons slot="start" style="margin-left: 3%">
+            <i class="material-icons icon" (click)="goBack()">arrow_back_ios</i>
+          </ion-buttons>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: start;margin-left: -30px!important;">
+        <div>
+          <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;" *ngIf="lead_status_id_FromFilter==0">
+            Leads</ion-title>
+          <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;" *ngIf="lead_status_id_FromFilter==5">
+            Site Visits</ion-title>
+          <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;"
+            *ngIf="lead_status_id_FromFilter==6 && token_type_id_FromFilter==1">GHP</ion-title>
+          <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;"
+            *ngIf="lead_status_id_FromFilter==6 && token_type_id_FromFilter==3">GHP+</ion-title>
+          <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;" *ngIf="lead_status_id_FromFilter==9">
+            Allotments</ion-title>
+          <!-- <ion-title class="TITLETOOLBAR" >Reminders</ion-title> -->
+        </div>
+      </ion-col>
+      <ion-col style="text-align: end;margin-right: 10px;">
+        <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'
+          style="text-align: right;width: 37%!important;">
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
-<ion-content style="--background:black;padding-bottom: 20%!important;" class="ion-text-center">
+<ion-content style="padding-bottom: 20%!important;" class="ion-text-center">
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-     <ion-refresher-content
-             pullingIcon=""
-             pullingText=""
-             refreshingSpinner="circles"
-             refreshingText="">
-     </ion-refresher-content>
-   </ion-refresher>
+    <ion-refresher-content pullingIcon="" pullingText="" refreshingSpinner="circles" refreshingText="">
+    </ion-refresher-content>
+  </ion-refresher>
 
-     <!--Banner For Events-->
-   <div *ngIf="isSpinner==false && IDFromPerformance!==1" >
+  <!--Banner For Events-->
+
+  <!-- <div *ngIf="isSpinner==false && IDFromPerformance!==1" >
+
     <div *ngIf="societyEventBanners.length!=0" style="position: relative;margin: 0px;margin-bottom: -40px;">
         <ion-slides  class="image-slider" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)"
                     pager="true">
@@ -56,6 +60,7 @@
             </ion-slide>
         </ion-slides>
     </div>
+
     <div *ngIf="societyEventBanners.length==0" style="position: relative;margin: 1px;margin-bottom: -15px;margin-top: 15px;">
     <div  style="position: relative;margin: 1px">
         <ion-slides  class="image-slider" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)"
@@ -70,264 +75,362 @@
         </ion-slides>
     </div> 
   </div>
-</div>
 
-<!-- For Leadlist Feed -->
-<div style="padding-bottom: 50px!important;">
-  <div *ngIf="leadlist.length!==0 && isSpinner==false">
-    <div *ngFor="let c of leadlist " >
-      <ion-card-title class="leaddate" style="margin-bottom: -2%!important;margin-right: 2%" >{{c.tag_date}}</ion-card-title>
-    
-      <!-- Main Card to display All Data Of Feed -->
-      <ion-card class="outline" style="margin-bottom:10px!important;margin-left: 5%;margin-right: 5%;">
-     
-     <!--For Whatsapp,Call,MetMenu  -->
-            <ion-grid>
-              <ion-row>
-                <ion-col size="12" text-right>
-                  <ion-icon (click)="Whatsapp(c.actions.call,c.ids.full_name,'www.javdekars.com')" style="margin-right: 5px!important;font-size: 26px!important;padding: 3px!important;" src="assets/channelPartner_Icons/whatsApp_Icon/whatsapp_icon.svg" ></ion-icon>
-                  <ion-icon  (click)="callMethodNew(c.actions.call)"  style="margin-right: 5px!important;font-size: 32px!important;" src="assets/channelPartner_Icons/mobile_Phone_Icon/call-icon.svg"></ion-icon>
-                  <ion-icon [matMenuTriggerFor]="menu"  style="margin-right: 5px!important;font-size: 30px!important;" name="more"></ion-icon>
-                  <mat-menu #menu="matMenu">
-                    <button mat-menu-item (click)="addReminder(c.main_title)">
-                      <span class="menu" >Add Reminder</span>
-                    </button>
-                      <button mat-menu-item *ngIf="c.ids.lead_status_id==5 " (click)="GenerateGHPafterSiteVisit(c.ids.full_name,c.ids.lead_uid,c.ids.lead_id,c.ids.is_kyc_uploaded,c.ids.sales_person_id,c.ids.mobile_number,c.ids.email)">
-                          <span class="menu" >Generate GHP/GHP+</span>
-                      </button>
-                      <button mat-menu-item *ngIf="c.ids.lead_status_id==6 " (click)="ViewGHPDetails(c.ids.token_no,c.ids.full_name,c.ids.mobile_number,c.ids.email,c.ids.project_name,c.ids.event_title,c.ids.unit_category,c.ids.lead_uid,c.ids.lead_status_id,c.ids.token_media_path,c.actions.call,c.ids.lead_id,c.ids.event_id,c.ids.token_type_id,c.ids.token_id,c.ids.ghp_date,c.ids.ghp_amount,c.ids.ghp_plus_date,c.ids.ghp_plus_amount,c.ids.remark,c.ids.sales_person_id)">
-                          <span class="menu" >View GHP/GHP+ Details</span>
-                      </button>
-                      <button mat-menu-item *ngIf="c.ids.lead_status_id==13" (click)="ViewGHPrequest(c.ids.token_no,c.ids.full_name,c.ids.mobile_number,c.ids.email,c.ids.project_name,c.ids.event_title,c.ids.unit_category,c.ids.lead_uid,c.ids.lead_status_id,c.ids.token_media_path,c.actions.call,c.ids.lead_id,c.ids.event_id,c.ids.token_type_id,c.ids.token_id,c.ids.ghp_date,c.ids.ghp_amount,c.ids.ghp_plus_date,c.ids.ghp_plus_amount,c.ids.payment_link)">
-                        <span class="menu" >Show GHP/GHP+ Details</span>
-                    </button>
-                    <button mat-menu-item *ngIf="c.ids.lead_status_id==2" (click)="GenerateGHP(c.ids.full_name,c.ids.lead_uid,c.ids.lead_id,c.ids.is_kyc_uploaded,c.ids.sales_person_id,c.ids.mobile_number,c.ids.email)">
-                      <span class="menu" >Generate GHP/GHP+</span>
+</div> -->
+
+  <!-- For Leadlist Feed -->
+  <div style="padding-bottom: 50px!important;">
+    <div *ngIf="leadlist.length!==0 && isSpinner==false">
+      <div *ngFor="let c of leadlist ">
+        <ion-card-title class="leaddate" style="margin-bottom: -2%!important;margin-right: 2%">{{c.tag_date}}
+        </ion-card-title>
+
+        <!-- Main Card to display All Data Of Feed -->
+        <ion-card class="outline" style="margin-bottom:10px!important;margin-left: 5%;margin-right: 5%;">
+
+          <!--For Whatsapp,Call,MetMenu  -->
+          <ion-grid>
+            <ion-row>
+              <ion-col size="12">
+                <div class="small-header-info">
+                  <div class="cuid"> {{c.small_header_title}} </div>
+
+                  <div>
+                    <ion-icon (click)=" Whatsapp(c.actions.call,c.ids.full_name,'www.javdekars.com')"
+                      style="margin-right: 5px!important;font-size: 22px!important;"
+                      src="assets/channelPartner_Icons/whatsApp_Icon/whatsapp.svg">
+                    </ion-icon>
+                    <ion-icon (click)="callMethodNew(c.actions.call)"
+                      style="margin-right: 6px!important;font-size: 22px!important;padding-left: 8px!important;"
+                      src="assets/channelPartner_Icons/mobile_Phone_Icon/call-outline.svg"></ion-icon>
+                  </div>
+                  <!-- <ion-icon [matMenuTriggerFor]="menu" style="margin-right: 5px!important;font-size: 30px!important;"
+                  name="more"></ion-icon>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item (click)="addReminder(c.main_title)">
+                    <span class="menu">Add Reminder</span>
                   </button>
-                </mat-menu>
-                </ion-col>
+                  <button mat-menu-item *ngIf="c.ids.lead_status_id==5 "
+                    (click)="GenerateGHPafterSiteVisit(c.ids.full_name,c.ids.lead_uid,c.ids.lead_id,c.ids.is_kyc_uploaded,c.ids.sales_person_id,c.ids.mobile_number,c.ids.email)">
+                    <span class="menu">Generate GHP/GHP+</span>
+                  </button>
+                  <button mat-menu-item *ngIf="c.ids.lead_status_id==6 "
+                    (click)="ViewGHPDetails(c.ids.token_no,c.ids.full_name,c.ids.mobile_number,c.ids.email,c.ids.project_name,c.ids.event_title,c.ids.unit_category,c.ids.lead_uid,c.ids.lead_status_id,c.ids.token_media_path,c.actions.call,c.ids.lead_id,c.ids.event_id,c.ids.token_type_id,c.ids.token_id,c.ids.ghp_date,c.ids.ghp_amount,c.ids.ghp_plus_date,c.ids.ghp_plus_amount,c.ids.remark,c.ids.sales_person_id)">
+                    <span class="menu">View GHP/GHP+ Details</span>
+                  </button>
+                  <button mat-menu-item *ngIf="c.ids.lead_status_id==13"
+                    (click)="ViewGHPrequest(c.ids.token_no,c.ids.full_name,c.ids.mobile_number,c.ids.email,c.ids.project_name,c.ids.event_title,c.ids.unit_category,c.ids.lead_uid,c.ids.lead_status_id,c.ids.token_media_path,c.actions.call,c.ids.lead_id,c.ids.event_id,c.ids.token_type_id,c.ids.token_id,c.ids.ghp_date,c.ids.ghp_amount,c.ids.ghp_plus_date,c.ids.ghp_plus_amount,c.ids.payment_link)">
+                    <span class="menu">Show GHP/GHP+ Details</span>
+                  </button>
+                  <button mat-menu-item *ngIf="c.ids.lead_status_id==2"
+                    (click)="GenerateGHP(c.ids.full_name,c.ids.lead_uid,c.ids.lead_id,c.ids.is_kyc_uploaded,c.ids.sales_person_id,c.ids.mobile_number,c.ids.email)">
+                    <span class="menu">Generate GHP/GHP+</span>
+                  </button>
+                </mat-menu> -->
+                </div>
+              </ion-col>
             </ion-row>
           </ion-grid>
-        
-      <div style="margin-top: -7% !important;">
-    <!--(1)Set CUID-->
-        <ion-card-title >
-          <div class="cuid" style="margin-left: 5%!important;margin-right: 3%!important;letter-spacing: 0.05em;margin-top: 22px;">{{c.small_header_title}}</div>
-        </ion-card-title>
-  
-    <!--(2)Lead Name S method-->
-      <ion-grid style="padding-bottom: 0%!important;padding-top: 0!important;">
-        <ion-row style="padding-bottom: 0%!important;padding-top: 0!important;" >
-          <ion-col size="10" style="width: 100%;padding-bottom: 0%!important;padding-top: 0!important;" >
-            <div class="leadname" style="margin-left:
+
+          <div style="margin-top: -7% !important;">
+            <!--(1)Set CUID-->
+            <ion-card-title>
+              <!-- <div class="cuid"
+                style="margin-left: 5%!important;margin-right: 3%!important;letter-spacing: 0.05em;margin-top: 22px;">
+                {{c.small_header_title}}</div> -->
+            </ion-card-title>
+
+            <!--(2)Lead Name S method-->
+            <ion-grid style="padding-bottom: 0%!important;padding-top: 0!important;">
+              <ion-row style="padding-bottom: 0%!important;padding-top: 0!important;">
+                <ion-col size="10" style="width: 100%;padding-bottom: 0%!important;padding-top: 0!important;">
+                  <div class="leadname" style="margin-left:
             2.40% !important;">{{c.main_title}}</div>
-          </ion-col>
-          <ion-col size="2" style="width: 100%;padding-bottom: 0%!important;padding-top: 0!important;" class="ion-text-right">
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-  
-      <!--(3)Lead project Name-->
-      <ion-card-subtitle style="margin-top: 3px!important;">
-        <div  class="projectname" style="margin-left: 5%!important;margin-right: 3%!important; color: var(--ion-color-primary);">{{c.description}}</div>
-      </ion-card-subtitle>
-     
-  
-  <!-- FOR UNCLAIMED:1-->
-      <div class="flex-container" *ngIf="c.ids.lead_status_id==1" >
-        <div>
-          <ion-card-subtitle >
-            <div class="status" >
-              <div *ngIf="c.ids.lead_status_id==1"  class="tagtext" >
-                <div  class="status bg-{{c.ids.lead_status_id}}" style="text-align: start;color: var(--ion-color-secondary);font-family: 'Metropolis Medium';padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px">
-                  {{c.ids.lead_status_name}}
-                </div>
-              </div>
-            </div>
-          </ion-card-subtitle>
-  
-          <!-- FOR ELAPSED TIME -->
-            <div style="padding-top: 7px!important;margin-top: 2px!important;" *ngIf="c.ids.lead_status_id==1 ">
-                <ion-card-title role="heading" aria-level="3"><div class="salesPersonName_datealso" style="margin-top: -2%!important;margin-left: 12px!important;margin-bottom: 6%!important;">{{c.tag_elapsed_time}}</div></ion-card-title>
-            </div>
-        </div>
-      </div>
-  
-  <!-- FOR CLAIMED:2...USE FOR SLAESPERSON -->
-        <div style="width: 100%!important;" *ngIf="c.ids.lead_status_id==2" style="margin-bottom: -11px!important;">
-        <ion-card-title ><div class="salesPersonName_datealso" style="margin-top: 4%!important;color:var(--ion-color-primary);margin-bottom: -12px!important;margin-left: 18px; ">{{c.status_sub_text}}</div></ion-card-title>
-        </div>
-  
-        <div class="flex-container" *ngIf="c.ids.lead_status_id==2">
-        <div>
-          <ion-card-subtitle >
-            <div class="status" style="width: 100%!important;" >
-              <div *ngIf="c.ids.lead_status_id==2"  class="tagtext" >
-                <div  class="status bg-{{c.ids.lead_status_id}}" style="text-align: start;color: var(--ion-color-secondary);font-family: 'Metropolis Medium';padding-top: 7px;padding-bottom: 7px;padding-left: 15px">
-                  {{c.ids.lead_status_name}}
-                </div>
-              </div>
-            </div>
+                </ion-col>
+                <ion-col size="2" style="width: 100%;padding-bottom: 0%!important;padding-top: 0!important;"
+                  class="ion-text-right">
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+            <!--(3)Lead project Name-->
+            <ion-card-subtitle style="margin-top: 3px!important;">
+              <div class="projectname"
+                style="margin-left: 5%!important;margin-right: 3%!important; color: var(--ion-color-primary);">
+                {{c.description}}</div>
             </ion-card-subtitle>
-        </div>
-        </div>
-        <!-- FOR ELAPSED TIME -->
-        <div style="display:block;margin-left: 13px!important;" *ngIf=" c.ids.lead_status_id==2">
-        <ion-card-title role="heading" aria-level="3"><div class="salesPersonName_datealso" style="margin-top: 2%!important;margin-bottom: 10px!important;">{{c.tag_elapsed_time}}</div></ion-card-title>
-        </div>
-  
-  
-        <!-- Mat Expand Panel Condition -->
-      <div style="width: 100%!important;" *ngIf="c.ids.lead_status_id==5 || c.ids.lead_status_id==6 || c.ids.lead_status_id==7 || c.ids.lead_status_id==8 || c.ids.lead_status_id==9 || c.ids.lead_status_id==10 || c.ids.lead_status_id==13 || c.ids.lead_status_id>13 ">
-        <ion-card-title ><div class="salesPersonName_datealso" style="margin-top: 4%!important;color:var(--ion-color-primary);margin-bottom: -20px;margin-left: 18px;">{{c.ids.sales_person_name}}</div></ion-card-title>
-      </div>
-     
-      <!-- FOR DETAILS OF THAT LEAD WITH STATUS AND ELAPSED TIME -->
-      <div *ngIf="c.ids.lead_status_id==6 || c.ids.lead_status_id==7 || c.ids.lead_status_id==8 || c.ids.lead_status_id==13 || c.ids.lead_status_id==9|| c.ids.lead_status_id==10 || c.ids.lead_status_id>13" style="margin-top: 20px!important;">
-      <mat-accordion  style="padding-left: 0%!important;padding-top: 0!important; margin-top: 3%!important;margin-bottom: 3%!important;padding-bottom: 2%!important;">
-        <mat-expansion-panel  (opened)="panelOpenState = true"
-                              (closed)="panelOpenState = false" style="box-shadow: none!important;padding-bottom: 10px!important;margin-top: 20px!important;">
-          <mat-expansion-panel-header style="padding-left: 0%!important;">
-            <mat-panel-title >
-             
-              <div>
-                <div *ngIf="c.ids.lead_status_id!==6 && c.ids.lead_status_id!==13 " class="status bg-{{c.ids.lead_status_id}}" style="width: 100%!important;text-align: start;color: var(--ion-color-secondary);font-family: 'Metropolis Medium';padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px;margin-top: 20px;">
-                  {{c.status_text}}
-                </div>
-  
-                  <div  *ngIf="c.ids.lead_status_id==6 && c.ids.token_type_id==1" class="status bg-{{c.ids.lead_status_id}}" style="width: 100%!important;text-align: start;color: var(--ion-color-secondary);font-family: 'Metropolis Medium';padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px;margin-top: 20px;">
-                      {{c.status_text}}
-                  </div>
-                  
-                   <div  *ngIf="c.ids.lead_status_id > 13" class="status bg-6" style="width: 100%!important;text-align: start;color: var(--ion-color-secondary);font-family: 'Metropolis Medium';padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px;margin-top: 20px;">
-                      {{c.status_text}}
-                  </div>
-  
-                  <div  *ngIf="c.ids.lead_status_id==13 && c.ids.token_type_id==1" class="status bg-{{c.ids.lead_status_id}}" style="width: 100%!important;text-align: start;color: var(--ion-color-secondary);font-family: 'Metropolis Medium';padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px;margin-top: 20px;">
-                    GHP payment pending
-                </div>
-  
-                  <div  *ngIf="c.ids.lead_status_id==13 && c.ids.token_type_id==3 " class="status bg-13" style="width: 100%!important;text-align: start;color: var(--ion-color-secondary);font-family: 'Metropolis Medium';padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px;margin-top: 20px;">
-                    GHP+ payment pending
-                </div>
-  
-                  <div *ngIf="c.ids.lead_status_id==6 && c.ids.token_type_id==3" class="status bg-15" style="width: 100%!important;text-align: start;color: var(--ion-color-secondary);font-family: 'Metropolis Medium';padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px;margin-top: 20px;">
-                     GHP+ Generated
-                  </div>
-  
-                 
-                <!-- FOR ELAPSED TIME -->
-                <div style="padding-top: 7px!important;" *ngIf="c.ids.lead_status_id==5 || c.ids.lead_status_id==6 || c.ids.lead_status_id==7 || c.ids.lead_status_id==8 || c.ids.lead_status_id==9 ||  c.ids.lead_status_id==10 ||c.ids.lead_status_id==13 ">
-                  <ion-card-title role="heading" aria-level="3"><div class="salesPersonName_datealso" style="margin-top: -2%!important;margin-left: 12px!important;margin-bottom: 2%!important;width: 100%!important;">{{c.tag_elapsed_time}}</div></ion-card-title>
-                </div>
-                <!-- LIKE DIVIDER -->
-                <hr>
+
+
+            <!-- FOR UNCLAIMED:1-->
+            <div class="" *ngIf="c.ids.lead_status_id==1">
+
+              <!-- <ion-card-subtitle> -->
+
+              <div class="tagtext">
+                <!-- style="text-align: start;font-family: 'Metropolis Medium';padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px" -->
+                <div class="status_text"> {{c.ids.lead_status_name}}</div>
+
+                <div class="status bg-{{c.ids.lead_status_id}}" style="border-radius: 50%;"></div>
+
               </div>
-  
-              <!-- WHEN PANEL OPEN DETAILS NAME SHOW EG.CP DETAILS,SITE VISIT DETAILS ETC. -->
-              <ion-card-title class="expansion-title" style="color:var(--ion-color-primary);">
-                {{c.status_sub_text}}
-              </ion-card-title>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
-  
-  
-          <!-- HERE IS ALL DETAILS OPEN PANEL -->
-          <!--Section Title -->
-          <div *ngFor="let val of c.other_info" style="margin-top: 1px!important;">
-            <mat-card-title >
-              <div class="expansion-panel-title" style="margin-left: 7px!important;font-size: 16px;margin-top: 10px;">{{val.section_title}}: </div>
-            </mat-card-title>
-  
-            <!--Section Items-->
-            <mat-card-title style="margin-top: 5px!important;" *ngFor="let valSub of val.section_items">
-              <div class="expansion-panel-subtitle" style="margin-right: 3%!important;margin-top: 1%!important;margin-left: 7px!important;color: gray;" *ngIf="valSub.section_item_title!='' && valSub.section_item_title!=null && valSub.section_item_desc!='' &&  valSub.section_item_desc!=null">{{valSub.section_item_title}} :- <b style="font-family: Metropolis Light;font-size: 14px;color: black;">{{valSub.section_item_desc}}</b></div>
-            </mat-card-title>
+
+              <!-- </ion-card-subtitle> -->
+
+              <!-- FOR ELAPSED TIME -->
+
+              <!-- <div style="padding-top: 7px!important;margin-top: 2px!important;" *ngIf="c.ids.lead_status_id==1 ">
+                  <ion-card-title role="heading" aria-level="3">
+                    <div class="salesPersonName_datealso"
+                      style="margin-top: -2%!important;margin-left: 12px!important;margin-bottom: 6%!important;">
+                      {{c.tag_elapsed_time}}</div>
+                  </ion-card-title>
+                </div> -->
+
             </div>
-  
-        </mat-expansion-panel>
-      </mat-accordion>
+
+            <!-- FOR CLAIMED:2...USE FOR SLAESPERSON -->
+            <div style="width: 100%!important;" *ngIf="c.ids.lead_status_id==2" style="margin-bottom: -11px!important;">
+              <ion-card-title>
+                <div class="salesPersonName_datealso"
+                  style="margin-top: 4%!important;color:var(--ion-color-primary);margin-bottom: -12px!important;margin-left: 18px; ">
+                  {{c.status_sub_text}}</div>
+              </ion-card-title>
+            </div>
+
+            <!-- flex-container -->
+            <div class="" *ngIf="c.ids.lead_status_id==2">
+              <div class="tagtext">
+                <!-- style="text-align: start;font-family: 'Metropolis Medium';padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px" -->
+                {{c.ids.lead_status_name}}
+
+                <div class="status bg-{{c.ids.lead_status_id}}" style="border-radius: 50%;"></div>
+
+              </div>
+
+            </div>
+
+            <!-- FOR ELAPSED TIME -->
+            <!-- <div style="display:block;margin-left: 13px!important;" *ngIf=" c.ids.lead_status_id==2">
+              <ion-card-title role="heading" aria-level="3">
+                <div class="salesPersonName_datealso" style="margin-top: 2%!important;margin-bottom: 10px!important;">
+                  {{c.tag_elapsed_time}}</div>
+              </ion-card-title>
+            </div> -->
+
+            <!-- Finished CLAIMED -->
+
+            <!-- Mat Expand Panel Condition -->
+            <div style="width: 100%!important;"
+              *ngIf="c.ids.lead_status_id==5 || c.ids.lead_status_id==6 || c.ids.lead_status_id==7 || c.ids.lead_status_id==8 || c.ids.lead_status_id==9 || c.ids.lead_status_id==10 || c.ids.lead_status_id==13 || c.ids.lead_status_id>13 ">
+              <ion-card-title>
+                <div class="salesPersonName_datealso"
+                  style="margin-top: 4%!important;color:var(--ion-color-primary);margin-bottom: -20px;margin-left: 18px;">
+                  {{c.ids.sales_person_name}}</div>
+              </ion-card-title>
+            </div>
+
+            <!-- FOR DETAILS OF THAT LEAD WITH STATUS AND ELAPSED TIME -->
+
+            <div
+              *ngIf="c.ids.lead_status_id==6 || c.ids.lead_status_id==7 || c.ids.lead_status_id==8 || c.ids.lead_status_id==13 || c.ids.lead_status_id==9|| c.ids.lead_status_id==10 || c.ids.lead_status_id>13"
+              style="margin-top: 30px!important;">
+
+
+              <div class="tagtext" *ngIf="c.ids.lead_status_id!==6 && c.ids.lead_status_id!==13">
+
+                <div class="status_text">{{c.status_text}} </div>
+                <div class="status bg-{{c.ids.lead_status_id}}"></div>
+              </div>
+
+              <div class="tagtext" *ngIf="c.ids.lead_status_id==6 && c.ids.token_type_id==1">
+
+                <div class="status_text">{{c.status_text}} </div>
+                <div class="status bg-{{c.ids.lead_status_id}}"></div>
+              </div>
+
+              <!-- <div *ngIf="c.ids.lead_status_id > 13">
+                <div>{{c.status_text}} </div>
+                <div class="status bg-6"></div>
+              </div> -->
+
+              <div *ngIf="c.ids.lead_status_id==13 && c.ids.token_type_id==1">
+
+                GHP payment pending
+                <div class="status bg-{{c.ids.lead_status_id}}"></div>
+              </div>
+
+              <div *ngIf="c.ids.lead_status_id==13 && c.ids.token_type_id==3 ">
+
+                GHP+ payment pending
+                <div class="status bg-13"></div>
+              </div>
+
+              <div *ngIf="c.ids.lead_status_id==6 && c.ids.token_type_id==3">
+                GHP+ Generated
+                <div class="status bg-15"></div>
+              </div>
+
+            </div>
+
+            <div
+              *ngIf="c.ids.lead_status_id==6 || c.ids.lead_status_id==7 || c.ids.lead_status_id==8 || c.ids.lead_status_id==13 || c.ids.lead_status_id==9|| c.ids.lead_status_id==10 || c.ids.lead_status_id>13"
+              style="">
+              <mat-accordion
+                style="padding-left: 0%!important;padding-top: 0!important; margin-top: 3%!important;margin-bottom: 3%!important;padding-bottom: 2%!important;">
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
+                  style="box-shadow: none!important;padding-bottom: 10px!important;">
+                  <mat-expansion-panel-header style="padding-left: 0%!important;">
+                    <mat-panel-title>
+
+
+
+                      <!-- FOR ELAPSED TIME -->
+                      <div style="padding-top: 7px!important;"
+                        *ngIf="c.ids.lead_status_id==5 || c.ids.lead_status_id==6 || c.ids.lead_status_id==7 || c.ids.lead_status_id==8 || c.ids.lead_status_id==9 ||  c.ids.lead_status_id==10 ||c.ids.lead_status_id==13 ">
+                        <ion-card-title role="heading" aria-level="3">
+                          <div class="salesPersonName_datealso"
+                            style="margin-top: -2%!important;margin-left: 12px!important;margin-bottom: 2%!important;width: 100%!important;">
+                            {{c.tag_elapsed_time}}</div>
+                        </ion-card-title>
+                      </div>
+
+                      <!-- LIKE DIVIDER -->
+                      <hr>
+
+                      <!-- WHEN PANEL OPEN DETAILS NAME SHOW EG.CP DETAILS,SITE VISIT DETAILS ETC. -->
+                      <ion-card-title class="expansion-title" style="color:var(--ion-color-primary);">
+                        {{c.status_sub_text}}
+                      </ion-card-title>
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+
+                  <!-- HERE IS ALL DETAILS OPEN PANEL -->
+                  <!--Section Title -->
+                  <div *ngFor="let val of c.other_info" style="margin-top: 1px!important;">
+                    <mat-card-title>
+                      <div class="expansion-panel-title"
+                        style="margin-left: 7px!important;font-size: 16px;margin-top: 10px;">{{val.section_title}}:
+                      </div>
+                    </mat-card-title>
+
+                    <!--Section Items-->
+                    <mat-card-title style="margin-top: 5px!important;" *ngFor="let valSub of val.section_items">
+                      <div class="expansion-panel-subtitle"
+                        style="margin-right: 3%!important;margin-top: 1%!important;margin-left: 7px!important;color: gray;"
+                        *ngIf="valSub.section_item_title!='' && valSub.section_item_title!=null && valSub.section_item_desc!='' &&  valSub.section_item_desc!=null">
+                        {{valSub.section_item_title}} :- <b
+                          style="font-family: Metropolis Light;font-size: 14px;color: black;">{{valSub.section_item_desc}}</b>
+                      </div>
+                    </mat-card-title>
+                  </div>
+
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+
+          </div>
+        </ion-card>
       </div>
-  
+    </div>
+
+
+
+    <!-- If MyPerformance Leadlist is Empty[] -->
+    <div *ngIf="leadlist.length==0 && isSpinner==false && IDFromPerformance==1" class="ion-text-center">
+      <div class="datanotfound" style="margin-top: 50%!important;">
+        <img src="assets/channelPartner_Icons/user_Photo_Icon/user-white.svg" style="width: 90px;height: 90px">
+        <ion-card-title class="noData" *ngIf="lead_status_id_FromFilter==5">Currently , No Site Visits Available!
+        </ion-card-title>
+        <ion-card-title class="noData" *ngIf="lead_status_id_FromFilter==6 && token_type_id_FromFilter==1">Currently ,
+          No GHP Available!</ion-card-title>
+        <ion-card-title class="noData" *ngIf="lead_status_id_FromFilter==6 && token_type_id_FromFilter==3">Currently ,
+          No GHP+ Available!</ion-card-title>
+        <ion-card-title class="noData" *ngIf="lead_status_id_FromFilter==9">Currently , No Allotments Available!
+        </ion-card-title>
+        <ion-card-title class="noData"
+          *ngIf="lead_status_id_FromFilter!==5&&lead_status_id_FromFilter!==6&&lead_status_id_FromFilter!==9">Currently
+          , No Leads Available!</ion-card-title>
       </div>
-      </ion-card>
     </div>
-  </div>
-   
 
 
-<!-- If MyPerformance Leadlist is Empty[] -->
-  <div *ngIf="leadlist.length==0 && isSpinner==false && IDFromPerformance==1" class="ion-text-center" >
-    <div class="datanotfound" style="margin-top: 50%!important;">
-      <img src="assets/channelPartner_Icons/user_Photo_Icon/user-white.svg" style="width: 90px;height: 90px">
-      <ion-card-title class="noData" *ngIf="lead_status_id_FromFilter==5">Currently , No Site Visits Available!</ion-card-title>
-      <ion-card-title class="noData" *ngIf="lead_status_id_FromFilter==6 && token_type_id_FromFilter==1">Currently , No GHP Available!</ion-card-title>
-      <ion-card-title class="noData" *ngIf="lead_status_id_FromFilter==6 && token_type_id_FromFilter==3">Currently , No GHP+ Available!</ion-card-title>
-      <ion-card-title class="noData" *ngIf="lead_status_id_FromFilter==9">Currently , No Allotments Available!</ion-card-title>
-      <ion-card-title class="noData" *ngIf="lead_status_id_FromFilter!==5&&lead_status_id_FromFilter!==6&&lead_status_id_FromFilter!==9">Currently , No Leads Available!</ion-card-title>
+    <!-- If Leadlist is Empty[] -->
+    <div *ngIf="leadlist.length==0 && isSpinner==false && IDFromPerformance!==1" class="ion-text-center">
+      <div class="datanotfound">
+        <img src="assets/channelPartner_Icons/user_Photo_Icon/user-white.svg" style="width: 90px;height: 90px">
+        <ion-card-title class="noData">Currently, No Leads Available!</ion-card-title>
+      </div>
     </div>
-</div>
 
-
-  <!-- If Leadlist is Empty[] -->
-  <div *ngIf="leadlist.length==0 && isSpinner==false && IDFromPerformance!==1" class="ion-text-center" >
-    <div class="datanotfound">
-      <img src="assets/channelPartner_Icons/user_Photo_Icon/user-white.svg" style="width: 90px;height: 90px">
-    <ion-card-title class="noData" >Currently, No Leads Available!</ion-card-title>
-    </div>
   </div>
 
-</div>
+  <!--Infinite Scroll-->
+  <ion-infinite-scroll threshold="500px" id="infinite-scroll" *ngIf="leadlist.length!=0 && IDFromPerformance==2"
+    (ionInfinite)="doInfinite(leadlist.length,$event)" style="margin-bottom: 20%!important;">
+    <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading data.."
+      style="font-family: Metropolis Medium!important;color: white!important;font-size: 20px!important;">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
-<!--Infinite Scroll-->
-<ion-infinite-scroll threshold="500px" id="infinite-scroll"  *ngIf="leadlist.length!=0 && IDFromPerformance==2"   (ionInfinite)="doInfinite(leadlist.length,$event)" style="margin-bottom: 20%!important;">
-  <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading data.." style="font-family: Metropolis Medium!important;color: white!important;font-size: 20px!important;">
-  </ion-infinite-scroll-content>
-</ion-infinite-scroll>
-
-<ion-infinite-scroll threshold="500px" id="infinite-scroll1"  *ngIf="leadlist.length!=0 && IDFromPerformance==1"    (ionInfinite)="doInfiniteFilter(leadlist.length,$event)" style="margin-bottom: 20%!important;"><!---- (ionInfinite)="doInfinite($event)"-->
-  <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading data.." style="font-family: Metropolis Medium!important;color: white!important;font-size: 20px!important;">
-  </ion-infinite-scroll-content>
-</ion-infinite-scroll>
+  <ion-infinite-scroll threshold="500px" id="infinite-scroll1" *ngIf="leadlist.length!=0 && IDFromPerformance==1"
+    (ionInfinite)="doInfiniteFilter(leadlist.length,$event)" style="margin-bottom: 20%!important;">
+    <!---- (ionInfinite)="doInfinite($event)"-->
+    <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading data.."
+      style="font-family: Metropolis Medium!important;color: white!important;font-size: 20px!important;">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 
 
-<!-- Ion-Fab List -->
-<ion-fab horizontal="end" vertical="bottom" slot="fixed" class="fabmargin">
-  <ion-fab-button color="fab">
-      <ion-icon name="add" style="color: black!important;"></ion-icon>
-  </ion-fab-button>
-  <ion-fab-list side="top">
-      <ion-fab-button  color="fab" (click)="gotoNewLead()" data-desc="New Lead" style="color: #F5A22C!important;">
-          <ion-icon name="person-add" style="color: black!important;"  (click)="gotoNewLead()"></ion-icon>
+  <!-- Ion-Fab List -->
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed" class="fabmargin">
+
+    <ion-fab-button color="fab" (click)="presentActionSheet()">
+      <ion-icon name="add" style="color: white!important;"></ion-icon>
+    </ion-fab-button>
+
+
+
+    <!-- <ion-fab-list side="top">
+      <ion-fab-button color="fab" (click)="gotoNewLead()" data-desc="New Lead" style="color: #F5A22C!important;">
+        <ion-icon name="person-add" style="color: black!important;" (click)="gotoNewLead()"></ion-icon>
       </ion-fab-button>
       <ion-fab-button color="fab" (click)="gotoGHP()" data-desc="Generate GHP" style="color: #F5A22C!important;">
-          <ion-icon name="document" style="color: black!important;" (click)="gotoGHP()"></ion-icon>
+        <ion-icon name="document" style="color: black!important;" (click)="gotoGHP()"></ion-icon>
       </ion-fab-button>
-      <ion-fab-button color="fab" (click)="addFOS()" data-desc="Add FOS" *ngIf="is_team_lead==1 || is_admin==1 " style="color: #F5A22C!important;">
-          <ion-icon name="person-add" style="color: black!important;" (click)="addFOS()"></ion-icon>
+      <ion-fab-button color="fab" (click)="addFOS()" data-desc="Add FOS" *ngIf="is_team_lead==1 || is_admin==1 "
+        style="color: #F5A22C!important;">
+        <ion-icon name="person-add" style="color: black!important;" (click)="addFOS()"></ion-icon>
       </ion-fab-button>
-  </ion-fab-list>
-</ion-fab>
+    </ion-fab-list> -->
+
+  </ion-fab>
+
 </ion-content>
 
 <!--Bottom App Bar in Footer  -->
 <ion-footer class="footerNav" style="position: fixed">
-  <div class="appbar appbar__bottom appbar__bottom--center-cut" >
-      <div class="appbar__bottom--normal">
-          <a style="padding: 15px;width: 80%;" >
-              <svg fill="currentColor" viewBox="0 0 24 24" width="30" height="30"  (click)="sideNavMenu()"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path></svg>
-          </a>
-          <div class="appbar__bottom--normal flex--right" >
-            <!-- position: fixed; -->
-              <div style="margin-right: 20px!important;" (click)="goReminder()">
-                  <ion-icon src="assets/channelPartner_Icons/reminder_Icon/time_clock_icon.svg" style="color: var(--ion-color-primary);width: 24px;height: 24px"></ion-icon>
-              </div>
-              <!-- position: fixed;margin-left: 13%!important; -->
-              <div style="margin-right: 20px!important" (click)="goNotification()">
-                  <ion-icon src="assets/channelPartner_Icons/notification_Icon/notification_iocn.svg" style="color: var(--ion-color-primary);margin-right: 2%!important;width: 24px;height: 24px"></ion-icon>
-              </div>
-          </div>
+  <div class="appbar appbar__bottom appbar__bottom--center-cut">
+    <div class="appbar__bottom--normal">
+      <a style="padding: 15px;width: 80%;">
+        <svg fill="currentColor" viewBox="0 0 24 24" width="30" height="30" (click)="sideNavMenu()">
+          <path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path>
+        </svg>
+      </a>
+      <div class="appbar__bottom--normal flex--right">
+        <!-- position: fixed; -->
+        <div style="margin-right: 20px!important;" (click)="goReminder()">
+          <ion-icon src="assets/channelPartner_Icons/reminder_Icon/time_clock_icon.svg"
+            style="color: var(--ion-color-primary);width: 24px;height: 24px"></ion-icon>
+        </div>
+        <!-- position: fixed;margin-left: 13%!important; -->
+        <div style="margin-right: 20px!important" (click)="goNotification()">
+          <ion-icon src="assets/channelPartner_Icons/notification_Icon/notification_iocn.svg"
+            style="color: var(--ion-color-primary);margin-right: 2%!important;width: 24px;height: 24px"></ion-icon>
+        </div>
       </div>
-      <div class="appbar__bottom--cutout"></div>
+    </div>
+    <div class="appbar__bottom--cutout"></div>
   </div>
 </ion-footer>
