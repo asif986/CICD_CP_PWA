@@ -61,11 +61,11 @@ export class BottomNavPage implements OnInit {
       console.log("isnotResolved", "TeamLeaderOrNot");
       this.storage.get("is_team_lead").then((val3) => {
         this.is_team_lead = val3;
-        console.log(this.is_team_lead);
+        console.log("Team lead" + this.is_team_lead);
       });
       this.storage.get("is_admin").then((val4) => {
         this.is_admin = val4;
-        console.log(this.is_admin);
+        console.log("is_admin" + this.is_admin);
       });
     });
   }
@@ -137,13 +137,14 @@ export class BottomNavPage implements OnInit {
   }
 
   ionViewDidEnter() {
+    console.log("isverified" + this.isVerfied);
     this.storage.get("is_team_lead").then((val3) => {
       this.is_team_lead = val3;
-      console.log(this.is_team_lead);
+      console.log("is_team_lead" + this.is_team_lead);
     });
     this.storage.get("is_admin").then((val4) => {
       this.is_admin = val4;
-      console.log(this.is_admin);
+      console.log("is_admin" + this.is_admin);
     });
 
     /*const me = this;
@@ -193,6 +194,7 @@ export class BottomNavPage implements OnInit {
   }
 
   goback() {
+    console.log("dismissied");
     this.modalController.dismiss();
   }
   updateToken() {

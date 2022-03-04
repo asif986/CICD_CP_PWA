@@ -1,11 +1,6 @@
 {
     "isVerified": [
         {
-            "image": "/assets/new_icons/home.png",
-            "label": "Home",
-            "navigation": "home"
-        },
-        {
             "image": "/assets/new_icons/performance.png",
             "label": "My Performance",
             "navigation": "myperformance"
@@ -36,16 +31,6 @@
             "image": "/assets/new_icons/profile.png",
             "label": "Team Leaders List",
             "navigation": "teamlist"
-        },
-        {
-            "image": "/assets/new_icons/reminder.png",
-            "label": "Reminder",
-            "navigation": "reminder"
-        },
-        {
-            "image": "/assets/new_icons/notification.png",
-            "label": "Notification",
-            "navigation": "notification"
         }
     ],
     "isVerfied_isteamlead": [

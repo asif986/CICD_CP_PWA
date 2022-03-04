@@ -386,20 +386,13 @@ ion-fab-button[data-desc]::after {
   padding: 9px;
   border-radius: 5px;
   color: black !important;
-  background-color: #f5a22c !important;
+  // background-color: #f5a22c !important;
   font-family: "Metropolis Medium";
   font-size: 16px !important;
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
     0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
 }
 
-.ion-color-fab {
-  --ion-color-base: #2ac9a9 !important;
-  --ion-color-base-rgb: #2ac9a9 !important;
-  --ion-color-contrast-rgb: #2ac9a9 !important;
-  --ion-color-shade: #2ac9a9 !important;
-  --ion-color-tint: #2ac9a9 !important;
-}
 // For CP APP 2.0 Code
 ion-header {
   z-index: 0;
@@ -429,4 +422,10 @@ ion-header {
 }
 .mat-expansion-panel-header {
   // display: block !important;
+}
+.fab-btn-item {
+  color: var(--ion-color-new-primary);
+}
+.fab-icon {
+  color: white;
 }

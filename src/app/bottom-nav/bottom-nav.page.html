@@ -6,8 +6,9 @@
       </div>
     </ion-col>
     <ion-col size="4" style="">
-      <div style="text-align: end!important;margin-right: 15px!important;margin-top: 15px!important;">
-        <ion-icon icon="close" style="color: gray!important;width: 24px;height: 24px;" (click)="goback()"></ion-icon>
+      <div (click)="goback()"
+        style="text-align: end!important;margin-right: 15px!important;margin-top: 15px!important;">
+        <ion-icon icon="close" style="color: gray!important;width: 24px;height: 24px;"></ion-icon>
       </div>
     </ion-col>
 
@@ -27,6 +28,8 @@
     </div>
   </div> -->
 
+
+
   <div class="ion-text-center" style="">
     <div class="newusertext2"
       style="margin-top: 4px!important;color: var(--ion-color-primary);font-size: 16px!important;letter-spacing: 0.2px!important;">
@@ -40,62 +43,64 @@
   <hr />
   <ion-list>
 
+    <ion-item lines="none" (click)="navigateMenu(home)">
+      <img class="menu-item-img" src="assets/new_icons/home.png" style="" />
+      <ion-label class="newusertext1">Home</ion-label>
+    </ion-item>
+
     <!-- isVerfied==1 -->
     <ng-container *ngIf="isVerfied==1">
-      <ion-item lines="none" *ngFor="let item of menusList.isVerfied" (click)="navigateMenu(item.navigation)">
+      <!-- <p>isVerfied==1</p> -->
+      <ion-item lines="none" *ngFor="let item of menusList.isVerified" (click)="navigateMenu(item.navigation)">
 
-        <ion-avatar slot="start" style="margin-right: 0px;">
-          <img [src]="item.image" style="padding-top: 3%;margin-top:5px!important;">
+        <img class="menu-item-img" [src]="item.image" style="">
 
-        </ion-avatar>
+        <ion-label class="newusertext1" style="">{{item.label}}</ion-label>
+      </ion-item>
+    </ng-container>
+
+
+    <!-- "isVerfied==1 && is_team_lead==1 -->
+    <ng-container *ngIf="isVerfied==1 && is_team_lead==1">
+      <!-- <p>isVerfied==1 && is_team_lead==1</p> -->
+      <ion-item lines="none" *ngFor="let item of menusList.isVerfied_isteamlead"
+        (click)="navigateMenu(item.navigation)">
+
+        <img class="menu-item-img" [src]="item.image" style="">
+
         <ion-label class="newusertext1" style="">{{item.label}}</ion-label>
       </ion-item>
     </ng-container>
 
     <!-- "isVerfied==1 && is_admin==1 -->
     <ng-container *ngIf="isVerfied==1 && is_admin==1">
+      <!-- <p>isVerfied==1 && is_admin==1</p> -->
       <ion-item lines="none" *ngFor="let item of menusList.isVerfied_isadmin" (click)="navigateMenu(item.navigation)">
-
-        <ion-avatar slot="start" style="margin-right: 0px;">
-          <img [src]="item.image" style="padding-top: 3%;margin-top:5px!important;">
-        </ion-avatar>
-        <ion-label class="newusertext1" style="">{{item.label}}</ion-label>
-      </ion-item>
-    </ng-container>
-
-    <!-- "isVerfied==1 && is_team_lead==1 -->
-    <ng-container *ngIf="isVerfied==1 && is_team_lead==1">
-      <ion-item lines="none" *ngFor="let item of menusList.isVerfied_isteamlead"
-        (click)="navigateMenu(item.navigation)">
-
-        <ion-avatar slot="start" style="margin-right: 0px;">
-          <img [src]="item.image" style="padding-top: 3%;margin-top:5px!important;">
-
-        </ion-avatar>
+        <img class="menu-item-img" [src]="item.image" style="">
         <ion-label class="newusertext1" style="">{{item.label}}</ion-label>
       </ion-item>
     </ng-container>
 
     <!-- isVerfied==1 && (is_team_lead==1 || is_admin==1) -->
     <ng-container *ngIf="isVerfied==1 && (is_team_lead==1 || is_admin==1)">
+      <!-- <p>isVerfied==1 && (is_team_lead==1 || is_admin==1)</p> -->
       <ion-item lines="none" *ngFor="let item of menusList.isVerfied_isteamlead_isadmin"
         (click)="navigateMenu(item.navigation)">
 
-        <ion-avatar slot="start" style="margin-right: 0px;">
-          <img [src]="item.image" style="padding-top: 3%;margin-top:5px!important;">
+        <img class="menu-item-img" [src]="item.image" style="">
 
-        </ion-avatar>
         <ion-label class="newusertext1" style="">{{item.label}}</ion-label>
       </ion-item>
     </ng-container>
 
-    <!-- <ion-item lines="none" *ngIf="isLogin" (click)="logout()" style="margin-top: -15px!important;">
+    <ion-item lines="none" *ngIf="isLogin" (click)="logout()" style="margin-top: -15px!important;">
       <ion-avatar slot="start" style="margin-right: 0px;">
         <img src="assets/channelPartner_Icons/app_LogOut/logout_icon.svg"
           style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);">
       </ion-avatar>
       <ion-label class="newusertext1">Logout</ion-label>
-    </ion-item> -->
+    </ion-item>
+
 
   </ion-list>
 </ion-content>

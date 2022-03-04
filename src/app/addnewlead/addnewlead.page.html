@@ -1,28 +1,29 @@
 <ion-header>
-  <ion-toolbar color="color_d" >
-  <ion-row>
-    <ion-col>
-      <div>
-        <ion-buttons slot="start" style="margin-left: 3%">
-          <i class="material-icons icon"   (click)="goback()">arrow_back_ios</i>
-           </ion-buttons>
-      </div>
-    </ion-col>
-    <ion-col style="text-align: start;margin-left: -40px;">
-      <div>
-        <ion-title class="TITLETOOLBAR" style="margin-left: 0px!important;">Add New Lead</ion-title>
-      </div>
-    </ion-col>
-    <ion-col style="text-align: end;margin-right: 10px;">
-      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width:40%!important">
-    </ion-col>
-  </ion-row>
+  <ion-toolbar color="color_d">
+    <ion-row>
+      <ion-col>
+        <div>
+          <ion-buttons slot="start" style="margin-left: 3%">
+            <i class="material-icons icon" (click)="goback()">arrow_back_ios</i>
+          </ion-buttons>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: start;margin-left: -40px;">
+        <div>
+          <ion-title class="TITLETOOLBAR" style="margin-left: 0px!important;">Add New Lead</ion-title>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: end;margin-right: 10px;">
+        <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'
+          style="text-align: right;width:40%!important">
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
 
 
-<ion-content class="ion-text-left" >
+<ion-content class="ion-text-left">
 
   <!--Header Of Channel Partner Name-->
   <div class="channelpartnername">
@@ -31,53 +32,54 @@
   <div class="channelpartner">
     <ion-label>Channel Partner</ion-label>
   </div>
-<mat-divider style="margin-top: 3%!important;"></mat-divider>
+  <mat-divider style="margin-top: 3%!important;"></mat-divider>
   <div style="margin-left: 2%!important;margin-right: 2%!important;">
-  <!--Full Name-->
-  <!--Two mat-form-field in one line-->
-  <ion-row style="margin-top: 10px">
-    <ion-col size="3" style="margin-top: 5px!important;height: 50px!important;">
-      <mat-form-field appearance="outline" style="width:100%;margin-left: 5px;">
-        <mat-label class="inputtextfield" >Mr/Mrs</mat-label>
-        <mat-select class="inputtextfield" >
-          <mat-option  *ngFor="let nameprefix of addNewLead.person_name_prefix let i= index" [value]="nameprefix.name_prefix_id" (click)="getNamePrefixvalue(i)">
-            {{nameprefix.name_prefix}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </ion-col>
-    <ion-col size="9" [formGroup]="credentialsForm" style="margin-top: 2px!important;">
-      <mat-form-field appearance="outline" style="width:100%;padding-right: 5px" class="inputtextfield">
-        <mat-label class="inputtextfield">Full Name</mat-label>
-        <input  (keypress)="onKeyPress($event)"  matInput type="text" matInput  class="inputtextfield" name="full_name"  [formControl]="credentialsForm.controls['full_name']" [(ngModel)]="postNewLead.first_name"  required>
+    <!--Full Name-->
+    <!--Two mat-form-field in one line-->
+    <ion-row style="margin-top: 10px">
+      <ion-col size="3" style="margin-top: 5px!important;height: 50px!important;">
+        <mat-form-field appearance="outline" style="width:100%;margin-left: 5px;">
+          <mat-label class="inputtextfield">Mr/Mrs</mat-label>
+          <mat-select class="inputtextfield">
+            <mat-option *ngFor="let nameprefix of addNewLead.person_name_prefix let i= index"
+              [value]="nameprefix.name_prefix_id" (click)="getNamePrefixvalue(i)">
+              {{nameprefix.name_prefix}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ion-col>
+      <ion-col size="9" [formGroup]="credentialsForm" style="margin-top: 2px!important;">
+        <mat-form-field appearance="outline" style="width:100%;padding-right: 5px" class="inputtextfield">
+          <mat-label class="inputtextfield">Full Name</mat-label>
+          <input (keypress)="onKeyPress($event)" matInput type="text" matInput class="inputtextfield" name="full_name"
+            [formControl]="credentialsForm.controls['full_name']" [(ngModel)]="postNewLead.first_name" required>
+          <mat-hint>
+            <div *ngIf="!credentialsForm.controls.full_name.valid &&
+        credentialsForm.controls.full_name.dirty" class="error">
+              Please enter a valid Full Name!.
+            </div>
+          </mat-hint>
+        </mat-form-field>
+      </ion-col>
+    </ion-row>
+
+    <!--Email ID-->
+    <div [formGroup]="credentialsForm" style="margin-top: -8px;">
+      <mat-form-field appearance="outline" style="width: 100%;padding-left: 10px;padding-right: 10px">
+        <mat-label class="inputtextfield">Email Address</mat-label>
+        <input matInput [formControl]="credentialsForm.controls['email']" type="email" class="inputtextfield"
+          name="email" [(ngModel)]="postNewLead.email" required>
         <mat-hint>
-        <div *ngIf="!credentialsForm.controls.full_name.valid &&
-        credentialsForm.controls.full_name.dirty"
-             class="error">
-          Please enter a valid Full Name!.
-        </div>
+          <div *ngIf="!credentialsForm.controls.email.valid &&
+        credentialsForm.controls.email.dirty" class="error">
+            Please enter a valid Email!.
+          </div>
         </mat-hint>
       </mat-form-field>
-    </ion-col>
-  </ion-row>
+    </div>
 
-  <!--Email ID-->
-  <div [formGroup]="credentialsForm" style="margin-top: -8px;">
-    <mat-form-field appearance="outline" style="width: 100%;padding-left: 10px;padding-right: 10px">
-      <mat-label class="inputtextfield">Email Address</mat-label>
-      <input matInput [formControl]="credentialsForm.controls['email']" type="email" class="inputtextfield" name="email" [(ngModel)]="postNewLead.email" required>
-      <mat-hint>
-        <div *ngIf="!credentialsForm.controls.email.valid &&
-        credentialsForm.controls.email.dirty"
-             class="error">
-          Please enter a valid Email!.
-        </div>
-      </mat-hint>
-    </mat-form-field>
-  </div>
-
-  <!--Middle Name-->
-  <!--<div [formGroup]="credentialsForm">
+    <!--Middle Name-->
+    <!--<div [formGroup]="credentialsForm">
     <mat-form-field appearance="outline" style="width: 100%;padding-left: 10px;padding-right: 10px">
       <mat-label class="inputtextfield">Enter Middle Name</mat-label>
       <input  matInput  class="inputtextfield" name="middlename"  [formControl]="credentialsForm.controls['middlename']" [(ngModel)]="postNewLead.middle_name" required>
@@ -91,8 +93,8 @@
     </mat-form-field>
   </div>-->
 
-  <!--Last Name-->
-<!--  <div [formGroup]="credentialsForm">
+    <!--Last Name-->
+    <!--  <div [formGroup]="credentialsForm">
     <mat-form-field appearance="outline" style="width: 100%;padding-left: 10px;padding-right: 10px">
       <mat-label class="inputtextfield">Enter Last Name</mat-label>
       <input [formControl]="credentialsForm.controls['lastname']" matInput  class="inputtextfield" name="lastname" [(ngModel)]="postNewLead.last_name" required>
@@ -106,176 +108,204 @@
     </mat-form-field>
   </div>-->
 
-  <!--Enter Mobile Number With Country Code-->
-  <ion-row style="margin-top: -8px;">
-    <ion-col  size="3" class="ion-text-center">
-      <div class="Countrycode" (click)="selectcountry()" style="width: 100%;margin-right: 10px;margin-bottom: 1px !important;" >
-        <mat-label class="countrycodetext">{{countrycode}}</mat-label>
-      </div>
-    </ion-col>
-    <ion-col size="9">
-
-      <div [formGroup]="credentialsForm">
-        <mat-form-field appearance="outline" style="width: 100%;padding-right: 5px">
-          <mat-label class="inputtextfield">Mobile Number</mat-label>
-          <input  matInput [readonly]="read" [formControl]="credentialsForm.controls['mobile']"  type="tel"  pattern="[0-9]*" class="inputtextfield" required>
-          <mat-hint>
-            <div *ngIf="!credentialsForm.controls.mobile.valid && credentialsForm.controls.mobile.dirty"
-                 class="error">
-              Please enter a valid mobile number.
-            </div>
-          </mat-hint>
-        </mat-form-field>
-      </div>
-    </ion-col>
-  </ion-row>
-  <div  *ngIf="this.countrycode=='+91'">
-  <div  *ngIf="!alive" style="align-content: center!important;alignment: center!important;text-align: center!important;justify-content: center!important;margin-bottom: 15px!important;margin-top: -2px!important;">
-    <button mat-stroked-button class="Resendbuttons"[disabled]="!credentialsForm.controls.mobile.valid"  (click)="click(credentialsForm.value) " >Verify</button>
-  </div>
-  <div *ngIf="!hideMe">
-    <div *ngIf="alive">
-      <div>
-        <mat-form-field appearance="outline" style="width: 100%;padding-left: 10px;padding-right: 10px">
-          <mat-label class="newusertext" >OTP</mat-label>
-          <input matInput name="otptext" [(ngModel)]="loginifo.confirmotp" type="text" class="inputtextfield">
-        </mat-form-field>
-        <div class="ion-text-center" >
-          <button mat-stroked-button  class="registerbutton" (click)="verifyconfirmotp()" style="margin-bottom: 10px!important;" required>Submit OTP</button>
-        </div>
-      </div>
-      <div>
-        <div id="otpMessage" class="inputtextfield" style="margin-left: 20px!important;margin-top: 5px!important;">
-          <mat-label class="inputtextfield">In case you didn't received an OTP in 7 seconds retry here.</mat-label>
-        </div>
-
-        <!--Register Button-->
-        <div class="ion-text-center" style="margin-top: 10px!important;margin-bottom: 10px!important;">
-          <button mat-stroked-button class="Resendbuttons" [disabled]="disabled"  [style.background-color]="this.color1 === true ? '#a5a5a5' : '#F5A22C'"  (click)="Resendotp()" >Resend OTP</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-  <!--Lead Profession-->
-  <div style="padding-left: 10px; padding-right: 10px;">
-    <mat-form-field appearance="outline" style="width:100%">
-      <mat-label class="inputtextfield">Works in<font class="font_star">*</font></mat-label>
-      <mat-select class="inputtextfield" >
-        <mat-option *ngFor="let profession of addNewLead.lead_professions let i= index" [value]="profession.lead_professions_id" (click)="getLeadProfession(i)">
-          {{profession.lead_profession}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <!--Property Buying For-->
-  <div style="padding-left: 10px; padding-right: 10px;margin-top: 10px!important;">
-      <mat-label class="preferredsitevisit">Buying For</mat-label>
-      <!--Radio Button for Self Use and Investment-->
-      <div style="margin-bottom: 20px">
-        <mat-radio-group aria-label="Select an option"  >
-          <mat-radio-button value="1" (change)="buyingFor(1)" style="margin-right: 20px" class="newusertext" checked="true" >End Use</mat-radio-button>
-          <mat-radio-button value="2"  (change)="buyingFor(2)" style="margin-left: 20px" class="newusertext" >Investment</mat-radio-button>
-        </mat-radio-group>
-      </div>
-  </div>
-
-  <!--Mat Expansion Panel For Project Details-->
-  <mat-expansion-panel style="padding-top: 10px!important;box-shadow:none!important;padding-bottom: 10px!important;margin-bottom: 5px!important;margin-top: 5px!important;" [expanded]="true">
-
-    <mat-expansion-panel-header>
-      <mat-panel-title class="mat-panel-title"  style="margin-top: 30px;margin-bottom: 30px">
-        Project Details
-      </mat-panel-title>
-    </mat-expansion-panel-header>
-
-  <div>
-    <mat-form-field appearance="outline" style="width:100%">
-      <mat-label class="inputtextfield">Select Project Name<font class="font_star">*</font></mat-label>
-      <mat-select class="inputtextfield" >
-        <mat-option *ngFor="let projectnames of addNewLead.projects let i= index" [value]="projectnames.project_id" (click)="getProjectsvalue(i)">
-          {{projectnames.project_name}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <div>
-      <mat-form-field appearance="outline" style="width:100%">
-        <mat-label class="inputtextfield">Select Flat Type<font class="font_star">*</font></mat-label>
-        <mat-select class="inputtextfield" >
-          <mat-option *ngFor="let flattypes of unitcategories let i= index" [value]="flattypes.unit_category_id" (click)="getCategoriesvalue(i)">
-            {{flattypes.unit_category}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-    <div>
-    <ion-title class="preferredsitevisit" >Preferred site visit<font class="font_star">*</font></ion-title>
-    </div>
-    <ion-row >
-      <ion-col size="6" style="width: 100%">
-        <div class="inputtextfield" >
-          <mat-form-field appearance="outline" style="width: 100%"  >
-            <mat-label class="inputtextfield">From Date<font class="font_star">*</font></mat-label>
-            <input matInput  [readonly]="!editable"[matDatepicker]="picker1" [(ngModel)]="postNewLead.site_visit_from" [min]="minDate" (dateChange)="validDate()" >
-            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker  #picker1 [(ngModel)]="postNewLead.site_visit_from" ngDefaultControl></mat-datepicker>
-          </mat-form-field>
+    <!--Enter Mobile Number With Country Code-->
+    <ion-row style="margin-top: -8px;">
+      <ion-col size="3" class="ion-text-center">
+        <div class="Countrycode" (click)="selectcountry()"
+          style="width: 100%;margin-right: 10px;margin-bottom: 1px !important;">
+          <mat-label class="countrycodetext">{{countrycode}}</mat-label>
         </div>
       </ion-col>
-      <ion-col size="6" style="width: 100%;">
-        <div class="inputtextfield">
-          <mat-form-field appearance="outline" style="width: 100%">
-            <mat-label class="inputtextfield">To Date<font class="font_star">*</font></mat-label>
-            <input  matInput  [readonly]="!editable" [min]="minDateNew" [matDatepicker]="picker3" [(ngModel)]="postNewLead.site_visit_to">
-            <mat-datepicker-toggle  matSuffix [for]="picker3"></mat-datepicker-toggle>
-            <mat-datepicker  #picker3 [(ngModel)]="postNewLead.site_visit_to" ngDefaultControl></mat-datepicker>
+      <ion-col size="9">
+
+        <div [formGroup]="credentialsForm">
+          <mat-form-field appearance="outline" style="width: 100%;padding-right: 5px">
+            <mat-label class="inputtextfield">Mobile Number</mat-label>
+            <input matInput [readonly]="read" [formControl]="credentialsForm.controls['mobile']" type="tel"
+              pattern="[0-9]*" class="inputtextfield" required>
+            <mat-hint>
+              <div *ngIf="!credentialsForm.controls.mobile.valid && credentialsForm.controls.mobile.dirty"
+                class="error">
+                Please enter a valid mobile number.
+              </div>
+            </mat-hint>
           </mat-form-field>
         </div>
       </ion-col>
     </ion-row>
-  </mat-expansion-panel>
-  <mat-divider></mat-divider>
+    <div *ngIf="this.countrycode=='+91'">
+      <div *ngIf="!alive"
+        style="align-content: center!important;alignment: center!important;text-align: center!important;justify-content: center!important;margin-bottom: 15px!important;margin-top: -2px!important;">
+        <button mat-stroked-button class="Resendbuttons" [disabled]="!credentialsForm.controls.mobile.valid"
+          (click)="click(credentialsForm.value) ">Verify</button>
+      </div>
+      <div *ngIf="!hideMe">
+        <div *ngIf="alive">
+          <div>
+            <mat-form-field appearance="outline" style="width: 100%;padding-left: 10px;padding-right: 10px">
+              <mat-label class="newusertext">OTP</mat-label>
+              <input matInput name="otptext" [(ngModel)]="loginifo.confirmotp" type="text" class="inputtextfield">
+            </mat-form-field>
+            <div class="ion-text-center">
+              <button mat-stroked-button class="registerbutton" (click)="verifyconfirmotp()"
+                style="margin-bottom: 10px!important;" required>Submit OTP</button>
+            </div>
+          </div>
+          <div>
+            <div id="otpMessage" class="inputtextfield" style="margin-left: 20px!important;margin-top: 5px!important;">
+              <mat-label class="inputtextfield">In case you didn't received an OTP in 7 seconds retry here.</mat-label>
+            </div>
 
-  <!--Expand Panel for  KYC Documents-->
-  <mat-expansion-panel style="padding-top: 10px!important;box-shadow:none!important;padding-bottom: 10px!important;margin-bottom: 5px!important;margin-top: 5px!important;" [expanded]="true">
+            <!--Register Button-->
+            <div class="ion-text-center" style="margin-top: 10px!important;margin-bottom: 10px!important;">
+              <button mat-stroked-button class="Resendbuttons" [disabled]="disabled"
+                [style.background-color]="this.color1 === true ? '#a5a5a5' : '#F5A22C'" (click)="Resendotp()">Resend
+                OTP</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Lead Profession-->
+    <div style="padding-left: 10px; padding-right: 10px;">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label class="inputtextfield">Works in<font class="font_star">*</font>
+        </mat-label>
+        <mat-select class="inputtextfield">
+          <mat-option *ngFor="let profession of addNewLead.lead_professions let i= index"
+            [value]="profession.lead_professions_id" (click)="getLeadProfession(i)">
+            {{profession.lead_profession}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
-    <mat-expansion-panel-header>
-      <mat-panel-title class="mat-panel-title"  style="margin-top: 30px;margin-bottom: 30px">
-        KYC Documents
-      </mat-panel-title>
-    </mat-expansion-panel-header>
+    <!--Property Buying For-->
+    <div style="padding-left: 10px; padding-right: 10px;margin-top: 10px!important;">
+      <mat-label class="preferredsitevisit">Buying For</mat-label>
+      <!--Radio Button for Self Use and Investment-->
+      <div style="margin-bottom: 20px">
+        <mat-radio-group aria-label="Select an option">
+          <mat-radio-button value="1" (change)="buyingFor(1)" style="margin-right: 20px" class="newusertext"
+            checked="true">End Use</mat-radio-button>
+          <mat-radio-button value="2" (change)="buyingFor(2)" style="margin-left: 20px" class="newusertext">Investment
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </div>
 
-    <!--KYC Documents-->
-    <ion-list>
-    <ion-card style="box-shadow: none!important;margin-top: -20px!important;" *ngFor="let kycdoc of addNewLead.kyc_doc_types">
-    <ion-grid>
-      <ion-row (click)="presentActionSheet(kycdoc.doc_type_id)" >
-        <ion-col class="ion-text-start" size="10">
-          <div class="newusertext" class="inputtextfield" style="margin-top: 15px!important;">
-            <ion-label class="inputtextfield" style="font-family: Metropolis Light!important;font-weight: bolder!important;">{{kycdoc.docs_type}}</ion-label>
-             <p class="newusertext1" class="texttitle" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{kycdoc.doc_path}}</p>
-           <!-- <img class="centered" src={{kycdoc.doc_path}}>-->
+    <!--Mat Expansion Panel For Project Details-->
+    <mat-expansion-panel
+      style="padding-top: 10px!important;box-shadow:none!important;padding-bottom: 10px!important;margin-bottom: 5px!important;margin-top: 5px!important;"
+      [expanded]="true">
+
+      <mat-expansion-panel-header>
+        <mat-panel-title class="mat-panel-title" style="margin-top: 30px;margin-bottom: 30px">
+          Project Details
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <div>
+        <mat-form-field appearance="outline" style="width:100%">
+          <mat-label class="inputtextfield">Select Project Name<font class="font_star">*</font>
+          </mat-label>
+          <mat-select class="inputtextfield">
+            <mat-option *ngFor="let projectnames of addNewLead.projects let i= index" [value]="projectnames.project_id"
+              (click)="getProjectsvalue(i)">
+              {{projectnames.project_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline" style="width:100%">
+          <mat-label class="inputtextfield">Select Flat Type<font class="font_star">*</font>
+          </mat-label>
+          <mat-select class="inputtextfield">
+            <mat-option *ngFor="let flattypes of unitcategories let i= index" [value]="flattypes.unit_category_id"
+              (click)="getCategoriesvalue(i)">
+              {{flattypes.unit_category}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div>
+        <ion-title class="preferredsitevisit">Preferred site visit<font class="font_star">*</font>
+        </ion-title>
+      </div>
+      <ion-row>
+        <ion-col size="6" style="width: 100%">
+          <div class="inputtextfield">
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label class="inputtextfield">From Date<font class="font_star">*</font>
+              </mat-label>
+              <input matInput [readonly]="!editable" [matDatepicker]="picker1" [(ngModel)]="postNewLead.site_visit_from"
+                [min]="minDate" (dateChange)="validDate()">
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1 [(ngModel)]="postNewLead.site_visit_from" ngDefaultControl></mat-datepicker>
+            </mat-form-field>
           </div>
         </ion-col>
-        <ion-col class="ion-text-end" size="2">
-          <div>
-            <ion-icon style="margin-top: 5px;zoom: 2.0" name="attach"></ion-icon>
-            <!-- <mat-icon style="margin-top: 5px" (click)="chooseFile(kycdoc.doc_type_id)">attachment</mat-icon>-->
+        <ion-col size="6" style="width: 100%;">
+          <div class="inputtextfield">
+            <mat-form-field appearance="outline" style="width: 100%">
+              <mat-label class="inputtextfield">To Date<font class="font_star">*</font>
+              </mat-label>
+              <input matInput [readonly]="!editable" [min]="minDateNew" [matDatepicker]="picker3"
+                [(ngModel)]="postNewLead.site_visit_to">
+              <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+              <mat-datepicker #picker3 [(ngModel)]="postNewLead.site_visit_to" ngDefaultControl></mat-datepicker>
+            </mat-form-field>
           </div>
         </ion-col>
       </ion-row>
-    </ion-grid>
-      <mat-divider style="margin-top: -10px!important;"></mat-divider>
+    </mat-expansion-panel>
+    <mat-divider></mat-divider>
 
-    </ion-card>
-    </ion-list>
-  </mat-expansion-panel>
-  <mat-divider></mat-divider>
+    <!--Expand Panel for  KYC Documents-->
+    <mat-expansion-panel
+      style="padding-top: 10px!important;box-shadow:none!important;padding-bottom: 10px!important;margin-bottom: 5px!important;margin-top: 5px!important;"
+      [expanded]="true">
 
- <!-- &lt;!&ndash;Expand Panel for  Other Details&ndash;&gt;
+      <mat-expansion-panel-header>
+        <mat-panel-title class="mat-panel-title" style="margin-top: 30px;margin-bottom: 30px">
+          KYC Documents
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+
+      <!--KYC Documents-->
+      <ion-list>
+        <ion-card style="box-shadow: none!important;margin-top: -20px!important;"
+          *ngFor="let kycdoc of addNewLead.kyc_doc_types">
+          <ion-grid>
+            <ion-row (click)="presentActionSheet(kycdoc.doc_type_id)">
+              <ion-col class="ion-text-start" size="10">
+                <div class="newusertext" class="inputtextfield" style="margin-top: 15px!important;">
+                  <ion-label class="inputtextfield"
+                    style="font-family: Metropolis Light!important;font-weight: bolder!important;">{{kycdoc.docs_type}}
+                  </ion-label>
+                  <p class="newusertext1" class="texttitle"
+                    style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{kycdoc.doc_path}}</p>
+                  <!-- <img class="centered" src={{kycdoc.doc_path}}>-->
+                </div>
+              </ion-col>
+              <ion-col class="ion-text-end" size="2">
+                <div>
+                  <ion-icon style="margin-top: 5px;zoom: 2.0" name="attach"></ion-icon>
+                  <!-- <mat-icon style="margin-top: 5px" (click)="chooseFile(kycdoc.doc_type_id)">attachment</mat-icon>-->
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+          <mat-divider style="margin-top: -10px!important;"></mat-divider>
+
+        </ion-card>
+      </ion-list>
+    </mat-expansion-panel>
+    <mat-divider></mat-divider>
+
+    <!-- &lt;!&ndash;Expand Panel for  Other Details&ndash;&gt;
   <mat-expansion-panel style="padding-top: 10px!important;box-shadow:none!important;padding-bottom: 10px!important;margin-bottom: 5px!important;margin-top: 5px!important;">
 
     <mat-expansion-panel-header>
@@ -323,10 +353,11 @@
   </mat-expansion-panel>
   <mat-divider></mat-divider>-->
 
-  <div class="ion-text-center" style="padding-bottom: 20%;padding-top: 20%">
-    <button mat-raised-button class="loginbutton" [disabled]="credentialsForm.invalid" (click)="addlead(credentialsForm.value)" routerDirection="forward">Submit Lead</button><br>
-  </div>
+    <div class="ion-text-center" style="padding-bottom: 20%;padding-top: 20%">
+      <button mat-raised-button class="loginbutton " [disabled]="credentialsForm.invalid"
+        (click)="addlead(credentialsForm.value)" routerDirection="forward">Submit Lead</button><br>
+    </div>
 
-</div>
+  </div>
 
 </ion-content>
