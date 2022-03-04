@@ -10,21 +10,23 @@
  */
 
 /* Core CSS required for Ionic components to work properly */
+
 @import "~@ionic/angular/css/core.css";
 
 /* Basic CSS for apps built with Ionic */
+
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
 @import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
+
 @import "~@ionic/angular/css/padding.css";
 @import "~@ionic/angular/css/float-elements.css";
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
-
 //For TOAST
 .my-custom-class {
   --background: var(--ion-color-primary);
@@ -89,6 +91,7 @@
   margin-bottom: 27%;
   box-shadow: none;
 }
+
 ion-loading.custom-loading {
   .loading-wrapper {
     background: transparent;
@@ -99,6 +102,7 @@ ion-loading.custom-loading {
 ion-toolbar {
   --background: #f2f2f2;
 }
+
 .TITLETOOLBAR {
   font-family: "Metropolis Medium";
   font-size: 18px;
@@ -106,13 +110,60 @@ ion-toolbar {
   padding-top: 10px;
   margin-left: -32px;
 }
+
 .srcIMGLOGO {
   text-align: right;
   margin-right: 0px;
   width: 30% !important;
 }
 
+.p-0 {
+  padding: 0px !important;
+}
+
+.common-btn {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100% !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  font-size: 18px !important;
+  border-radius: 25px !important;
+  // border-color: #F5A22C!important;
+  background-color: var(--ion-color-btn-primary);
+  font-family: "Metropolis Medium" !important;
+  // border: 1px solid #F5A22C!important;
+  color: white !important;
+}
+
+.common-btn-disabled {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100% !important;
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+  font-size: 18px !important;
+  border-radius: 25px !important;
+  background-color: rgba(0, 0, 0, 0.26);
+  color: rgba(0, 0, 0, 0.26);
+}
+
+.header-logo {
+  margin: 0 auto;
+  max-width: 78%;
+}
+
+.icon-inner,
+svg {
+  color: black !important;
+}
+
+.m-0 {
+  margin: 0px !important;
+}
+
 /*Alert Successfully(Sukrut02/10/2019)*/
+
 /*
 .alert-wrapper {
   position: absolute;
@@ -150,14 +201,11 @@ ion-toolbar {
 }
 */
 
-ion-action-sheet {
-  ion-icon {
-    width: 3rem;
-    height: 3rem;
-  }
+::ng-deep .mat-form-field-outline-start {
+  border-radius: 28px 0 0 28px !important;
+  min-width: 28px !important;
+}
 
-  .ion-ios-approve,
-  .ion-md-approve {
-    content: url("./assets/new_icons/approve.png");
-  }
+::ng-deep .mat-form-field-outline-end {
+  border-radius: 0 28px 28px 0 !important;
 }

@@ -1,17 +1,17 @@
-import { Component, enableProdMode, NgZone, OnInit } from '@angular/core';
+import { AlertController, Events, ModalController, NavController, Platform } from '@ionic/angular';
+import { Component, NgZone, OnInit, enableProdMode } from '@angular/core';
+import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
 
-import { AlertController, Events, NavController, ModalController, Platform } from '@ionic/angular';
+import { APIService } from './services/APIService';
+import { HttpClient } from '@angular/common/http';
+import { MobileAccessibility } from '@ionic-native/mobile-accessibility/ngx';
+import { PopupalertPage } from './popupalert/popupalert.page';
+import { PostAppUpdate } from './models/PostAppUpdate';
+import { Router } from '@angular/router';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Storage } from '@ionic/storage';
-import { Router } from '@angular/router';
-import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
-import { HttpClient } from '@angular/common/http';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
-import { PopupalertPage } from './popupalert/popupalert.page';
-import { MobileAccessibility } from '@ionic-native/mobile-accessibility/ngx';
-import { PostAppUpdate } from './models/PostAppUpdate';
-import { APIService } from './services/APIService';
 
 @Component({
   selector: 'app-root',
@@ -126,7 +126,7 @@ export class AppComponent {
           // this.storage.get('verification_status_id').then((val) => {
           if (val.verification_status_id == 1) {
             console.log('Your verification_status_id', val);
-            this.navCtrl.navigateRoot('/home');
+            this.navCtrl.navigateRoot('/add-fos-list');
             this.storage.set('IDFromPerformance', 2);
           } else if (val.verification_status_id == 2) {
             console.log('Your verification_status_id', val);
