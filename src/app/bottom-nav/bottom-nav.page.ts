@@ -1,11 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Helper} from '../services/Helper';
-import {AlertController, ModalController, NavController, Platform, ToastController, Events} from '@ionic/angular';
-import {Storage} from '@ionic/storage';
 import {ActivatedRoute, Router} from '@angular/router';
-import {HttpClient} from '@angular/common/http';
-import {UniqueDeviceID} from '@ionic-native/unique-device-id/ngx';
+import {AlertController, Events, ModalController, NavController, Platform, ToastController} from '@ionic/angular';
+import {Component, Input, OnInit} from '@angular/core';
 
+import {Helper} from '../services/Helper';
+import {HttpClient} from '@angular/common/http';
+import {Storage} from '@ionic/storage';
+import {UniqueDeviceID} from '@ionic-native/unique-device-id/ngx';
 
 @Component({
   selector: 'app-bottom-nav',
@@ -184,5 +184,11 @@ export class BottomNavPage implements OnInit {
             } );
         }
       });
+  } 
+  gotoProfile()
+  {
+    console.log("clicked")
+    this.navCtrl.navigateForward('profile');
+    this.goback()
   }
 }

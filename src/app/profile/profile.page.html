@@ -1,0 +1,75 @@
+<ion-content>
+    <ion-grid fixed>
+        <ion-row>
+            <ion-col size="10" class="pt-5" offset="1">
+
+                <p class="mb-0">Profile Page</p>
+            </ion-col>
+            <ion-col size="8" class="p-3" offset="2">
+                <ion-img src="assets/channelPartner_Icons/profile/profile.png"></ion-img>
+            </ion-col>
+            <!-- <ion-col size="6"></ion-col> -->
+        </ion-row>
+        <ion-row>
+            <ion-col size="10" offset="1" class="pt-4">
+                <div *ngFor="let item of detailsArray" class="d-flex justify-content-between mb-4">
+                    <div>
+                        <h4>{{item.info}}</h4>
+                    </div>
+                    <div>
+                        <mat-icon>
+                            <ion-icon [name]="item.iconnm"></ion-icon>
+                        </mat-icon>
+                    </div>
+                </div>
+
+                <mat-divider class="divider pt-3"></mat-divider>
+
+                <div class="d-flex justify-content-between mb-4 pt-3 pb-5">
+                    <div>
+                        <h4>Approved AOP/QOP</h4>
+                    </div>
+                    <div>
+                        <mat-icon>
+                            <ion-icon name="arrow-dropright"></ion-icon>
+                        </mat-icon>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col ssize="10" offset="1" class="pt-5">
+                <div class="d-flex ">
+                    <div class="p-3">
+
+                        <div class="d-flex justify-content-between">
+                            <h4>connect with</h4>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <div class="p-3">
+                            <mat-icon>
+                                <ion-icon name="logo-google"></ion-icon>
+
+                            </mat-icon>
+                        </div>
+                        <div class="p-3">
+                            <mat-icon>
+                                <ion-icon name="logo-facebook"></ion-icon>
+                            </mat-icon>
+                        </div>
+                        <div class="p-3">
+                            <mat-icon>
+                                <ion-icon name="mail"></ion-icon>
+                            </mat-icon>
+                        </div>
+                    </div>
+                </div>
+
+            </ion-col>
+            <ion-col size="10" offset="1">
+
+                <button mat-button class="common-btn">Logout</button><br>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

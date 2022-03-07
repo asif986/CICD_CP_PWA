@@ -1,71 +1,71 @@
-<ion-content style="--background: #fff !important;" >
-  <img style="margin-left: 1px;" src="assets/channelPartner_Icons/allPNGImages/navigationNewBG.png"/>
-  <ion-row style="margin-top: -165px;">
-    <ion-col size="8" style="margin-top: -20px;">
-      <div>
+<ion-content style="--background: #fff !important;">
+    <img style="margin-left: 1px;" src="assets/channelPartner_Icons/allPNGImages/navigationNewBG.png" />
+    <ion-row style="margin-top: -165px;">
+        <ion-col size="8" style="margin-top: -20px;">
+            <div>
 
-      </div>
-    </ion-col>
-    <ion-col size="4" style="margin-top: -20px;">
-      <div style="text-align: end!important;margin-right: 15px!important;margin-top: 15px!important;">
-        <ion-icon icon="close" style="color: gray!important;width: 24px;height: 24px;" (click)="goback()" ></ion-icon>
-      </div>
-    </ion-col>
-  </ion-row>
+            </div>
+        </ion-col>
+        <ion-col size="4" style="margin-top: -20px;">
+            <div style="text-align: end!important;margin-right: 15px!important;margin-top: 15px!important;">
+                <ion-icon icon="close" style="color: gray!important;width: 24px;height: 24px;" (click)="goback()"></ion-icon>
+            </div>
+        </ion-col>
+    </ion-row>
 
 
-  <div >
-    <div class="col-md-12 col-lg-12 ion-text-center" style="margin-top: 10px;" >
-      <img src="assets/channelPartner_Icons/allPNGImages/cp_logo.png" class="img-responsive" style="object-fit: contain;margin: 0 auto;width: 165px;color: black;">
+    <div (click)="gotoProfile()">
+        <div class="col-md-12 col-lg-12 ion-text-center" style="margin-top: 10px;">
+            <img src="assets/channelPartner_Icons/allPNGImages/cp_logo.png" class="img-responsive" style="object-fit: contain;margin: 0 auto;width: 165px;color: black;">
+        </div>
     </div>
-  </div>
- 
-  <div class="ion-text-center" style="margin-top: 30px;">
-    <div class="newusertext2" style="margin-top: 4px!important;color: var(--ion-color-primary);font-size: 15px!important;letter-spacing: 0.2px!important;">{{username}}</div>
-    <div class="newusertext1" style="color: black!important;font-size: 11px!important;white-space: pre-line!important;letter-spacing: 0.8px!important;">{{name}}</div>
-    
-  </div>
 
-  <hr style="background: #ccc;height: 11px;">
-  <ion-list>
-    <ion-item lines="none" (click)="navigateMenu('home')" *ngIf="isVerfied==1">
-      <ion-avatar slot="start" style="margin-right: 0px;">
-        <ion-icon src="assets/channelPartner_Icons/other_Used_CardIcons/home_icon.svg"  style="padding-top: 3%;margin-top:5px!important;color:#F5A22C;width: 24px;height: 24px;" ></ion-icon>
-      </ion-avatar>
-      <ion-label class="newusertext1" style="color:#F5A22C;">Home</ion-label>
-    </ion-item>
-    <ion-item lines="none" (click)="navigateMenu('myperformance')" *ngIf="isVerfied==1" style="margin-top: -15px!important;">
-      <ion-avatar slot="start" style="margin-right: 0px;">
-        <ion-icon name="stats"  style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px;" ></ion-icon>
-      </ion-avatar>
-      <ion-label class="newusertext1">My Performance</ion-label>
-    </ion-item>
-    <ion-item lines="none" (click)="navigateMenu('team-lead-stat')" *ngIf="isVerfied==1 && is_admin==1" style="margin-top: -15px!important;">
-      <ion-avatar slot="start" style="margin-right: 0px;">
-        <ion-icon src="assets/channelPartner_Icons/team_Leader_Stats/team_leader_stat.svg"  style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px;" ></ion-icon>
-      </ion-avatar>
-      <ion-label class="newusertext1">Team Leader Stats</ion-label>
-    </ion-item>
+    <div (click)="gotoProfile()" class="ion-text-center" style="margin-top: 30px;">
+        <div class="newusertext2" style="margin-top: 4px!important;color: var(--ion-color-primary);font-size: 15px!important;letter-spacing: 0.2px!important;">{{username}}</div>
+        <div class="newusertext1" style="color: black!important;font-size: 11px!important;white-space: pre-line!important;letter-spacing: 0.8px!important;">{{name}}</div>
 
-    <ion-item lines="none" (click)="navigateMenu('team-stats')" *ngIf="isVerfied==1 && is_team_lead==1" style="margin-top: -15px!important;">
-      <ion-avatar slot="start" style="margin-right: 0px;">
-        <ion-icon name="trending-up"  style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px;" ></ion-icon>
-      </ion-avatar>
-      <ion-label class="newusertext1">Sales Performance</ion-label>
-    </ion-item>
-    <ion-item lines="none" (click)="navigateMenu('foslist')" *ngIf="isVerfied==1 && (is_team_lead==1 || is_admin==1)" style="margin-top: -15px!important;">
-      <ion-avatar slot="start" style="margin-right: 0px;">
-        <ion-icon src="assets/channelPartner_Icons/user_Photo_Icon/user.svg"  style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px;" ></ion-icon>
-      </ion-avatar>
-      <ion-label class="newusertext1">FOS List</ion-label>
-    </ion-item>
-    <ion-item lines="none" (click)="navigateMenu('teamlist')" *ngIf="isVerfied==1 && is_admin==1" style="margin-top: -15px!important;">
-      <ion-avatar slot="start" style="margin-right: 0px;">
-        <ion-icon src="assets/channelPartner_Icons/team_Leader_Stats/team_leader_list.svg"  style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px;" ></ion-icon>
-      </ion-avatar>
-      <ion-label class="newusertext1">Team Leaders List</ion-label>
-    </ion-item>
-    <!-- <ion-item lines="none" (click)="navigateMenu('readytosubmit-bills')" style="margin-top: -15px!important;">
+    </div>
+
+    <hr style="background: #ccc;height: 11px;">
+    <ion-list>
+        <ion-item lines="none" (click)="navigateMenu('home')" *ngIf="isVerfied==1">
+            <ion-avatar slot="start" style="margin-right: 0px;">
+                <ion-icon src="assets/channelPartner_Icons/other_Used_CardIcons/home_icon.svg" style="padding-top: 3%;margin-top:5px!important;color:#F5A22C;width: 24px;height: 24px;"></ion-icon>
+            </ion-avatar>
+            <ion-label class="newusertext1" style="color:#F5A22C;">Home</ion-label>
+        </ion-item>
+        <ion-item lines="none" (click)="navigateMenu('myperformance')" *ngIf="isVerfied==1" style="margin-top: -15px!important;">
+            <ion-avatar slot="start" style="margin-right: 0px;">
+                <ion-icon name="stats" style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px;"></ion-icon>
+            </ion-avatar>
+            <ion-label class="newusertext1">My Performance</ion-label>
+        </ion-item>
+        <ion-item lines="none" (click)="navigateMenu('team-lead-stat')" *ngIf="isVerfied==1 && is_admin==1" style="margin-top: -15px!important;">
+            <ion-avatar slot="start" style="margin-right: 0px;">
+                <ion-icon src="assets/channelPartner_Icons/team_Leader_Stats/team_leader_stat.svg" style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px;"></ion-icon>
+            </ion-avatar>
+            <ion-label class="newusertext1">Team Leader Stats</ion-label>
+        </ion-item>
+
+        <ion-item lines="none" (click)="navigateMenu('team-stats')" *ngIf="isVerfied==1 && is_team_lead==1" style="margin-top: -15px!important;">
+            <ion-avatar slot="start" style="margin-right: 0px;">
+                <ion-icon name="trending-up" style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px;"></ion-icon>
+            </ion-avatar>
+            <ion-label class="newusertext1">Sales Performance</ion-label>
+        </ion-item>
+        <ion-item lines="none" (click)="navigateMenu('foslist')" *ngIf="isVerfied==1 && (is_team_lead==1 || is_admin==1)" style="margin-top: -15px!important;">
+            <ion-avatar slot="start" style="margin-right: 0px;">
+                <ion-icon src="assets/channelPartner_Icons/user_Photo_Icon/user.svg" style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px;"></ion-icon>
+            </ion-avatar>
+            <ion-label class="newusertext1">FOS List</ion-label>
+        </ion-item>
+        <ion-item lines="none" (click)="navigateMenu('teamlist')" *ngIf="isVerfied==1 && is_admin==1" style="margin-top: -15px!important;">
+            <ion-avatar slot="start" style="margin-right: 0px;">
+                <ion-icon src="assets/channelPartner_Icons/team_Leader_Stats/team_leader_list.svg" style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px;"></ion-icon>
+            </ion-avatar>
+            <ion-label class="newusertext1">Team Leaders List</ion-label>
+        </ion-item>
+        <!-- <ion-item lines="none" (click)="navigateMenu('readytosubmit-bills')" style="margin-top: -15px!important;">
       <ion-avatar slot="start" style="margin-right: 0px;">
         <ion-icon src="assets/channelPartner_Icons/readytoSubmitBills/ticket.svg"  style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px;" ></ion-icon>
       </ion-avatar>
@@ -95,30 +95,29 @@
       </ion-avatar>
       <ion-label class="newusertext1">Claimed Awards</ion-label>
     </ion-item> -->
-    <ion-item lines="none" (click)="navigateMenu('projectbrochures')" *ngIf="isVerfied==1 " style="margin-top: -15px!important;">
-      <ion-avatar slot="start" style="margin-right: 0px;">
-        <ion-icon src="assets/channelPartner_Icons/project_Brochures_Icon/project-Brouchers.svg"  style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px;" ></ion-icon>
-      </ion-avatar>
-      <ion-label class="newusertext1">Project Brochures</ion-label>
-    </ion-item>
-    <ion-item lines="none" (click)="navigateMenu('reminder')" *ngIf="isVerfied==1" style="margin-top: -15px!important;">
-      <ion-avatar slot="start" style="margin-right: 0px;">
-        <ion-icon src="assets/channelPartner_Icons/reminder_Icon/time_clock_icon.svg"  style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px;" ></ion-icon>
-      </ion-avatar>
-      <ion-label class="newusertext1">Reminder</ion-label>
-    </ion-item>
-    <ion-item lines="none" (click)="navigateMenu('notification')" *ngIf="isVerfied==1" style="margin-top: -15px!important;">
-      <ion-avatar slot="start" style="margin-right: 0px;">
-        <ion-icon   src="assets/channelPartner_Icons/notification_Icon/notification_iocn.svg"  style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px;" ></ion-icon>
-      </ion-avatar>
-      <ion-label class="newusertext1">Notification</ion-label>
-    </ion-item>
-    <ion-item lines="none" *ngIf="isLogin" (click)="logout()" style="margin-top: -15px!important;">
-      <ion-avatar slot="start" style="margin-right: 0px;">
-        <ion-icon src="assets/channelPartner_Icons/app_LogOut/logout_icon.svg" style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px" ></ion-icon>
-      </ion-avatar>
-      <ion-label class="newusertext1">Logout</ion-label>
-    </ion-item>
-  </ion-list>
+        <ion-item lines="none" (click)="navigateMenu('projectbrochures')" *ngIf="isVerfied==1 " style="margin-top: -15px!important;">
+            <ion-avatar slot="start" style="margin-right: 0px;">
+                <ion-icon src="assets/channelPartner_Icons/project_Brochures_Icon/project-Brouchers.svg" style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px;"></ion-icon>
+            </ion-avatar>
+            <ion-label class="newusertext1">Project Brochures</ion-label>
+        </ion-item>
+        <ion-item lines="none" (click)="navigateMenu('reminder')" *ngIf="isVerfied==1" style="margin-top: -15px!important;">
+            <ion-avatar slot="start" style="margin-right: 0px;">
+                <ion-icon src="assets/channelPartner_Icons/reminder_Icon/time_clock_icon.svg" style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px;"></ion-icon>
+            </ion-avatar>
+            <ion-label class="newusertext1">Reminder</ion-label>
+        </ion-item>
+        <ion-item lines="none" (click)="navigateMenu('notification')" *ngIf="isVerfied==1" style="margin-top: -15px!important;">
+            <ion-avatar slot="start" style="margin-right: 0px;">
+                <ion-icon src="assets/channelPartner_Icons/notification_Icon/notification_iocn.svg" style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px;"></ion-icon>
+            </ion-avatar>
+            <ion-label class="newusertext1">Notification</ion-label>
+        </ion-item>
+        <ion-item lines="none" *ngIf="isLogin" (click)="logout()" style="margin-top: -15px!important;">
+            <ion-avatar slot="start" style="margin-right: 0px;">
+                <ion-icon src="assets/channelPartner_Icons/app_LogOut/logout_icon.svg" style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);width: 24px;height: 24px"></ion-icon>
+            </ion-avatar>
+            <ion-label class="newusertext1">Logout</ion-label>
+        </ion-item>
+    </ion-list>
 </ion-content>
-

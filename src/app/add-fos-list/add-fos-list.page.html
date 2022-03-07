@@ -70,7 +70,7 @@
                 <p class="mb-0" *ngIf="ID==1">Add FOS</p>
             </ion-col>
         </ion-row>
-        <ion-row style="">
+        <ion-row>
 
 
             <!-- <ion-col size="3" style="margin-top: 5px!important;height: 50px!important;">
@@ -242,8 +242,8 @@
                 <div class="input-field" *ngIf="ID!==2">
                     <!--Enter Password-->
                     <!-- <mat-label class="inputtextfield">Password</mat-label> -->
-                    <div class="inputtextfield" style="">
-                        <mat-form-field appearance="outline" style="width: 100%">
+                    <div class="inputtextfield">
+                        <mat-form-field appearance="outline">
                             <input matInput [type]="getType()" [(ngModel)]="postFOS.password" placeholder="Password" name="password" class="inputtextfield" required>
                             <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword()">
                   <mat-icon><ion-icon [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'" color="dark" ></ion-icon></mat-icon>
@@ -255,8 +255,8 @@
                 <div class="input-field" *ngIf="ID==2">
                     <!--Enter Password-->
                     <!-- <mat-label class="inputtextfield">Password</mat-label> -->
-                    <div class="inputtextfield" style="">
-                        <mat-form-field appearance="outline" style="width: 100%">
+                    <div class="inputtextfield">
+                        <mat-form-field appearance="outline">
                             <input matInput [type]="getType()" [(ngModel)]="updateFos.password" placeholder="Password" name="password" class="inputtextfield">
                             <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword()">
                   <mat-icon><ion-icon [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'" color="dark" ></ion-icon></mat-icon>
@@ -270,7 +270,7 @@
                     <!--Enter Password-->
                     <!-- <mat-label class="inputtextfield">Confirm Password</mat-label> -->
                     <div class="inputtextfield">
-                        <mat-form-field appearance="outline" class="mb-0" style="width: 100%">
+                        <mat-form-field appearance="outline" class="mb-0">
                             <input matInput [type]="getType1()" [(ngModel)]="postFOS.confirm_password" placeholder="Confirm Password" name="password" class="inputtextfield" required>
                             <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword1()">
                   <mat-icon><ion-icon [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'" color="dark" ></ion-icon></mat-icon>
@@ -283,7 +283,7 @@
                     <!--Enter Password-->
                     <!-- <mat-label class="inputtextfield">Confirm Password</mat-label> -->
                     <div class="inputtextfield">
-                        <mat-form-field appearance="outline" class="mb-0" style="width: 100%">
+                        <mat-form-field appearance="outline" class="mb-0">
                             <input matInput [type]="getType1()" [(ngModel)]="updateFos.confirm_password" placeholder="Confirm Password" name="password" class="inputtextfield">
                             <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword1()">
                   <mat-icon><ion-icon [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'" color="dark" ></ion-icon></mat-icon>
@@ -294,7 +294,7 @@
             </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col size="10" offset="1" class="pb-3 margin-bt pt-2 d-flex justify-content-center">
+            <ion-col size="10" offset="1" class="pb-3  d-flex justify-content-center">
                 <mat-checkbox *ngIf="ID!==3" [(ngModel)]="isChecked" (click)="Checked()" style="font-size: 16px !important;font-family: Metropolis Medium;letter-spacing: 0.5px !important;">Is Team Lead</mat-checkbox>
 
             </ion-col>

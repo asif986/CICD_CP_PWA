@@ -179,6 +179,10 @@ p {
     margin-left: 20px;
 }
 
+::ng-deep .mat-form-field {
+    width: 100%;
+}
+
 ::ng-deep .mat-form-field-outline-start {
     border-radius: 28px 0 0 28px !important;
     min-width: 28px !important;

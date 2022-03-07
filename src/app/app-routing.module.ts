@@ -56,6 +56,7 @@ const routes: Routes = [
   { path: 'cpawards', loadChildren: './cpawards/cpawards.module#CpawardsPageModule' },
   { path: 'claim-awards', loadChildren: './claim-awards/claim-awards.module#ClaimAwardsPageModule' },
   { path: 'show-logs', loadChildren: './show-logs/show-logs.module#ShowLogsPageModule' },
+  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
 ];
 
 @NgModule({

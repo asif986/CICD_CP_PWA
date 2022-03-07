@@ -137,6 +137,9 @@ export class AppComponent {
           // alert('4');
           this.navCtrl.navigateRoot('/login');
         }
+
+        // this.navCtrl.navigateRoot('/new-registration');
+
         this.hideSplashScreen();
       });
       //   }
