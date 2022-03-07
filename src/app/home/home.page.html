@@ -45,48 +45,55 @@
 
   <!--Banner For Events-->
 
-  <!-- <div *ngIf="isSpinner==false && IDFromPerformance!==1" >
+  <!-- <div *ngIf="isSpinner==false && IDFromPerformance!==1" > -->
 
-    <div *ngIf="societyEventBanners.length!=0" style="position: relative;margin: 0px;margin-bottom: -40px;">
-        <ion-slides  class="image-slider" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)"
-                    pager="true">
-            <ion-slide *ngFor="let img of societyEventBanners">
-                <ion-card style="margin: 0;border-radius: 0px!important;width: 100%!important;box-shadow: none!important;">
-                    <img *ngIf="img.banner_path!=''" onerror="this.onerror=null;this.src='assets/channelPartner_Icons/allPNGImages/noupdate.png'" src="{{img.media_path}}" class="thumb-img_Banner" />
-                    <img *ngIf="img.banner_path==''" src="assets/channelPartner_Icons/allPNGImages/noupdate.png" class="thumb-img_Banner"/>
-                    <div style="align-content: start!important;alignment: left!important;text-align: left!important;justify-content: left!important;height: 35px">
-                    </div>
-                </ion-card>
-            </ion-slide>
-        </ion-slides>
-    </div>
+  <div *ngIf="societyEventBanners.length!=0" style="position: relative;margin: 0px;margin-bottom: -40px;">
+    <ion-slides class="image-slider" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)" pager="true">
+      <ion-slide *ngFor="let img of societyEventBanners">
+        <ion-card style="margin: 0;border-radius: 0px!important;width: 100%!important;box-shadow: none!important;">
 
-    <div *ngIf="societyEventBanners.length==0" style="position: relative;margin: 1px;margin-bottom: -15px;margin-top: 15px;">
-    <div  style="position: relative;margin: 1px">
-        <ion-slides  class="image-slider" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)"
-                    pager="true">
-            <ion-slide>
-                <ion-card style="margin: 0;border-radius: 0px!important;width: 100%!important;box-shadow: none!important;">
-                    <img class="thumb-img12_NoBanner" src="assets/channelPartner_Icons/allPNGImages/noupdate.png"/>
-                    <div style="align-content: start!important;alignment: left!important;text-align: left!important;justify-content: left!important;height: 0px">
-                    </div>
-                </ion-card>
-            </ion-slide>
-        </ion-slides>
-    </div> 
+          <img *ngIf="img.banner_path!=''"
+            onerror="this.onerror=null;this.src='assets/channelPartner_Icons/allPNGImages/noupdate.png'"
+            src="{{img.media_path}}" class="thumb-img_Banner" />
+
+          <img *ngIf="img.banner_path==''" src="assets/channelPartner_Icons/allPNGImages/noupdate.png"
+            class="thumb-img_Banner" />
+
+          <!-- <div
+            style="align-content: start!important;alignment: left!important;text-align: left!important;justify-content: left!important;height: 35px">
+          </div> -->
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
   </div>
 
-</div> -->
+  <!-- <div *ngIf="societyEventBanners.length==0"
+    style="position: relative;margin: 1px;margin-bottom: -15px;margin-top: 15px;">
+    <div style="position: relative;margin: 1px">
+      <ion-slides class="image-slider" #slider (ionSlidesDidLoad)="slidesDidLoad(slider)" pager="true">
+        <ion-slide>
+          <ion-card style="margin: 0;border-radius: 0px!important;width: 100%!important;box-shadow: none!important;">
+            <img class="thumb-img12_NoBanner" src="assets/channelPartner_Icons/allPNGImages/noupdate.png" />
+            <div
+              style="align-content: start!important;alignment: left!important;text-align: left!important;justify-content: left!important;height: 0px">
+            </div>
+          </ion-card>
+        </ion-slide>
+      </ion-slides>
+    </div>
+  </div> -->
+
+  <!-- </div>  -->
 
   <!-- For Leadlist Feed -->
   <div style="padding-bottom: 50px!important;">
     <div *ngIf="leadlist.length!==0 && isSpinner==false">
       <div *ngFor="let c of leadlist ">
-        <ion-card-title class="leaddate" style="margin-bottom: -2%!important;margin-right: 2%">{{c.tag_date}}
+        <ion-card-title class="leaddate" style="margin-bottom: -2%!important;margin-right: 5%">{{c.tag_date}}
         </ion-card-title>
 
         <!-- Main Card to display All Data Of Feed -->
-        <ion-card class="outline" style="margin-bottom:10px!important;margin-left: 5%;margin-right: 5%;">
+        <ion-card class="outline">
 
           <!--For Whatsapp,Call,MetMenu  -->
           <ion-grid>
@@ -95,14 +102,13 @@
                 <div class="small-header-info">
                   <div class="cuid"> {{c.small_header_title}} </div>
 
-                  <div>
+                  <div class="d-flex justify-content-center align-items-center">
                     <ion-icon (click)=" Whatsapp(c.actions.call,c.ids.full_name,'www.javdekars.com')"
-                      style="margin-right: 5px!important;font-size: 22px!important;"
-                      src="assets/channelPartner_Icons/whatsApp_Icon/whatsapp.svg">
+                      style="margin-right: 5px!important;font-size: 30px!important;"
+                      src="assets/channelPartner_Icons/whatsApp_Icon/whatsapp_icon.svg">
                     </ion-icon>
-                    <ion-icon (click)="callMethodNew(c.actions.call)"
-                      style="margin-right: 6px!important;font-size: 22px!important;padding-left: 8px!important;"
-                      src="assets/channelPartner_Icons/mobile_Phone_Icon/call-outline.svg"></ion-icon>
+                    <ion-icon (click)="callMethodNew(c.actions.call)" style="font-size: 40px!important;"
+                      src="assets/channelPartner_Icons/mobile_Phone_Icon/call-icon.svg"></ion-icon>
                   </div>
                   <!-- <ion-icon [matMenuTriggerFor]="menu" style="margin-right: 5px!important;font-size: 30px!important;"
                   name="more"></ion-icon>

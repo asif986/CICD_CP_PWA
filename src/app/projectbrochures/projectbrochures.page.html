@@ -1,84 +1,111 @@
 <ion-header>
-  <ion-toolbar color="color_d" >
-  <ion-row>
-    <ion-col>
-      <div>
-        <ion-buttons slot="start" style="margin-left: 3%">
-          <i class="material-icons icon"  (click)="goback()">arrow_back_ios</i>
-           </ion-buttons>
-      </div>
-    </ion-col>
-    <ion-col style="text-align: start;margin-left: -30px!important;">
-      <div>
-        <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;">Project Brochures</ion-title>
-      </div>
-    </ion-col>
-    <ion-col style="text-align: end;margin-right: 10px;">
-      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 37%!important;">
-    </ion-col>
-  </ion-row>
+  <ion-toolbar color="color_d">
+    <ion-row>
+      <ion-col>
+        <div>
+          <ion-buttons slot="start" style="margin-left: 3%">
+            <i class="material-icons icon" (click)="goback()">arrow_back_ios</i>
+          </ion-buttons>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: start;margin-left: -30px!important;">
+        <div>
+          <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;">Project Brochures</ion-title>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: end;margin-right: 10px;">
+        <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'
+          style="text-align: right;width: 37%!important;">
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-  <div style="padding-left: 10px; padding-right: 10px;padding-top: 20px!important;font-size: 10px;">
+  <div class="project-brochure-searchbar">
     <mat-form-field appearance="outline" style="width:100%">
       <mat-label class="matLabel" style="font-size: 16px!important;">Project Name</mat-label>
-      <mat-select  [(ngModel)]="selectedCategory" >
-        <mat-option *ngFor="let performance of ProjectBrouchers let i= index" [value]="performance.project_name" (click)="getmyPerformancevalue(i)">
+      <mat-select [(ngModel)]="selectedCategory">
+        <mat-option *ngFor="let performance of ProjectBrouchers let i= index" [value]="performance.project_name"
+          (click)="getmyPerformancevalue(i)">
           {{performance.project_name}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-  </div>
 
-  <ion-list  >
-    <ion-card *ngFor="let c of Brouches let i=index"style="border-radius: 10px!important;margin-top: 20px!important;">
-    <ion-row>
-      <ion-col size='3'>
-        <div style="text-align:center;margin: 5px;">
-          <span class="dot">
-          <ion-title class="circle_title" style="text-transform: uppercase!important;">{{c.extension}}</ion-title>
-          </span>
-         </div>
-      </ion-col>
-      <ion-col size='9' style="padding-top: 20px;">
-        <div style="margin-bottom: -1px;">
-          <p class="brochure_title" style="margin-top: 10px;margin-left: 10px;padding-left:10px ;">{{c.brochure_title}}</p>
-        </div>
+
+    <ion-list>
+
+      <ion-card *ngFor="let c of Brouches let i=index" class="b-card">
+        <ion-row>
+
+          <!-- <ion-col size='3'>
+          <div style="text-align:center;margin: 5px;">
+            <span class="dot">
+              <ion-title class="circle_title" style="text-transform: uppercase!important;">{{c.extension}}</ion-title>
+            </span>
+          </div>
+        </ion-col>
+        <ion-col size='9' style="padding-top: 20px;">
+          <div style="margin-bottom: -1px;">
+            <p class="brochure_title" style="margin-top: 10px;margin-left: 10px;padding-left:10px ;">
+              {{c.brochure_title}}</p>
+          </div>
+          <div>
+            <p class="project_name" style="margin-top: 10px;margin-left: 10px;padding-left:10px ;">{{c.project_name}}
+            </p>
+          </div>
+        </ion-col>
+         -->
+
+          <ion-col size='12'>
+            <!-- <img src="{{c.media_path}}" alt="" srcset=""> -->
+            <div style='position: relative; height: 118px;'>
+
+              <pdf-viewer src="{{c.media_path}}" [page]="1" [show-all]="false" [stick-to-page]="true"
+                [autoresize]="false" [original-size]='true' [fit-to-page]='true' [render-text]='false'></pdf-viewer>
+            </div>
+          </ion-col>
+        </ion-row>
+        <mat-divider></mat-divider>
+        <p class="brochure_title" style="margin-top: 10px;margin-left: 10px;padding-left:10px ;">
+          {{c.brochure_title}}</p>
+        <mat-divider></mat-divider>
         <div>
-          <p class="project_name" style="margin-top: 10px;margin-left: 10px;padding-left:10px ;">{{c.project_name}}</p>
-        </div>
-      </ion-col>
-    </ion-row>
-    <mat-divider></mat-divider>
-    <div>
-      <ion-row style="margin-left: 35%!important;margin-bottom: 1%;padding-top: 5px;padding-bottom: 3px;">
-        <ion-col size="3" class="ion-text-center" style="margin-right: 3%!important;">
-          <i class="material-icons"  *ngIf="c.media_path != ''" style="color: black;width: 24px;height: 24px;" (click)="viewDocumentDownload(c.media_path,c.extension)">visibility</i>
-          <i class="material-icons" *ngIf="c.media_path == ''" style="color: black;width: 24px;height: 24px;" (click)="viewDocumentDownload('','')">visibility</i>
-          </ion-col>
-        <ion-col size="3" class="ion-text-left" style="margin-left: 20px;">
-          <i class="material-icons"  *ngIf="c.media_path != ''" style="color: black;width: 24px;height: 24px;" (click)="downloadDocument(c.media_path)">get_app</i>
-          <i class="material-icons" *ngIf="c.media_path == ''" style="color: black;width: 24px;height: 24px;" (click)="downloadDocument('')">get_app</i>
-          </ion-col>
-          <ion-col size="3" class="ion-text-left" style="margin-left: 20px;">
-            <i class="material-icons"  *ngIf="c.media_path != ''" style="color: black;width: 24px;height: 24px;" (click)="shareUsing(c.media_path,c.brochure_title)">share</i>
-            <i class="material-icons" *ngIf="c.media_path == ''" style="color: black;width: 24px;height: 24px;" (click)="shareUsing('','')">share</i>
+          <ion-row style="padding-top: 5px;padding-bottom: 3px; float: right;margin-right: 28px;">
+
+            <!-- <ion-col size="3" class="ion-text-center" style="margin-right: 3%!important;">
+            <i class="material-icons" *ngIf="c.media_path != ''" style="color: black;width: 24px;height: 24px;"
+              (click)="viewDocumentDownload(c.media_path,c.extension)">visibility</i>
+            <i class="material-icons" *ngIf="c.media_path == ''" style="color: black;width: 24px;height: 24px;"
+              (click)="viewDocumentDownload('','')">visibility</i>
+          </ion-col> -->
+            <ion-col size="3" class="ion-text-left" style="margin-left: 20px;">
+              <i class="material-icons" *ngIf="c.media_path != ''" style="color: black;width: 24px;height: 24px;"
+                (click)="downloadDocument(c.media_path)">get_app</i>
+              <i class="material-icons" *ngIf="c.media_path == ''" style="color: black;width: 24px;height: 24px;"
+                (click)="downloadDocument('')">get_app</i>
             </ion-col>
-      </ion-row>
-    </div>
-  </ion-card>
+            <ion-col size="3" class="ion-text-left" style="margin-left: 20px;">
+              <i class="material-icons" *ngIf="c.media_path != ''" style="color: black;width: 24px;height: 24px;"
+                (click)="shareUsing(c.media_path,c.brochure_title)">share</i>
+              <i class="material-icons" *ngIf="c.media_path == ''" style="color: black;width: 24px;height: 24px;"
+                (click)="shareUsing('','')">share</i>
+            </ion-col>
+          </ion-row>
+        </div>
+      </ion-card>
 
-  </ion-list>
+    </ion-list>
 
-  <div *ngIf="Brouches.length==0 && isSpinner==false"  class="ion-text-center">
-    <div class="datanotfound">
-      <img src="assets/channelPartner_Icons/project_Brochures_Icon/project-Brouchers.svg" style="width: 90px;height: 90px;color: gray;">
-      <ion-card-title class="noData">No Brochures Available!</ion-card-title>
+    <div *ngIf="Brouches.length==0 && isSpinner==false" class="ion-text-center">
+      <div class="datanotfound">
+        <img src="assets/channelPartner_Icons/project_Brochures_Icon/project-Brouchers.svg"
+          style="width: 90px;height: 90px;color: gray;">
+        <ion-card-title class="noData">No Brochures Available!</ion-card-title>
+      </div>
     </div>
+
   </div>
-
-    
 </ion-content>

@@ -38,7 +38,7 @@ export class HomePage implements OnInit {
   newExecutiveId = 0;
   newLoginApi: any;
   leadlist: any = [];
-  societyEventBanners: any = [];
+  // societyEventBanners: any = [];
   storageData = [];
   successvalue: any;
   successValueDetails: any;
@@ -60,6 +60,10 @@ export class HomePage implements OnInit {
   lead_status_id_FromFilter: any;
   SelectCategoryID_FromFilter: number;
   token_type_id_FromFilter: any;
+
+  societyEventBanners = [
+    { media_type_id: "1", media_path: "assets/new_icons/banner_img/1.png" },
+  ];
 
   // tslint:disable-next-line:max-line-length
   constructor(
@@ -152,7 +156,7 @@ export class HomePage implements OnInit {
                       this.isSpinner = true;
                       if (IDFromPerformancea == 2) {
                         this.getFeedData();
-                        this.getBannerData();
+                        // this.getBannerData();
                         this.updateToken();
                       } else if (IDFromPerformancea == 1) {
                         this.Filter();
@@ -578,7 +582,7 @@ export class HomePage implements OnInit {
         this.isSpinner = true;
         this.helper.showLoader("");
         this.getFeedData();
-        this.getBannerData();
+        // this.getBannerData();
         setTimeout(() => {
           event.target.disabled = false;
         }, 1500);

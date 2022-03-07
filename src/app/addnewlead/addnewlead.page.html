@@ -111,8 +111,7 @@
     <!--Enter Mobile Number With Country Code-->
     <ion-row style="margin-top: -8px;">
       <ion-col size="3" class="ion-text-center">
-        <div class="Countrycode" (click)="selectcountry()"
-          style="width: 100%;margin-right: 10px;margin-bottom: 1px !important;">
+        <div class="Countrycode" (click)="selectcountry()" style="">
           <mat-label class="countrycodetext">{{countrycode}}</mat-label>
         </div>
       </ion-col>
@@ -261,10 +260,10 @@
         </ion-col>
       </ion-row>
     </mat-expansion-panel>
-    <mat-divider></mat-divider>
+    <!-- <mat-divider></mat-divider> -->
 
     <!--Expand Panel for  KYC Documents-->
-    <mat-expansion-panel
+    <!-- <mat-expansion-panel
       style="padding-top: 10px!important;box-shadow:none!important;padding-bottom: 10px!important;margin-bottom: 5px!important;margin-top: 5px!important;"
       [expanded]="true">
 
@@ -272,10 +271,10 @@
         <mat-panel-title class="mat-panel-title" style="margin-top: 30px;margin-bottom: 30px">
           KYC Documents
         </mat-panel-title>
-      </mat-expansion-panel-header>
+      </mat-expansion-panel-header> -->
 
-      <!--KYC Documents-->
-      <ion-list>
+    <!--KYC Documents-->
+    <!-- <ion-list>
         <ion-card style="box-shadow: none!important;margin-top: -20px!important;"
           *ngFor="let kycdoc of addNewLead.kyc_doc_types">
           <ion-grid>
@@ -287,13 +286,13 @@
                   </ion-label>
                   <p class="newusertext1" class="texttitle"
                     style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{kycdoc.doc_path}}</p>
-                  <!-- <img class="centered" src={{kycdoc.doc_path}}>-->
+                  
                 </div>
               </ion-col>
               <ion-col class="ion-text-end" size="2">
                 <div>
                   <ion-icon style="margin-top: 5px;zoom: 2.0" name="attach"></ion-icon>
-                  <!-- <mat-icon style="margin-top: 5px" (click)="chooseFile(kycdoc.doc_type_id)">attachment</mat-icon>-->
+
                 </div>
               </ion-col>
             </ion-row>
@@ -301,8 +300,9 @@
           <mat-divider style="margin-top: -10px!important;"></mat-divider>
 
         </ion-card>
-      </ion-list>
-    </mat-expansion-panel>
+      </ion-list> -->
+
+    <!-- </mat-expansion-panel> -->
     <mat-divider></mat-divider>
 
     <!-- &lt;!&ndash;Expand Panel for  Other Details&ndash;&gt;

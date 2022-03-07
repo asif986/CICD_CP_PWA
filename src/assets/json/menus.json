@@ -1,6 +1,16 @@
 {
     "isVerified": [
         {
+            "image": "/assets/new_icons/home.png",
+            "label": " Home",
+            "navigation": "home"
+        },
+        {
+            "image": "/assets/new_icons/profilea.png",
+            "label": " Profile",
+            "navigation": ""
+        },
+        {
             "image": "/assets/new_icons/performance.png",
             "label": "My Performance",
             "navigation": "myperformance"
@@ -23,28 +33,133 @@
     ],
     "isVerfied_isadmin": [
         {
+            "image": "/assets/new_icons/home.png",
+            "label": " Home",
+            "navigation": "home"
+        },
+        {
+            "image": "/assets/new_icons/profilea.png",
+            "label": " Profile",
+            "navigation": ""
+        },
+        {
+            "image": "/assets/new_icons/performance.png",
+            "label": "My Performance",
+            "navigation": "myperformance"
+        },
+        {
+            "image": "/assets/new_icons/project_brocher.png",
+            "label": "Project Brochures",
+            "navigation": "projectbrochures"
+        },
+        {
             "image": "/assets/new_icons/team_lead_list.png",
             "label": "Team Leader Stats",
             "navigation": "team-stats"
         },
         {
-            "image": "/assets/new_icons/profile.png",
+            "image": "/assets/new_icons/profilea.png",
             "label": "Team Leaders List",
             "navigation": "teamlist"
+        },
+        {
+            "image": "/assets/new_icons/reminder.png",
+            "label": "Reminder",
+            "navigation": "reminder"
+        },
+        {
+            "image": "/assets/new_icons/notification.png",
+            "label": "Notification",
+            "navigation": "notification"
         }
     ],
     "isVerfied_isteamlead": [
         {
+            "image": "/assets/new_icons/home.png",
+            "label": " Home",
+            "navigation": "home"
+        },
+        {
+            "image": "/assets/new_icons/profilea.png",
+            "label": " Profile",
+            "navigation": ""
+        },
+        {
+            "image": "/assets/new_icons/performance.png",
+            "label": "My Performance",
+            "navigation": "myperformance"
+        },
+        {
+            "image": "/assets/new_icons/project_brocher.png",
+            "label": "Project Brochures",
+            "navigation": "projectbrochures"
+        },
+        {
             "image": "/assets/new_icons/team_lead_list.png",
             "label": "Sales Performance",
             "navigation": "team-stats"
+        },
+        {
+            "image": "/assets/new_icons/reminder.png",
+            "label": "Reminder",
+            "navigation": "reminder"
+        },
+        {
+            "image": "/assets/new_icons/notification.png",
+            "label": "Notification",
+            "navigation": "notification"
         }
     ],
     "isVerfied_isteamlead_isadmin": [
         {
+            "image": "/assets/new_icons/home.png",
+            "label": " Home",
+            "navigation": "home"
+        },
+        {
+            "image": "/assets/new_icons/profilea.png",
+            "label": " Profile",
+            "navigation": ""
+        },
+        {
+            "image": "/assets/new_icons/performance.png",
+            "label": "My Performance",
+            "navigation": "myperformance"
+        },
+        {
+            "image": "/assets/new_icons/stats.png",
+            "label": "Team Leader Stats",
+            "navigation": "team-stats"
+        },
+        {
+            "image": "/assets/new_icons/salesperformance.png",
+            "label": "Sales Performance",
+            "navigation": "team-stats"
+        },
+        {
             "image": "/assets/new_icons/list.png",
             "label": "FOS List",
             "navigation": "foslist"
+        },
+        {
+            "image": "/assets/new_icons/profile.png",
+            "label": "Team Leaders List",
+            "navigation": "teamlist"
+        },
+        {
+            "image": "/assets/new_icons/project_brocher.png",
+            "label": "Project Brochures",
+            "navigation": "projectbrochures"
+        },
+        {
+            "image": "/assets/new_icons/reminder.png",
+            "label": "Reminder",
+            "navigation": "reminder"
+        },
+        {
+            "image": "/assets/new_icons/notification.png",
+            "label": "Notification",
+            "navigation": "notification"
         }
     ]
 }

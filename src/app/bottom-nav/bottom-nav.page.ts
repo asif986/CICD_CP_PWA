@@ -111,11 +111,6 @@ export class BottomNavPage implements OnInit {
   }
 
   ngOnInit() {
-    this.http.get("assets/json/menus.json").subscribe((res) => {
-      console.log(res);
-      this.menusList = res;
-    });
-
     const me = this;
     this.storage.get("verification_status_id").then((val2) => {
       this.storage.get("cpLoginData").then((val1) => {
@@ -134,9 +129,7 @@ export class BottomNavPage implements OnInit {
       this.name = val;
       console.log(this.name);
     });
-  }
 
-  ionViewDidEnter() {
     console.log("isverified" + this.isVerfied);
     this.storage.get("is_team_lead").then((val3) => {
       this.is_team_lead = val3;
@@ -146,7 +139,31 @@ export class BottomNavPage implements OnInit {
       this.is_admin = val4;
       console.log("is_admin" + this.is_admin);
     });
+  }
 
+  ionViewDidEnter() {
+    let menus: any = [];
+    this.http.get("assets/json/menus.json").subscribe((res) => {
+      console.log(res);
+      menus = res;
+
+      if (
+        this.isVerfied == 1 &&
+        (this.is_team_lead == 1 || this.is_admin == 1)
+      ) {
+        console.log("1");
+        this.menusList = menus.isVerfied_isteamlead_isadmin;
+      } else if (this.isVerfied == 1 && this.is_team_lead == 1) {
+        console.log("2");
+        this.menusList = menus.isVerfied_isteamlead;
+      } else if (this.isVerfied == 1 && this.is_admin == 1) {
+        console.log("3");
+        this.menusList = menus.isVerfied_isadmin;
+      } else {
+        console.log("4");
+        this.menusList = menus.isVerfied;
+      }
+    });
     /*const me = this;
     this.storage.get('verification_status_id').then((val2) => {
       this.storage.get('cpLoginData').then((val1) => {

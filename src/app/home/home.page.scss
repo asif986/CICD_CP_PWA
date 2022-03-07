@@ -1,10 +1,11 @@
 // Banner thumb-img
 .thumb-img_Banner {
-  width: 100% !important;
-  height: 260px !important;
+  width: 65% !important;
+  // height: 260px !important;
   object-fit: cover;
-  padding: 15px !important;
+  // padding: 15px !important;
   border-radius: 30px;
+  margin: 0 auto;
 }
 
 .thumb-img12_NoBanner {
@@ -20,6 +21,10 @@
   bottom: 53px;
   left: 0;
   width: 100%;
+}
+
+::ng-deep.swiper-pagination-bullet-active {
+  background: none !important;
 }
 
 /*Ionic Refresh*/
@@ -55,6 +60,8 @@ ion-refresher-content {
   padding-bottom: 10px;
   border: 1px solid black;
   box-shadow: none !important;
+  margin-left: 8%;
+  margin-right: 8%;
 }
 
 // For MatMenu
@@ -75,7 +82,7 @@ ion-refresher-content {
   font-family: "Metropolis Light";
   color: #7a7a7a;
   margin-top: 5px !important;
-  padding-top: 15px !important;
+  // padding-top: 15px !important;
   padding-right: 20px !important;
 }
 
@@ -149,7 +156,7 @@ ion-refresher-content {
   text-align: start;
   text-transform: capitalize;
   border-radius: 50px !important;
-  margin-left: 174px;
+  // margin-left: 174px;
 }
 .status_text {
   margin-left: 1rem;
@@ -386,7 +393,7 @@ ion-fab-button[data-desc]::after {
   padding: 9px;
   border-radius: 5px;
   color: black !important;
-  // background-color: #f5a22c !important;
+  background-color: white !important;
   font-family: "Metropolis Medium";
   font-size: 16px !important;
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
@@ -402,7 +409,7 @@ ion-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 8px;
+  // margin-top: 8px;
 }
 .mat-box {
   display: flex;

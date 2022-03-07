@@ -1,19 +1,25 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { Routes, RouterModule } from "@angular/router";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { ProjectbrochuresPage } from './projectbrochures.page';
-import {MaterialModule} from '../material.module';
-import {MatDatepickerModule, MatDividerModule, MatExpansionModule} from '@angular/material';
+import { ProjectbrochuresPage } from "./projectbrochures.page";
+import { MaterialModule } from "../material.module";
+import {
+  MatDatepickerModule,
+  MatDividerModule,
+  MatExpansionModule,
+} from "@angular/material";
+
+import { PdfViewerModule } from "ng2-pdf-viewer";
 
 const routes: Routes = [
   {
-    path: '',
-    component: ProjectbrochuresPage
-  }
+    path: "",
+    component: ProjectbrochuresPage,
+  },
 ];
 
 @NgModule({
@@ -26,8 +32,10 @@ const routes: Routes = [
     MatExpansionModule,
     ReactiveFormsModule,
     MatDividerModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    PdfViewerModule,
   ],
-  declarations: [ProjectbrochuresPage]
+  declarations: [ProjectbrochuresPage],
+  providers: [],
 })
 export class ProjectbrochuresPageModule {}
