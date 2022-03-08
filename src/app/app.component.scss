@@ -230,3 +230,13 @@ circle {
     text-transform: capitalize!important;
     overflow: hidden;
 }
+
+::ng-deep .mat-form-field-wrapper {
+    margin: 0px !important;
+    padding-bottom: 1em;
+}
+
+::ng-deep .mat-form-field-infix {
+    // padding: 0.5em 0;
+    border-top: 0.6em solid transparent;
+}

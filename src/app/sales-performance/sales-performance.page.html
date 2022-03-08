@@ -1,0 +1,107 @@
+<ion-content>
+    <ion-grid>
+        <ion-row class="pt-5">
+            <ion-col size="10" offset="1">
+                <h2>Sales Performance</h2>
+            </ion-col>
+            <ion-col size="10" offset="1">
+                <mat-form-field appearance="outline">
+                    <mat-label>Select Project</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let project of projectList let i=i ndex " [value]="project.projectID ">
+                            {{project.projectnm}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ion-col>
+
+        </ion-row>
+        <ion-row>
+            <ion-col size="5" offset="1">
+                <mat-form-field appearance="outline">
+                    <mat-label>From Date</mat-label>
+
+                    <input matInput [matDatepicker]="picker" readonly>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <button mat-button (click)="picker.open()" matSuffix mat-icon-button aria-label="Clear">
+                        <mat-icon>
+                            <ion-icon name="calendar"></ion-icon>
+                        </mat-icon>
+                    </button>
+                </mat-form-field>
+            </ion-col>
+            <ion-col size="5">
+                <mat-form-field appearance="outline">
+                    <mat-label>To Date</mat-label>
+
+                    <input matInput [matDatepicker]="picker1" readonly>
+                    <mat-datepicker #picker1></mat-datepicker>
+                    <button mat-button (click)="picker1.open()" matSuffix mat-icon-button aria-label="Clear">
+                        <mat-icon>
+                            <ion-icon name="calendar"></ion-icon>
+                        </mat-icon>
+                    </button>
+                </mat-form-field>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="10" offset="1" class="pt-5">
+                <div class="p-3  custom-tb">
+                    <div class="d-flex justify-content-between pb-5 ">
+                        <div class="custom-card w-25 rounded">
+                            <img src="assets/channelPartner_Icons/profile/pp.jpeg" class="rounded-img thumb-img_Banner rounded" />
+                        </div>
+                        <div class="align-items-center d-flex justify-content-between">
+                            <p class="mb-0">Shreyas Kulkarn <br> (Team Leads)</p>
+                        </div>
+                        <!-- <div> -->
+                        <div class="d-flex align-items-center">
+                            <div class="p-2">
+                                <mat-icon>
+                                    <ion-icon name="logo-whatsapp"></ion-icon>
+
+                                </mat-icon>
+                            </div>
+                            <div class="p-2">
+                                <mat-icon>
+                                    <ion-icon name="call"></ion-icon>
+                                </mat-icon>
+                            </div>
+
+                        </div>
+
+
+                        <!-- </div> -->
+                    </div>
+
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                        <ng-container *ngFor="let item of displayedColumns" [matColumnDef]="item">
+                            <th mat-header-cell *matHeaderCellDef>{{ item }}</th>
+                            <td mat-cell *matCellDef="let element"> {{element[item]}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+
+                </div>
+
+            </ion-col>
+            <ion-col size="10" offset="1" class="pt-5">
+                <div class="p-3  custom-tb">
+                    <h3 class="text-center">Total</h3>
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                        <ng-container *ngFor="let item of displayedColumns" [matColumnDef]="item">
+                            <th mat-header-cell *matHeaderCellDef>{{ item }}</th>
+                            <td mat-cell *matCellDef="let element"> {{element[item]}} </td>
+                        </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>
