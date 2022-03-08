@@ -2,52 +2,51 @@
   color: var(--ion-color-primary);
   font-family: "Metropolis Medium";
   font-size: medium;
-  background-color: #652D90;
-
+  background-color: #652d90;
 }
-.toolbar-title{
+.toolbar-title {
   color: #606060ba;
   font-family: "Metropolis Medium";
   font-size: 20px;
 }
-.matLabel{
+.matLabel {
   color: var(--ion-color-primary);
   font-family: "Metropolis Light";
-  font-size: 16px!important;
+  font-size: 16px !important;
 }
-.title{
+.title {
   color: #606060;
   font-family: "Metropolis Medium";
-  font-size: 14px!important;
+  font-size: 14px !important;
 }
-.count_leads{
-  color:#1ABC71;
+.count_leads {
+  color: #1abc71;
   font-family: "Metropolis Extra Bold";
-  font-size: 25px!important;
+  font-size: 25px !important;
 }
-.count_siteVisit{
-  color: #F5D400;
+.count_siteVisit {
+  color: #f5d400;
   font-family: "Metropolis Extra Bold";
-  font-size: 25px!important;
+  font-size: 25px !important;
 }
-.count_Ghpgenerated{
-  color: #924DCF;
+.count_Ghpgenerated {
+  color: #924dcf;
   font-family: "Metropolis Extra Bold";
-  font-size: 25px!important;
+  font-size: 25px !important;
 }
 
-.count_GhpgPulsenerated{
-  color: #4E0291;
+.count_GhpgPulsenerated {
+  color: #4e0291;
   font-family: "Metropolis Extra Bold";
-  font-size: 25px!important;
+  font-size: 25px !important;
 }
-.count_allotments{
-  color: #2C408B;
+.count_allotments {
+  color: #2c408b;
   font-family: "Metropolis Extra Bold";
-  font-size: 25px!important;
-  padding-top: 40px!important;
+  font-size: 25px !important;
+  padding-top: 40px !important;
 }
-.outline_card{
+.outline_card {
   // width: 80%!important;
   // height: 115px!important;
   // box-shadow: none!important;
@@ -68,43 +67,45 @@
   margin-top: -5px;
 }
 
-.outline_card_ForAllotment{
-  width: 87%!important;
-  height: 115px!important;
-  box-shadow: none!important;
-  border-radius: 10px!important;
-  border-bottom: 2px solid gray!important;
-  border-top: 2px solid gray!important;
-  border-left: 2px solid gray!important;
-  border-right: 2px solid gray!important;
+.outline_card_ForAllotment {
+  width: 87% !important;
+  height: 115px !important;
+  box-shadow: none !important;
+  border-radius: 10px !important;
+  border-bottom: 2px solid gray !important;
+  border-top: 2px solid gray !important;
+  border-left: 2px solid gray !important;
+  border-right: 2px solid gray !important;
 }
-::ng-deep.mat-select-panel .mat-optgroup-label{
+::ng-deep.mat-select-panel .mat-optgroup-label {
   color: black;
 }
-::ng-deep.mat-select-panel .mat-option-text{
-  color: black;
-  font-family: "Metropolis Medium";
-  font-size: 16px;
-}
-::ng-deep.mat-select-panel .mat-select-arrow-wrapper{
-  color: black;
-}
-::ng-deep.mat-form-field-appearance-legacy .mat-form-field-underline{
-  color: black;
-}
-::ng-deep.mat-select-value{
+::ng-deep.mat-select-panel .mat-option-text {
   color: black;
   font-family: "Metropolis Medium";
   font-size: 16px;
 }
-::ng-deep.mat-form-field:not(.mat-form-field-appearance-legacy) .mat-form-field-suffix .mat-datepicker-toggle-default-icon {
+::ng-deep.mat-select-panel .mat-select-arrow-wrapper {
+  color: black;
+}
+::ng-deep.mat-form-field-appearance-legacy .mat-form-field-underline {
+  color: black;
+}
+::ng-deep.mat-select-value {
+  color: black;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+}
+::ng-deep.mat-form-field:not(.mat-form-field-appearance-legacy)
+  .mat-form-field-suffix
+  .mat-datepicker-toggle-default-icon {
   display: block;
   width: 1.5em;
   height: 1.5em;
   font-size: 15px;
 }
 
-.ion-content {
- background: black!important;
- background-color: black!important;
+.performance-page {
+  margin-left: 8%;
+  margin-right: 8%;
 }

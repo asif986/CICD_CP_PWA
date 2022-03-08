@@ -19,7 +19,7 @@
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
 @import "~@ionic/angular/css/typography.css";
-@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/display.css";
 
 /* Optional CSS utils that can be commented out */
 
@@ -33,7 +33,7 @@
     --background: var(--ion-color-primary);
     --color: var(--ion-color-secondary);
     --ion-font-family: "Metropolis Medium";
-    --font-max-size: 16px!important;
+    --font-max-size: 16px !important;
 }
 
 //For ALERT
@@ -41,7 +41,7 @@
     --color: var(--ion-color-primary);
     --background: var(--ion-color-secondary);
     --ion-font-family: "Metropolis Medium";
-    --font-max-size: 18px!important;
+    --font-max-size: 18px !important;
 }
 
 //For Toolbar-title
@@ -55,7 +55,7 @@
     color: var(--ion-color-secondary);
     font-family: "Metropolis Medium";
     font-size: 20px;
-    background-color: #652D90;
+    background-color: #652d90;
 }
 
 //For TOAST Sucess
@@ -86,7 +86,7 @@
     --background: green;
     --color: var(--ion-color-main-white);
     --ion-font-family: "Metropolis Medium";
-    --font-max-size: 16px!important;
+    --font-max-size: 16px !important;
     padding-bottom: 120%;
     position: initial;
     margin-bottom: 27%;
@@ -115,7 +115,7 @@ ion-toolbar {
 .srcIMGLOGO {
     text-align: right;
     margin-right: 0px;
-    width: 30%!important;
+    width: 30% !important;
 }
 
 .p-0 {
@@ -140,12 +140,11 @@ ion-toolbar {
     margin-left: auto !important;
     margin-right: auto !important;
     width: 100% !important;
-    padding-top: 5px!important;
-    padding-bottom: 5px!important;
-    font-size: 18px!important;
-    border-radius: 25px!important;
-    background-color: rgba(0, 0, 0, .26);
-    color: rgba(0, 0, 0, .26);
+    padding: 0.5rem!important;
+    font-size: 18px !important;
+    border-radius: 25px !important;
+    background-color: rgba(0, 0, 0, 0.26);
+    color: rgba(0, 0, 0, 0.26);
 }
 
 .header-logo {
@@ -159,7 +158,7 @@ svg {
 }
 
 .m-0 {
-    margin: 0px!important;
+    margin: 0px !important;
 }
 
 
@@ -202,3 +201,20 @@ svg {
   }
 }
 */
+
+::ng-deep .mat-form-field-outline-start {
+    border-radius: 28px 0 0 28px !important;
+    min-width: 28px !important;
+}
+
+::ng-deep .mat-form-field-outline-end {
+    border-radius: 0 28px 28px 0 !important;
+}
+
+.ion-color-fab {
+    --ion-color-base: var(--ion-color-new-primary) !important;
+    --ion-color-base-rgb: var(--ion-color-new-primary) !important;
+    --ion-color-contrast-rgb: var(--ion-color-new-primary) !important;
+    --ion-color-shade: var(--ion-color-new-primary) !important;
+    --ion-color-tint: var(--ion-color-new-primary) !important;
+}

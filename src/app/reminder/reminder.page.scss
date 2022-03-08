@@ -17,12 +17,12 @@
   color: var(--ion-color-primary);
   font-size: 14px;
   font-family: "Metropolis Light";
-  color: #7A7A7A;
+  color: #7a7a7a;
 }
 .ion-icon {
   font-size: 18px;
-  margin-right: 5px!important;
-  color:  var(--ion-color-primary);
+  margin-right: 5px !important;
+  color: var(--ion-color-primary);
 }
 .fabmargin {
   margin: 5%;
@@ -30,7 +30,7 @@
 .toolbar-text {
   color: var(--ion-color-secondary);
   font-family: "Metropolis Medium";
-  font-size: 20px!important;
+  font-size: 20px !important;
 }
 
 /*No Data Found*/
@@ -38,16 +38,19 @@
   alignment: center;
   margin-top: 50%;
 }
-.noData{
-  margin-top: 3%!important;
+.noData {
+  margin-top: 3% !important;
   font-size: 20px;
   font-family: "Metropolis Medium";
-  color:black!important;
+  color: black !important;
 }
-.ion-color-fab {
-  --ion-color-base:#F5A22C!important;
-  --ion-color-base-rgb: #F5A22C!important;
-  --ion-color-contrast-rgb: #F5A22C!important;
-  --ion-color-shade: #F5A22C!important;
-  --ion-color-tint:#F5A22C!important;
+
+.reminder-card {
+  margin-bottom: 10px !important;
+  margin-left: 8%;
+  margin-right: 8%;
+  margin-top: 20px;
+  box-shadow: none !important;
+  border: 1px solid black;
+  border-radius: 28px;
 }

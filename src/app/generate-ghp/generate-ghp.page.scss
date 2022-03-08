@@ -1,44 +1,45 @@
-.p{
+.p {
   font-family: "Metropolis Medium";
-  font-size: 16px!important;
+  font-size: 16px !important;
   color: black !important;
-  padding-left: 10px!important;
+  padding-left: 17px !important;
+  padding-top: 10px;
 }
-.inputForFormField{
+.inputForFormField {
   font-family: "Metropolis Light";
-  font-size: 16px!important;
-  color: black!important;
+  font-size: 16px !important;
+  color: black !important;
 }
-.font_star{
-  color: red!important;
+.font_star {
+  color: red !important;
   font-size: 16px;
   font-family: "Metropolis Light";
-  top: -18px!important;
+  top: -18px !important;
 }
-::ng-deep.mat-form-field-hide-placeholder .mat-select-placeholder{
+::ng-deep.mat-form-field-hide-placeholder .mat-select-placeholder {
   font-family: "Metropolis Light";
-  font-size: 16px!important;
+  font-size: 16px !important;
 }
-.registerbutton{
-  margin-top: 5%!important;
-  margin-bottom: 5%!important;
-  margin-left: auto!important;
-  margin-right: auto!important;
+.registerbutton {
+  margin-top: 5% !important;
+  margin-bottom: 5% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
   width: 55%;
   padding-top: 3px;
   padding-bottom: 3px;
   padding-left: 5px;
   padding-right: 5px;
-  font-size:16px;
+  font-size: 16px;
   border-radius: 25px;
-  background-color: #F5A22C;
+  background-color: #f5a22c;
   color: var(--ion-color-primary);
   font-family: "Metropolis Medium";
 }
 ::ng-deep .mat-select-value {
-  color: black!important;
+  color: black !important;
   font-family: "Metropolis Medium";
-  font-size: 16px!important;
+  font-size: 16px !important;
 }
 ::ng-deep.mat-option-text {
   color: black !important;
@@ -48,11 +49,10 @@
 ::ng-deep.swal2-title {
   font-family: "Metropolis Medium";
   font-size: 16px;
-  border-radius: 16px!important;
+  border-radius: 16px !important;
 }
 
-.newusertext
-{
+.newusertext {
   padding: 2px;
   alignment: center;
   color: #000000;
@@ -63,8 +63,7 @@
   align-items: center;
   font-size: 16px;
 }
-.newusertext1
-{
+.newusertext1 {
   padding: 2px;
   alignment: center;
   color: var(--ion-color-medium_grey);
@@ -74,32 +73,31 @@
   align-items: center;
   font-size: 12px;
 }
-.inputtextfield
-{
+.inputtextfield {
   padding: 2px;
   color: #000000;
   font-family: "Metropolis Medium";
   font-size: 16px;
 }
-.mat-panel-title
-{
+.mat-panel-title {
   padding: 1px;
   alignment: left;
   color: var(--ion-color-primary);
   font-family: "Metropolis Medium";
   margin-top: 5%;
   margin-bottom: 5%;
-  font-size:18px;
+  font-size: 18px;
 }
-.Mandetory{
+.Mandetory {
   font-family: "Metropolis Light";
-  font-size: 16px!important;
+  font-size: 16px !important;
   padding: 2px;
-  font-weight: bolder!important;
+  font-weight: bolder !important;
 }
 .example-radio-group {
-  display: flex; flex-direction: column;
-  /* display: inline-grid; */ 
+  display: flex;
+  flex-direction: column;
+  /* display: inline-grid; */
   /* display: grid; */
   margin: 20px 0;
 }

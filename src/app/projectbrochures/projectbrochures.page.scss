@@ -4,90 +4,104 @@
   font-size: medium;
   background-color: var(--ion-color-secondary);
 }
-.toolbar-title{
+.toolbar-title {
   color: var(--ion-color-secondary);
   font-family: "Metropolis Medium";
   font-size: 20px;
 }
-  /*No Data Found*/
-  .datanotfound {
-    alignment: center;
-    margin-top: 50%;
-  }
-  .noData{
-    margin-top: 3%!important;
-    font-size: 20px;
-    font-family: "Metropolis Medium";
-    color:black!important;
-  }
-  .dot {
-    height: 70px;
-    width: 70px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-  }
-  .brochure_title{
-    color: black;
-    font-family: "Metropolis Medium";
-    font-size: 16px;
-    
-  }
-  .project_name{
-    color: black;
-    font-family: "Metropolis Light";
-    font-size: 16px;
-    
-  }
-  .circle_title{
-    color: black;
-    font-family: "Metropolis Bold";
-    font-size: 14px;
-    text-align: center!important;
-    padding-top: 28px;
-    text-transform: capitalize;
-  }
-  #forgotButton11{
-    color: black;
-    font-family: "Metropolis Medium"!important;
-    font-size: 14px!important;
-    border-radius: 25px!important;
-  }
-  #forgotButton12{
-    color: black;
-    font-family: "Metropolis Medium"!important;
-    font-size: 14px!important;
-    border-radius: 25px!important;
-  }
-  #forgotButton21{
-    color: black;
-    font-family: "Metropolis Medium"!important;
-    font-size: 14px!important;
-    border-radius: 25px!important;
-  }
-  #forgotButton22{
-    color: black;
-    font-family: "Metropolis Medium"!important;
-    font-size: 14px!important;
-    border-radius: 25px!important;
-  }
-  ::ng-deep.mat-select-panel .mat-optgroup-label{
-    color: black;
-  }
-  ::ng-deep.mat-select-panel .mat-option-text{
-    color: black;
-    font-family: "Metropolis Medium";
-    font-size: 16px;
-  }
-  ::ng-deep.mat-select-panel .mat-select-arrow-wrapper{
-    color: black;
-  }
-  ::ng-deep.mat-form-field-appearance-legacy .mat-form-field-underline{
-    color: black;
-  }
-  ::ng-deep.mat-select-value{
-    color: black;
-    font-family: "Metropolis Medium";
-    font-size: 16px;
-  }
-  
+/*No Data Found*/
+.datanotfound {
+  alignment: center;
+  margin-top: 50%;
+}
+.noData {
+  margin-top: 3% !important;
+  font-size: 20px;
+  font-family: "Metropolis Medium";
+  color: black !important;
+}
+.dot {
+  height: 70px;
+  width: 70px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+.brochure_title {
+  color: black;
+  font-family: "Metropolis Medium";
+  font-size: 14px;
+}
+.project_name {
+  color: black;
+  font-family: "Metropolis Light";
+  font-size: 16px;
+}
+.circle_title {
+  color: black;
+  font-family: "Metropolis Bold";
+  font-size: 14px;
+  text-align: center !important;
+  padding-top: 28px;
+  text-transform: capitalize;
+}
+#forgotButton11 {
+  color: black;
+  font-family: "Metropolis Medium" !important;
+  font-size: 14px !important;
+  border-radius: 25px !important;
+}
+#forgotButton12 {
+  color: black;
+  font-family: "Metropolis Medium" !important;
+  font-size: 14px !important;
+  border-radius: 25px !important;
+}
+#forgotButton21 {
+  color: black;
+  font-family: "Metropolis Medium" !important;
+  font-size: 14px !important;
+  border-radius: 25px !important;
+}
+#forgotButton22 {
+  color: black;
+  font-family: "Metropolis Medium" !important;
+  font-size: 14px !important;
+  border-radius: 25px !important;
+}
+::ng-deep.mat-select-panel .mat-optgroup-label {
+  color: black;
+}
+::ng-deep.mat-select-panel .mat-option-text {
+  color: black;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+}
+::ng-deep.mat-select-panel .mat-select-arrow-wrapper {
+  color: black;
+}
+::ng-deep.mat-form-field-appearance-legacy .mat-form-field-underline {
+  color: black;
+}
+::ng-deep.mat-select-value {
+  color: black;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
+}
+.project-brochure-searchbar {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-top: 36px !important;
+  font-size: 16px;
+}
+
+::ng-deep.pdfViewer .page canvas {
+  height: 175px !important;
+}
+
+.b-card {
+  border-radius: 10px !important;
+  margin-top: 20px !important;
+  box-shadow: none;
+  border: 1px solid black;
+}
