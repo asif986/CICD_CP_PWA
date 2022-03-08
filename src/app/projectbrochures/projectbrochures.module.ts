@@ -13,7 +13,7 @@ import {
   MatExpansionModule,
 } from "@angular/material";
 
-import { PdfViewerModule } from "ng2-pdf-viewer";
+// import { PdfViewerModule } from "ng2-pdf-viewer";
 
 const routes: Routes = [
   {
@@ -33,7 +33,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatDividerModule,
     MatDatepickerModule,
-    PdfViewerModule,
+    // PdfViewerModule,
   ],
   declarations: [ProjectbrochuresPage],
   providers: [],

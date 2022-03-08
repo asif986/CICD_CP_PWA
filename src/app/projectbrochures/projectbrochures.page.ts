@@ -32,7 +32,6 @@ import {
 } from "@ionic-native/in-app-browser/ngx";
 import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { DomSanitizer } from "@angular/platform-browser";
-import { PdfViewerComponent } from "ng2-pdf-viewer";
 @Component({
   selector: "app-projectbrochures",
   templateUrl: "./projectbrochures.page.html",
@@ -69,9 +68,6 @@ export class ProjectbrochuresPage implements OnInit {
     fullscreen: "yes", // Windows only
   };
 
-  @ViewChild(PdfViewerComponent, { static: false })
-  private pdfComponent: PdfViewerComponent;
-
   constructor(
     private storage: Storage,
     private theInAppBrowser: InAppBrowser,
@@ -104,10 +100,7 @@ export class ProjectbrochuresPage implements OnInit {
       this.storage.set("IDFromPerformance", 2);
     });
   }
-  // called after pdf page is rendered
-  pageRendered() {
-    this.pdfComponent.pdfViewer.currentScaleValue = "page-fit";
-  }
+
   ngOnInit() {}
 
   ionViewDidEnter() {
