@@ -1,0 +1,34 @@
+::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0px;
+}
+
+.custom-card {
+    background-color: white;
+}
+
+.rounded-img {
+    border-radius: 4.25rem!important;
+}
+
+::ng-deep table.mat-table {
+    border-spacing: 0;
+    width: 100%;
+    border-radius: 1px solid;
+}
+
+p {
+    font-family: "Metropolis Light";
+}
+
+.custom-tb {
+    border: 1px solid;
+    border-radius: 1rem;
+}
+
+::ng-deep table>* {
+    border-radius: 1px solid;
+}
+
+::ng-deep tr>th {
+    border-radius: 1px solid;
+}

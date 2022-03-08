@@ -221,36 +221,12 @@ circle {
     overflow: hidden;
 }
 
-// vj cp 2.0
-::ng-deep .mat-form-field-outline-start {
-    border-radius: 28px 0 0 28px !important;
-    min-width: 28px !important;
-}
-
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-wrapper {
-    margin: 0px !important;
-}
-
 ::ng-deep .mat-form-field-wrapper {
-    padding-bottom: 1em !important;
+    margin: 0px !important;
+    padding-bottom: 1em;
 }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
-    padding: 0.6em 0 0.6em 0 !important;
-}
-
-::ng-deep .mat-form-field-outline-end {
-    border-radius: 0 28px 28px 0 !important;
-}
-
-::ng-deep.mat-form-field-label-wrapper {
-    left: 16px !important;
-}
-
-.ion-color-fab {
-    --ion-color-base: var(--ion-color-new-primary) !important;
-    --ion-color-base-rgb: var(--ion-color-new-primary) !important;
-    --ion-color-contrast-rgb: var(--ion-color-new-primary) !important;
-    --ion-color-shade: var(--ion-color-new-primary) !important;
-    --ion-color-tint: var(--ion-color-new-primary) !important;
+::ng-deep .mat-form-field-infix {
+    // padding: 0.5em 0;
+    border-top: 0.6em solid transparent;
 }

@@ -104,6 +104,7 @@ const routes: Routes = [
   { path: 'claim-awards', loadChildren: './claim-awards/claim-awards.module#ClaimAwardsPageModule' },
   { path: 'show-logs', loadChildren: './show-logs/show-logs.module#ShowLogsPageModule' },
   { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
+  { path: 'sales-performance', loadChildren: './sales-performance/sales-performance.module#SalesPerformancePageModule' },
 ];
 
 @NgModule({
