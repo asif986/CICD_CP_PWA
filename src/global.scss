@@ -203,15 +203,6 @@ svg {
 }
 */
 
-::ng-deep .mat-form-field-outline-start {
-    border-radius: 28px 0 0 28px !important;
-    min-width: 28px !important;
-}
-
-::ng-deep .mat-form-field-outline-end {
-    border-radius: 0 28px 28px 0 !important;
-}
-
 .ion-color-fab {
     --ion-color-base: var(--ion-color-new-primary) !important;
     --ion-color-base-rgb: var(--ion-color-new-primary) !important;

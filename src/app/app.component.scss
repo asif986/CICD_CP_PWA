@@ -1,232 +1,240 @@
-/*Sukrut 23-09-2019 Expantion panel*/
-
-::ng-deep .mat-expansion-panel-content>.mat-expansion-panel-body {
-    padding: 10px!important;
-}
-
-
-/*Sukrut 23-09-2019..... for matformfield ouline*/
-
-// mat-icon-stepper selected color change
-::ng-deep .mat-step-header .mat-step-icon-selected,
-.mat-step-header .mat-step-icon-state-done,
-.mat-step-header .mat-step-icon-state-edit {
-    background-color: #606060!important;
-}
-
-//input outline color
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-    color: #606060 !important;
-    // opacity: 1!important;
-}
-
-//mat-input focused color
-::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
-    color: #606060 !important;
-}
-
-// mat-input error outline color
-::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
-    color: black !important;
-    opacity: 0.8 !important;
-}
-
-// mat-input carent color
-::ng-deep .mat-input-element {
-    caret-color: #606060!important;
-}
-
-// mat-input error carent color
-::ng-deep .mat-form-field-invalid .mat-input-element,
-.mat-warn .mat-input-element {
-    caret-color: #606060 !important;
-}
-
-// mat-label normal state style
-::ng-deep .mat-form-field-label {
-    color: rgba(0, 0, 0, 0.6) !important;
-    // color: $mainColor!important;
-}
-
-//mat-label label
-.mat-form-field-appearance-outline .mat-form-field-label {
-    margin-top: -1.25em !important;
-}
-
-// mat-label focused style
-::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
-    color: black !important;
-}
-
-// mat-label error style
-::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
-    color: #606060 !important;
-}
-
-::ng-deep.list .item {
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
-}
-
-::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {}
-
-::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {}
-
-
-/*Radio button color change*/
-
-::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
-    background-color: black !important;
-    /*inner circle color change*/
-}
-
-::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
-    border-color: black !important;
-    /*outer ring color change*/
-}
-
-//Button
-.loginbutton {
-    margin-top: 7%;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: 18px;
-    border-radius: 25px;
-    border-color: var(--ion-color-primary);
-    font-family: "Metropolis Medium";
-    border: 1px solid;
-}
-
-.button {
-    background: var(--primary-color, green);
-}
-
-::ng-deep .mat-checkbox.mat-checked.green .mat-icon {
-    background-color: black !important;
-    /*inner circle color change*/
-}
-
-::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
-.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
-.mat-accent .mat-pseudo-checkbox-checked,
-.mat-accent .mat-pseudo-checkbox-indeterminate,
-.mat-pseudo-checkbox-checked,
-.mat-pseudo-checkbox-indeterminate {
-    background-color: black !important;
-}
-
-//Alert
-
-/*Alert Design*/
-
-::ng-deep.alert-wrapper.sc-ion-alert-md {
-    border-radius: 16px;
-}
-
-::ng-deep.alert-title.sc-ion-alert-md {
-    color: var(--ion-color-primary);
-    font-family: "Metropolis Medium";
-    font-weight: 700;
-    font-size: 18px;
-}
-
-::ng-deep.alert-message.sc-ion-alert-md {
-    color: var(--ion-color-sutextTitle);
-    font-family: "Metropolis Medium";
-    line-height: 1.5;
-    font-size: 16px;
-    background-color: var(--ion-color-main-white);
-}
-
-::ng-deep.alert-button-group.sc-ion-alert-md {
-    color: var(--ion-color-primary);
-    font-family: "Metropolis Medium";
-    font-size: 16px;
-}
-
-::ng-deep.my-custom-modal-css .modal-wrapper {
-    height: 100%;
-    top: 6%;
-    display: block;
-    margin-bottom: 0% !important;
-}
-
-::ng-deep.loading-wrapper.sc-ion-loading-md {
-    padding-top: 0px !important;
-    padding-bottom: 0px !important;
-    box-shadow: none;
-}
-
-::ng-deep.loading-wrapper {
-    background-color: transparent !important;
-}
-
-::ng-deep.sc-ion-loading-md-h {
-    // color: #848282 !important;
-    --spinner-color: #848282;
-}
-
-::ng-deep ion-spinner {
-    width: 44px !important;
-    height: 48px !important;
-}
-
-circle {
-    stroke-width: 7px;
-}
-
-::ng-deep.my-custom-modal-css2 .modal-wrapper {
-    height: 70% !important;
-    width: 90% !important;
-    position: absolute;
-    display: inline;
-    border-radius: 16px !important;
-}
-
-::ng-deep.my-custom-modal-css-popUpRaiseBill .modal-wrapper {
-    height: 100% !important;
-    width: 100% !important;
-    position: absolute;
-    display: inline;
-    border-radius: 10px !important;
-}
-
-::ng-deep.my-custom-modal-css-showLogs .modal-wrapper {
-    height: 80% !important;
-    width: 90% !important;
-    position: absolute;
-    display: inline;
-    border-radius: 10px !important;
-}
-
-::ng-deep.alert-button.sc-ion-alert-md {
-    border-radius: 2px;
-    margin-left: 0;
-    margin-right: 8px;
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    position: relative;
-    background-color: transparent;
-    color: var(--ion-color-primary, #3880ff);
-    font-weight: 500;
-    text-align: end;
-    text-transform: capitalize !important;
-    overflow: hidden;
-}
-
-::ng-deep .mat-form-field-wrapper {
-    margin: 0px !important;
-    padding-bottom: 1em;
-}
-
-::ng-deep .mat-form-field-infix {
-    // padding: 0.5em 0;
-    border-top: 0.6em solid transparent;
-}
+    /*Sukrut 23-09-2019 Expantion panel*/
+    
+     ::ng-deep .mat-expansion-panel-content>.mat-expansion-panel-body {
+        padding: 10px!important;
+    }
+    /*Sukrut 23-09-2019..... for matformfield ouline*/
+    
+    // mat-icon-stepper selected color change
+     ::ng-deep .mat-step-header .mat-step-icon-selected,
+    .mat-step-header .mat-step-icon-state-done,
+    .mat-step-header .mat-step-icon-state-edit {
+        background-color: #606060!important;
+    }
+    
+    //input outline color
+     ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+        color: #606060 !important;
+        // opacity: 1!important;
+    }
+    
+    //mat-input focused color
+     ::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+        color: #606060 !important;
+    }
+    
+    // mat-input error outline color
+     ::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
+        color: black !important;
+        opacity: 0.8 !important;
+    }
+    
+    // mat-input carent color
+     ::ng-deep .mat-input-element {
+        caret-color: #606060!important;
+    }
+    
+    // mat-input error carent color
+     ::ng-deep .mat-form-field-invalid .mat-input-element,
+    .mat-warn .mat-input-element {
+        caret-color: #606060 !important;
+    }
+    
+    // mat-label normal state style
+     ::ng-deep .mat-form-field-label {
+        color: rgba(0, 0, 0, 0.6) !important;
+        // color: $mainColor!important;
+    }
+    
+    //mat-label label
+    .mat-form-field-appearance-outline .mat-form-field-label {
+        margin-top: -1.25em !important;
+    }
+    
+    // mat-label focused style
+     ::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+        color: black !important;
+    }
+    
+    // mat-label error style
+     ::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-label {
+        color: #606060 !important;
+    }
+    
+     ::ng-deep.list .item {
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+    }
+    
+     ::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {}
+    
+     ::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {}
+    /*Radio button color change*/
+    
+     ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+        background-color: black !important;
+        /*inner circle color change*/
+    }
+    
+     ::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+        border-color: black !important;
+        /*outer ring color change*/
+    }
+    
+    //Button
+    .loginbutton {
+        margin-top: 7%;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        font-size: 18px;
+        border-radius: 25px;
+        border-color: var(--ion-color-primary);
+        font-family: "Metropolis Medium";
+        border: 1px solid;
+    }
+    
+    .button {
+        background: var(--primary-color, green);
+    }
+    
+     ::ng-deep .mat-checkbox.mat-checked.green .mat-icon {
+        background-color: black !important;
+        /*inner circle color change*/
+    }
+    
+     ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,
+    .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+    .mat-accent .mat-pseudo-checkbox-checked,
+    .mat-accent .mat-pseudo-checkbox-indeterminate,
+    .mat-pseudo-checkbox-checked,
+    .mat-pseudo-checkbox-indeterminate {
+        background-color: black !important;
+    }
+    
+    //Alert
+    /*Alert Design*/
+    
+     ::ng-deep.alert-wrapper.sc-ion-alert-md {
+        border-radius: 16px;
+    }
+    
+     ::ng-deep.alert-title.sc-ion-alert-md {
+        color: var(--ion-color-primary);
+        font-family: "Metropolis Medium";
+        font-weight: 700;
+        font-size: 18px;
+    }
+    
+     ::ng-deep.alert-message.sc-ion-alert-md {
+        color: var(--ion-color-sutextTitle);
+        font-family: "Metropolis Medium";
+        line-height: 1.5;
+        font-size: 16px;
+        background-color: var(--ion-color-main-white);
+    }
+    
+     ::ng-deep.alert-button-group.sc-ion-alert-md {
+        color: var(--ion-color-primary);
+        font-family: "Metropolis Medium";
+        font-size: 16px;
+    }
+    
+     ::ng-deep.my-custom-modal-css .modal-wrapper {
+        height: 100%;
+        top: 6%;
+        display: block;
+        margin-bottom: 0% !important;
+    }
+    
+     ::ng-deep.loading-wrapper.sc-ion-loading-md {
+        padding-top: 0px !important;
+        padding-bottom: 0px !important;
+        box-shadow: none;
+    }
+    
+     ::ng-deep.loading-wrapper {
+        background-color: transparent !important;
+    }
+    
+     ::ng-deep.sc-ion-loading-md-h {
+        // color: #848282 !important;
+        --spinner-color: #848282;
+    }
+    
+     ::ng-deep ion-spinner {
+        width: 44px !important;
+        height: 48px !important;
+    }
+    
+    circle {
+        stroke-width: 7px;
+    }
+    
+     ::ng-deep.my-custom-modal-css2 .modal-wrapper {
+        height: 70% !important;
+        width: 90% !important;
+        position: absolute;
+        display: inline;
+        border-radius: 16px !important;
+    }
+    
+     ::ng-deep.my-custom-modal-css-popUpRaiseBill .modal-wrapper {
+        height: 100% !important;
+        width: 100% !important;
+        position: absolute;
+        display: inline;
+        border-radius: 10px !important;
+    }
+    
+     ::ng-deep.my-custom-modal-css-showLogs .modal-wrapper {
+        height: 80% !important;
+        width: 90% !important;
+        position: absolute;
+        display: inline;
+        border-radius: 10px !important;
+    }
+    
+     ::ng-deep.alert-button.sc-ion-alert-md {
+        border-radius: 2px;
+        margin-left: 0;
+        margin-right: 8px;
+        margin-top: 0;
+        margin-bottom: 0;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        position: relative;
+        background-color: transparent;
+        color: var(--ion-color-primary, #3880ff);
+        font-weight: 500;
+        text-align: end;
+        text-transform: capitalize !important;
+        overflow: hidden;
+    }
+    
+    // vj cp 2.0
+    .ion-color-fab {
+        --ion-color-base: var(--ion-color-new-primary) !important;
+        --ion-color-base-rgb: var(--ion-color-new-primary) !important;
+        --ion-color-contrast-rgb: var(--ion-color-new-primary) !important;
+        --ion-color-shade: var(--ion-color-new-primary) !important;
+        --ion-color-tint: var(--ion-color-new-primary) !important;
+    }
+    
+     ::ng-deep .mat-form-field-wrapper {
+        margin: 0px !important;
+        padding-bottom: 1em;
+    }
+    
+     ::ng-deep .mat-form-field-infix {
+        // padding: 0.5em 0;
+        border-top: 0.6em solid transparent;
+    }
+    
+     ::ng-deep .mat-form-field {
+        display: block !important;
+    }

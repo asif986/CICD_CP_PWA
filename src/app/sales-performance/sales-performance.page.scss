@@ -6,6 +6,15 @@
     background-color: white;
 }
 
+::ng-deep .mat-form-field-outline-start {
+    border-radius: 28px 0 0 28px !important;
+    min-width: 28px !important;
+}
+
+::ng-deep .mat-form-field-outline-end {
+    border-radius: 0 28px 28px 0 !important;
+}
+
 .rounded-img {
     border-radius: 4.25rem!important;
 }
