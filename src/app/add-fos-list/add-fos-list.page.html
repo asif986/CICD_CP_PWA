@@ -74,7 +74,7 @@
 
 
             <!-- <ion-col size="3" style="margin-top: 5px!important;height: 50px!important;">
-                <mat-form-field appearance="outline"  style="width:100%;margin-left: 5px;">
+                <mat-form-field appearance="outline"  style="margin-left: 5px;">
                     <mat-label class="inputtextfield">Mr/Mrs</mat-label>
                     <mat-select class="inputtextfield">
                         <mat-option *ngFor="let nameprefix of addFOS.person_name_prefix let i= index" [value]="nameprefix.name_prefix_id" (click)="getNamePrefixvalue(i)">
@@ -85,11 +85,13 @@
             </ion-col> -->
 
             <ion-col size="10" offset="1" class="p-0" [formGroup]="credentialsForm" style="margin-top: 2px!important;" *ngIf="ID!==2">
-                <mat-form-field appearance="outline" style="width:100%;" class="inputtextfield">
+                <mat-form-field appearance="outline" style="" class="inputtextfield">
                     <!-- <mat-label class="inputtextfield">First Name</mat-label> -->
                     <input [formControl]="credentialsForm.controls['first_name']" (keypress)="onKeyPress($event)" matInput placeholder="First name" type="text" class="inputtextfield" [(ngModel)]="postFOS.first_name" required>
                     <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
-                      <mat-icon><ion-icon name="person" color="dark"></ion-icon></mat-icon>
+                        <mat-icon>
+                            <ion-icon name="person" color="dark"></ion-icon>
+                        </mat-icon>
                     </button>
                     <mat-hint>
                         <div *ngIf="!credentialsForm.controls.first_name.valid &&
@@ -103,7 +105,7 @@
 
 
             <ion-col size="10" offset="1" class="p-0" style="margin-top: 2px!important;">
-                <mat-form-field appearance="outline" style="width:100%;" *ngIf="ID==2 && first_name!==null" class="inputtextfield">
+                <mat-form-field appearance="outline" style="" *ngIf="ID==2 && first_name!==null" class="inputtextfield">
                     <!-- <mat-label class="inputtextfield">First Name</mat-label> -->
                     <input (keypress)="onKeyPress($event)" matInput placeholder="First name" type="text" class="inputtextfield" [(ngModel)]="first_name" required>
 
@@ -113,7 +115,9 @@
                         <!-- <mat-label class="inputtextfield">Middle Name</mat-label> -->
                         <input (keypress)="onKeyPress($event)" matInput type="text" placeholder="Middle name" class="inputtextfield" [(ngModel)]="postFOS.middle_name">
                         <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
-                          <mat-icon><ion-icon name="person" color="dark"></ion-icon></mat-icon>
+                            <mat-icon>
+                                <ion-icon name="person" color="dark"></ion-icon>
+                            </mat-icon>
                         </button>
                         <mat-hint>
                         </mat-hint>
@@ -125,7 +129,9 @@
                         <!-- <mat-label class="inputtextfield">Middle Name</mat-label> -->
                         <input (keypress)="onKeyPress($event)" matInput type="text" placeholder="Middle name" class="inputtextfield" [(ngModel)]="middle_name">
                         <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
-                          <mat-icon><ion-icon name="person" color="dark"></ion-icon></mat-icon>
+                            <mat-icon>
+                                <ion-icon name="person" color="dark"></ion-icon>
+                            </mat-icon>
                         </button>
                     </mat-form-field>
                 </div>
@@ -135,7 +141,9 @@
                         <!-- <mat-label class="inputtextfield">Last Name</mat-label> -->
                         <input [formControl]="credentialsForm.controls['last_name']" placeholder="Last name" (keypress)="onKeyPress($event)" matInput type="text" class="inputtextfield" [(ngModel)]="postFOS.last_name" required>
                         <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
-                          <mat-icon><ion-icon name="person" color="dark"></ion-icon></mat-icon>
+                            <mat-icon>
+                                <ion-icon name="person" color="dark"></ion-icon>
+                            </mat-icon>
                         </button>
                         <mat-hint>
                             <div *ngIf="!credentialsForm.controls.last_name.valid &&
@@ -151,7 +159,9 @@
                         <!-- <mat-label class="inputtextfield">Last Name</mat-label> -->
                         <input (keypress)="onKeyPress($event)" matInput type="text" placeholder="Last name" class="inputtextfield" [(ngModel)]="last_name" required>
                         <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
-                          <mat-icon><ion-icon name="person" color="dark"></ion-icon></mat-icon>
+                            <mat-icon>
+                                <ion-icon name="person" color="dark"></ion-icon>
+                            </mat-icon>
                         </button>
                     </mat-form-field>
                 </div>
@@ -180,8 +190,9 @@
                         <!-- <mat-label class="inputtextfield">Mobile Number</mat-label> -->
                         <input (keypress)="numberOnly($event)" matInput placeholder="Mobile" [formControl]="credentialsForm.controls['mobile']" [ngModel]="mobile" maxlength="10" min="10" type="tel" pattern="[0-9]*" class="inputtextfield" required>
                         <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
-                          <mat-icon>
-                            <ion-icon name="phone-portrait" color="dark"></ion-icon></mat-icon>
+                            <mat-icon>
+                                <ion-icon name="phone-portrait" color="dark"></ion-icon>
+                            </mat-icon>
                         </button>
                         <mat-hint>
                             <div *ngIf="!credentialsForm.controls.mobile.valid && credentialsForm.controls.mobile.dirty" class="error">
@@ -200,8 +211,9 @@
                         <!-- <mat-label class="inputtextfield">Mobile Number</mat-label> -->
                         <input (keypress)="numberOnly($event)" matInput placeholder="Mobile" type="tel" pattern="[0-9]*" maxlength="10" min="10" class="inputtextfield" [ngModel]="mobile" required readonly>
                         <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
-                          <mat-icon>
-                            <ion-icon name="phone-portrait" color="dark"></ion-icon></mat-icon>
+                            <mat-icon>
+                                <ion-icon name="phone-portrait" color="dark"></ion-icon>
+                            </mat-icon>
                         </button>
                     </mat-form-field>
                 </div>
@@ -215,9 +227,9 @@
                     <mat-form-field appearance="outline" style="width: 100%; ">
                         <input matInput [formControl]="credentialsForm.controls['email']" placeholder="Email" type="email" class="inputtextfield" name="email" [(ngModel)]="postFOS.email" required>
                         <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
-                          <mat-icon>
-                          <ion-icon name="mail" color="dark"></ion-icon>
-                          </mat-icon>
+                            <mat-icon>
+                                <ion-icon name="mail" color="dark"></ion-icon>
+                            </mat-icon>
                         </button>
                         <mat-hint>
                             <div *ngIf="!credentialsForm.controls.email.valid &&
@@ -232,9 +244,9 @@
                     <mat-form-field appearance="outline" style="width: 100%; ">
                         <input matInput type="email" class="inputtextfield" name="email" placeholder="Email" [(ngModel)]="email" required>
                         <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear">
-                          <mat-icon>
-                          <ion-icon name="mail" color="dark"></ion-icon>
-                          </mat-icon>
+                            <mat-icon>
+                                <ion-icon name="mail" color="dark"></ion-icon>
+                            </mat-icon>
                         </button>
                     </mat-form-field>
                 </div>

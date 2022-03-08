@@ -126,7 +126,7 @@ export class AppComponent {
           // this.storage.get('verification_status_id').then((val) => {
           if (val.verification_status_id == 1) {
             console.log('Your verification_status_id', val);
-            this.navCtrl.navigateRoot('/add-fos-list');
+            this.navCtrl.navigateRoot('/home');
             this.storage.set('IDFromPerformance', 2);
           } else if (val.verification_status_id == 2) {
             console.log('Your verification_status_id', val);
