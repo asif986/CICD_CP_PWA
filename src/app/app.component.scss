@@ -279,3 +279,11 @@ circle {
     // padding: 0.5em 0;
     border-top: 0.6em solid transparent;
 }
+
+.ion-color-fab {
+    --ion-color-base: var(--ion-color-new-primary) !important;
+    --ion-color-base-rgb: var(--ion-color-new-primary) !important;
+    --ion-color-contrast-rgb: var(--ion-color-new-primary) !important;
+    --ion-color-shade: var(--ion-color-new-primary) !important;
+    --ion-color-tint: var(--ion-color-new-primary) !important;
+}
