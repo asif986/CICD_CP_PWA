@@ -1,5 +1,4 @@
-.newusertext
-{
+.newusertext {
   padding: 2px;
   alignment: center;
   color: #000000;
@@ -10,8 +9,7 @@
   align-items: center;
   font-size: 16px;
 }
-.newusertext1
-{
+.newusertext1 {
   padding: 2px;
   alignment: center;
   color: var(--ion-color-primary);
@@ -21,8 +19,7 @@
   align-items: center;
   font-size: 16px;
 }
-.newusertext2
-{
+.newusertext2 {
   padding: 2px;
   alignment: center;
   color: var(--ion-color-medium_grey);
@@ -39,3 +36,15 @@
 //   position: fixed;
 //   alignment: top;
 // }
+.nav-header {
+  display: flex;
+  justify-content: center;
+  margin-top: -46px;
+}
+.nav-header-img {
+  width: 80%;
+}
+
+.menu-item-img {
+  width: 55px;
+}

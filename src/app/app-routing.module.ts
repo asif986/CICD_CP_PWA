@@ -1,27 +1,74 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 
+import { NgModule } from "@angular/core";
 
 const routes: Routes = [
-    { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: "", redirectTo: "", pathMatch: "full" },
   /*Very Important*/
-  { path: 'home', loadChildren: './home/home.module#HomePageModule'},
+  { path: "home", loadChildren: "./home/home.module#HomePageModule" },
   // { path: 'home', loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)},
-  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
-  { path: 'new-registration', loadChildren: './new-registration/new-registration.module#NewRegistrationPageModule' },
+  { path: "login", loadChildren: "./login/login.module#LoginPageModule" },
+  {
+    path: "new-registration",
+    loadChildren:
+      "./new-registration/new-registration.module#NewRegistrationPageModule",
+  },
   // tslint:disable-next-line:max-line-length
-  { path: 'enter-mobile-screen', loadChildren: './forgotpassword/enter-mobile-screen/enter-email-screen.module#EnterEmailScreenPageModule' },
-  { path: 'verify-otp-screen', loadChildren: './forgotpassword/verify-otp-screen/verify-otp-screen.module#VerifyOtpScreenPageModule' },
-  { path: 'verify-otp-screen/:otp', loadChildren: './forgotpassword/verify-otp-screen/verify-otp-screen.module#VerifyOtpScreenPageModule' },
-  { path: 'change-password', loadChildren: './forgotpassword/change-password/change-password.module#ChangePasswordPageModule' },
-  { path: 'addnewlead', loadChildren: './addnewlead/addnewlead.module#AddnewleadPageModule' },
-  { path: 'addnewlead/:countryCode', loadChildren: './addnewlead/addnewlead.module#AddnewleadPageModule' },
-  { path: 'countrycodelist', loadChildren: './countrycodelist/countrycodelist.module#CountrycodelistPageModule' },
-  { path: 'countrycodelist', loadChildren: './countrycodelist/countrycodelist.module#CountrycodelistPageModule' },
-  { path: 'verificationpending', loadChildren: './verificationpending/verificationpending.module#VerificationpendingPageModule' },
-  { path: 'notification', loadChildren: './notification/notification.module#NotificationPageModule' },
-  { path: 'reminder', loadChildren: './reminder/reminder.module#ReminderPageModule' },
-  { path: 'addreminder', loadChildren: './addreminder/addreminder.module#AddreminderPageModule' },
+  {
+    path: "enter-mobile-screen",
+    loadChildren:
+      "./forgotpassword/enter-mobile-screen/enter-email-screen.module#EnterEmailScreenPageModule",
+  },
+  {
+    path: "verify-otp-screen",
+    loadChildren:
+      "./forgotpassword/verify-otp-screen/verify-otp-screen.module#VerifyOtpScreenPageModule",
+  },
+  {
+    path: "verify-otp-screen/:otp",
+    loadChildren:
+      "./forgotpassword/verify-otp-screen/verify-otp-screen.module#VerifyOtpScreenPageModule",
+  },
+  {
+    path: "change-password",
+    loadChildren:
+      "./forgotpassword/change-password/change-password.module#ChangePasswordPageModule",
+  },
+  {
+    path: "addnewlead",
+    loadChildren: "./addnewlead/addnewlead.module#AddnewleadPageModule",
+  },
+  {
+    path: "addnewlead/:countryCode",
+    loadChildren: "./addnewlead/addnewlead.module#AddnewleadPageModule",
+  },
+  {
+    path: "countrycodelist",
+    loadChildren:
+      "./countrycodelist/countrycodelist.module#CountrycodelistPageModule",
+  },
+  {
+    path: "countrycodelist",
+    loadChildren:
+      "./countrycodelist/countrycodelist.module#CountrycodelistPageModule",
+  },
+  {
+    path: "verificationpending",
+    loadChildren:
+      "./verificationpending/verificationpending.module#VerificationpendingPageModule",
+  },
+  {
+    path: "notification",
+    loadChildren: "./notification/notification.module#NotificationPageModule",
+  },
+  {
+    path: "reminder",
+    loadChildren: "./reminder/reminder.module#ReminderPageModule",
+  },
+  {
+    path: "addreminder",
+    loadChildren: "./addreminder/addreminder.module#AddreminderPageModule",
+  },
   //{ path: 'addreminder/:this.USERNEWID', loadChildren: './addreminder/addreminder.module#AddreminderPageModule' },
  // { path: 'blank', loadChildren: './blank/blank.module#BlankPageModule' },
   { path: 'bottom-nav', loadChildren: './bottom-nav/bottom-nav.module#BottomNavPageModule' },
@@ -62,10 +109,8 @@ const routes: Routes = [
 @NgModule({
   imports: [
     // RouterModule.forRoot(routes)
-     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
-
-
+export class AppRoutingModule {}
