@@ -7,6 +7,10 @@ h1 {
     padding-bottom: 1em;
 }
 
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 1em 0 1em 0 !important;
+}
+
 .toolbar-text {
     color: var(--ion-color-secondary);
     font-family: "Metropolis Medium";
