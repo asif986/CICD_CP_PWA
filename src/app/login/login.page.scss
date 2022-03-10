@@ -1,130 +1,133 @@
 h1 {
-    font-size: xx-large;
+  font-size: xx-large;
 }
 
 p {
-    font-family: "Metropolis Light";
+  font-family: "Metropolis Light";
 }
 
-p>a {
-    text-decoration: underline;
+p > a {
+  text-decoration: underline;
 }
 
 .titleLogin {
-    padding: 5px;
-    alignment: center;
-    color: var(--ion-color-primary);
-    font-family: "Metropolis Medium";
-    margin-top: 10%!important;
-    margin-bottom: 7%;
-    justify-content: center;
-    align-items: center;
-    font-size: x-large;
+  padding: 5px;
+  alignment: center;
+  color: var(--ion-color-primary);
+  font-family: "Metropolis Medium";
+  margin-top: 10% !important;
+  margin-bottom: 7%;
+  justify-content: center;
+  align-items: center;
+  font-size: x-large;
 }
 
 ::ng-deep .mat-form-field-outline-start {
-    border-radius: 28px 0 0 28px !important;
-    min-width: 28px !important;
+  border-radius: 28px 0 0 28px !important;
+  min-width: 28px !important;
 }
 
 ::ng-deep .mat-form-field-outline-end {
-    border-radius: 0 28px 28px 0 !important;
+  border-radius: 0 28px 28px 0 !important;
 }
 
 .input-field {
-    margin: 5%;
+  margin: 5%;
 }
 
 .input-field-text {
-    color: var(--ion-color-primary);
-    font-family: "Metropolis Light";
-    font-size: 16px;
-    text-align: start;
+  color: var(--ion-color-primary);
+  font-family: "Metropolis Light";
+  font-size: 16px;
+  text-align: start;
 }
 
 .loginbutton {
-    margin-top: 7%;
+  margin-top: 7%;
 }
 
 #forgotButton {
-    color: #F5A22C;
-    letter-spacing: 0.8px;
-    margin-top: 5%;
-    font-family: "Metropolis Medium";
-    font-size: 16px;
+  color: #f5a22c;
+  letter-spacing: 0.8px;
+  margin-top: 5%;
+  font-family: "Metropolis Medium";
+  font-size: 16px;
 }
 
 .error {
-    color: red;
-    text-align: start;
-    font-family: "Metropolis Light";
-    font-size: 11px!important;
-    margin-top: 2px!important;
+  color: red;
+  text-align: start;
+  font-family: "Metropolis Light";
+  font-size: 11px !important;
+  margin-top: 2px !important;
 }
 
 .newusertext {
-    padding: 2px;
-    alignment: center;
-    color: #000000;
-    font-family: "Metropolis Light";
-    margin-top: 5%;
-    margin-left: 3%;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
+  padding: 2px;
+  alignment: center;
+  color: #000000;
+  font-family: "Metropolis Light";
+  margin-top: 5%;
+  margin-left: 3%;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
 }
 
 .newusertext1 {
-    padding: 2px;
-    alignment: center;
-    color: var(--ion-color-medium_grey);
-    font-family: "Metropolis Light";
-    margin-right: 3%;
-    justify-content: center;
-    align-items: center;
-    font-size: 14px;
+  padding: 2px;
+  alignment: center;
+  color: var(--ion-color-medium_grey);
+  font-family: "Metropolis Light";
+  margin-right: 3%;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
 }
 
 .registerbutton {
-    margin-top: 8%;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-size: large;
-    border-radius: 25px;
-    background-color: #F5A22C;
-    color: var(--ion-color-primary);
-    font-size: large;
-    font-family: "Metropolis Medium";
+  margin-top: 8%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: large;
+  border-radius: 25px;
+  background-color: #f5a22c;
+  color: var(--ion-color-primary);
+  font-size: large;
+  font-family: "Metropolis Medium";
 }
 
 .activated {
-    background-color: var(--ion-color-primary);
+  background-color: var(--ion-color-primary);
 }
 
 .countrycode {
-    width: 50%;
-    height: 60px;
-    font-size: 14px;
-    background-color: var(--ion-color-secondary);
-    border: 1px solid var(--ion-color-light_outline_card);
-    margin-right: 10px;
-    margin-top: 5px!important;
-    border-radius: 8%;
-    padding-top: 20px;
+  width: 50%;
+  height: 60px;
+  font-size: 14px;
+  background-color: var(--ion-color-secondary);
+  border: 1px solid var(--ion-color-light_outline_card);
+  margin-right: 10px;
+  margin-top: 5px !important;
+  border-radius: 8%;
+  padding-top: 20px;
 }
 
 .countrycodetext {
-    font-size: 14px;
-    font-family: "Metropolis Medium";
-    margin-top: 10px!important;
+  font-size: 14px;
+  font-family: "Metropolis Medium";
+  margin-top: 10px !important;
 }
 
 .inputtextfield {
-    padding: 2px;
-    color: #000000;
-    font-family: "Metropolis Light";
-    font-size: 16px;
+  padding: 2px;
+  color: #000000;
+  font-family: "Metropolis Light";
+  font-size: 16px;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 1em 0 1em 0;
 }
