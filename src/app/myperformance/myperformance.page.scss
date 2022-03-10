@@ -108,4 +108,79 @@
 .performance-page {
   margin-left: 8%;
   margin-right: 8%;
+  margin-top: 8%;
+}
+.allotments_card {
+  background: rgba(89, 172, 180, 0.55);
+  box-shadow: none !important;
+  border-radius: 28px;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  height: 138px;
+}
+
+.check_all_btn {
+  background: linear-gradient(0deg, #ffffff 0%, #ffeeff 100%);
+  background: #1d4a5e;
+  color: white;
+  border-radius: 28px;
+  width: 104px;
+  height: 43px;
+  padding: 8px;
+  margin-right: 14px;
+  border-color: black;
+}
+.allotment_count {
+  font-size: 35px;
+  margin-left: 1.6rem;
+}
+.total_alltoment_text {
+  font-size: 20px;
+}
+
+.all_small_card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  border-radius: 28px;
+  padding: 8px;
+  height: 96px;
+}
+.small_card_text {
+  font-size: 24px;
+}
+.small_card_nm {
+  font-size: 14px;
+  text-align: center;
+  padding-top: 4px;
+}
+.bg1 {
+  background: #b459a58c;
+}
+.bg2 {
+  background: #80b4598c;
+}
+.bg3 {
+  background: #b459598c;
+}
+
+.cr {
+  font-size: 9px;
+}
+.brokerage_text {
+  font-size: 13px;
+  margin-top: 30px;
+  text-align: center;
+}
+::ng-deep.ngx-slider .ngx-slider-tick-legend {
+  font-size: 11px;
+}
+::ng-deep.ngx-slider.animate .ngx-slider-bubble.ngx-slider-limit {
+  display: none !important;
+}
+::ng-deep.mat-form-field-appearance-outline .mat-form-field-infix {
+  padding: 1em 0 1em 0 !important;
 }

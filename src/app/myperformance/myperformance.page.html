@@ -39,11 +39,11 @@
       </mat-form-field>
     </div>
 
-    <ion-row style="padding-left: 5px;padding-right: 7px;margin-top: -10px;">
+    <ion-row style="padding-left: 3px;padding-right: 2px;">
       <ion-col size='6'>
         <div class="input-field-text" style="font-size: 10px;">
           <mat-form-field appearance="outline" style="width: 100%" (click)="picker2.open()">
-            <mat-label class="input-field-text" style="font-size: 15px;">From Date</mat-label>
+            <mat-label class="input-field-text" style="font-size: 15px;">From </mat-label>
             <input matInput [matDatepicker]="picker2" [(ngModel)]="fromdate" style="font-size: 15px" [max]="minDate"
               (dateChange)="Click()" readonly>
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
@@ -56,14 +56,14 @@
         <div class="input-field-text" style="font-size: 10px;">
           <mat-form-field appearance="outline" style="width: 100%" *ngIf="fromdate!==undefined"
             (click)="picker3.open()">
-            <mat-label class="input-field-text" style="font-size: 15px;">To Date</mat-label>
+            <mat-label class="input-field-text" style="font-size: 15px;">To</mat-label>
             <input matInput [matDatepicker]="picker3" [(ngModel)]="todate" style="font-size: 15px" [min]="fromdate"
               (dateChange)="Click()" readonly>
             <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
             <mat-datepicker #picker3 [(ngModel)]="todate" ngDefaultControl></mat-datepicker>
           </mat-form-field>
           <mat-form-field appearance="outline" style="width: 100%" *ngIf="fromdate==undefined" (click)="picker3.open()">
-            <mat-label class="input-field-text" style="font-size: 15px;">To Date</mat-label>
+            <mat-label class="input-field-text" style="font-size: 15px;">To</mat-label>
             <input matInput [matDatepicker]="picker3" [(ngModel)]="todate" style="font-size: 15px" [min]="minDate"
               [max]="minDate" readonly>
             <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
@@ -76,19 +76,25 @@
 
     <!-- Changes In Design -->
     <ion-row>
-      <ion-col size="4">
-        <ion-card class="outline_card" (click)="GoToFilter(0,null)">
-          <ion-card-title class="count_leads"
-            style="text-align: center!important;vertical-align: center!important;padding-top: 30px!important;">
-            {{leads}}
-          </ion-card-title>
-          <ion-card-title class="title" style="text-align: center!important;padding-top: 10px!important;">
-            Leads
-          </ion-card-title>
-        </ion-card>
+      <ion-col size="12">
+        <div class="allotments_card">
+          <div class="total_alltoment_text m-4 d-flex justify-content-end">Total Allotments</div>
+          <div class="d-flex justify-content-between justify-content-center align-items-center">
+            <div class="allotment_count">{{booking_master}}<img src="assets/new_icons/increment.png" /></div>
+            <div><button class="check_all_btn" (click)="GoToFilter(9,null)">Check All </button></div>
+          </div>
+        </div>
+
       </ion-col>
 
-      <ion-col size="4">
+      <ion-col size="4" *ngFor="let item of cardInfo">
+        <div class="all_small_card {{item?.bg_color}}">
+          <div class="small_card_text">{{item?.count}} <img src="assets/new_icons/increment.png" /></div>
+          <div class="small_card_nm">{{item?.name}}</div>
+        </div>
+      </ion-col>
+
+      <!-- <ion-col size="4">
         <ion-card class="outline_card" (click)="GoToFilter(5,null)" style="margin-left: 2px;">
           <ion-card-title class="count_siteVisit"
             style="text-align: center!important;vertical-align: center!important;padding-top: 28px!important;">
@@ -110,12 +116,13 @@
             GHP <br> Generated
           </ion-card-title>
         </ion-card>
-      </ion-col>
+      </ion-col> -->
+
     </ion-row>
-    <ion-row>
+    <!-- <ion-row> -->
 
 
-      <ion-col size="4">
+    <!-- <ion-col size="4">
         <ion-card class="outline_card" (click)="GoToFilter(6,3)">
           <ion-card-title class="count_GhpgPulsenerated"
             style="text-align: center!important;vertical-align: center!important;padding-top: 26px!important;font-size: 25px!important;">
@@ -125,8 +132,9 @@
             GHP Plus<br> Generated
           </ion-card-title>
         </ion-card>
-      </ion-col>
-      <ion-col size="4" style="margin-left: -4px;">
+      </ion-col> -->
+
+    <!-- <ion-col size="4" style="margin-left: -4px;">
         <ion-card class="outline_card" (click)="GoToFilter(9,null)">
           <ion-card-title class="count_allotments"
             style="text-align: center!important;vertical-align: center!important;padding-top: 30px!important;">
@@ -136,10 +144,17 @@
             Allotments
           </ion-card-title>
         </ion-card>
-      </ion-col>
-      <ion-col size="4">
-      </ion-col>
-    </ion-row>
+      </ion-col> -->
+
+    <!-- </ion-row> -->
+    <br />
+    <div *ngIf="isCollapsed">
+      <ngx-slider [(value)]="value" [options]="options"></ngx-slider>
+
+      <div class="brokerage_text">
+        <p>Your approx brokerage calculation is {{value}}CR</p>
+      </div>
+    </div>
   </div>
   <!-- <div style="margin-top: -70px;">
     <img  src="assets/channelPartner_Icons/allPNGImages/myPerformance.png"/>
