@@ -236,10 +236,6 @@ circle {
   min-width: 28px !important;
 }
 
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
-  padding: 0.6em 0 0.6em 0;
-}
-
 ::ng-deep .mat-form-field-outline-end {
   border-radius: 0 28px 28px 0 !important;
 }
@@ -250,7 +246,7 @@ circle {
   margin-right: 8px;
   margin-top: 0;
   margin-bottom: 0;
-  padding-left: 10px;
+  padding-left: 18px;
   padding-right: 10px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -272,7 +268,7 @@ circle {
   padding-bottom: 1em;
 }
 ::ng-deep.mat-form-field-appearance-outline .mat-form-field-label {
-  padding-left: 22px;
+  padding-left: 18px;
 }
 ::ng-deep .mat-form-field-infix {
   // padding: 0.5em 0;
