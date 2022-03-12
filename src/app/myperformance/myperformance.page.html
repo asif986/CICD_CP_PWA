@@ -44,7 +44,7 @@
         <div class="input-field-text" style="font-size: 10px;">
           <mat-form-field appearance="outline" style="width: 100%" (click)="picker2.open()">
             <mat-label class="input-field-text" style="font-size: 15px;">From </mat-label>
-            <input matInput [matDatepicker]="picker2" [(ngModel)]="fromdate" style="font-size: 15px" [max]="minDate"
+            <input matInput [matDatepicker]="picker2" [(ngModel)]="fromdate" style="font-size: 20px" [max]="minDate"
               (dateChange)="Click()" readonly>
             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
             <mat-datepicker #picker2 [(ngModel)]="fromdate" ngDefaultControl></mat-datepicker>
@@ -57,14 +57,14 @@
           <mat-form-field appearance="outline" style="width: 100%" *ngIf="fromdate!==undefined"
             (click)="picker3.open()">
             <mat-label class="input-field-text" style="font-size: 15px;">To</mat-label>
-            <input matInput [matDatepicker]="picker3" [(ngModel)]="todate" style="font-size: 15px" [min]="fromdate"
+            <input matInput [matDatepicker]="picker3" [(ngModel)]="todate" style="font-size: 20px" [min]="fromdate"
               (dateChange)="Click()" readonly>
             <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
             <mat-datepicker #picker3 [(ngModel)]="todate" ngDefaultControl></mat-datepicker>
           </mat-form-field>
           <mat-form-field appearance="outline" style="width: 100%" *ngIf="fromdate==undefined" (click)="picker3.open()">
             <mat-label class="input-field-text" style="font-size: 15px;">To</mat-label>
-            <input matInput [matDatepicker]="picker3" [(ngModel)]="todate" style="font-size: 15px" [min]="minDate"
+            <input matInput [matDatepicker]="picker3" [(ngModel)]="todate" style="font-size: 20px" [min]="minDate"
               [max]="minDate" readonly>
             <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
             <mat-datepicker #picker3 [(ngModel)]="todate" ngDefaultControl></mat-datepicker>
@@ -147,16 +147,18 @@
       </ion-col> -->
 
     <!-- </ion-row> -->
-    <br />
-    <div *ngIf="isCollapsed">
-      <ngx-slider [(value)]="value" [options]="options"></ngx-slider>
 
-      <div class="brokerage_text">
-        <p>Your approx brokerage calculation is {{value}}CR</p>
-      </div>
-    </div>
+
   </div>
   <!-- <div style="margin-top: -70px;">
     <img  src="assets/channelPartner_Icons/allPNGImages/myPerformance.png"/>
   </div> -->
 </ion-content>
+<div *ngIf="isCollapsed">
+  <!-- <div class="custom-slider"> -->
+  <ngx-slider [(value)]="value" [options]="options"></ngx-slider>
+  <!-- </div> -->
+  <div class="brokerage_text">
+    <p>Your approx brokerage calculation is {{value}}CR</p>
+  </div>
+</div>

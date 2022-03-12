@@ -574,7 +574,7 @@ export class HomePage implements OnInit {
     this.isSpinner = true;
     setTimeout(() => {
       this.leadlist = [];
-      this.societyEventBanners = [];
+      // this.societyEventBanners = [];
       if (!(this.network.type !== "none" && this.network.type !== "unknown")) {
         this.isSpinner = false;
         this.helper.presentToastHomePage("Please on Internet Connection");

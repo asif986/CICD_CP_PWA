@@ -5,6 +5,7 @@
 
 :root {
   /** primary **/
+
   --ion-color-primary: #070604;
   --ion-color-btn-primary: #f38383;
   --ion-color-new-primary: #2ac9a9;
@@ -178,7 +179,7 @@ ion-toast.toastController {
 //   --ion-color-tint: #ce1515 !important;
 // }
 .ion-color-color_d {
-  --ion-color-base: #2ac9a9 !important;
+  --ion-color-base: #ffeeff !important;
   --ion-color-base-rgb: #2ac9a9 !important;
   --ion-color-contrast: #2ac9a9 !important;
   --ion-color-contrast-rgb: #2ac9a9 !important;
@@ -195,6 +196,13 @@ ion-toast.toastController {
   margin-top: 5px;
 }
 
+ion-content {
+  --background: linear-gradient(
+    0deg,
+    #ffffff 0%,
+    #ffeeff 100%
+  ); // Replace this with color of your choice
+}
 // $colors: (
 //   light:      #652D90,
 // );

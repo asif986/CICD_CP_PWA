@@ -1,4 +1,7 @@
-<ion-content style="--background: #fff !important;">
+<ion-content style="--background: linear-gradient(0deg, #FFFFFF 0%, #F1F4FE 100%);">
+
+
+
 
   <!-- <ion-row style="">
     <ion-col size="8" style="">
@@ -24,7 +27,7 @@
   </ion-row>
 
 
-  <div class="ion-text-center" style="">
+  <div class="ion-text-center" style="margin-bottom: 24px;">
     <div class="" style="color: var(--ion-color-primary);font-size: 16px!important;letter-spacing: 0.2px!important;">
       {{username}}</div>
     <div class=""
@@ -33,33 +36,30 @@
 
   </div>
 
-  <hr />
+  <hr class="horizontal-line" />
 
-  <ion-list>
+  <div style="margin-top: 20px;">
 
-
-    <ion-item lines="none" *ngFor="let item of menusList" (click)="navigateMenu(item.navigation)">
+    <div class="d-flex align-items-center" style="padding-left: 24px;" lines="none" *ngFor="let item of menusList"
+      (click)="navigateMenu(item.navigation)">
 
       <img class="menu-item-img" [src]="item.image" style="">
 
       <ion-label class="newusertext1" style="">{{item.label}}</ion-label>
-    </ion-item>
+    </div>
 
 
-
-
-    <ion-item lines="none" *ngIf="isLogin" (click)="logout()" style="margin-top: -15px!important;">
+    <!-- <ion-item lines="none" *ngIf="isLogin" (click)="logout()" style="margin-top: -15px!important;">
       <ion-avatar slot="start" style="margin-right: 0px;">
         <img src="assets/channelPartner_Icons/app_LogOut/logout_icon.svg"
           style="padding-top: 3%;margin-top:5px!important;color: var(--ion-color-primary);">
       </ion-avatar>
       <ion-label class="newusertext1">Logout</ion-label>
-    </ion-item>
+    </ion-item> -->
 
 
-  </ion-list>
+  </div>
 </ion-content>
-
 
 <!-- <ion-item lines="none" (click)="navigateMenu('readytosubmit-bills')" style="margin-top: -15px!important;">
           <ion-avatar slot="start" style="margin-right: 0px;">

@@ -55,3 +55,12 @@
   right: 21px;
   font-size: 22px;
 }
+
+::ng-deep .item-native {
+  // background-color: linear-gradient(0deg, #ffffff 0%, #f1f4fe 100%) !important;
+}
+
+.horizontal-line {
+  width: 203px;
+  margin: 0 auto;
+}

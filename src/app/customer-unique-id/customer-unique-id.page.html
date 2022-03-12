@@ -22,10 +22,10 @@
 </ion-header>
 
 
-<br />
 
-<ion-searchbar style="font-family: 'Metropolis Light';box-shadow: none!important;" placeholder="Search Customer"
-  [(ngModel)]="searchVal" debounce="270" (ionInput)="search($event)" (ionClear)="customerList=[];getCUID();">
+<ion-searchbar style="font-family: 'Metropolis Light';box-shadow: none!important; background-color: #ffeeff;"
+  placeholder="Search Customer" [(ngModel)]="searchVal" debounce="270" (ionInput)="search($event)"
+  (ionClear)="customerList=[];getCUID();">
 </ion-searchbar>
 
 <ion-content style="padding-bottom: 20%!important;" class="ion-text-center">
@@ -38,21 +38,18 @@
 
 
   <!-- List of Text Items -->
-  <ion-list>
-    <ion-item *ngFor="let val of customerList let i=index" (click)="CustomerLead(i)">
+  <div class="text-items">
+    <div *ngFor="let val of customerList let i=index" (click)="CustomerLead(i)">
 
-      <ion-label>
-        <p class="cuid">{{val.lead_uid}}</p>
-        <p class="name">{{val.full_name}}</p>
-        <p class="addedBy">Added by : {{val.sales_person_name}}</p>
+      <div class="cuid">{{val.lead_uid}}</div>
+      <div class="name">{{val.full_name}}</div>
+      <div class="addedBy">Added by : {{val.sales_person_name}}</div>
 
-      </ion-label>
+    </div>
 
-    </ion-item>
 
-    <mat-divider style="font-size: 1px!important;" *ngIf="customerList.length!==0"></mat-divider>
 
-  </ion-list>
+  </div>
 
 
   <!--Check If Data is available or not-->
