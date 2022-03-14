@@ -26,12 +26,16 @@
                 <div [formGroup]="credentialsForm">
                     <mat-form-field appearance="outline" style="width: 100%;margin-top: 5px!important;">
                         <!-- <mat-label class="inputtextfield">User ID</mat-label> -->
-                        <input placeholder="User ID" matInput [formControl]="credentialsForm.controls['mobile']" max="10" min="10" type="number" class="inputtextfield" required>
+                        <input placeholder="User ID" matInput [formControl]="credentialsForm.controls['mobile']"
+                            max="10" min="10" type="number" class="inputtextfield" required>
                         <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button>
-                            <mat-icon><ion-icon color="dark" name="paper-plane"></ion-icon></mat-icon>
-                          </button>
+                            <mat-icon>
+                                <ion-icon color="dark" name="paper-plane"></ion-icon>
+                            </mat-icon>
+                        </button>
                         <mat-hint>
-                            <div *ngIf="!credentialsForm.controls.mobile.valid && credentialsForm.controls.mobile.dirty" class="error">
+                            <div *ngIf="!credentialsForm.controls.mobile.valid && credentialsForm.controls.mobile.dirty"
+                                class="error">
                                 Please enter a valid mobile number.
                             </div>
                         </mat-hint>
@@ -43,7 +47,9 @@
                 <div [formGroup]="credentialsForm" class="input-field-text" style="margin-top: 5px!important;">
                     <mat-form-field appearance="outline" style="width: 100%">
                         <!-- <mat-label class="inputtextfield">Password</mat-label> -->
-                        <input placeholder="OTP" class="inputtextfield" matInput [formControl]="credentialsForm.controls['pwd']" [type]="getType()" [(ngModel)]="loginifo.password" name="password" required>
+                        <input placeholder="OTP" class="inputtextfield" matInput
+                            [formControl]="credentialsForm.controls['pwd']" [type]="getType()"
+                            [(ngModel)]="loginifo.password" name="password" required>
                         <!-- <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword()">
                   <mat-icon><ion-icon [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'" ></ion-icon></mat-icon>
                 </button> -->
@@ -57,13 +63,17 @@
         <ion-row>
             <ion-col size="10" offset="1" class="p-0">
                 <!--Forgot Password Button-->
-                <div class="pb-3 pt-3" style="text-align: right!important;margin-top: -30px!important;margin-right: -15px!important;">
-                    <button mat-button id="forgotButton" style="text-align: right!important;font-family: 'Metropolis Medium';font-size: 14px!important;color: black!important;" (click)="forgotPassword()">Forgot Password</button>
+                <div class="pb-3 pt-3"
+                    style="text-align: right!important;margin-top: -30px!important;margin-right: -15px!important;">
+                    <button mat-button id="forgotButton"
+                        style="text-align: right!important;font-family: 'Metropolis Medium';font-size: 14px!important;color: black!important;"
+                        (click)="forgotPassword()">Forgot Password</button>
                 </div>
 
 
                 <!--Login Button-->
-                <button mat-button class="common-btn" (click)="login(credentialsForm.value)" routerDirection="forward">Submit</button><br>
+                <button mat-button class="common-btn" (click)="login(credentialsForm.value)"
+                    routerDirection="forward">Submit</button><br>
 
 
             </ion-col>

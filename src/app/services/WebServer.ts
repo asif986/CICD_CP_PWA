@@ -7,18 +7,19 @@ import { APIService } from "./APIService";
   providedIn: "root",
 })
 export class WebServer {
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient) {}
 
   //public BASE_URL = 'http://vjpartners.co.in/ongoing/v6/vj-sales-modules/public/api/';
   //public BASE_URL = 'http://vjpartners.co.in/ongoing/v3/vj-sales-modules/public/api/';
   //public BASE_URL = 'http://192.168.1.59:8000/api/';
   //public BASE_URL = 'http://vjpartners.co.in/ongoing/v11/vj-sales-modules/public/api/';
- // public BASE_URL = 'http://vjpartners.co.in/ongoing/v7_new/vj-sales-modules/public/api/';
+  // public BASE_URL = 'http://vjpartners.co.in/ongoing/v7_new/vj-sales-modules/public/api/';
 
   //public BASE_URL = "http://vjpartners.co.in/ongoing/v7_new_merge/public/api/"; //Live Test Version Without CORS
   // public BASE_URL = " https://vjpartners.co.in/ongoing/v7_new_clone/vj-sales-modules/public/api/"; //Live Test Version Without CORS
-  public BASE_URL = " https://vjpartners.co.in/ongoing/v7_new/vj-sales-modules/public/api/"; //Live Test Version Without CORS
- 
+  public BASE_URL =
+    " https://vjpartners.co.in/ongoing/v7_new_clone_2/vj-sales-modules/public/api/";
+
   /*Web External Token*/
   public API_TOKEN_EXTERNAL =
     "WeweSJdhbbgfuysfgbkjnfakjsndfkajsdnlaksdadZASCXADA";
@@ -93,7 +94,10 @@ export class WebServer {
   public updateCpFOS = this.BASE_URL + "updateCpFOS";
 
   // Get CP performanceOfChannelPartner
-  public performanceOfChannelPartner = this.BASE_URL + "getCpStats";
+  // public performanceNewOfChannelPartner = this.BASE_URL + "getCpStats";
+
+  // Get CP performanceOfChannelPartner
+  public performanceNewOfChannelPartner = this.BASE_URL + "cpNewPerformance";
 
   // Get CP performanceOfChannelPartner
   public getCpTeamStats = this.BASE_URL + "getCpTeamStats";
@@ -172,5 +176,7 @@ export class WebServer {
 
   //For App Update
   public appUpdateAvailable = this.BASE_URL + "appUpdateSociety";
- 
+
+  //new cp app 2.0
+  public getAllProjectName = this.BASE_URL + "getAllProjectNames";
 }

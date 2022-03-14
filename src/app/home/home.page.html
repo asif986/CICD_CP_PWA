@@ -30,8 +30,8 @@
         </div>
       </ion-col>
       <ion-col style="text-align: end;margin-right: 10px;">
-        <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'
-          style="text-align: right;width: 37%!important;">
+        <!-- <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'
+          style="text-align: right;width: 37%!important;"> -->
       </ion-col>
     </ion-row>
   </ion-toolbar>
@@ -255,25 +255,21 @@
                 <div class="status bg-{{c.ids.lead_status_id}}"></div>
               </div>
 
-              <!-- <div *ngIf="c.ids.lead_status_id > 13">
-                <div>{{c.status_text}} </div>
-                <div class="status bg-6"></div>
-              </div> -->
+              <div class="tagtext" *ngIf="c.ids.lead_status_id==13 && c.ids.token_type_id==1">
 
-              <div *ngIf="c.ids.lead_status_id==13 && c.ids.token_type_id==1">
-
-                GHP payment pending
+                <div class="status_text">GHP payment pending</div>
                 <div class="status bg-{{c.ids.lead_status_id}}"></div>
               </div>
 
-              <div *ngIf="c.ids.lead_status_id==13 && c.ids.token_type_id==3 ">
+              <div class="tagtext" *ngIf="c.ids.lead_status_id==13 && c.ids.token_type_id==3 ">
 
-                GHP+ payment pending
+                <div class="status_text"> GHP+ payment pending</div>
                 <div class="status bg-13"></div>
               </div>
 
-              <div *ngIf="c.ids.lead_status_id==6 && c.ids.token_type_id==3">
-                GHP+ Generated
+              <div class="tagtext" *ngIf="c.ids.lead_status_id==6 && c.ids.token_type_id==3">
+
+                <div class="status_text">GHP+ Generated </div>
                 <div class="status bg-15"></div>
               </div>
 

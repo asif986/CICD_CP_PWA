@@ -14,8 +14,8 @@
         </div>
       </ion-col>
       <ion-col style="text-align: end;margin-right: 10px;">
-        <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'
-          style="text-align: right;width:40%!important">
+        <!-- <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'
+          style="text-align: right;width:40%!important"> -->
       </ion-col>
     </ion-row>
   </ion-toolbar>
@@ -37,7 +37,7 @@
     <!--Full Name-->
     <!--Two mat-form-field in one line-->
     <ion-row style="margin-top: 10px">
-      <ion-col size="3" style="margin-top: 5px!important;height: 50px!important;">
+      <!-- <ion-col size="3" style="margin-top: 5px!important;height: 50px!important;">
         <mat-form-field appearance="outline" style="width:100%;margin-left: 5px;">
           <mat-label class="inputtextfield">Mr/Mrs</mat-label>
           <mat-select class="inputtextfield">
@@ -47,8 +47,9 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-      </ion-col>
-      <ion-col size="9" [formGroup]="credentialsForm" style="margin-top: 2px!important;">
+      </ion-col> -->
+
+      <ion-col size="12" [formGroup]="credentialsForm" style="margin-top: 2px!important;">
         <mat-form-field appearance="outline" style="width:100%;padding-right: 5px" class="inputtextfield">
           <mat-label class="inputtextfield">Full Name</mat-label>
           <input (keypress)="onKeyPress($event)" matInput type="text" matInput class="inputtextfield" name="full_name"
@@ -110,12 +111,12 @@
 
     <!--Enter Mobile Number With Country Code-->
     <ion-row style="margin-top: -8px;">
-      <ion-col size="3" class="ion-text-center">
+      <!-- <ion-col size="3" class="ion-text-center">
         <div class="Countrycode" (click)="selectcountry()" style="">
           <mat-label class="countrycodetext">{{countrycode}}</mat-label>
         </div>
-      </ion-col>
-      <ion-col size="9">
+      </ion-col> -->
+      <ion-col size="12">
 
         <div [formGroup]="credentialsForm">
           <mat-form-field appearance="outline" style="width: 100%;padding-right: 5px">

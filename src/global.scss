@@ -32,7 +32,7 @@ body {
   //   background: linear-gradient(0deg, #ffffff 0%, #ffeeff 100%);
 }
 .my-custom-class {
-  --background: var(--ion-color-primary);
+  --background: var(--ion-color-btn-primary);
   --color: var(--ion-color-secondary);
   --ion-font-family: "Metropolis Medium";
   --font-max-size: 16px !important;
@@ -57,12 +57,12 @@ body {
   color: var(--ion-color-secondary);
   font-family: "Metropolis Medium";
   font-size: 20px;
-  background-color: #652d90;
+  background-color: #0e0614;
 }
 
 //For TOAST Sucess
 .my-custom-toastSuceess {
-  --background: green;
+  --background: var(--ion-color-btn-primary);
   color: white;
   --ion-font-family: "Metropolis Medium";
   --font-max-size: 16px !important;
@@ -85,7 +85,7 @@ body {
 
 //For Home TOAST
 .my-custom-toast-homeSuccess {
-  --background: green;
+  --background: var(--ion-color-btn-primary);
   --color: var(--ion-color-main-white);
   --ion-font-family: "Metropolis Medium";
   --font-max-size: 16px !important;

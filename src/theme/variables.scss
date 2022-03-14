@@ -150,7 +150,7 @@ ion-header ion-toolbar {
 }
 
 ion-toast.toastController {
-  color: var(--ion-color-primary);
+  color: var(--ion-color-btn-primary);
   font-family: "Metropolis Medium";
   font-size: 16px;
 }
@@ -180,11 +180,11 @@ ion-toast.toastController {
 // }
 .ion-color-color_d {
   --ion-color-base: #ffeeff !important;
-  --ion-color-base-rgb: #2ac9a9 !important;
-  --ion-color-contrast: #2ac9a9 !important;
-  --ion-color-contrast-rgb: #2ac9a9 !important;
-  --ion-color-shade: #2ac9a9 !important;
-  --ion-color-tint: #2ac9a9 !important;
+  --ion-color-base-rgb: #ffeeff !important;
+  --ion-color-contrast: #ffeeff !important;
+  --ion-color-contrast-rgb: #ffeeff !important;
+  --ion-color-shade: #ffeeff !important;
+  --ion-color-tint: #ffeeff !important;
 }
 
 .icon {

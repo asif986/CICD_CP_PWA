@@ -50,23 +50,11 @@ export class MyperformancePage implements OnInit {
   /**
    * Options for sliders
    */
-  value = 67;
+  value;
+  approxArokerageInCr;
   isCollapsed = false;
-  options: Options = {
-    floor: 0,
-    ceil: 100,
-    ticksArray: [0, 25, 50, 75, 100],
-    showTicks: true,
-    selectionBarGradient: {
-      from: "white",
-      to: "#FC0",
-    },
-    showSelectionBar: true,
-    tickStep: 25,
-    getLegend: (value: number): string => {
-      return value + "<b >CR</b>";
-    },
-  };
+
+  options = {};
 
   constructor(
     private dateAdapter: DateAdapter<Date>,
@@ -100,6 +88,69 @@ export class MyperformancePage implements OnInit {
     this.latesttodate = new Date().toISOString();
     console.log(this.fromdate);
     console.log(this.todate);
+  }
+
+  dynamicSlider(val, flag) {
+    if (flag == 1) {
+      if (val < 20) {
+        return 0;
+      } else if (val >= 20 && val <= 100) {
+        return 25;
+      } else {
+        return 75;
+      }
+    } else if (flag == 2) {
+      if (val < 20) {
+        return 25;
+      } else if (val >= 20 && val <= 100) {
+        return 125;
+      } else {
+        return 200;
+      }
+    } else if (flag == 3) {
+      if (val < 20) {
+        return [0, 5, 10, 15, 20, 25];
+      } else if (val >= 20 && val <= 100) {
+        return [25, 50, 75, 100, 125];
+      } else {
+        return [75, 100, 125, 175, 200];
+      }
+    } else if (flag == 4) {
+      if (val < 20) {
+        return 5;
+      } else if (val >= 20 && val <= 100) {
+        return 25;
+      } else {
+        return 25;
+      }
+    }
+  }
+
+  createSlider() {
+    this.options = {
+      floor: 0 || this.dynamicSlider(this.value, 1),
+      ceil: this.dynamicSlider(this.value, 2),
+      ticksArray: this.dynamicSlider(this.value, 3),
+      readOnly: true,
+      showTicks: true,
+      selectionBarGradient: {
+        from: "white",
+        to: "#FC0",
+      },
+      translate: (value: number): string => {
+        return `
+      <div class='img-slider'>
+      <img class='man-img' src='assets/new_icons/man.png'/>
+      <b>You are here</b>
+      </div>
+      `;
+      },
+      showSelectionBar: true,
+      tickStep: this.dynamicSlider(this.value, 4),
+      getLegend: (value: number): string => {
+        return value + "<b> CR</b>";
+      },
+    };
   }
 
   ngOnInit() {}
@@ -155,71 +206,82 @@ export class MyperformancePage implements OnInit {
       () => {
         if (this.network.type !== "none" && this.network.type !== "unknown") {
           this.apiservice
-            .getMyPerformance(
-              this.cp_executive_id,
-              this.api_token,
-              this.from_date,
-              this.to_date
-            )
-            .subscribe(
-              (data) => {
-                this.successValue = JSON.stringify(data.body);
-                const Value = JSON.parse(this.successValue);
-                this.isSpinner = false;
-                if (Value.success === 1) {
-                  this.PerformanceList = Value.data;
-                  this.selectedCategoryId = this.PerformanceList[0].project_id;
-                  this.selectedCategory = this.PerformanceList[0].project_name;
-                  this.leads_site_visits =
-                    this.PerformanceList[0].leads_site_visits;
-                  this.leads = this.PerformanceList[0].leads;
-                  this.lead_tokens = this.PerformanceList[0].lead_tokens_ghp;
-                  this.lead_tokens_ghp_plus =
-                    this.PerformanceList[0].lead_tokens_ghp_plus;
-                  this.booking_master = this.PerformanceList[0].booking_master;
-                  this.dismissLoading();
-                  console.log(this.PerformanceList);
-                  console.log(this.selectedCategory);
-                  console.log(this.leads_site_visits);
-                  console.log(this.leads);
-                  console.log(this.lead_tokens);
-                  console.log(this.booking_master);
+            .getAllProjects(this.api_token)
+            .map((res) => res.body)
+            .subscribe((res) => {
+              console.log(res);
+              this.dismissLoading();
+              this.PerformanceList = res.data;
+              this.selectedCategoryId = this.PerformanceList[0].project_id;
+              this.selectedCategory = this.PerformanceList[0].project_name;
 
-                  // {
-                  //   name: "GHP + Generated",
-                  //   count: this.lead_tokens_ghp_plus,
-                  //   bg_color: "bg3",
-                  // },
-                  this.cardInfo = [
-                    {
-                      name: "Leads",
-                      count: this.leads,
-                      bg_color: "bg1",
-                    },
-                    {
-                      name: "Site Visit",
-                      count: this.leads_site_visits,
-                      bg_color: "bg2",
-                    },
-                    {
-                      name: "Tokens",
-                      count: this.lead_tokens,
-                      bg_color: "bg3",
-                    },
-                  ];
-                  this.isCollapsed = true;
-                } else {
-                  this.dismissLoading();
-                  this.isSpinner = false;
-                  this.helper.presentToast("Something went wrong!");
-                }
-              },
-              (error) => {
-                this.dismissLoading();
-                this.isSpinner = false;
-                this.helper.presentToast("Something went wrong!");
-              }
-            );
+              this.apiservice
+                .getMyPerformance(
+                  this.cp_executive_id,
+                  this.api_token,
+                  this.from_date,
+                  this.to_date,
+                  this.selectedCategoryId
+                )
+                .map((res) => res.body)
+                .subscribe(
+                  (res) => {
+                    // this.successValue = JSON.stringify(data.body);
+                    // const Value = JSON.parse(this.successValue);
+                    this.isSpinner = false;
+                    if (res.success === 1) {
+                      this.leads_site_visits = res.data.site_visits;
+                      this.leads = res.data.leads;
+                      this.lead_tokens = res.data.gt_count;
+                      this.lead_tokens_ghp_plus = res.data.ps_count;
+                      this.booking_master = res.data.allotments;
+                      this.dismissLoading();
+                      console.log(this.PerformanceList);
+                      console.log(this.selectedCategory);
+                      console.log(this.leads_site_visits);
+                      console.log(this.leads);
+                      console.log(this.lead_tokens);
+                      console.log(this.booking_master);
+                      this.value = res.data.total_sales_in_cr;
+                      this.approxArokerageInCr =
+                        res.data.approx_brokerage_in_cr;
+                      this.createSlider();
+                      this.cardInfo = [
+                        {
+                          name: "Leads",
+                          count: this.leads,
+                          bg_color: "bg1",
+                        },
+                        {
+                          name: "Site Visit",
+                          count: this.leads_site_visits,
+                          bg_color: "bg2",
+                        },
+                        {
+                          name: "Tokens",
+                          count: this.lead_tokens,
+                          bg_color: "bg3",
+                        },
+                        {
+                          name: "G+ Generated",
+                          count: this.lead_tokens_ghp_plus,
+                          bg_color: "bg3",
+                        },
+                      ];
+                      this.isCollapsed = true;
+                    } else {
+                      this.dismissLoading();
+                      this.isSpinner = false;
+                      this.helper.presentToast("Something went wrong!");
+                    }
+                  },
+                  (error) => {
+                    this.dismissLoading();
+                    this.isSpinner = false;
+                    this.helper.presentToast("Something went wrong!");
+                  }
+                );
+            });
         } else {
           this.dismissLoading();
           this.isSpinner = false;
@@ -243,37 +305,27 @@ export class MyperformancePage implements OnInit {
               this.cp_executive_id,
               this.api_token,
               this.from_date,
-              this.to_date
+              this.to_date,
+              this.selectedCategoryId
             )
+            .map((res) => res.body)
             .subscribe(
               (data) => {
-                this.successValue = JSON.stringify(data.body);
-                const Value = JSON.parse(this.successValue);
+                // this.successValue = JSON.stringify(data.body);
+                // const Value = JSON.parse(this.successValue);
                 this.isSpinner = false;
-                if (Value.success === 1) {
-                  this.PerformanceList = Value.data;
-                  this.selectedCategoryId =
-                    this.PerformanceList[this.selectedCategoryId].project_id;
-                  this.selectedCategory =
-                    this.PerformanceList[this.selectedCategoryId].project_name;
-                  this.leads_site_visits =
-                    this.PerformanceList[
-                      this.selectedCategoryId
-                    ].leads_site_visits;
+                if (data.success === 1) {
+                  // this.PerformanceList = Value.data;
+                  // this.selectedCategoryId =
+                  //   this.PerformanceList[this.selectedCategoryId].project_id;
+                  // this.selectedCategory =
+                  //   this.PerformanceList[this.selectedCategoryId].project_name;
+                  this.leads_site_visits = data.data.leads_site_visits;
                   this.leads =
                     this.PerformanceList[this.selectedCategoryId].leads;
-                  this.lead_tokens =
-                    this.PerformanceList[
-                      this.selectedCategoryId
-                    ].lead_tokens_ghp;
-                  this.lead_tokens_ghp_plus =
-                    this.PerformanceList[
-                      this.selectedCategoryId
-                    ].lead_tokens_ghp_plus;
-                  this.booking_master =
-                    this.PerformanceList[
-                      this.selectedCategoryId
-                    ].booking_master;
+                  this.lead_tokens = data.data.lead_tokens_ghp;
+                  this.lead_tokens_ghp_plus = data.data.lead_tokens_ghp_plus;
+                  this.booking_master = data.data.booking_master;
                   this.dismissLoading();
                   console.log(this.PerformanceList);
                   console.log(this.selectedCategory);
@@ -311,13 +363,14 @@ export class MyperformancePage implements OnInit {
   getmyPerformancevalue(index: any) {
     this.selectedCategoryId = this.PerformanceList[index].project_id;
     this.selectedCategory = this.PerformanceList[index].project_name;
-    this.leads_site_visits = this.PerformanceList[index].leads_site_visits;
-    this.leads = this.PerformanceList[index].leads;
-    this.lead_tokens = this.PerformanceList[index].lead_tokens_ghp;
-    this.lead_tokens_ghp_plus =
-      this.PerformanceList[index].lead_tokens_ghp_plus;
-    this.booking_master = this.PerformanceList[index].booking_master;
-    console.log("this.selectedCategoryId", this.selectedCategoryId);
+    this.getPreformanceForClickForPerformance();
+    // this.leads_site_visits = this.PerformanceList[index].leads_site_visits;
+    // this.leads = this.PerformanceList[index].leads;
+    // this.lead_tokens = this.PerformanceList[index].lead_tokens_ghp;
+    // this.lead_tokens_ghp_plus =
+    //   this.PerformanceList[index].lead_tokens_ghp_plus;
+    // this.booking_master = this.PerformanceList[index].booking_master;
+    // console.log("this.selectedCategoryId", this.selectedCategoryId);
   }
 
   /*Do-Refresh*/

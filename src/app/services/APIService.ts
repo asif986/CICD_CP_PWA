@@ -222,9 +222,15 @@ export class APIService {
   }
 
   /*My Performance*/
-  getMyPerformance(cpUserID: any, apitoken: any, from_date: any, to_date: any) {
+  getMyPerformance(
+    cpUserID: any,
+    apitoken: any,
+    from_date: any,
+    to_date: any,
+    project_id
+  ) {
     return this.apiClient.get(
-      this.webServer.performanceOfChannelPartner +
+      this.webServer.performanceNewOfChannelPartner +
         "?api_token=" +
         apitoken +
         "&cp_executive_id=" +
@@ -232,7 +238,16 @@ export class APIService {
         "&from_date=" +
         from_date +
         "&to_date=" +
-        to_date
+        to_date +
+        "&project_id" +
+        project_id
+    );
+  }
+
+  // getAllProjects
+  getAllProjects(apitoken: any) {
+    return this.apiClient.get(
+      this.webServer.getAllProjectName + "?api_token=" + apitoken
     );
   }
 
@@ -773,3 +788,5 @@ export class APIService {
     );
   }
 }
+
+// performance page slider api

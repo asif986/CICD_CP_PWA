@@ -14,8 +14,8 @@
         </div>
       </ion-col>
       <ion-col style="text-align: end;margin-right: 10px;">
-        <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'
-          style="text-align: right;width: 37%!important;">
+        <!-- <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'
+          style="text-align: right;width: 37%!important;"> -->
       </ion-col>
     </ion-row>
   </ion-toolbar>
@@ -27,21 +27,23 @@
 <ion-content>
   <div class="performance-page">
 
-    <div style="padding-left: 10px; padding-right: 10px;padding-top: 10px!important;font-size: 10px;">
-      <mat-form-field appearance="outline" style="width:100%">
-        <mat-label class="matLabel">Select Project</mat-label>
-        <mat-select [(ngModel)]="selectedCategory">
-          <mat-option *ngFor="let performance of PerformanceList let i= index" [value]="performance.project_name"
-            (click)="getmyPerformancevalue(i)">
-            {{performance.project_name}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+    <ion-row>
+      <ion-col size="12">
 
-    <ion-row style="padding-left: 3px;padding-right: 2px;">
+        <mat-form-field appearance="outline" style="width:100%">
+          <mat-label class="matLabel">Select Project</mat-label>
+          <mat-select [(ngModel)]="selectedCategory">
+            <mat-option *ngFor="let performance of PerformanceList let i= index" [value]="performance.project_name"
+              (click)="getmyPerformancevalue(i)">
+              {{performance.project_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      </ion-col>
+
       <ion-col size='6'>
-        <div class="input-field-text" style="font-size: 10px;">
+        <div class="input-field-text" style="font-size: 10px;margin-top: -8px;">
           <mat-form-field appearance="outline" style="width: 100%" (click)="picker2.open()">
             <mat-label class="input-field-text" style="font-size: 15px;">From </mat-label>
             <input matInput [matDatepicker]="picker2" [(ngModel)]="fromdate" style="font-size: 20px" [max]="minDate"
@@ -53,18 +55,18 @@
       </ion-col>
 
       <ion-col size='6'>
-        <div class="input-field-text" style="font-size: 10px;">
+        <div class="input-field-text" style="font-size: 10px;margin-top: -8px;">
           <mat-form-field appearance="outline" style="width: 100%" *ngIf="fromdate!==undefined"
             (click)="picker3.open()">
-            <mat-label class="input-field-text" style="font-size: 15px;">To</mat-label>
+            <mat-label class="input-field-text" style="font-size: 16px;">To</mat-label>
             <input matInput [matDatepicker]="picker3" [(ngModel)]="todate" style="font-size: 20px" [min]="fromdate"
               (dateChange)="Click()" readonly>
             <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
             <mat-datepicker #picker3 [(ngModel)]="todate" ngDefaultControl></mat-datepicker>
           </mat-form-field>
           <mat-form-field appearance="outline" style="width: 100%" *ngIf="fromdate==undefined" (click)="picker3.open()">
-            <mat-label class="input-field-text" style="font-size: 15px;">To</mat-label>
-            <input matInput [matDatepicker]="picker3" [(ngModel)]="todate" style="font-size: 20px" [min]="minDate"
+            <mat-label class="input-field-text" style="font-size: 16px;">To</mat-label>
+            <input matInput [matDatepicker]="picker3" [(ngModel)]="todate" style="font-size: 23px" [min]="minDate"
               [max]="minDate" readonly>
             <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
             <mat-datepicker #picker3 [(ngModel)]="todate" ngDefaultControl></mat-datepicker>
@@ -87,12 +89,25 @@
 
       </ion-col>
 
-      <ion-col size="4" *ngFor="let item of cardInfo">
-        <div class="all_small_card {{item?.bg_color}}">
+      <!-- <ion-col size="12" > -->
+      <!-- <div>
+        <div *ngFor="let item of cardInfo" class="all_small_card {{item?.bg_color}}" scrollX="true">
           <div class="small_card_text">{{item?.count}} <img src="assets/new_icons/increment.png" /></div>
           <div class="small_card_nm">{{item?.name}}</div>
         </div>
-      </ion-col>
+      </div> -->
+
+      <ion-slides [options]="{ slidesPerView: 'auto', zoom: false, grabCursor: true }">
+        <ion-slide *ngFor="let item of cardInfo" style="width: 102px;height: 122px;">
+          <ion-col>
+            <div class="all_small_card {{item?.bg_color}}" scrollX="true">
+              <div class="small_card_text">{{item?.count}} <img src="assets/new_icons/increment.png" /></div>
+              <div class="small_card_nm">{{item?.name}}</div>
+            </div>
+          </ion-col>
+        </ion-slide>
+      </ion-slides>
+      <!-- </ion-col> -->
 
       <!-- <ion-col size="4">
         <ion-card class="outline_card" (click)="GoToFilter(5,null)" style="margin-left: 2px;">
@@ -158,7 +173,7 @@
   <!-- <div class="custom-slider"> -->
   <ngx-slider [(value)]="value" [options]="options"></ngx-slider>
   <!-- </div> -->
-  <div class="brokerage_text">
-    <p>Your approx brokerage calculation is {{value}}CR</p>
+  <div class="brokerage_text d-flex justify-content-center">
+    Your approx brokerage calculation is:&nbsp;<h6>{{approxArokerageInCr}}CR</h6>
   </div>
 </div>

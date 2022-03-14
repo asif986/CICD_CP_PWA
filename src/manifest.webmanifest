@@ -1,12 +1,13 @@
 {
     "name": "VJ CP APP",
     "short_name": "VJ CP APP",
-    "theme_color": "#1976d2",
-    "background_color": "#fafafa",
+    "theme_color": "#ffeeff",
+    "background_color": "#ffeeff",
     "display": "standalone",
     "scope": "./",
     "start_url": "./",
-    "icons": [{
+    "icons": [
+        {
             "src": "assets/icons/icon-72x72.png",
             "sizes": "72x72",
             "type": "image/png",

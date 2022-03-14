@@ -1,102 +1,117 @@
 <ion-header *ngIf="UpID==undefined">
-  <ion-toolbar color="color_d" >
-  <ion-row>
-    <ion-col>
-      <div>
-        <ion-buttons slot="start" style="margin-left: 3%">
-          <i class="material-icons icon"   (click)="goback()">arrow_back_ios</i>
-           </ion-buttons>
-      </div>
-    </ion-col>
-    <ion-col style="text-align: start;margin-left: -40px;">
-      <div>
-        <ion-title class="TITLETOOLBAR" style="margin-left: 0px!important;">Add Reminder</ion-title>
-      </div>
-    </ion-col>
-    <ion-col style="text-align: end;margin-right: 10px;">
-      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 40%!important;">
-    </ion-col>
-  </ion-row>
+  <ion-toolbar color="color_d">
+    <ion-row>
+      <ion-col>
+        <div>
+          <ion-buttons slot="start" style="margin-left: 3%">
+            <i class="material-icons icon" (click)="goback()">arrow_back_ios</i>
+          </ion-buttons>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: start;margin-left: -40px;">
+        <div>
+          <ion-title class="TITLETOOLBAR" style="margin-left: 0px!important;">Add Reminder</ion-title>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: end;margin-right: 10px;">
+        <!-- <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 40%!important;"> -->
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
 <ion-header *ngIf="UpID!=undefined">
-  <ion-toolbar color="color_d" >
-  <ion-row>
-    <ion-col>
-      <div>
-        <ion-buttons slot="start" style="margin-left: 3%">
-          <i class="material-icons icon"   (click)="goback()">arrow_back_ios</i>
-           </ion-buttons>
-      </div>
-    </ion-col>
-    <ion-col style="text-align: start;margin-left: -40px;">
-      <div>
-        <ion-title class="TITLETOOLBAR" style="margin-left: 0px!important;">Update Reminder</ion-title>
-      </div>
-    </ion-col>
-    <ion-col style="text-align: end;margin-right: 10px;">
-      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 40%!important;">
-    </ion-col>
-  </ion-row>
+  <ion-toolbar color="color_d">
+    <ion-row>
+      <ion-col>
+        <div>
+          <ion-buttons slot="start" style="margin-left: 3%">
+            <i class="material-icons icon" (click)="goback()">arrow_back_ios</i>
+          </ion-buttons>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: start;margin-left: -40px;">
+        <div>
+          <ion-title class="TITLETOOLBAR" style="margin-left: 0px!important;">Update Reminder</ion-title>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: end;margin-right: 10px;">
+        <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'
+          style="text-align: right;width: 40%!important;">
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div style="margin: 5%!important;"  >
+  <div style="margin: 5%!important;">
 
     <!--Description-->
-    <div class="input-field-textarea" style="margin-bottom: 10%!important;margin-left: 15px!important;margin-right:15px!important;margin-top: 20px!important; ">
+    <div class="input-field-textarea"
+      style="margin-bottom: 10%!important;margin-left: 15px!important;margin-right:15px!important;margin-top: 20px!important; ">
       <mat-form-field appearance="outline" style="width: 100%">
         <mat-label>Reminder Title</mat-label>
-        <textarea matInput placeholder="" rows="4" cols="20" name="purpose" [(ngModel)]="addReminder.reminder_comments" type="text"></textarea>
+        <textarea matInput placeholder="" rows="4" cols="20" name="purpose" [(ngModel)]="addReminder.reminder_comments"
+          type="text"></textarea>
       </mat-form-field>
     </div>
-    <div >
+    <div>
 
 
-    
-<div style="margin-top: -20px;">
-  <ion-title class="selectName" style="margin-left: 15px!important;margin-bottom: 5px!important;">Reminder Date:</ion-title>
-  <ion-row style="margin-left: 15px!important;margin-right: 15px!important;">
-    <div class="input-field-text">
-      <mat-form-field appearance="outline" style="width: 100%">
-        <input matInput [readonly]="!editable"[matDatepicker]="picker2" [(ngModel)]="reminderDate" [min]="minDate" >
-        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-        <mat-datepicker  #picker2 [(ngModel)]="reminderDate" ngDefaultControl></mat-datepicker>
-      </mat-form-field>
+
+      <div style="margin-top: -20px;">
+        <ion-title class="selectName" style="margin-left: 15px!important;margin-bottom: 5px!important;">Reminder Date:
+        </ion-title>
+        <ion-row style="margin-left: 15px!important;margin-right: 15px!important;">
+          <div class="input-field-text">
+            <mat-form-field appearance="outline" style="width: 100%">
+              <input matInput [readonly]="!editable" [matDatepicker]="picker2" [(ngModel)]="reminderDate"
+                [min]="minDate">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2 [(ngModel)]="reminderDate" ngDefaultControl></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </ion-row>
+      </div>
+
+      <div style="margin-top: -20px;">
+        <ion-title class="selectName" style="margin-left: 15px!important;margin-bottom: 5px!important;">Reminder Time:
+        </ion-title>
+        <ion-row style="margin-left: 15px!important;margin-right: 15px!important;">
+          <div class="input-field-text">
+            <mat-form-field style="width: 100%" appearance="outline" class="example-full-width">
+              <input matInput atp-time-picker disabled readonly class="input-field-text" [(ngModel)]="reminderTime"
+                (input)="reminderTime">
+              <button mat-button style="color: var(--ion-color-primary);padding-top: 7px!important;" matSuffix
+                mat-icon-button aria-label="Clear">
+                <mat-icon>
+                  <ion-icon src="assets/channelPartner_Icons/reminder_Icon/time_clock_icon.svg" (click)="open()">
+                  </ion-icon>
+                </mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+        </ion-row>
+      </div>
+
+
+
     </div>
-  </ion-row>
-</div>
-  
-<div style="margin-top: -20px;">
-  <ion-title class="selectName" style="margin-left: 15px!important;margin-bottom: 5px!important;">Reminder Time:</ion-title>
-  <ion-row style="margin-left: 15px!important;margin-right: 15px!important;">
-    <div class="input-field-text">
-      <mat-form-field style="width: 100%" appearance="outline" class="example-full-width">
-        <input matInput atp-time-picker disabled readonly class="input-field-text" [(ngModel)]="reminderTime" (input)="reminderTime" >
-        <button mat-button style="color: var(--ion-color-primary);padding-top: 7px!important;" matSuffix mat-icon-button aria-label="Clear">
-          <mat-icon>
-            <ion-icon src="assets/channelPartner_Icons/reminder_Icon/time_clock_icon.svg" (click)="open()"></ion-icon>
-          </mat-icon>
-        </button>
-      </mat-form-field>
+
+
+    <!--Submit Complaint-->
+    <div
+      style="align-content: center!important;alignment: center!important;text-align: center!important;justify-content: center!important;margin-top: -15px;"
+      *ngIf="UpID==undefined">
+      <button mat-stroked-button class="registerbutton" (click)="addNewReminder()" routerDirection="forward">Set
+        Reminder</button>
     </div>
-  </ion-row>
-</div>
-  
 
-
-  </div>
-
-
-  <!--Submit Complaint-->
-  <div style="align-content: center!important;alignment: center!important;text-align: center!important;justify-content: center!important;margin-top: -15px;" *ngIf="UpID==undefined">
-    <button mat-stroked-button class="registerbutton" (click)="addNewReminder()" routerDirection="forward">Set Reminder</button>
-  </div>
-
-    <div style="align-content: center!important;alignment: center!important;text-align: center!important;justify-content: center!important;margin-top: -15px;" *ngIf="UpID!=undefined">
-      <button mat-stroked-button class="registerbutton" (click)="updateNewReminder()" routerDirection="forward">Update Reminder</button>
+    <div
+      style="align-content: center!important;alignment: center!important;text-align: center!important;justify-content: center!important;margin-top: -15px;"
+      *ngIf="UpID!=undefined">
+      <button mat-stroked-button class="registerbutton" (click)="updateNewReminder()" routerDirection="forward">Update
+        Reminder</button>
     </div>
   </div>
 
