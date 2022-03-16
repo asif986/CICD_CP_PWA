@@ -1,0 +1,221 @@
+h1 {
+    font-size: xx-large;
+}
+
+::ng-deep .mat-form-field-wrapper {
+    margin: 0px !important;
+    padding-bottom: 1em;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 1em 0 1em 0 !important;
+}
+
+.toolbar-text {
+    color: var(--ion-color-secondary);
+    font-family: "Metropolis Medium";
+    font-size: medium;
+    background-color: #652D90;
+}
+
+.toolbar-title {
+    color: var(--ion-color-secondary);
+    font-family: "Metropolis Medium";
+    font-size: 20px;
+}
+
+p {
+    font-family: "Metropolis Light";
+}
+
+.title {
+    padding: 5px;
+    alignment: center;
+    color: var(--ion-color-primary);
+    font-family: "Metropolis Medium";
+    margin-top: 30%;
+    margin-bottom: 15%;
+    justify-content: center;
+    align-items: center;
+    font-size: x-large;
+}
+
+.input-field {}
+
+.input-field-text {
+    color: var(--ion-color-primary);
+    font-family: "Metropolis Light";
+    font-size: large;
+    text-align: start;
+    margin: 1%;
+}
+
+.loginbutton {
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: large;
+    border-radius: 25px;
+    background-color: #F5A22C;
+    color: var(--ion-color-primary);
+    font-size: large;
+    font-family: "Metropolis Medium";
+}
+
+#forgotButton {
+    color: var(--ion-color-medium_grey);
+    letter-spacing: 0.8px;
+    margin-top: 5%;
+    font-size: medium;
+}
+
+.error {
+    color: red;
+    text-align: start;
+    font-family: "Metropolis Light";
+    font-size: 11px;
+}
+
+.newusertext {
+    padding: 2px;
+    alignment: center;
+    color: #000000;
+    font-family: "Metropolis Light";
+    margin-top: 5%;
+    margin-left: 3%;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+
+.newusertext1 {
+    padding: 2px;
+    alignment: center;
+    color: var(--ion-color-medium_grey);
+    font-family: "Metropolis Light";
+    margin-right: 3%;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+.registerbutton {
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: large;
+    border-radius: 25px;
+    background-color: #F5A22C;
+    color: var(--ion-color-primary);
+    font-size: large;
+    font-family: "Metropolis Medium";
+}
+
+.mat-panel-title {
+    padding: 1px;
+    alignment: left;
+    color: var(--ion-color-primary);
+    font-family: "Metropolis Medium";
+    margin-top: 5%;
+    margin-bottom: 5%;
+    font-size: 20px;
+}
+
+.countrycode {
+    width: 50%;
+    height: 60px;
+    font-size: 14px;
+    background-color: var(--ion-color-secondary);
+    ;
+    border: 1px solid var(--ion-color-light_outline_card);
+    padding: 20px;
+    margin-left: 5px;
+    margin-right: 10px;
+    margin-top: 5px!important;
+    border-radius: 8%;
+}
+
+.countrycodetext {
+    font-size: 14px;
+    font-family: "Metropolis Medium";
+    margin-top: 10px!important;
+}
+
+.ion-icon {
+    zoom: 1.5
+}
+
+.background-color {
+    background-color: #F9FAFA;
+}
+
+.personal-details {
+    color: var(--ion-color-primary);
+    font-family: "Metropolis Medium";
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+.inputtextfield {
+    // padding: 2px;
+    color: #000000;
+    font-family: "Metropolis Light";
+    font-size: 16px;
+}
+
+.inputtextfieldPANGST {
+    padding: 2px;
+    color: #000000;
+    font-family: "Metropolis Light";
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.mat-expansion-panel-body {
+    padding: 0 12px 12px;
+}
+
+.divider {
+    border: 1px var( --ion-color-medium_grey);
+    margin-top: 10px!important;
+}
+
+.Resendbuttons {
+    width: 40%;
+    padding-top: 2px;
+    padding-bottom: 5px;
+    margin-bottom: 10px!important;
+    border-radius: 25px;
+    background-color: #F5A22C;
+    color: var(--ion-color-primary);
+    font-size: 18px;
+    font-family: "Metropolis Medium";
+}
+
+.Resendbuttons:disabled,
+Resendbuttonss[disabled] {
+    color: white;
+    opacity: 1;
+    background: #b3b3b3;
+}
+
+::ng-deep .mat-form-field-infix {
+    // padding: 0.5em 0;
+    border-top: 0.4em solid transparent;
+}
+
+::ng-deep.swal2-title {
+    font-family: "Metropolis Medium";
+    font-size: 16px;
+    border-radius: 16px!important;
+}
+
+::ng-deep .mat-form-field-infix {
+    padding: 1em 0 1em 0 !important;
+}

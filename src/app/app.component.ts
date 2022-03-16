@@ -149,7 +149,9 @@ export class AppComponent {
           this.navCtrl.navigateRoot("/login");
         }
 
-        // this.navCtrl.navigateRoot('/sales-performance');
+        // this.navCtrl.navigateRoot('/new-registration');
+        // this.navCtrl.navigateRoot('/business-details');
+        this.navCtrl.navigateRoot('/approve-fosrequest');
 
         this.hideSplashScreen();
       });

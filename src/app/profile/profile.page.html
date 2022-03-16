@@ -1,20 +1,19 @@
 <ion-content>
-    <ion-grid fixed>
-        <ion-row>
-            <ion-col size="10" class="pt-5" offset="1">
+    <ion-grid>
+        <ion-row align-items-center>
+            <ion-col size="10" offsetXs="1" offsetSm="1">
 
                 <p class="mb-0">Profile Page</p>
             </ion-col>
-            <ion-col size="8" class="p-3" offset="2">
+            <ion-col size="6" offsetMd="5" sizeMd="2" offsetXs="3" offsetSm="3">
                 <ion-img src="assets/channelPartner_Icons/profile/profile.png"></ion-img>
             </ion-col>
-            <!-- <ion-col size="6"></ion-col> -->
         </ion-row>
-        <ion-row>
-            <ion-col size="10" offset="1" class="pt-4">
-                <div *ngFor="let item of detailsArray" class="d-flex justify-content-between mb-4">
+        <ion-row align-items-baseline>
+            <ion-col size="10" offsetXs="1" offsetSm="1" class="pt-4">
+                <div *ngFor="let item of detailsArray" class="d-flex justify-content-between mb-2">
                     <div>
-                        <h4>{{item.info}}</h4>
+                        <h5>{{item.info}}</h5>
                     </div>
                     <div>
                         <mat-icon>
@@ -25,9 +24,9 @@
 
                 <mat-divider class="divider pt-3"></mat-divider>
 
-                <div class="d-flex justify-content-between mb-4 pt-3 pb-5">
+                <div class="d-flex justify-content-between pt-3">
                     <div>
-                        <h4>Approved AOP/QOP</h4>
+                        <h5>Approved AOP/QOP</h5>
                     </div>
                     <div>
                         <mat-icon>
@@ -36,40 +35,42 @@
                     </div>
                 </div>
             </ion-col>
-            <ion-col ssize="10" offset="1" class="pt-5">
-                <div class="d-flex ">
-                    <div class="p-3">
+            <ion-col size="10" offsetXs="1" offsetSm="1" class="">
 
-                        <div class="d-flex justify-content-between">
-                            <h4>connect with</h4>
-                        </div>
-                    </div>
-                    <div class="d-flex">
-                        <div class="p-3">
-                            <mat-icon>
-                                <ion-icon name="logo-google"></ion-icon>
 
-                            </mat-icon>
-                        </div>
-                        <div class="p-3">
-                            <mat-icon>
-                                <ion-icon name="logo-facebook"></ion-icon>
-                            </mat-icon>
-                        </div>
-                        <div class="p-3">
-                            <mat-icon>
-                                <ion-icon name="mail"></ion-icon>
-                            </mat-icon>
-                        </div>
-                    </div>
-                </div>
-
-            </ion-col>
-            <ion-col size="10" offset="1">
-
-                <button mat-button class="common-btn">Logout</button><br>
             </ion-col>
         </ion-row>
     </ion-grid>
 
 </ion-content>
+<div>
+    <div class="d-flex justify-content-around">
+        <div class="p-2">
+
+            <div class="d-flex justify-content-between">
+                <h4>connect with</h4>
+            </div>
+        </div>
+        <div class="d-flex">
+            <div class="p-2">
+                <mat-icon>
+                    <ion-icon name="logo-google"></ion-icon>
+
+                </mat-icon>
+            </div>
+            <div class="p-2">
+                <mat-icon>
+                    <ion-icon name="logo-facebook"></ion-icon>
+                </mat-icon>
+            </div>
+            <div class="p-2">
+                <mat-icon>
+                    <ion-icon name="mail"></ion-icon>
+                </mat-icon>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <button mat-button style="max-width: 80% !important " class="common-btn  mb-3">Logout</button><br>
+    </div>
+</div>

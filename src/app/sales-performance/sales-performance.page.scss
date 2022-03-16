@@ -6,6 +6,15 @@
   background-color: white;
 }
 
+::ng-deep .mat-form-field-outline-start {
+  border-radius: 28px 0 0 28px !important;
+  min-width: 28px !important;
+}
+
+::ng-deep .mat-form-field-outline-end {
+  border-radius: 0 28px 28px 0 !important;
+}
+
 .rounded-img {
   border-radius: 4.25rem !important;
 }
@@ -30,4 +39,73 @@ p {
 
 ::ng-deep tr > th {
   border-radius: 1px solid;
+}
+
+.mat-header-cell {
+  background: #25c18a;
+}
+
+tr.mat-header-row {
+  height: 2rem;
+  border: 1px solid black;
+  text-align: center;
+}
+
+th.mat-header-cell {
+  border: 1px solid black;
+  padding-inline: 0.15rem;
+  text-align: center;
+}
+
+th.mat-cell {
+  border: 1px solid black;
+  text-align: center;
+}
+
+td.mat-cell {
+  /* row padding */
+  // padding: 16px 0;
+  /* row border */
+  padding-inline: 0.15rem;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+}
+
+td.mat-cell:first-of-type,
+td.mat-footer-cell:first-of-type,
+th.mat-header-cell:first-of-type {
+  padding-left: 0px;
+}
+
+td.mat-cell:first-child {
+  /* row border */
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+}
+
+td.mat-cell:last-child {
+  /* row border */
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+td.mat-cell {
+  border: 1px solid black;
+  text-align: center;
+}
+
+tr.mat-footer-row,
+tr.mat-row {
+  height: 1rem;
+}
+
+td.mat-cell:last-of-type,
+td.mat-footer-cell:last-of-type,
+th.mat-header-cell:last-of-type {
+  padding-right: 0px;
+}
+
+table {
+  /* row spacing / margin */
+  border-spacing: 0 8px !important;
 }

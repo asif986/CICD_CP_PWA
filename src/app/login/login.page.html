@@ -3,9 +3,13 @@
 </ion-header>
 
 <ion-content class="ion-text-center" *ngIf="verifyStatusId==0">
-    <div class="col-md-12 col-lg-12 ion-text-center" style="margin-top: 10%!important;">
-        <img src="assets/channelPartner_Icons/vjd_Logos/logo1.png" class="img-responsive header-logo">
-    </div>
+    <ion-row>
+        <ion-col sizeMd="4" offsetMd="4" sizeLg="4" offsetLg="4" sizeSm="10" offsetSm="1">
+            <div class="col-md-12 col-lg-12 ion-text-center">
+                <img src="assets/channelPartner_Icons/vjd_Logos/logo1.png" class="img-responsive header-logo">
+            </div>
+        </ion-col>
+    </ion-row>
 
     <div class="input-field">
         <ion-row>
@@ -21,7 +25,7 @@
                     </mat-label>
                 </div>
             </ion-col> -->
-            <ion-col size="10" offset="1" class="p-0">
+            <ion-col sizeMd="4" offsetMd="4" sizeLg="4" offsetLg="4" sizeSm="10" offsetSm="1" class="p-0">
                 <!--Enter Mobile Number-->
                 <div [formGroup]="credentialsForm">
                     <mat-form-field appearance="outline" style="width: 100%;margin-top: 5px!important;">
@@ -42,7 +46,7 @@
                     </mat-form-field>
                 </div>
             </ion-col>
-            <ion-col size="10" offset="1" class="p-0">
+            <ion-col sizeMd="4" offsetMd="4" sizeLg="4" offsetLg="4" sizeSm="10" offsetSm="1" class="p-0">
 
                 <div [formGroup]="credentialsForm" class="input-field-text" style="margin-top: 5px!important;">
                     <mat-form-field appearance="outline" style="width: 100%">
@@ -61,7 +65,7 @@
 
         <!--Password-->
         <ion-row>
-            <ion-col size="10" offset="1" class="p-0">
+            <ion-col sizeMd="4" offsetMd="4" sizeLg="4" offsetLg="4" sizeSm="10" offsetSm="1" class="p-0">
                 <!--Forgot Password Button-->
                 <div class="pb-3 pt-3"
                     style="text-align: right!important;margin-top: -30px!important;margin-right: -15px!important;">
@@ -105,7 +109,7 @@
         <img src="assets/channelPartner_Icons/allPNGImages/myPerformance.png" />
     </div> -->
     <ion-row>
-        <ion-col size="9" offset="1">
+        <ion-col sizeMd="4" offsetMd="4" sizeLg="4" offsetLg="4" sizeSm="10" offsetSm="1">
             <ion-img src="assets/channelPartner_Icons/vjd_Logos/working.png"></ion-img>
         </ion-col>
     </ion-row>
