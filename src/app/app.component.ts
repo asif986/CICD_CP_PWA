@@ -151,7 +151,7 @@ export class AppComponent {
 
         // this.navCtrl.navigateRoot('/new-registration');
         // this.navCtrl.navigateRoot('/business-details');
-        this.navCtrl.navigateRoot('/approve-fosrequest');
+        this.navCtrl.navigateRoot('/cpstatus');
 
         this.hideSplashScreen();
       });

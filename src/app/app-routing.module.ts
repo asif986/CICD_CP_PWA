@@ -233,6 +233,8 @@ const routes: Routes = [
     loadChildren:
       "./approve-fosrequest/approve-fosrequest.module#ApproveFOSRequestPageModule",
   },
+  { path: 'select-cp', loadChildren: './select-cp/select-cp.module#SelectCPPageModule' },
+  { path: 'cpstatus', loadChildren: './cpstatus/cpstatus.module#CpstatusPageModule' },
 ];
 
 @NgModule({

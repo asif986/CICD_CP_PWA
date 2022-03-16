@@ -1,0 +1,58 @@
+<ion-content>
+    <ion-grid>
+        <ion-row *ngIf="sucess">
+            <ion-col class="d-flex justify-content-center">
+                <div class="center-page">
+                    <div>
+                        <p class="mb-0">
+                            Your request is pending with
+                        </p>
+                        <p class="text-center">
+                            <b>  
+                          Percepta Pvt Ltd 
+                                        </b>
+                        </p>
+
+                        <p class="link-css">
+                            Cancel and create new request
+                        </p>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col size="10" offset="1">
+                <div class="pt-5">
+
+                    <ion-img src="/assets/new_icons/image43.png"></ion-img>
+                </div>
+
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="!sucess">
+            <ion-col size="12">
+                <h3>Your Organisation</h3>
+            </ion-col>
+            <ion-col size="10" offset="1">
+                <ion-img src="assets/new_icons/sucesscp.png"></ion-img>
+                <div class="align-items-center d-flex flex-column justify-content-center">
+                    <p class="mb-0">
+                        Congratulations for working with
+                    </p>
+                    <p class="text-center">
+                        <b>  
+                          Percepta Pvt Ltd 
+                                  </b>
+                    </p>
+
+                    <!-- <p class="link-css">
+                        Cancel and create new request
+                    </p> -->
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+
+</ion-content>
+<div class="d-flex justify-content-center pb-4">
+    <button mat-button class="common-btn w-75 " routerDirection="forward">Change organisation</button><br>
+</div>
