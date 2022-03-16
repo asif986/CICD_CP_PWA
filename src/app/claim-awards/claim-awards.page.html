@@ -1,68 +1,75 @@
 <ion-header>
-  <ion-toolbar color="color_d" >
-  <ion-row>
-    <ion-col>
-      <div>
-        <ion-buttons slot="start" style="margin-left: 3%">
-          <i class="material-icons icon"  (click)="goback()">arrow_back_ios</i>
-           </ion-buttons>
-      </div>
-    </ion-col>
-    <ion-col style="text-align: start;margin-left: -30px!important;margin-bottom: 6px!important;">
-      <div>
-        <ion-title class="TITLETOOLBAR" style="margin-left: -70px!important;margin-right: 20px!important;">Claimed Awards</ion-title>
-      </div>
-    </ion-col>
-   <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 12%!important;margin-right:10px!important">
-   </ion-row>
+  <ion-toolbar color="color_d">
+    <ion-row>
+      <ion-col>
+        <div>
+          <ion-buttons slot="start" style="margin-left: 3%">
+            <i class="material-icons icon" (click)="goback()">arrow_back_ios</i>
+          </ion-buttons>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: start;margin-left: -30px!important;margin-bottom: 6px!important;">
+        <div>
+          <ion-title class="TITLETOOLBAR" style="margin-left: -70px!important;margin-right: 20px!important;">Claimed
+            Awards</ion-title>
+        </div>
+      </ion-col>
+      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'
+        style="text-align: right;width: 12%!important;margin-right:10px!important">
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <!-- Refresher -->
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-            pullingIcon=""
-            pullingText=""
-            refreshingSpinner="circles"
-            refreshingText="">
+    <ion-refresher-content pullingIcon="" pullingText="" refreshingSpinner="circles" refreshingText="">
     </ion-refresher-content>
   </ion-refresher>
   <!-- List Values -->
   <ion-list *ngIf="cpAwardsList.length!=0 && isSpinner==false">
-    <ion-card *ngFor="let c of cpAwardsList let i=index"style="border-radius: 10px!important;margin-top: 20px!important;">
+    <ion-card *ngFor="let c of cpAwardsList let i=index"
+      style="border-radius: 10px!important;margin-top: 20px!important;">
       <ion-row style="width: 100%!important;margin-top: 3%!important;margin-right: 5px" *ngIf="c.banner_path!==''">
         <ion-col size="4">
-          <img onerror="this.onerror=null;this.src='assets/channelPartner_Icons/allPNGImages/noupdate.png'" src="{{c.award_details.media_path}}" height="95px" width="98px" style="margin-left: 5%!important;border-radius: 16px!important;object-fit: cover;">
+          <img onerror="this.onerror=null;this.src='assets/channelPartner_Icons/allPNGImages/noupdate.png'"
+            src="{{c.award_details.media_path}}" height="95px" width="98px"
+            style="margin-left: 5%!important;border-radius: 16px!important;object-fit: cover;">
         </ion-col>
-       
+
         <ion-col size="7.3" class="ion-text-left" style="padding: 1%!important;margin-left: 3%;">
-          <div *ngIf="getTitleLength(c.award_details.title)==0" class="nameOfCustomer" style="overflow: hidden;text-overflow: ellipsis;height: 32px;">{{c.award_details.title}}</div>
-          <div *ngIf="getTitleLength(c.award_details.title)==1" class="nameOfCustomer" style="overflow: hidden;text-overflow: ellipsis;height: 15px;">{{c.award_details.title}}</div>
-         <div style="margin-top: 4%;">
+          <div *ngIf="getTitleLength(c.award_details.title)==0" class="nameOfCustomer"
+            style="overflow: hidden;text-overflow: ellipsis;height: 32px;">{{c.award_details.title}}</div>
+          <div *ngIf="getTitleLength(c.award_details.title)==1" class="nameOfCustomer"
+            style="overflow: hidden;text-overflow: ellipsis;height: 15px;">{{c.award_details.title}}</div>
+          <div style="margin-top: 4%;">
             <ion-row>
               <ion-col size='2' style="margin-left: -2%;">
-                <img src="assets/channelPartner_Icons/reminder_Icon/time_clock_icon.svg" style="width: 16px;height: 16px">
-               </ion-col>
-               <ion-col size='10' style=" margin-left: -13px;margin-top: -3px;" class="ion-text-start">
-                <div class="subTitleOther" style="margin-right: -22px;">{{c.award_details.start_date}} - {{c.award_details.end_date}}</div>
-               </ion-col>
+                <img src="assets/channelPartner_Icons/reminder_Icon/time_clock_icon.svg"
+                  style="width: 16px;height: 16px">
+              </ion-col>
+              <ion-col size='10' style=" margin-left: -13px;margin-top: -3px;" class="ion-text-start">
+                <div class="subTitleOther" style="margin-right: -22px;">{{c.award_details.start_date}} -
+                  {{c.award_details.end_date}}</div>
+              </ion-col>
             </ion-row>
-          
-          <!-- <div class="subTitleOther">End Date : {{c.end_date}}</div> -->
+
+            <!-- <div class="subTitleOther">End Date : {{c.end_date}}</div> -->
           </div>
         </ion-col>
-    </ion-row>
+      </ion-row>
       <div style="margin-bottom: 2%!important;margin-top: -3px!important;">
         <mat-accordion>
           <mat-expansion-panel style="box-shadow: none!important;">
-            <mat-expansion-panel-header style="padding-left:0%!important;padding-right: 7%!important;padding-top: 2%!important;padding-bottom: 2%!important;">
-             <ion-row style="width: 100%!important;">
+            <mat-expansion-panel-header
+              style="padding-left:0%!important;padding-right: 7%!important;padding-top: 2%!important;padding-bottom: 2%!important;">
+              <ion-row style="width: 100%!important;">
                 <ion-col size='5' style="padding-left: 0%;">
-                  <ion-card-subtitle >
-                    <div class="status" >
-                      <div class="tagtext" >
-                        <div  class="status" style="text-align: start;color: var(--ion-color-primary);font-family: 'Metropolis Medium';padding-top: 5px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px">
+                  <ion-card-subtitle>
+                    <div class="status">
+                      <div class="tagtext">
+                        <div class="status"
+                          style="text-align: start;color: var(--ion-color-primary);;padding-top: 5px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px">
                           {{c.claim_status_name}}
                         </div>
                       </div>
@@ -72,36 +79,40 @@
                 <ion-col size='2'>
                 </ion-col>
                 <ion-col size='5'>
-                  <mat-panel-title class="matTitle" >View Details</mat-panel-title>
+                  <mat-panel-title class="matTitle">View Details</mat-panel-title>
                 </ion-col>
               </ion-row>
             </mat-expansion-panel-header>
             <div style="padding-left: 6px!important;" *ngIf="c.award_details.description">
-              <ion-card-title class="expandCardHeading" style="margin-top:-10px!important">Description :</ion-card-title>
-              <ion-card-title class="mediumSubTitle" style="line-height: 18px;color: #606060!important;">{{c.award_details.description}}</ion-card-title>
+              <ion-card-title class="expandCardHeading" style="margin-top:-10px!important">Description :
+              </ion-card-title>
+              <ion-card-title class="mediumSubTitle" style="line-height: 18px;color: #606060!important;">
+                {{c.award_details.description}}</ion-card-title>
             </div>
             <div style="padding-left: 6px!important;" *ngIf="c.award_details.terms_n_condition">
-              <ion-card-title class="expandCardHeading" style="margin-top:10px!important">Terms & Conditions :</ion-card-title>
-              <ion-card-title class="mediumSubTitle" style="line-height: 18px;color: #606060!important;">{{c.award_details.terms_n_condition}}</ion-card-title>
+              <ion-card-title class="expandCardHeading" style="margin-top:10px!important">Terms & Conditions :
+              </ion-card-title>
+              <ion-card-title class="mediumSubTitle" style="line-height: 18px;color: #606060!important;">
+                {{c.award_details.terms_n_condition}}</ion-card-title>
             </div>
           </mat-expansion-panel>
         </mat-accordion>
       </div>
-   </ion-card>
+    </ion-card>
   </ion-list>
   <!-- Infinite Scroll-->
-  <ion-infinite-scroll threshold="500px" id="infinite-scroll"  *ngIf="cpAwardsList.length!=0 && cpAwardsListScroll.length!=0" (ionInfinite)="doInfinite($event)" style="margin-bottom: 5%!important;">
-    <ion-infinite-scroll-content class="scrollText"
-            loading-spinner="bubbles"
-            loading-text="Getting Claim Awards...">
+  <ion-infinite-scroll threshold="500px" id="infinite-scroll"
+    *ngIf="cpAwardsList.length!=0 && cpAwardsListScroll.length!=0" (ionInfinite)="doInfinite($event)"
+    style="margin-bottom: 5%!important;">
+    <ion-infinite-scroll-content class="scrollText" loading-spinner="bubbles" loading-text="Getting Claim Awards...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
   <!--Data Not Found-->
-  <div *ngIf="cpAwardsList.length==0 && isSpinner==false"  class="ion-text-center">
+  <div *ngIf="cpAwardsList.length==0 && isSpinner==false" class="ion-text-center">
     <div class="datanotfound">
       <img src="assets/channelPartner_Icons/cp_Awards/trophy.svg" style="width: 90px;height: 90px;color: gray;">
       <ion-card-title class="noData">Currently,No Claimed Awards Available!</ion-card-title>
     </div>
   </div>
-  </ion-content>
+</ion-content>

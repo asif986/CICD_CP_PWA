@@ -23,9 +23,8 @@
 
 
 
-<ion-searchbar style="font-family: 'Metropolis Light';box-shadow: none!important; background-color: #ffeeff;"
-  placeholder="Search Customer" [(ngModel)]="searchVal" debounce="270" (ionInput)="search($event)"
-  (ionClear)="customerList=[];getCUID();">
+<ion-searchbar style="box-shadow: none!important; background-color: #ffeeff;" placeholder="Search Customer"
+  [(ngModel)]="searchVal" debounce="270" (ionInput)="search($event)" (ionClear)="customerList=[];getCUID();">
 </ion-searchbar>
 
 <ion-content style="padding-bottom: 20%!important;" class="ion-text-center">

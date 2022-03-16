@@ -1,5 +1,5 @@
-.circle{
-  display:block;
+.circle {
+  display: block;
   height: 50px;
   width: 50px;
   border-radius: 50%;
@@ -11,18 +11,18 @@
   margin-top: 20%;
   background-color: var(--ion-color-light_grey);
 }
-.title{
+.title {
   padding-top: 5px;
   alignment: center;
   color: var(--ion-color-medium_grey);
-  font-family: "Metropolis Medium";
+
   margin-top: 5%;
   justify-content: center;
   align-items: center;
   font-size: 18px;
 }
-.circlenew{
-  display:block;
+.circlenew {
+  display: block;
   height: 50px;
   width: 50px;
   border-radius: 50%;
@@ -34,45 +34,42 @@
   margin-top: 20%;
   background-color: var(--ion-color-secondary);
 }
-.titlenew{
+.titlenew {
   padding-top: 5px;
   alignment: center;
   color: var(--ion-color-primary);
-  font-family: "Metropolis Medium";
+
   margin-top: 5%;
   justify-content: center;
   align-items: center;
   font-size: 18px;
 }
-.titletextmessage
-{
+.titletextmessage {
   padding: 2px;
   alignment: center;
   color: var(--ion-color-primary);
-  font-family: "Metropolis Light";
+
   margin-right: 3%;
   justify-content: center;
   align-items: baseline;
   font-size: 14px;
 }
 
-.titletextmessage2
-{
+.titletextmessage2 {
   padding: 2px;
   alignment: center;
   color: var(--ion-color-primary);
-  font-family: "Metropolis Medium";
+
   margin-right: 3%;
   justify-content: center;
   align-items: baseline;
   font-size: 16px;
 }
-.titletextmessage3
-{
+.titletextmessage3 {
   padding: 2px;
   alignment: center;
   color: var(--ion-color-primary);
-  font-family: "Metropolis Medium";
+
   margin-right: 3%;
   justify-content: center;
   align-items: baseline;
@@ -80,26 +77,25 @@
 }
 .toolbar-text {
   color: var(--ion-color-secondary);
-  font-family: "Metropolis Medium";
+
   font-size: medium;
   background-color: var(--ion-color-primary);
 }
-.toolbar-title{
+.toolbar-title {
   color: var(--ion-color-secondary);
-  font-family: "Metropolis Medium";
+
   font-size: 20px;
 }
-.buttons{
+.buttons {
   margin-top: 10%;
   width: 50%;
   padding-top: 5px;
   padding-bottom: 5px;
-  font-size:large;
+  font-size: large;
   border-radius: 25px;
   background-color: var(--ion-color-primary);
   color: var(--ion-color-secondary);
-  font-size:16px!important;
-  font-family: "Metropolis Medium";
+  font-size: 16px !important;
 }
 .appbar {
   width: 100%;
@@ -112,7 +108,8 @@
   display: grid;
   width: 100%;
   color: white;
-  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 .appbar__bottom--normal {
   display: flex;
@@ -125,12 +122,13 @@
   transition: color 170ms ease-out;
   display: inline-block;
   margin: 0 0.25rem;
-  padding:0;
+  padding: 0;
   color: var(--ion-color-primary);
   font-size: 0;
   text-decoration: none;
 }
-.appbar__bottom--normal a:hover, .appbar__bottom--normal a:focus {
+.appbar__bottom--normal a:hover,
+.appbar__bottom--normal a:focus {
   color: var(--ion-color-primary);
 }
 .appbar__bottom--spacer {
@@ -159,7 +157,8 @@
   background-color: var(--ion-color-primary);
   color: var(--ion-color-secondary);
   border-radius: 50%;
-  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12);
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   z-index: 99999;
@@ -167,7 +166,7 @@
 .appbar__bottom--fab-primary {
   background-color: var(--ion-color-primary);
   color: var(--ion-color-secondary);
-  img{
+  img {
     width: 30px;
   }
 }
@@ -177,8 +176,10 @@
   -webkit-transform: translateX(0);
   transform: translateX(0);
 }
-.appbar__bottom--fab:hover, .appbar__bottom--fab:focus {
-  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+.appbar__bottom--fab:hover,
+.appbar__bottom--fab:focus {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+    0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 .appbar__bottom--no-cut {
   grid-template: auto / 1fr 1fr;
@@ -198,23 +199,23 @@
   text-decoration: none;
 }
 .fabmargin {
-  margin-right: 2%!important;
-  margin-bottom: 20%!important;
+  margin-right: 2% !important;
+  margin-bottom: 20% !important;
 }
 //bottom icon
-.badgeDiv{
+.badgeDiv {
   position: relative;
   display: inline-block;
   width: 40px;
-  img{
+  img {
     width: 35px;
     height: 35px;
   }
-  .p2{
+  .p2 {
     width: 35px;
     height: 35px;
   }
-  .badge{
+  .badge {
     position: absolute;
     right: 0px;
     padding: 8px 5px;
@@ -225,7 +226,7 @@
     font-size: 10px;
     width: 19px;
     height: 19px;
-    line-height:0;
+    line-height: 0;
     text-align: center;
   }
 }
@@ -234,6 +235,6 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 0px;
 }
-.gradient_background{
+.gradient_background {
   background: conic-gradient(#fff);
 }

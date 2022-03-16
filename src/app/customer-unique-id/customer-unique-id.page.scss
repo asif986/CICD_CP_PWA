@@ -7,34 +7,28 @@
 
 body {
   font-weight: 100 !important;
-  font-family: "Metropolis Light";
 }
 
 .cuid {
-  font-family: "Metropolis Light";
   letter-spacing: 1px;
   font-size: 16px !important;
   color: black;
 }
 .name {
-  font-family: "Metropolis Medium";
   font-size: 16px !important;
   margin-top: 1px !important;
   color: black;
 }
 .addedBy {
-  font-family: "Metropolis Light";
   font-size: 16px !important;
   margin-top: 1px !important;
   color: black;
 }
 
 ion-toolbar {
-  font-family: "Metropolis Light";
 }
 
 .searchbar-input-container.sc-ion-searchbar-md {
-  font-family: "Metropolis Light";
 }
 ion-searchbar {
   --box-shadow: none !important;
@@ -50,7 +44,7 @@ h2 {
 .noData {
   margin-top: 3% !important;
   font-size: 20px;
-  font-family: "Metropolis Medium";
+
   color: black !important;
 }
 .text-items {

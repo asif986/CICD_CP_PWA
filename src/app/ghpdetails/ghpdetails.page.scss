@@ -2,43 +2,36 @@
   background: none !important;
 }
 
-
 // ::ng-deep .s-ion-icon
 // {
 //   color: red !important;
 // }
 
-
 // ::ng-deep ion-content
 // {
-//   font-family: "Metropolis Light" !important;
+//
 // }
 
-.cardClass
-{
-  font-family: "Metropolis Light" !important;
-  border-radius: 10px!important;
-  margin-top: 5px!important;
+.cardClass {
+  border-radius: 10px !important;
+  margin-top: 5px !important;
   text-align: left;
   padding: 15px;
 }
 
-.margintextsubtitle
-{
-  margin-left: 3%!important;
-  margin-right: 3%!important;
+.margintextsubtitle {
+  margin-left: 3% !important;
+  margin-right: 3% !important;
   font-size: 16px;
   color: #404040;
   font-weight: 400;
-  font-family: Metropolis Medium
 }
-.name{
-  margin-left: 3%!important;
-  margin-right: 3%!important;
+.name {
+  margin-left: 3% !important;
+  margin-right: 3% !important;
   font-size: 18px;
   color: #404040;
   font-weight: 400;
-  font-family: Metropolis Medium;
 }
 
 // ::ng-deep .sc-ion-card-md-h {
@@ -46,14 +39,12 @@
 //   -webkit-box-shadow: 0px;
 // }
 
-
 // ::ng-deep .data {
 //   color: #404040;
 //   margin-right: 2%!important;
 //   width: 18px;
 //   height: 18px;
 // }
-
 
 // ::ng-deep .s-ion-icon
 // {
@@ -69,15 +60,14 @@
   width: 82px;
   height: 43px;
   --border-radius: 20px !important;
-  --background	: black;
+  --background: black;
 }
-.matButton{
-  background-color: #F5A22C;
+.matButton {
+  background-color: #f5a22c;
   color: var(--ion-color-primary);
-  font-family: "Metropolis Medium"!important;
-  font-size: 18px!important;
-  text-align: center!important;
-  width: 180px!important;
-  height: 50px!important;
-  border-radius: 50px!important;
+  font-size: 18px !important;
+  text-align: center !important;
+  width: 180px !important;
+  height: 50px !important;
+  border-radius: 50px !important;
 }

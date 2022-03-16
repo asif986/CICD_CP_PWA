@@ -136,7 +136,7 @@
     <div *ngIf="this.countrycode=='+91'">
       <div *ngIf="!alive"
         style="align-content: center!important;alignment: center!important;text-align: center!important;justify-content: center!important;margin-bottom: 15px!important;margin-top: -2px!important;">
-        <button mat-stroked-button class="Resendbuttons" [disabled]="!credentialsForm.controls.mobile.valid"
+        <button mat-stroked-button class="Resendbuttons common-btn" [disabled]="!credentialsForm.controls.mobile.valid"
           (click)="click(credentialsForm.value) ">Verify</button>
       </div>
       <div *ngIf="!hideMe">
@@ -147,7 +147,7 @@
               <input matInput name="otptext" [(ngModel)]="loginifo.confirmotp" type="text" class="inputtextfield">
             </mat-form-field>
             <div class="ion-text-center">
-              <button mat-stroked-button class="registerbutton" (click)="verifyconfirmotp()"
+              <button mat-stroked-button class="registerbutton common-btn" (click)="verifyconfirmotp()"
                 style="margin-bottom: 10px!important;" required>Submit OTP</button>
             </div>
           </div>
@@ -159,7 +159,7 @@
             <!--Register Button-->
             <div class="ion-text-center" style="margin-top: 10px!important;margin-bottom: 10px!important;">
               <button mat-stroked-button class="Resendbuttons" [disabled]="disabled"
-                [style.background-color]="this.color1 === true ? '#a5a5a5' : '#F5A22C'" (click)="Resendotp()">Resend
+                [style.background-color]="this.color1 === true ? '#a5a5a5' : '#f38383'" (click)="Resendotp()">Resend
                 OTP</button>
             </div>
           </div>
@@ -283,7 +283,7 @@
               <ion-col class="ion-text-start" size="10">
                 <div class="newusertext" class="inputtextfield" style="margin-top: 15px!important;">
                   <ion-label class="inputtextfield"
-                    style="font-family: Metropolis Light!important;font-weight: bolder!important;">{{kycdoc.docs_type}}
+                    style="font-weight: bolder!important;">{{kycdoc.docs_type}}
                   </ion-label>
                   <p class="newusertext1" class="texttitle"
                     style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">{{kycdoc.doc_path}}</p>

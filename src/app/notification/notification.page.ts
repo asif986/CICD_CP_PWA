@@ -1,23 +1,29 @@
-import {Component, OnInit} from '@angular/core';
-import {Storage} from '@ionic/storage';
-import {Router} from '@angular/router';
-import {Helper} from '../services/Helper';
-import {AlertController, NavController, Platform} from '@ionic/angular';
+import { Component, OnInit } from "@angular/core";
+import { Storage } from "@ionic/storage";
+import { Router } from "@angular/router";
+import { Helper } from "../services/Helper";
+import { AlertController, NavController, Platform } from "@ionic/angular";
 
 @Component({
-  selector: 'app-notification',
-  templateUrl: './notification.page.html',
-  styleUrls: ['./notification.page.scss'],
+  selector: "app-notification",
+  templateUrl: "./notification.page.html",
+  styleUrls: ["./notification.page.scss"],
 })
 export class NotificationPage implements OnInit {
   notificationList: any = [];
 
-  constructor(private storage: Storage, private alertCtrl: AlertController,
-              public navCtrl: NavController, public platform: Platform, private router: Router, private helper: Helper) {
+  constructor(
+    private storage: Storage,
+    private alertCtrl: AlertController,
+    public navCtrl: NavController,
+    public platform: Platform,
+    private router: Router,
+    private helper: Helper
+  ) {
     this.platform.backButton.subscribeWithPriority(1, () => {
-      this.storage.set('IDFromPerformance',2);
+      this.storage.set("IDFromPerformance", 2);
 
-      this.router.navigate(['/home/']);
+      this.router.navigate(["/home/"]);
     });
   }
 
@@ -36,11 +42,11 @@ export class NotificationPage implements OnInit {
   /*Call First when it comes this page*/
 
   ionViewDidEnter() {
-    this.storage.get('notification').then((val) => {
+    this.storage.get("notification").then((val) => {
       if (val != null) {
         this.notificationList = val;
         /*  alert('notify'+JSON.stringify(val));*/
-        this.storage.set('notification', this.notificationList);
+        this.storage.set("notification", this.notificationList);
       } else {
         this.notificationList = [];
         /* alert('empty');*/
@@ -49,7 +55,7 @@ export class NotificationPage implements OnInit {
     });
   }
 
-/*  clearData() {
+  /*  clearData() {
     this.notificationList = [];
     this.storage.remove('notification');
     this.refresh();
@@ -58,43 +64,35 @@ export class NotificationPage implements OnInit {
   async deleteNotificationConfirm() {
     var me = this;
     const alert = await this.alertCtrl.create({
-      header: 'Notifications',
-      message: 'Are you sure you want to delete Notifications?',
+      header: "Notifications",
+      message: "Are you sure you want to delete Notifications?",
       buttons: [
         {
-          text: 'No',
-          role: 'no',
-          handler: () => {
-          }
+          text: "No",
+          role: "no",
+          handler: () => {},
         },
         {
-          text: 'Yes',
+          text: "Yes",
           handler: () => {
             me.notificationList = [];
-            me.storage.remove('notification');
-            me.helper.presentToast('Notifications Deleted successfully!');
-            me.helper.showLoader('Getting Notifications');
-          }
-        }
-      ]
+            me.storage.remove("notification");
+            me.helper.presentToast("Notifications Deleted successfully!");
+            me.helper.showLoader("Getting Notifications");
+          },
+        },
+      ],
     });
     await alert.present();
   }
 
-
-
-
-
-
   doRefresh(event) {
-
-
-    this.storage.get('notification').then((val) => {
+    this.storage.get("notification").then((val) => {
       if (val != null) {
         this.notificationList = [];
         this.notificationList = val;
         /*  alert('notify'+JSON.stringify(val));*/
-        this.storage.set('notification', this.notificationList);
+        this.storage.set("notification", this.notificationList);
       } else {
         this.notificationList = [];
         /* alert('empty');*/
@@ -106,12 +104,12 @@ export class NotificationPage implements OnInit {
   }
 
   goBack() {
-    this.storage.get('cpLoginData').then((val) => {
-      if(val){
-        this.storage.set('IDFromPerformance',2);
-        this.router.navigate(['/home/']);
-      }else{
-        this.router.navigate(['/login/']);
+    this.storage.get("cpLoginData").then((val) => {
+      if (val) {
+        this.storage.set("IDFromPerformance", 2);
+        this.router.navigate(["/home/"]);
+      } else {
+        this.router.navigate(["/login/"]);
       }
     });
   }

@@ -1,120 +1,107 @@
 .toolbar-text {
-    color: var(--ion-color-primary);
-    font-family: "Metropolis Medium";
-    font-size: medium;
-    background-color: var(--ion-color-secondary);
-  }
-  .toolbar-title{
-    color: var(--ion-color-secondary);
-    font-family: "Metropolis Medium";
-    font-size: 20px;
-  }
-  .leadID{
-    font-family: "Metropolis Medium";
-    font-size: 14px!important;
-    color: black !important;
-    padding-left: 10px!important;
-    margin-left: 10px!important;
-    letter-spacing: 0.8px!important
-  }
-  .token{
-    font-family: "Metropolis Medium";
-    font-size: 14px!important;
-    color: black !important;
-    padding-left: 10px!important;
-    margin-left: 10px!important;
-    letter-spacing: 0.8px!important
-  }
-  .name{
-    font-family: "Metropolis Medium";
-    font-size: 18px!important;
-    color: black !important;
-    padding-left: 10px!important;
-    margin-left: 10px!important;
-    margin-top: 7px!important;
-  }
-  .projectname{
-    font-family: "Metropolis Medium";
-    font-size: 14px!important;
-    color: gray !important;
-    padding-left: 10px!important;
-    margin-left: 10px!important;
-    margin-top: 7px!important;
-  }
-  .peventTitle{
-    font-family: "Metropolis Medium";
-    font-size: 16px!important;
-    color: gray!important;
-    padding-left: 10px!important;
-    margin-left: 10px!important;
-  }
-  .eventname{
-    font-family: "Metropolis Medium";
-    font-size: 14px!important;
-    color: black !important;
-    padding-left: 10px!important;
-    margin-left: 10px!important;
-  }
-  .pghpType{
-    font-family: "Metropolis Medium";
-    font-size: 16px!important;
-    color: gray!important;
-    padding-left: 10px!important;
-    margin-left: 10px!important;
-  }
-  .ghpType{
-    font-family: "Metropolis Medium";
-    font-size: 14px!important;
-    color: black !important;
-    padding-left: 10px!important;
-    margin-left: 10px!important;
-  }
-  .pghpNumber{
-    font-family: "Metropolis Medium";
-    font-size: 16px!important;
-    color: gray!important;
-    padding-left: 10px!important;
-    margin-left: 10px!important;
-  }
-  .ghpNumber{
-    font-family: "Metropolis Medium";
-    font-size: 14px!important;
-    color: black !important;
-    padding-left: 10px!important;
-    letter-spacing: 0.5px!important;
-    margin-left: 10px!important;
-  }
-  .registerbutton{
-    margin-top: 5%!important;
-    margin-bottom: 5%!important;
-    margin-left: auto!important;
-    margin-right: auto!important;
-    width: 65%;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 5px;
-    padding-right: 5px;
-    font-size:16px;
-    border-radius: 25px;
-    background-color: #F5A22C;
-    color: var(--ion-color-primary);
-    font-family: "Metropolis Medium";
-  }
-  ::ng-deep.swal2-title {
-    font-family: "Metropolis Medium";
-    font-size: 16px;
-    border-radius: 16px!important;
-  }
+  color: var(--ion-color-primary);
 
-  .inputForFormField{
-    font-family: "Metropolis Light";
-    font-size: 16px!important;
-    color: black!important;
-  }
-  .example-radio-group {
-    display: flex; flex-direction: column;
-    /* display: inline-grid; */ 
-    /* display: grid; */
-    margin: 20px 0;
-  }
-  
+  font-size: medium;
+  background-color: var(--ion-color-secondary);
+}
+.toolbar-title {
+  color: var(--ion-color-secondary);
+
+  font-size: 20px;
+}
+.leadID {
+  font-size: 14px !important;
+  color: black !important;
+  padding-left: 10px !important;
+  margin-left: 10px !important;
+  letter-spacing: 0.8px !important;
+}
+.token {
+  font-size: 14px !important;
+  color: black !important;
+  padding-left: 10px !important;
+  margin-left: 10px !important;
+  letter-spacing: 0.8px !important;
+}
+.name {
+  font-size: 18px !important;
+  color: black !important;
+  padding-left: 10px !important;
+  margin-left: 10px !important;
+  margin-top: 7px !important;
+}
+.projectname {
+  font-size: 14px !important;
+  color: gray !important;
+  padding-left: 10px !important;
+  margin-left: 10px !important;
+  margin-top: 7px !important;
+}
+.peventTitle {
+  font-size: 16px !important;
+  color: gray !important;
+  padding-left: 10px !important;
+  margin-left: 10px !important;
+}
+.eventname {
+  font-size: 14px !important;
+  color: black !important;
+  padding-left: 10px !important;
+  margin-left: 10px !important;
+}
+.pghpType {
+  font-size: 16px !important;
+  color: gray !important;
+  padding-left: 10px !important;
+  margin-left: 10px !important;
+}
+.ghpType {
+  font-size: 14px !important;
+  color: black !important;
+  padding-left: 10px !important;
+  margin-left: 10px !important;
+}
+.pghpNumber {
+  font-size: 16px !important;
+  color: gray !important;
+  padding-left: 10px !important;
+  margin-left: 10px !important;
+}
+.ghpNumber {
+  font-size: 14px !important;
+  color: black !important;
+  padding-left: 10px !important;
+  letter-spacing: 0.5px !important;
+  margin-left: 10px !important;
+}
+.registerbutton {
+  margin-top: 5% !important;
+  margin-bottom: 5% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 65%;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 16px;
+  border-radius: 25px;
+  background-color: #f5a22c;
+  color: var(--ion-color-primary);
+}
+::ng-deep.swal2-title {
+  font-size: 16px;
+  border-radius: 16px !important;
+}
+
+.inputForFormField {
+  font-size: 16px !important;
+  color: black !important;
+}
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  /* display: inline-grid; */
+  /* display: grid; */
+  margin: 20px 0;
+}

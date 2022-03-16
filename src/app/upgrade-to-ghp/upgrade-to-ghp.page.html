@@ -1,110 +1,118 @@
-<ion-header >
-  <ion-toolbar color="color_d" >
-  <ion-row>
-    <ion-col>
-      <div>
-        <ion-buttons slot="start" style="margin-left: 3%">
-          <i class="material-icons icon"  (click)="goback()">arrow_back_ios</i>
-           </ion-buttons>
-      </div>
-    </ion-col>
-    <ion-col style="text-align: start;margin-left: -30px!important;">
-      <div>
-        <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;">Upgrade to GHP+</ion-title>
-      </div>
-    </ion-col>
-    <ion-col style="text-align: end;margin-right: 10px;">
-      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 37%!important;">
-    </ion-col>
-  </ion-row>
+<ion-header>
+  <ion-toolbar color="color_d">
+    <ion-row>
+      <ion-col>
+        <div>
+          <ion-buttons slot="start" style="margin-left: 3%">
+            <i class="material-icons icon" (click)="goback()">arrow_back_ios</i>
+          </ion-buttons>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: start;margin-left: -30px!important;">
+        <div>
+          <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;">Upgrade to GHP+</ion-title>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: end;margin-right: 10px;">
+        <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'
+          style="text-align: right;width: 37%!important;">
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <div *ngIf="token_type_id ==3">
-  <div class="leadID" style="padding-top: 10%!important">
-    {{lead_uid}}
-  </div>
+    <div class="leadID" style="padding-top: 10%!important">
+      {{lead_uid}}
+    </div>
 
-  <div class="name" style="margin-top: 10px!important">
-    {{full_name}}
-  </div>
+    <div class="name" style="margin-top: 10px!important">
+      {{full_name}}
+    </div>
 
-  <div class="projectname" style="margin-top: 10px!important">
-    {{project_name}}
-  </div>
+    <div class="projectname" style="margin-top: 10px!important">
+      {{project_name}}
+    </div>
 
-  <div class="peventTitle" style="margin-top: 20px!important">
-    Event Name
-  </div>
+    <div class="peventTitle" style="margin-top: 20px!important">
+      Event Name
+    </div>
 
-  <div class="eventname" style="margin-top: 5px!important">
-    {{event_title}}
-  </div>
+    <div class="eventname" style="margin-top: 5px!important">
+      {{event_title}}
+    </div>
 
-  <div class="pghpType" style="margin-top: 20px!important">
-    Current GHP Type
-  </div>
+    <div class="pghpType" style="margin-top: 20px!important">
+      Current GHP Type
+    </div>
 
-  <div class="ghpType" style="margin-top: 5px!important">
-   {{token_type_old}} Type
-  </div>
+    <div class="ghpType" style="margin-top: 5px!important">
+      {{token_type_old}} Type
+    </div>
 
-  <div class="pghpNumber" style="margin-top: 20px!important">
-   GHP Number
-  </div>
+    <div class="pghpNumber" style="margin-top: 20px!important">
+      GHP Number
+    </div>
 
-  <div class="ghpNumber" style="margin-top: 5px!important">
-    {{token_no}}
-  </div>
+    <div class="ghpNumber" style="margin-top: 5px!important">
+      {{token_no}}
+    </div>
 
- <div style="margin-left: 20px!important;margin-bottom: 5px!important;margin-top: 25px!important;font-family: Metropolis Medium;font-size: 18px!important">
-  GHP Amount
- </div>
+    <div
+      style="margin-left: 20px!important;margin-bottom: 5px!important;margin-top: 25px!important;;font-size: 18px!important">
+      GHP Amount
+    </div>
 
-  <!--GHP Type(AMOUNT)-->
-  <div style="padding-left: 20px!important;padding-right: 20px!important">
-    <mat-form-field appearance="outline" style="width:100%">
-      <mat-label class="inputForFormField">GHP Amount</mat-label>
-      <input class="inputForFormField" matInput type="number"  [(ngModel)]="total" readonly>
-    </mat-form-field>
-  </div>
-
-
-  <div style="padding-left: 20px!important;padding-right: 20px!important;margin-bottom: 15px;">
-    <mat-radio-group required="" name="radioButtons" aria-label="Select an option"  class="example-radio-group" >
-      <mat-radio-button value="5" checked="true" (change)="setMethod(5)"  style="font-family: 'Metropolis Light';">Payment Link</mat-radio-button>
-      <p style="font-family: Metropolis Light;font-size: 17px;color: black;">Note:This link will be shared with the client to make the payment, once clicked on generate GHP/GHP plus  button below.</p>
-      <!-- <mat-radio-button value="4" (change)="setMethod(4)" style="float: right;font-family: 'Metropolis Light'">Online Payment</mat-radio-button> -->
-    </mat-radio-group>
-</div>
-
-
-  <!--Remark GHP-->
-  <div style="padding-left: 10px!important;padding-right: 10px!important;">
-    <mat-form-field appearance="outline" style="width: 100%">
-        <mat-label class="inputForFormField"> GHP+ Remarks(If Any)</mat-label>
-        <textarea matInput placeholder="" rows="4" cols="20" name="purpose"  type="text" class="inputForFormField"></textarea>
+    <!--GHP Type(AMOUNT)-->
+    <div style="padding-left: 20px!important;padding-right: 20px!important">
+      <mat-form-field appearance="outline" style="width:100%">
+        <mat-label class="inputForFormField">GHP Amount</mat-label>
+        <input class="inputForFormField" matInput type="number" [(ngModel)]="total" readonly>
       </mat-form-field>
     </div>
 
 
-  <div style="align-content: center!important;alignment: center!important;text-align: center!important;justify-content: center!important;" >
-    <button mat-stroked-button class="registerbutton" (click)="generateGHP()" routerDirection="forward">Generate GHP+ Request</button>
+    <div style="padding-left: 20px!important;padding-right: 20px!important;margin-bottom: 15px;">
+      <mat-radio-group required="" name="radioButtons" aria-label="Select an option" class="example-radio-group">
+        <mat-radio-button value="5" checked="true" (change)="setMethod(5)" style="">
+          Payment Link</mat-radio-button>
+        <p style="font-size: 17px;color: black;">Note:This link will be shared with the client to make the payment,
+          once clicked on generate GHP/GHP plus button below.</p>
+        <!-- <mat-radio-button value="4" (change)="setMethod(4)" style="float: right;">Online Payment</mat-radio-button> -->
+      </mat-radio-group>
+    </div>
+
+
+    <!--Remark GHP-->
+    <div style="padding-left: 10px!important;padding-right: 10px!important;">
+      <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label class="inputForFormField"> GHP+ Remarks(If Any)</mat-label>
+        <textarea matInput placeholder="" rows="4" cols="20" name="purpose" type="text"
+          class="inputForFormField"></textarea>
+      </mat-form-field>
+    </div>
+
+
+    <div
+      style="align-content: center!important;alignment: center!important;text-align: center!important;justify-content: center!important;">
+      <button mat-stroked-button class="registerbutton" (click)="generateGHP()" routerDirection="forward">Generate GHP+
+        Request</button>
+    </div>
+
+
   </div>
 
 
-</div>
+  <div *ngIf="token_type_id !=3 && isSpinner==false">
 
-
-<div *ngIf="token_type_id !=3 && isSpinner==false">
-
-  <p style="    padding: 10px;
+    <p style="    padding: 10px;
   margin-top: 65%;
   margin-left: 10px;
-  margin-right: 10px;">Unfortunately, GHP plus type is not available for this Event!  Please do inform VJ Sales Head to add GHP Plus type for this event.</p>
+  margin-right: 10px;">Unfortunately, GHP plus type is not available for this Event! Please do inform VJ Sales Head to
+      add GHP Plus type for this event.</p>
 
-</div>
+  </div>
 
 
 </ion-content>

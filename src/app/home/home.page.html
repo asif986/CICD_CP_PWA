@@ -174,7 +174,7 @@
               <!-- <ion-card-subtitle> -->
 
               <div class="tagtext">
-                <!-- style="text-align: start;font-family: 'Metropolis Medium';padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px" -->
+                <!-- style="text-align: start;;padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px" -->
                 <div class="status_text"> {{c.ids.lead_status_name}}</div>
 
                 <div class="status bg-{{c.ids.lead_status_id}}" style="border-radius: 50%;"></div>
@@ -207,7 +207,7 @@
             <!-- flex-container -->
             <div class="" *ngIf="c.ids.lead_status_id==2">
               <div class="tagtext">
-                <!-- style="text-align: start;font-family: 'Metropolis Medium';padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px" -->
+                <!-- style="text-align: start;;padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px" -->
                 {{c.ids.lead_status_name}}
 
                 <div class="status bg-{{c.ids.lead_status_id}}" style="border-radius: 50%;"></div>
@@ -323,7 +323,7 @@
                         style="margin-right: 3%!important;margin-top: 1%!important;margin-left: 7px!important;color: gray;"
                         *ngIf="valSub.section_item_title!='' && valSub.section_item_title!=null && valSub.section_item_desc!='' &&  valSub.section_item_desc!=null">
                         {{valSub.section_item_title}} :- <b
-                          style="font-family: Metropolis Light;font-size: 14px;color: black;">{{valSub.section_item_desc}}</b>
+                          style="font-size: 14px;color: black;">{{valSub.section_item_desc}}</b>
                       </div>
                     </mat-card-title>
                   </div>
@@ -372,7 +372,7 @@
   <ion-infinite-scroll threshold="500px" id="infinite-scroll" *ngIf="leadlist.length!=0 && IDFromPerformance==2"
     (ionInfinite)="doInfinite(leadlist.length,$event)" style="margin-bottom: 20%!important;">
     <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading data.."
-      style="font-family: Metropolis Medium!important;color: white!important;font-size: 20px!important;">
+      style="color: white!important;font-size: 20px!important;">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 
@@ -380,7 +380,7 @@
     (ionInfinite)="doInfiniteFilter(leadlist.length,$event)" style="margin-bottom: 20%!important;">
     <!---- (ionInfinite)="doInfinite($event)"-->
     <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading data.."
-      style="font-family: Metropolis Medium!important;color: white!important;font-size: 20px!important;">
+      style="color: white!important;font-size: 20px!important;">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 

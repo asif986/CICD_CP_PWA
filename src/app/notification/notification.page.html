@@ -1,39 +1,36 @@
-<ion-header >
-  <ion-toolbar color="color_d" >
-  <ion-row>
-    <ion-col>
-      <div>
-        <ion-buttons slot="start" style="margin-left: 3%">
-          <i class="material-icons icon"  (click)="goBack()">arrow_back_ios</i>
-           </ion-buttons>
-      </div>
-    </ion-col>
-    <ion-col style="text-align: start;margin-left: -30px!important;">
-      <div>
-        <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;">Notification</ion-title>
-      </div>
-    </ion-col>
-    <ion-col style="text-align: end;margin-right: 10px;">
-      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 38%!important;">
-    </ion-col>
-  </ion-row>
+<ion-header>
+  <ion-toolbar color="color_d">
+    <ion-row>
+      <ion-col>
+        <div>
+          <ion-buttons slot="start" style="margin-left: 3%">
+            <i class="material-icons icon" (click)="goBack()">arrow_back_ios</i>
+          </ion-buttons>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: start;margin-left: -30px!important;">
+        <div>
+          <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;">Notification</ion-title>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: end;margin-right: 10px;">
+        <!-- <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 38%!important;"> -->
+      </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-align-items-center" >
+<ion-content class="ion-align-items-center">
 
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-            pullingIcon=""
-            pullingText=""
-            refreshingSpinner="circles"
-            refreshingText="">
+    <ion-refresher-content pullingIcon="" pullingText="" refreshingSpinner="circles" refreshingText="">
     </ion-refresher-content>
   </ion-refresher>
 
   <ion-list *ngIf="notificationList.length!=0" style="margin-bottom: 20%!important;">
     <div *ngFor="let c of notificationList let i= index" style="margin-top: 3%!important;margin-bottom: 3%!important;">
-      <ion-card class="outline" style="margin-bottom:10px!important;margin-left: 5%;margin-right: 5%;margin-bottom: 5%!important;border-radius: 16px;">
+      <ion-card class="outline"
+        style="margin-bottom:10px!important;margin-left: 5%;margin-right: 5%;margin-bottom: 5%!important;border-radius: 16px;">
         <ion-row style="width: 100%!important;margin-top: 3%!important;margin-right: 5px;margin-bottom: 3%!important;">
           <ion-col size="12" class="ion-text-left" style="padding: 1%!important;">
             <ion-row>
@@ -41,11 +38,13 @@
                 <ion-card-title class="textTitle">{{c.title}}</ion-card-title>
               </ion-col>
             </ion-row>
-            <ion-card-title class="textDetails" style="margin-bottom: 2%!important;margin-top: 1%!important;">{{c.message}}</ion-card-title>
+            <ion-card-title class="textDetails" style="margin-bottom: 2%!important;margin-top: 1%!important;">
+              {{c.message}}</ion-card-title>
           </ion-col>
         </ion-row>
         <div style="text-align: end;margin-top: 5px;">
-          <ion-card-title class="textDetails" style="margin-bottom: 2%!important;margin-top: 1%!important;">{{c.notification_at}}</ion-card-title>
+          <ion-card-title class="textDetails" style="margin-bottom: 2%!important;margin-top: 1%!important;">
+            {{c.notification_at}}</ion-card-title>
         </div>
       </ion-card>
     </div>
@@ -54,7 +53,8 @@
   <!--Data Not Found-->
   <div *ngIf="notificationList.length==0" class="ion-text-center">
     <div class="datanotfound">
-      <img src="assets/channelPartner_Icons/notification_Icon//notification-grey.svg" style="width: 90px;height: 90px;color: gray;">
+      <img src="assets/channelPartner_Icons/notification_Icon//notification-grey.svg"
+        style="width: 90px;height: 90px;color: gray;">
       <ion-card-title class="noData">No Notifications available!</ion-card-title>
     </div>
   </div>

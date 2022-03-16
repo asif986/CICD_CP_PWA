@@ -1,48 +1,42 @@
 .toolbar-text {
   color: var(--ion-color-primary);
-  font-family: "Metropolis Medium";
+
   font-size: medium;
   background-color: #652d90;
 }
 .toolbar-title {
   color: #606060ba;
-  font-family: "Metropolis Medium";
+
   font-size: 20px;
 }
 .matLabel {
   color: var(--ion-color-primary);
-  font-family: "Metropolis Light";
   font-size: 16px !important;
 }
 .title {
   color: #606060;
-  font-family: "Metropolis Medium";
+
   font-size: 14px !important;
 }
 .count_leads {
   color: #1abc71;
-  font-family: "Metropolis Extra Bold";
   font-size: 25px !important;
 }
 .count_siteVisit {
   color: #f5d400;
-  font-family: "Metropolis Extra Bold";
   font-size: 25px !important;
 }
 .count_Ghpgenerated {
   color: #924dcf;
-  font-family: "Metropolis Extra Bold";
   font-size: 25px !important;
 }
 
 .count_GhpgPulsenerated {
   color: #4e0291;
-  font-family: "Metropolis Extra Bold";
   font-size: 25px !important;
 }
 .count_allotments {
   color: #2c408b;
-  font-family: "Metropolis Extra Bold";
   font-size: 25px !important;
   padding-top: 40px !important;
 }
@@ -82,7 +76,7 @@
 }
 ::ng-deep.mat-select-panel .mat-option-text {
   color: black;
-  font-family: "Metropolis Medium";
+
   font-size: 16px;
 }
 ::ng-deep.mat-select-panel .mat-select-arrow-wrapper {
@@ -93,7 +87,7 @@
 }
 ::ng-deep.mat-select-value {
   color: black;
-  font-family: "Metropolis Medium";
+
   font-size: 16px;
 }
 ::ng-deep.mat-form-field:not(.mat-form-field-appearance-legacy)

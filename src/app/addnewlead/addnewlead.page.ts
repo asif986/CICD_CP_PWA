@@ -62,7 +62,8 @@ export class AddnewleadPage implements OnInit {
   color1 = true;
   Regex = /^(\+\d{1,3}[- ]?)?\d{10}$/;
   // tslint:disable-next-line:max-line-length
-  EmailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  EmailRegex =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   panelOpenState = true;
   expanded = true;
   credentialsForm: FormGroup;
@@ -148,9 +149,8 @@ export class AddnewleadPage implements OnInit {
   ngOnInit() {
     /*Get Country Code*/
     if (this.route.snapshot.paramMap.get("countryCode") != null) {
-      this.postNewLead.country_code = this.route.snapshot.paramMap.get(
-        "countryCode"
-      );
+      this.postNewLead.country_code =
+        this.route.snapshot.paramMap.get("countryCode");
       this.countrycode = this.route.snapshot.paramMap.get("countryCode");
     } else {
       this.postNewLead.country_code = "91";
@@ -237,7 +237,8 @@ export class AddnewleadPage implements OnInit {
 
           if (Value.success === 1) {
             this.addNewLead = Value.data;
-            this.selectedNameprefixName = this.addNewLead.person_name_prefix[0].name_prefix;
+            this.selectedNameprefixName =
+              this.addNewLead.person_name_prefix[0].name_prefix;
           } else {
             this.helper.presentToast("Something went wrong!");
           }
@@ -253,12 +254,10 @@ export class AddnewleadPage implements OnInit {
   }
 
   getNamePrefixvalue(index: any) {
-    this.selectedNameprefixid = this.addNewLead.person_name_prefix[
-      index
-    ].name_prefix_id;
-    this.selectedNameprefixName = this.addNewLead.person_name_prefix[
-      index
-    ].name_prefix;
+    this.selectedNameprefixid =
+      this.addNewLead.person_name_prefix[index].name_prefix_id;
+    this.selectedNameprefixName =
+      this.addNewLead.person_name_prefix[index].name_prefix;
     console.log("selectedNameprefixName :" + this.selectedNameprefixName);
   }
 
@@ -277,32 +276,26 @@ export class AddnewleadPage implements OnInit {
   }
 
   getLeadBuyingForvalue(index: any) {
-    this.selectedBuyingForid = this.addNewLead.lead_buying_for[
-      index
-    ].buying_for_reason_id;
-    this.selectedBuyingFor = this.addNewLead.lead_buying_for[
-      index
-    ].buying_for_reason;
+    this.selectedBuyingForid =
+      this.addNewLead.lead_buying_for[index].buying_for_reason_id;
+    this.selectedBuyingFor =
+      this.addNewLead.lead_buying_for[index].buying_for_reason;
     console.log("selectedBuyingFor :" + this.selectedBuyingFor);
   }
 
   getLeadBuyingDurationvalue(index: any) {
-    this.selectedBuyingDuarationid = this.addNewLead.lead_buying_in_duration[
-      index
-    ].buying_in_duration_id;
-    this.selectedBuyingDuaration = this.addNewLead.lead_buying_in_duration[
-      index
-    ].buying_in_duration;
+    this.selectedBuyingDuarationid =
+      this.addNewLead.lead_buying_in_duration[index].buying_in_duration_id;
+    this.selectedBuyingDuaration =
+      this.addNewLead.lead_buying_in_duration[index].buying_in_duration;
     console.log("selectedNameprefixName :" + this.selectedBuyingDuaration);
   }
 
   getLeadProfession(index: any) {
-    this.selectedProfessionid = this.addNewLead.lead_professions[
-      index
-    ].lead_professions_id;
-    this.selectedProfession = this.addNewLead.lead_professions[
-      index
-    ].lead_professions_id;
+    this.selectedProfessionid =
+      this.addNewLead.lead_professions[index].lead_professions_id;
+    this.selectedProfession =
+      this.addNewLead.lead_professions[index].lead_professions_id;
   }
 
   buyingFor(val) {
@@ -391,6 +384,8 @@ export class AddnewleadPage implements OnInit {
           handler: () => {
             /this.helper.showLoader('Processing..');/;
             this.presentLoading().then(() => {
+              console.log(this.postNewLead);
+              return;
               this.apiservice.postCPLead(this.postNewLead).subscribe(
                 (response) => {
                   this.successvalue = JSON.stringify(response.body);
@@ -638,6 +633,7 @@ export class AddnewleadPage implements OnInit {
       this.isReadonly();
     }
   }
+
   alert() {
     Swal.fire({
       type: "success",
@@ -712,9 +708,8 @@ export class AddnewleadPage implements OnInit {
         console.log(ductypeId);
         console.log(resolvedFilePath);
         this.kycDocuments = new KYCDocuments();
-        this.addNewLead.kyc_doc_types[
-          ductypeId - 1
-        ].doc_path = resolvedFilePath;
+        this.addNewLead.kyc_doc_types[ductypeId - 1].doc_path =
+          resolvedFilePath;
         this.kycDocuments.doc_type_id = ductypeId;
         this.kycDocuments.file_uri = resolvedFilePath;
         this.kycdocumentspath.push({
@@ -747,9 +742,8 @@ export class AddnewleadPage implements OnInit {
       (imageData) => {
         const resolvedFilePath = "data:image/png;base64," + imageData;
         this.kycDocuments = new KYCDocuments();
-        this.addNewLead.kyc_doc_types[
-          ductypeId - 1
-        ].doc_path = resolvedFilePath;
+        this.addNewLead.kyc_doc_types[ductypeId - 1].doc_path =
+          resolvedFilePath;
         this.kycDocuments.doc_type_id = ductypeId;
         this.kycDocuments.file_uri = resolvedFilePath;
         this.kycdocumentspath.push({
@@ -784,8 +778,7 @@ export class AddnewleadPage implements OnInit {
     const ext = extn.toLowerCase();
     const MIMETypes = {
       txt: "text/plain",
-      docx:
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      docx: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
       doc: "application/msword",
       pdf: "application/pdf",
       jpg: "image/jpeg",
@@ -795,8 +788,7 @@ export class AddnewleadPage implements OnInit {
       xlsx: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
       rtf: "application/rtf",
       ppt: "application/vnd.ms-powerpoint",
-      pptx:
-        "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+      pptx: "application/vnd.openxmlformats-officedocument.presentationml.presentation",
     };
     return MIMETypes[ext];
   }

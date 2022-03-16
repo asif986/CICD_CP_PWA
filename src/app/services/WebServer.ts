@@ -179,4 +179,6 @@ export class WebServer {
 
   //new cp app 2.0
   public getAllProjectName = this.BASE_URL + "getAllProjectNames";
+
+  public getCPBenefits_current = this.BASE_URL + "getCPBenefits/current";
 }

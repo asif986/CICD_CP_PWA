@@ -59,7 +59,7 @@
         <ion-col class="ion-text-end" size="8">
           <div>
             <button mat-button (click)="doneReminder(val.reminder_id)"
-              style="color: var(--ion-color-primary);margin-right: 5px!important;font-size: 16px!important;font-family: 'Metropolis Medium'">Mark
+              style="color: var(--ion-color-primary);margin-right: 5px!important;font-size: 16px!important;">Mark
               as done</button>
           </div>
         </ion-col>
@@ -83,7 +83,7 @@
   <ion-infinite-scroll threshold="100px" id="infinite-scroll" *ngIf="reminderList.length!=0"
     (ionInfinite)="loadMore($event)">
     <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading data..."
-      style="font-family: Metropolis Light!important;font-size: 16px!important;font-weight: bolder!important;color: black!important;">
+      style="font-size: 16px!important;font-weight: bolder!important;color: black!important;">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>

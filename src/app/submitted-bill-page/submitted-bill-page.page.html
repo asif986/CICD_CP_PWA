@@ -1,176 +1,215 @@
 <ion-header>
-  <ion-toolbar color="color_d" >
-  <ion-row>
-    <ion-col>
-      <div>
-        <ion-buttons slot="start" style="margin-left: 3%">
-          <i class="material-icons icon"  (click)="goback()">arrow_back_ios</i>
-           </ion-buttons>
-      </div>
-    </ion-col>
-    <ion-col style="text-align: start;margin-left: -30px!important;margin-bottom: 6px!important;">
-      <div>
-        <ion-title class="TITLETOOLBAR" style="margin-left: -70px!important;margin-right: 20px!important;">Submitted Bills</ion-title>
-      </div>
-    </ion-col>
-   <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 12%!important;margin-right:10px!important">
-   </ion-row>
+  <ion-toolbar color="color_d">
+    <ion-row>
+      <ion-col>
+        <div>
+          <ion-buttons slot="start" style="margin-left: 3%">
+            <i class="material-icons icon" (click)="goback()">arrow_back_ios</i>
+          </ion-buttons>
+        </div>
+      </ion-col>
+      <ion-col style="text-align: start;margin-left: -30px!important;margin-bottom: 6px!important;">
+        <div>
+          <ion-title class="TITLETOOLBAR" style="margin-left: -70px!important;margin-right: 20px!important;">Submitted
+            Bills</ion-title>
+        </div>
+      </ion-col>
+      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'
+        style="text-align: right;width: 12%!important;margin-right:10px!important">
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
 <!--Sticky Search Bar -->
-<ion-item-divider *ngIf="isSpinner==false" style="font-size: 15px!important;padding-top: 5px!important;padding-bottom: 5px!important;width: auto!important;lines:none!important" sticky >
-    <!-- Use Custom Local Search Bar -->
-   <ion-searchbar  class="Search" style="font-family: Metropolis Light;font-size: 18px;margin-left: -8px!important;"
-   (ionInput)="searchEvent($event)"
-   (ionClear)="getAgreementSubmittedList()">
-</ion-searchbar>
+<ion-item-divider *ngIf="isSpinner==false"
+  style="font-size: 15px!important;padding-top: 5px!important;padding-bottom: 5px!important;width: auto!important;lines:none!important"
+  sticky>
+  <!-- Use Custom Local Search Bar -->
+  <ion-searchbar class="Search" style="font-size: 18px;margin-left: -8px!important;" (ionInput)="searchEvent($event)"
+    (ionClear)="getAgreementSubmittedList()">
+  </ion-searchbar>
 </ion-item-divider>
 
 <!-- Submit Bill List -->
 <ion-content>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-            pullingIcon=""
-            pullingText=""
-            refreshingSpinner="circles"
-            refreshingText="">
+    <ion-refresher-content pullingIcon="" pullingText="" refreshingSpinner="circles" refreshingText="">
     </ion-refresher-content>
   </ion-refresher>
   <ion-list>
-    <ion-card *ngFor="let bills of submittedBills let i=index" style="border-radius: 10px!important;margin-top: 20px!important;">
-   
-      <div class="tag" *ngIf="bills.bill_type_id == 1" style="padding-top: 5px!important;margin-top: 20px!important;" >
-        <div class="tagtext" >
-          <div  class="tag" style="text-align: start;color: var(--ion-color-primary);font-family: 'Metropolis Medium';padding-left: 15px;padding-right: 10px">
-           Regular
+    <ion-card *ngFor="let bills of submittedBills let i=index"
+      style="border-radius: 10px!important;margin-top: 20px!important;">
+
+      <div class="tag" *ngIf="bills.bill_type_id == 1" style="padding-top: 5px!important;margin-top: 20px!important;">
+        <div class="tagtext">
+          <div class="tag"
+            style="text-align: start;color: var(--ion-color-primary);;padding-left: 15px;padding-right: 10px">
+            Regular
           </div>
         </div>
-       </div>    
-       
-       <div class="tag" *ngIf="bills.bill_type_id == 2" style="padding-top: 5px!important;margin-top: 20px!important;" >
-        <div class="tagtext" >
-          <div  class="tag" style="text-align: start;color: var(--ion-color-primary);font-family: 'Metropolis Medium';padding-left: 15px;padding-right: 10px">
-           Incentive
+      </div>
+
+      <div class="tag" *ngIf="bills.bill_type_id == 2" style="padding-top: 5px!important;margin-top: 20px!important;">
+        <div class="tagtext">
+          <div class="tag"
+            style="text-align: start;color: var(--ion-color-primary);;padding-left: 15px;padding-right: 10px">
+            Incentive
           </div>
         </div>
-       </div>    
+      </div>
 
       <div style="padding-top: 10px!important;padding-left: 10px!important;" *ngIf="bills.full_name">
         <ion-row>
           <ion-col size='2'>
             <img src="assets/channelPartner_Icons/user_Photo_Icon/person-circle.svg" style="width: 20px;height: 20px">
-           </ion-col>
-           <ion-col size='10' style="text-align: left;padding-top: 7px;margin-left: -25px;">
+          </ion-col>
+          <ion-col size='10' style="text-align: left;padding-top: 7px;margin-left: -25px;">
             <ion-label class="nameOfCustomer">{{bills.full_name}}</ion-label>
-           </ion-col>
+          </ion-col>
         </ion-row>
       </div>
       <div style="margin-top: -5px!important;padding-left: 12px!important;">
         <ion-row>
           <ion-col size='2'>
             <img src="assets/channelPartner_Icons/other_Used_CardIcons/business.svg" style="width: 17px;height: 17px">
-           </ion-col>
-           <ion-col size='10' style="text-align: left;padding-top: 9px!important;margin-left: -25px;">
+          </ion-col>
+          <ion-col size='10' style="text-align: left;padding-top: 9px!important;margin-left: -25px;">
             <ion-label class="subTitleOther">{{bills.project_name}} - {{bills.unit_name}}</ion-label>
-           </ion-col>
+          </ion-col>
         </ion-row>
       </div>
       <div style="margin-top: -3px!important;padding-left: 10px!important;" *ngIf="bills.bsp">
         <ion-row>
           <ion-col size='2'>
-            <img src="assets/channelPartner_Icons/other_Used_CardIcons/rupee-indian.svg" style="width: 17px;height: 17px">
-           </ion-col>
-           <ion-col size='10' style="text-align: left;padding-top: 7px;margin-left: -25px;">
+            <img src="assets/channelPartner_Icons/other_Used_CardIcons/rupee-indian.svg"
+              style="width: 17px;height: 17px">
+          </ion-col>
+          <ion-col size='10' style="text-align: left;padding-top: 7px;margin-left: -25px;">
             <ion-label class="subTitleOther">{{bills.bsp}}</ion-label>
-           </ion-col>
+          </ion-col>
         </ion-row>
       </div>
-      <div style="margin-top: -3px!important;padding-left: 10px!important;"  *ngIf="bills.applicable_brokerage_percent">
+      <div style="margin-top: -3px!important;padding-left: 10px!important;" *ngIf="bills.applicable_brokerage_percent">
         <ion-row>
           <ion-col size='2'>
             <img src="assets/channelPartner_Icons/other_Used_CardIcons/percent.svg" style="width: 17px;height: 17px">
-           </ion-col>
-           <ion-col size='10' style="text-align: left;padding-top: 7px;margin-left: -25px;">
+          </ion-col>
+          <ion-col size='10' style="text-align: left;padding-top: 7px;margin-left: -25px;">
             <ion-label class="subTitleOther">{{bills.applicable_brokerage_percent}}% Brokerage</ion-label>
-           </ion-col>
+          </ion-col>
         </ion-row>
       </div>
-     
-      <div style="margin-left: 18px!important;">
-      <ion-card-title class="mediumSubTitle"  *ngIf="bills.bill_no" style="font-size: 16px!important;"><b class="boldTitle" style="letter-spacing: 0em!important;font-size: 16px!important;">VJ Bill No.</b>&nbsp;:&nbsp;{{bills.bill_no}}</ion-card-title>
-      <ion-card-title class="mediumSubTitle" *ngIf="bills.partner_bill_no" style="font-size: 16px!important;"><b class="boldTitle" style="letter-spacing: 0em!important;font-size: 16px!important;">Your Bill No.</b>&nbsp;:&nbsp;{{bills.partner_bill_no}}</ion-card-title>
-      <ion-card-title class="mediumSubTitle"  *ngIf="bills.bill_amount" style="font-size: 16px!important;"><b class="boldTitle" style="font-size: 16px!important;">Bill Amount:</b>&nbsp;:&nbsp;{{bills.bill_amount}}</ion-card-title>
-      <ion-card-title class="mediumSubTitle" *ngIf="bills.bill_date" style="font-size: 16px!important;"><b class="boldTitle" style="font-size: 16px!important;">Billing Date:</b>&nbsp;:&nbsp;{{bills.bill_date}}</ion-card-title>
-     </div>
 
-     <ion-row style="margin-left: -10px!important;">
-       <ion-col size='6'>
-        <div class="status" style="padding-top: 5px!important;margin-bottom: 10px!important;margin-top: 10px!important;" *ngIf="bills.bill_stage">
-          <div class="tagtext" >
-            <div  class="status" style="text-align: start;color: var(--ion-color-primary);font-family: 'Metropolis Medium';padding-left: 15px;padding-right: 10px;padding-bottom: 6px!important;">
-             {{bills.bill_stage}}
+      <div style="margin-left: 18px!important;">
+        <ion-card-title class="mediumSubTitle" *ngIf="bills.bill_no" style="font-size: 16px!important;"><b
+            class="boldTitle" style="letter-spacing: 0em!important;font-size: 16px!important;">VJ Bill
+            No.</b>&nbsp;:&nbsp;{{bills.bill_no}}</ion-card-title>
+        <ion-card-title class="mediumSubTitle" *ngIf="bills.partner_bill_no" style="font-size: 16px!important;"><b
+            class="boldTitle" style="letter-spacing: 0em!important;font-size: 16px!important;">Your Bill
+            No.</b>&nbsp;:&nbsp;{{bills.partner_bill_no}}</ion-card-title>
+        <ion-card-title class="mediumSubTitle" *ngIf="bills.bill_amount" style="font-size: 16px!important;"><b
+            class="boldTitle" style="font-size: 16px!important;">Bill Amount:</b>&nbsp;:&nbsp;{{bills.bill_amount}}
+        </ion-card-title>
+        <ion-card-title class="mediumSubTitle" *ngIf="bills.bill_date" style="font-size: 16px!important;"><b
+            class="boldTitle" style="font-size: 16px!important;">Billing Date:</b>&nbsp;:&nbsp;{{bills.bill_date}}
+        </ion-card-title>
+      </div>
+
+      <ion-row style="margin-left: -10px!important;">
+        <ion-col size='6'>
+          <div class="status"
+            style="padding-top: 5px!important;margin-bottom: 10px!important;margin-top: 10px!important;"
+            *ngIf="bills.bill_stage">
+            <div class="tagtext">
+              <div class="status"
+                style="text-align: start;color: var(--ion-color-primary);;padding-left: 15px;padding-right: 10px;padding-bottom: 6px!important;">
+                {{bills.bill_stage}}
+              </div>
             </div>
           </div>
-         </div>
-    
-       </ion-col > 
-       <ion-col size='6' style="margin-top: 16px!important;">
-        <div style="text-align: right!important;margin-top: -10px!important;margin-bottom: -20px!important;">
-          <button mat-button (click)="gotoShowLogs(bills,bills.full_name,bills.block_name,bills.unit_name,bills.bsp)" style="color:#f5a22c!important;margin-top:5px!important;margin-right: 5px!important;font-size: 16px!important;font-family: 'Metropolis Semi Bold';">Show Logs</button>
-        </div>
-      </ion-col>
-     </ion-row>
-    
 
-     
+        </ion-col>
+        <ion-col size='6' style="margin-top: 16px!important;">
+          <div style="text-align: right!important;margin-top: -10px!important;margin-bottom: -20px!important;">
+            <button mat-button (click)="gotoShowLogs(bills,bills.full_name,bills.block_name,bills.unit_name,bills.bsp)"
+              style="color:#f5a22c!important;margin-top:5px!important;margin-right: 5px!important;font-size: 16px!important;">Show
+              Logs</button>
+          </div>
+        </ion-col>
+      </ion-row>
 
 
-   <div style="margin-bottom: 1%!important;margin-top: -8px!important;padding-top: 7px!important;">
+
+
+
+      <div style="margin-bottom: 1%!important;margin-top: -8px!important;padding-top: 7px!important;">
         <mat-accordion>
           <mat-expansion-panel style="box-shadow: none!important;">
-            <mat-expansion-panel-header style="padding-left:0%!important;padding-right: 7%!important;padding-top: 2%!important;padding-bottom: 2%!important;">
-             <ion-row style="width: 100%!important;">
+            <mat-expansion-panel-header
+              style="padding-left:0%!important;padding-right: 7%!important;padding-top: 2%!important;padding-bottom: 2%!important;">
+              <ion-row style="width: 100%!important;">
                 <ion-col size='3'>
                 </ion-col>
                 <ion-col size='4'>
                 </ion-col>
                 <ion-col size='5'>
-                  <mat-panel-title class="matTitle" > View Details</mat-panel-title>
+                  <mat-panel-title class="matTitle"> View Details</mat-panel-title>
                 </ion-col>
               </ion-row>
             </mat-expansion-panel-header>
-           
-            <div style="padding-left: 6px!important;">
-              
-              <ion-card-title class="expandCardHeading" style="margin-top:-20px!important">Bill Details:</ion-card-title>
-              <ion-card-title class="mediumSubTitle" *ngIf="bills.bill_no"><b class="boldTitle" style="letter-spacing: 0.0em!important;">VJ Bill No:</b>&nbsp;:&nbsp;{{bills.bill_no}}</ion-card-title>
-              <ion-card-title class="mediumSubTitle" *ngIf="bills.partner_bill_no"><b class="boldTitle" style="letter-spacing: 0.0em!important;">Your Bill No:</b>&nbsp;:&nbsp;{{bills.partner_bill_no}}</ion-card-title>
-              <ion-card-title class="mediumSubTitle" *ngIf="bills.bill_amount"><b class="boldTitle">Bill Amount:</b>&nbsp;:&nbsp;{{bills.bill_amount}}</ion-card-title>
-              <ion-card-title class="mediumSubTitle" *ngIf="bills.bill_date"><b class="boldTitle">Bill Date:</b>&nbsp;:&nbsp;{{bills.bill_date}}</ion-card-title>
-              <ion-card-title class="mediumSubTitle" *ngIf="bills.bill_stage"><b class="boldTitle">Stage:</b>&nbsp;:&nbsp;{{bills.bill_stage}}</ion-card-title>
-              <ion-card-title class="mediumSubTitle" *ngIf="bills.remarks" style="display: -webkit-box !important;overflow: hidden !important;text-overflow: ellipsis !important; -webkit-box-orient: vertical !important;-webkit-line-clamp: 2 !important "><b class="boldTitle">Remarks:</b>&nbsp;:&nbsp;{{bills.remarks}}</ion-card-title>
 
-              <ion-card-title class="expandCardHeading" style="margin-top: 10px!important;">Customer Details:</ion-card-title>
-              <ion-card-title class="mediumSubTitle" *ngIf="bills.name"><b class="boldTitle">Name:</b>&nbsp;:&nbsp;{{bills.name}}</ion-card-title>
-              <ion-card-title class="mediumSubTitle" *ngIf="bills.lead_uid"><b class="boldTitle">CUID:</b>&nbsp;:&nbsp;{{bills.lead_uid}}</ion-card-title>
-              <ion-card-title class="mediumSubTitle" ><b class="boldTitle">Project:</b>&nbsp;:&nbsp;{{bills.project_name}}</ion-card-title>
-              <ion-card-title class="mediumSubTitle" *ngIf="bills.unit_name"><b class="boldTitle">Unit:</b>&nbsp;:&nbsp;{{bills.unit_name}}</ion-card-title>
-            
-              <ion-card-title class="expandCardHeading" style="margin-top: 10px!important;">Agreement Details:</ion-card-title>
-              <ion-card-title class="mediumSubTitle" *ngIf="bills.agreement_date"><b class="boldTitle">Date:</b>&nbsp;:&nbsp;{{bills.agreement_date}}</ion-card-title>
-              <ion-card-title class="mediumSubTitle" *ngIf="bills.bsp"><b class="boldTitle">bsp:</b>&nbsp;:&nbsp;{{bills.bsp}}</ion-card-title>
-             
-              <ion-card-title class="expandCardHeading" style="margin-top: 10px!important;">Brokerage Details:</ion-card-title>
-              <ion-card-title class="mediumSubTitle" *ngIf="bills.applicable_brokerage_percent"><b class="boldTitle">Percentage:</b>&nbsp;:&nbsp;{{bills.applicable_brokerage_percent}}</ion-card-title>
-              <ion-card-title class="mediumSubTitle" *ngIf="bills.bill_amount"><b class="boldTitle">Amount:</b>&nbsp;:&nbsp;{{bills.bill_amount}}</ion-card-title>
-  
+            <div style="padding-left: 6px!important;">
+
+              <ion-card-title class="expandCardHeading" style="margin-top:-20px!important">Bill Details:
+              </ion-card-title>
+              <ion-card-title class="mediumSubTitle" *ngIf="bills.bill_no"><b class="boldTitle"
+                  style="letter-spacing: 0.0em!important;">VJ Bill No:</b>&nbsp;:&nbsp;{{bills.bill_no}}
+              </ion-card-title>
+              <ion-card-title class="mediumSubTitle" *ngIf="bills.partner_bill_no"><b class="boldTitle"
+                  style="letter-spacing: 0.0em!important;">Your Bill No:</b>&nbsp;:&nbsp;{{bills.partner_bill_no}}
+              </ion-card-title>
+              <ion-card-title class="mediumSubTitle" *ngIf="bills.bill_amount"><b class="boldTitle">Bill
+                  Amount:</b>&nbsp;:&nbsp;{{bills.bill_amount}}</ion-card-title>
+              <ion-card-title class="mediumSubTitle" *ngIf="bills.bill_date"><b class="boldTitle">Bill
+                  Date:</b>&nbsp;:&nbsp;{{bills.bill_date}}</ion-card-title>
+              <ion-card-title class="mediumSubTitle" *ngIf="bills.bill_stage"><b
+                  class="boldTitle">Stage:</b>&nbsp;:&nbsp;{{bills.bill_stage}}</ion-card-title>
+              <ion-card-title class="mediumSubTitle" *ngIf="bills.remarks"
+                style="display: -webkit-box !important;overflow: hidden !important;text-overflow: ellipsis !important; -webkit-box-orient: vertical !important;-webkit-line-clamp: 2 !important ">
+                <b class="boldTitle">Remarks:</b>&nbsp;:&nbsp;{{bills.remarks}}
+              </ion-card-title>
+
+              <ion-card-title class="expandCardHeading" style="margin-top: 10px!important;">Customer Details:
+              </ion-card-title>
+              <ion-card-title class="mediumSubTitle" *ngIf="bills.name"><b
+                  class="boldTitle">Name:</b>&nbsp;:&nbsp;{{bills.name}}</ion-card-title>
+              <ion-card-title class="mediumSubTitle" *ngIf="bills.lead_uid"><b
+                  class="boldTitle">CUID:</b>&nbsp;:&nbsp;{{bills.lead_uid}}</ion-card-title>
+              <ion-card-title class="mediumSubTitle"><b
+                  class="boldTitle">Project:</b>&nbsp;:&nbsp;{{bills.project_name}}</ion-card-title>
+              <ion-card-title class="mediumSubTitle" *ngIf="bills.unit_name"><b
+                  class="boldTitle">Unit:</b>&nbsp;:&nbsp;{{bills.unit_name}}</ion-card-title>
+
+              <ion-card-title class="expandCardHeading" style="margin-top: 10px!important;">Agreement Details:
+              </ion-card-title>
+              <ion-card-title class="mediumSubTitle" *ngIf="bills.agreement_date"><b
+                  class="boldTitle">Date:</b>&nbsp;:&nbsp;{{bills.agreement_date}}</ion-card-title>
+              <ion-card-title class="mediumSubTitle" *ngIf="bills.bsp"><b
+                  class="boldTitle">bsp:</b>&nbsp;:&nbsp;{{bills.bsp}}</ion-card-title>
+
+              <ion-card-title class="expandCardHeading" style="margin-top: 10px!important;">Brokerage Details:
+              </ion-card-title>
+              <ion-card-title class="mediumSubTitle" *ngIf="bills.applicable_brokerage_percent"><b
+                  class="boldTitle">Percentage:</b>&nbsp;:&nbsp;{{bills.applicable_brokerage_percent}}</ion-card-title>
+              <ion-card-title class="mediumSubTitle" *ngIf="bills.bill_amount"><b
+                  class="boldTitle">Amount:</b>&nbsp;:&nbsp;{{bills.bill_amount}}</ion-card-title>
+
             </div>
           </mat-expansion-panel>
         </mat-accordion>
       </div>
-  
-   </ion-card>
+
+    </ion-card>
   </ion-list>
   <div *ngIf="submittedBills.length==0 && isSpinner==false" class="ion-text-center">
     <div class="datanotfound">
@@ -178,8 +217,9 @@
       <ion-card-title class="noData">Currently,No Submitted Bills Available!</ion-card-title>
     </div>
   </div>
-  <ion-infinite-scroll threshold="100px" id="infinite-scroll"  *ngIf="submittedBills.length!=0"   (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll threshold="100px" id="infinite-scroll" *ngIf="submittedBills.length!=0"
+    (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content loading-spinner="bubbles">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-  </ion-content>
+</ion-content>

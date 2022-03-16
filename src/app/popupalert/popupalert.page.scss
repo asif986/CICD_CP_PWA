@@ -1,27 +1,26 @@
-.textTitle{
-    color: var(--ion-color-primary);
-    font-size: 20px;
-    font-family: "Metropolis Medium";
-    margin: 5%;
-    font-weight: 600;
-    line-height: 24px;
-    text-align: center!important;
-  }
-  .textSubTitle{
-    color: var(--ion-color-sutextTitle);
-    font-size: 15px;
-    font-family: "Metropolis Medium";
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: -2%;
-   }
-  
-   .backGround {
-    --background: url('/assets/icon/popalert.svg') no-repeat center center fixed !important;
-    background-color: #ffffff!important;
-    background-size: cover !important;
-    width: 100%!important;
-    position: fixed;
-    alignment: center;
-  }
-  
+.textTitle {
+  color: var(--ion-color-primary);
+  font-size: 20px;
+
+  margin: 5%;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center !important;
+}
+.textSubTitle {
+  color: var(--ion-color-sutextTitle);
+  font-size: 15px;
+
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: -2%;
+}
+
+.backGround {
+  --background: url("/assets/icon/popalert.svg") no-repeat center center fixed !important;
+  background-color: #ffffff !important;
+  background-size: cover !important;
+  width: 100% !important;
+  position: fixed;
+  alignment: center;
+}

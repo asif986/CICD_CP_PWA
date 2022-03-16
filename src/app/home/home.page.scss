@@ -53,7 +53,7 @@ ion-refresher-content {
 
 .search {
   font-size: 14px !important;
-  font-family: "Metropolis Medium";
+  //
   font-weight: bolder;
 }
 
@@ -74,7 +74,7 @@ ion-refresher-content {
   text-align: start;
   color: var(--ion-color-primary);
   font-size: 14px;
-  font-family: "Metropolis Medium";
+  //
   margin-bottom: 5px;
   font-weight: bolder !important;
   border-radius: 16px !important;
@@ -84,7 +84,7 @@ ion-refresher-content {
 .leaddate {
   text-align: end;
   font-size: 12px;
-  font-family: "Metropolis Light";
+  //
   color: #7a7a7a;
   margin-top: 5px !important;
   // padding-top: 15px !important;
@@ -96,7 +96,7 @@ ion-refresher-content {
   text-align: start;
   color: var(--ion-color-primary);
   font-size: 14px;
-  font-family: "Metropolis Medium";
+  //
   // margin-top: 10px;
   margin-left: 6px;
 }
@@ -106,7 +106,7 @@ ion-refresher-content {
   text-align: start;
   color: var(--ion-color-primary);
   font-size: 20px;
-  font-family: "Metropolis Semi Bold";
+  // ;
   margin-top: 10px;
   margin-bottom: 3px;
 }
@@ -116,7 +116,7 @@ ion-refresher-content {
   text-align: start;
   color: var(--ion-color-primary);
   font-size: 16px;
-  font-family: "Metropolis Light";
+  //
   margin-bottom: 5px;
 }
 
@@ -125,7 +125,7 @@ ion-refresher-content {
   text-align: start;
   color: #7a7a7a;
   font-size: 12px;
-  font-family: "Metropolis Light";
+  //
 }
 
 // /*Set Tag and lapse Time*/ Flex Container ==>>1 For Unclaimed,2 For Claimed
@@ -139,7 +139,7 @@ ion-refresher-content {
 // /*Set Tag and lapse Time*/ Flex Container ==>>1 For Unclaimed,2 For Claimed
 .tagtext {
   font-size: 14px;
-  font-family: "Metropolis Light";
+  //
   color: var(--ion-color-primary);
   text-align: start;
   padding-top: 3px;
@@ -229,14 +229,14 @@ ion-refresher-content {
   text-align: start;
   color: var(--ion-color-primary);
   font-size: 14px;
-  font-family: "Metropolis Semi Bold";
+  // ;
 }
 
 .expansion-panel-subtitle {
   text-align: start;
   color: var(--ion-color-primary);
   font-size: 14px;
-  font-family: "Metropolis Light";
+  //
 }
 
 /*No Data Found*/
@@ -249,7 +249,7 @@ ion-refresher-content {
 .noData {
   margin-top: 3% !important;
   font-size: 20px;
-  font-family: "Metropolis Medium";
+  //
   color: white !important;
 }
 
@@ -434,7 +434,7 @@ ion-fab-button[data-desc]::after {
   border-radius: 5px;
   color: black !important;
   background-color: white !important;
-  font-family: "Metropolis Medium";
+  //
   font-size: 16px !important;
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
     0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
@@ -460,7 +460,7 @@ ion-header {
 
 .mat-box-status-text {
   font-size: 14px;
-  font-family: "Metropolis Light";
+  //
   color: var(--ion-color-primary);
   text-align: start;
   text-transform: capitalize;

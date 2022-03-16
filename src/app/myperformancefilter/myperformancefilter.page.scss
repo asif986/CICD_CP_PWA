@@ -1,44 +1,41 @@
-
 /*Ionic Refresh*/
 ion-refresher-content {
-padding-bottom: 200px;
-background-color: black;
-.refresher-pulling {
-  position: fixed;
-  top: 50px;
+  padding-bottom: 200px;
+  background-color: black;
+  .refresher-pulling {
+    position: fixed;
+    top: 50px;
+  }
 }
-}
-
 
 // For Card ==>Leads
 .outline {
-  margin-bottom: 6%!important;
+  margin-bottom: 6% !important;
   border-radius: 16px;
   background: #fff;
   padding-bottom: 10px;
 }
 
 // For MatMenu
-.menu{
+.menu {
   text-align: start;
   color: var(--ion-color-primary);
   font-size: 14px;
-  font-family: "Metropolis Medium";
+
   margin-bottom: 5px;
-  font-weight: bolder!important;
-  border-radius: 16px!important;
+  font-weight: bolder !important;
+  border-radius: 16px !important;
 }
 
-
 // For Lead_Date==>>
-.leaddate{
-text-align: end;
-font-size: 12px;
-font-family: "Metropolis Light";
-color: #7A7A7A;
-margin-top: 5px!important;
-padding-top: 15px!important;
-padding-right: 20px!important;
+.leaddate {
+  text-align: end;
+  font-size: 12px;
+
+  color: #7a7a7a;
+  margin-top: 5px !important;
+  padding-top: 15px !important;
+  padding-right: 20px !important;
 }
 
 // For Customer_ID==>>
@@ -46,49 +43,46 @@ padding-right: 20px!important;
   text-align: start;
   color: var(--ion-color-primary);
   font-size: 14px;
-  font-family: "Metropolis Medium";
+
   margin-top: 10px;
 }
 
 // For Lead Name==>>
 .leadname {
-    text-align: start;
-    color: var(--ion-color-primary);
-    font-size: 20px;
-    font-family: "Metropolis Semi Bold";
-    margin-top: 5px;
-    margin-bottom: 3px;
+  text-align: start;
+  color: var(--ion-color-primary);
+  font-size: 20px;
+  margin-top: 5px;
+  margin-bottom: 3px;
 }
 
 //  ProjectName==>>
 .projectname {
-text-align: start;
-color: var(--ion-color-primary);
-font-size: 16px;
-font-family: "Metropolis Light";
-margin-bottom: 5px;
+  text-align: start;
+  color: var(--ion-color-primary);
+  font-size: 16px;
+
+  margin-bottom: 5px;
 }
 
 // Sales Person Name==>>
 .salesPersonName_datealso {
   text-align: start;
-  color: #7A7A7A;
+  color: #7a7a7a;
   font-size: 12px;
-  font-family: "Metropolis Light";
 }
 
 // /*Set Tag and lapse Time*/ Flex Container ==>>1 For Unclaimed,2 For Claimed
 .flex-container > div {
-width: 120px;
-text-align: center;
-margin-right: 15px!important;
-margin-top: 10px!important;
-
+  width: 120px;
+  text-align: center;
+  margin-right: 15px !important;
+  margin-top: 10px !important;
 }
 // /*Set Tag and lapse Time*/ Flex Container ==>>1 For Unclaimed,2 For Claimed
 .tagtext {
   font-size: 12px;
-  font-family: "Metropolis Light";
+
   color: var(--ion-color-primary);
   text-align: start;
   padding-top: 3px;
@@ -102,73 +96,70 @@ margin-top: 10px!important;
   font-size: 14px;
   text-align: start;
   text-transform: capitalize;
-  border-radius: 0px!important;
+  border-radius: 0px !important;
 }
 .bg-1 {
-//FOR UNCLAIMED
-background-color: #FF5050;
+  //FOR UNCLAIMED
+  background-color: #ff5050;
 }
 .bg-2 {
-//FOR CLAIMED
-background-color: #4E0291;
+  //FOR CLAIMED
+  background-color: #4e0291;
 }
 .bg-5 {
-//FOR SITE VISIT
-background-color: #EAA800;
+  //FOR SITE VISIT
+  background-color: #eaa800;
 }
 .bg-6 {
-//FOR GHP GENERATED WITH TOKEN TYPE ID ==1
-background-color: #1ABC71;
+  //FOR GHP GENERATED WITH TOKEN TYPE ID ==1
+  background-color: #1abc71;
 }
 .bg-7 {
-//For On Token Cancelled(ITS AN DOUBTFUL ID)
-background-color: #A5A5A5;
+  //For On Token Cancelled(ITS AN DOUBTFUL ID)
+  background-color: #a5a5a5;
 }
 .bg-8 {
-//FOR ON HOLD FLAT
-background-color: #E69200;
+  //FOR ON HOLD FLAT
+  background-color: #e69200;
 }
 .bg-9 {
-//FOR ALLOT FLAT
-background-color: #2C408B;
+  //FOR ALLOT FLAT
+  background-color: #2c408b;
 }
 .bg-10 {
-//For CANCELLED ALLOTMENT
-background-color: grey;
+  //For CANCELLED ALLOTMENT
+  background-color: grey;
 }
-.bg-15{
-//TOKEN+ GENERATED WITH TOKEN TYPE ID ==3 && ITS AND COLOR CODE FROM MY SIDE
-background-color:#4E0291
+.bg-15 {
+  //TOKEN+ GENERATED WITH TOKEN TYPE ID ==3 && ITS AND COLOR CODE FROM MY SIDE
+  background-color: #4e0291;
 }
 .bg-13 {
-//FOR GHP PENDING OR GHP+ PENDING(PAYMENT)
-background-color: #87C7DE;
+  //FOR GHP PENDING OR GHP+ PENDING(PAYMENT)
+  background-color: #87c7de;
 }
 
 /*Expansion Panel */
 .expansion-panel-title {
-text-align: start;
-color: var(--ion-color-primary);
-font-size: 14px;
-font-family: "Metropolis Semi Bold";
+  text-align: start;
+  color: var(--ion-color-primary);
+  font-size: 14px;
 }
 
 .expansion-panel-subtitle {
-text-align: start;
-color: var(--ion-color-primary);
-font-size: 14px;
-font-family: "Metropolis Light";
+  text-align: start;
+  color: var(--ion-color-primary);
+  font-size: 14px;
 }
 
 /*No Data Found*/
 .datanotfound {
-alignment: center;
-margin-top:50%;
+  alignment: center;
+  margin-top: 50%;
 }
-.noData{
-margin-top: 3%!important;
-font-size: 20px;
-font-family: "Metropolis Medium";
-color:white!important;
-}
+.noData {
+  margin-top: 3% !important;
+  font-size: 20px;
 
+  color: white !important;
+}

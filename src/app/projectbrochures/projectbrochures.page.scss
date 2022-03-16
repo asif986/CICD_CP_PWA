@@ -1,12 +1,12 @@
 .toolbar-text {
   color: var(--ion-color-primary);
-  font-family: "Metropolis Medium";
+
   font-size: medium;
   background-color: var(--ion-color-secondary);
 }
 .toolbar-title {
   color: var(--ion-color-secondary);
-  font-family: "Metropolis Medium";
+
   font-size: 20px;
 }
 /*No Data Found*/
@@ -17,7 +17,7 @@
 .noData {
   margin-top: 3% !important;
   font-size: 20px;
-  font-family: "Metropolis Medium";
+
   color: black !important;
 }
 .dot {
@@ -29,17 +29,16 @@
 }
 .brochure_title {
   color: black;
-  font-family: "Metropolis Medium";
+
   font-size: 14px;
 }
 .project_name {
   color: black;
-  font-family: "Metropolis Light";
+
   font-size: 16px;
 }
 .circle_title {
   color: black;
-  font-family: "Metropolis Bold";
   font-size: 14px;
   text-align: center !important;
   padding-top: 28px;
@@ -47,25 +46,21 @@
 }
 #forgotButton11 {
   color: black;
-  font-family: "Metropolis Medium" !important;
   font-size: 14px !important;
   border-radius: 25px !important;
 }
 #forgotButton12 {
   color: black;
-  font-family: "Metropolis Medium" !important;
   font-size: 14px !important;
   border-radius: 25px !important;
 }
 #forgotButton21 {
   color: black;
-  font-family: "Metropolis Medium" !important;
   font-size: 14px !important;
   border-radius: 25px !important;
 }
 #forgotButton22 {
   color: black;
-  font-family: "Metropolis Medium" !important;
   font-size: 14px !important;
   border-radius: 25px !important;
 }
@@ -74,7 +69,7 @@
 }
 ::ng-deep.mat-select-panel .mat-option-text {
   color: black;
-  font-family: "Metropolis Medium";
+
   font-size: 16px;
 }
 ::ng-deep.mat-select-panel .mat-select-arrow-wrapper {
@@ -85,7 +80,7 @@
 }
 ::ng-deep.mat-select-value {
   color: black;
-  font-family: "Metropolis Medium";
+
   font-size: 16px;
 }
 .project-brochure-searchbar {

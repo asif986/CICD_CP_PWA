@@ -13,26 +13,25 @@ h1 {
 
 .toolbar-text {
   color: var(--ion-color-secondary);
-  font-family: "Metropolis Medium";
+
   font-size: medium;
   background-color: #652d90;
 }
 
 .toolbar-title {
   color: var(--ion-color-secondary);
-  font-family: "Metropolis Medium";
+
   font-size: 20px;
 }
 
 p {
-  font-family: "Metropolis Light";
 }
 
 .title {
   padding: 5px;
   alignment: center;
   color: var(--ion-color-primary);
-  font-family: "Metropolis Medium";
+
   margin-top: 30%;
   margin-bottom: 15%;
   justify-content: center;
@@ -45,7 +44,7 @@ p {
 
 .input-field-text {
   color: var(--ion-color-primary);
-  font-family: "Metropolis Light";
+
   font-size: large;
   text-align: start;
   margin: 1%;
@@ -63,7 +62,6 @@ p {
   background-color: #f5a22c;
   color: var(--ion-color-primary);
   font-size: large;
-  font-family: "Metropolis Medium";
 }
 
 #forgotButton {
@@ -76,7 +74,7 @@ p {
 .error {
   color: red;
   text-align: start;
-  font-family: "Metropolis Light";
+
   font-size: 11px;
 }
 
@@ -84,7 +82,7 @@ p {
   padding: 2px;
   alignment: center;
   color: #000000;
-  font-family: "Metropolis Light";
+
   margin-top: 5%;
   margin-left: 3%;
   justify-content: center;
@@ -96,7 +94,7 @@ p {
   padding: 2px;
   alignment: center;
   color: var(--ion-color-medium_grey);
-  font-family: "Metropolis Light";
+
   margin-right: 3%;
   justify-content: center;
   align-items: center;
@@ -115,14 +113,13 @@ p {
   background-color: #f5a22c;
   color: var(--ion-color-primary);
   font-size: large;
-  font-family: "Metropolis Medium";
 }
 
 .mat-panel-title {
   padding: 1px;
   alignment: left;
   color: var(--ion-color-primary);
-  font-family: "Metropolis Medium";
+
   margin-top: 5%;
   margin-bottom: 5%;
   font-size: 20px;
@@ -143,7 +140,7 @@ p {
 
 .countrycodetext {
   font-size: 14px;
-  font-family: "Metropolis Medium";
+
   margin-top: 10px !important;
 }
 
@@ -157,7 +154,7 @@ p {
 
 .personal-details {
   color: var(--ion-color-primary);
-  font-family: "Metropolis Medium";
+
   margin-top: 15px;
   margin-left: 20px;
 }
@@ -165,14 +162,14 @@ p {
 .inputtextfield {
   // padding: 2px;
   color: #000000;
-  font-family: "Metropolis Light";
+
   font-size: 16px;
 }
 
 .inputtextfieldPANGST {
   padding: 2px;
   color: #000000;
-  font-family: "Metropolis Light";
+
   font-size: 16px;
   text-transform: uppercase;
 }
@@ -195,7 +192,6 @@ p {
   background-color: #f5a22c;
   color: var(--ion-color-primary);
   font-size: 18px;
-  font-family: "Metropolis Medium";
 }
 
 .Resendbuttons:disabled,
@@ -211,7 +207,6 @@ Resendbuttonss[disabled] {
 }
 
 ::ng-deep.swal2-title {
-  font-family: "Metropolis Medium";
   font-size: 16px;
   border-radius: 16px !important;
 }

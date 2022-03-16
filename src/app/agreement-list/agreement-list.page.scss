@@ -1,64 +1,59 @@
-.nameOfCustomer{
-  color: var( --ion-color-primary);
-  font-size: 18px!important;
-  font-family: "Metropolis Medium"!important;
+.nameOfCustomer {
+  color: var(--ion-color-primary);
+  font-size: 18px !important;
   margin-top: 5px;
   font-weight: 900;
 }
-.subTitleOther{
-  color: var( --ion-color-primary);
-  font-size: 16px!important;
-  font-family: "Metropolis Light"!important;
+.subTitleOther {
+  color: var(--ion-color-primary);
+  font-size: 16px !important;
+
   margin-top: 5px;
   font-weight: 900;
 }
-.matButton{
-  background-color: #F5A22C!important;
-  color: white!important;
-  font-family: "Metropolis Medium"!important;
-  font-size: 18px!important;
-  text-align: center!important;
-  width: 180px!important;
-  height: 40px!important;
-  border-radius: 15px!important;
+.matButton {
+  background-color: #f5a22c !important;
+  color: white !important;
+  font-size: 18px !important;
+  text-align: center !important;
+  width: 180px !important;
+  height: 40px !important;
+  border-radius: 15px !important;
 }
-.expandCardHeading{
-  color: var( --ion-color-primary);
-  font-size: 18px!important;
-  font-family: "Metropolis Medium"!important;
+.expandCardHeading {
+  color: var(--ion-color-primary);
+  font-size: 18px !important;
   margin-top: 5px;
   font-weight: 900;
 }
-.boldTitle{
-  color: gray!important;
-  font-size: 14px!important;
-  font-family: "Metropolis Medium"!important;
+.boldTitle {
+  color: gray !important;
+  font-size: 14px !important;
   margin-top: 5px;
   font-weight: 900;
 }
-.mediumSubTitle{
-  color: var( --ion-color-primary);
-  font-size: 15px!important;
-  font-family: "Metropolis Light"!important;
+.mediumSubTitle {
+  color: var(--ion-color-primary);
+  font-size: 15px !important;
+
   margin-top: 5px;
   font-weight: 900;
 }
-.matTitle{
-  color: var( --ion-color-primary);
-  font-size: 15px!important;
-  font-family: "Metropolis Medium"!important;
+.matTitle {
+  color: var(--ion-color-primary);
+  font-size: 15px !important;
   margin-top: 5px;
   font-weight: 900;
-  margin-left: 6px!important;
+  margin-left: 6px !important;
 }
 /*No Data Found*/
 .datanotfound {
   alignment: center;
-  margin-top: 30%!important;
+  margin-top: 30% !important;
 }
-.noData{
-  margin-top: 3%!important;
+.noData {
+  margin-top: 3% !important;
   font-size: 20px;
-  font-family: "Metropolis Medium";
-  color:black!important;
+
+  color: black !important;
 }

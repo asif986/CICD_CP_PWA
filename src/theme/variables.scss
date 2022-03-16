@@ -90,11 +90,9 @@
   --ion-color-close: #e4e4e6;
   --ion-color-tag-background: #ececec;
   --ion-color-divider: #bdbdbd;
-  --ion-font-family: "Metropolis Light";
-  --ion-font-family: "Metropolis Medium";
-  --ion-font-family: "Metropolis Semi Bold";
-  --ion-font-family: "Metropolis Bold";
-  --ion-font-family: "Metropolis Extra Bold";
+  --ion-font-family: "roboto";
+
+  // --ion-";
 }
 
 .ion-color-new {
@@ -106,40 +104,40 @@
   --ion-color-tint: var(--ion-color-new-tint);
 }
 
-@font-face {
-  font-family: "Metropolis Light";
-  font-style: normal;
-  font-weight: normal;
-  src: url("../assets/fonts/metropolis-light.otf");
-}
+// @font-face {
+//
+//   font-style: normal;
+//   font-weight: normal;
+//   src: url("../assets/fonts/metropolis-light.otf");
+// }
 
-@font-face {
-  font-family: "Metropolis Medium";
-  font-style: normal;
-  font-weight: normal;
-  src: url("../assets/fonts/metropolis-medium.otf");
-}
+// @font-face {
+//
+//   font-style: normal;
+//   font-weight: normal;
+//   src: url("../assets/fonts/metropolis-medium.otf");
+// }
 
-@font-face {
-  font-family: "Metropolis Semi Bold";
-  font-style: normal;
-  font-weight: normal;
-  src: url("../assets/fonts/metropolis-semi-bold.otf");
-}
+// @font-face {
+//   ;
+//   font-style: normal;
+//   font-weight: normal;
+//   src: url("../assets/fonts/metropolis-semi-bold.otf");
+// }
 
-@font-face {
-  font-family: "Metropolis Bold";
-  font-style: normal;
-  font-weight: normal;
-  src: url("../assets/fonts/metropolis-bold.otf");
-}
+// @font-face {
+//   ;
+//   font-style: normal;
+//   font-weight: normal;
+//   src: url("../assets/fonts/metropolis-bold.otf");
+// }
 
-@font-face {
-  font-family: "Metropolis Extra Bold";
-  font-style: normal;
-  font-weight: normal;
-  src: url("../assets/fonts/metropolis-extra-bold.otf");
-}
+// @font-face {
+//   ";
+//   font-style: normal;
+//   font-weight: normal;
+//   src: url("../assets/fonts/metropolis-extra-bold.otf");
+// }
 
 // ion-toolbar {
 //   background-color: #1e2023!important;
@@ -151,7 +149,7 @@ ion-header ion-toolbar {
 
 ion-toast.toastController {
   color: var(--ion-color-btn-primary);
-  font-family: "Metropolis Medium";
+
   font-size: 16px;
 }
 

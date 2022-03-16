@@ -1,95 +1,94 @@
 .toolbar-text {
-    color: var(--ion-color-secondary);
-    font-family: "Metropolis Medium";
-    font-size: medium;
-    background-color: var(--ion-color-primary);
-  }
-  .margintexttitle {
-    text-align: start;
-    color: var(--ion-color-primary);
-    font-size: 18px;
-    font-family: "Metropolis Bold";
-    font-weight: 500;
-    margin-top: 5px;
-  }
-  .margintextsubtitle {
-    text-align: start;
-    color: black!important;
-    font-size: 15px;
-    font-family: "Metropolis Light";
-    font-weight: 700;
-    margin-top: -3px;
-  }
-  .fabmargin {
-    margin: 5%;
-  }
-  .registerbutton{
-    margin-top: 5%!important;
-    margin-bottom: 5%!important;
-    margin-left: auto!important;
-    margin-right: auto!important;
-    width: 70%!important;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 5px;
-    padding-right: 5px;
-    font-size:16px;
-    border-radius: 25px;
-    background-color: var(--ion-color-primary);
-    color: var(--ion-color-secondary);
-    font-family: "Metropolis Medium";
-  }
-  /*No Data Found*/
-  .datanotfound {
-    alignment: center;
-    margin-top: 50%;
-  }
-  .noData{
-    margin-top: 3%!important;
-    font-size: 20px;
-    font-family: "Metropolis Medium";
-    color:black!important;
-  }
-  .teamleaderFabtype{
-    margin-top: 0%; 
-    text-align: center;
-    width: 50%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-size: 16px;
-    font-family: "Metropolis Medium";
-    background-color: #070604;
-    color: var(--ion-color-main-black);
-    border-radius: 25px;
-    box-shadow: 3px 1.5px 4px rgba(0, 0, 0, 0.4) !important;
-    margin-right: 5%;
-    color: white;
-    font-weight: 900;
-    box-shadow: none;
-  }
-  ion-fab-button[data-desc] {
-    position: relative;
-  }
-  
-  ion-fab-button[data-desc]::after {
-    position: absolute;
-    content: attr(data-desc);
-    z-index: 1;
-    right: 55px;
-    bottom: 4px;
-    padding: 9px;
-    border-radius: 5px;
-    color: black!important;
-    background-color: #F5A22C!important;
-    font-family: "Metropolis Medium";
-    font-size: 16px!important;
-    box-shadow: 0 3px 5px -1px rgba(0,0,0,0.2), 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12);
-  }
+  color: var(--ion-color-secondary);
 
-  .ion-color-fab {
-    --ion-color-base:#F5A22C!important;
-    --ion-color-base-rgb: #F5A22C!important;
-    --ion-color-contrast-rgb: #F5A22C!important;
-    --ion-color-shade: #F5A22C!important;
-    --ion-color-tint:#F5A22C!important;
-  }
+  font-size: medium;
+  background-color: var(--ion-color-primary);
+}
+.margintexttitle {
+  text-align: start;
+  color: var(--ion-color-primary);
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 5px;
+}
+.margintextsubtitle {
+  text-align: start;
+  color: black !important;
+  font-size: 15px;
+
+  font-weight: 700;
+  margin-top: -3px;
+}
+.fabmargin {
+  margin: 5%;
+}
+.registerbutton {
+  margin-top: 5% !important;
+  margin-bottom: 5% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 70% !important;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-size: 16px;
+  border-radius: 25px;
+  background-color: var(--ion-color-primary);
+  color: var(--ion-color-secondary);
+}
+/*No Data Found*/
+.datanotfound {
+  alignment: center;
+  margin-top: 50%;
+}
+.noData {
+  margin-top: 3% !important;
+  font-size: 20px;
+
+  color: black !important;
+}
+.teamleaderFabtype {
+  margin-top: 0%;
+  text-align: center;
+  width: 50%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 16px;
+
+  background-color: #070604;
+  color: var(--ion-color-main-black);
+  border-radius: 25px;
+  box-shadow: 3px 1.5px 4px rgba(0, 0, 0, 0.4) !important;
+  margin-right: 5%;
+  color: white;
+  font-weight: 900;
+  box-shadow: none;
+}
+ion-fab-button[data-desc] {
+  position: relative;
+}
+
+ion-fab-button[data-desc]::after {
+  position: absolute;
+  content: attr(data-desc);
+  z-index: 1;
+  right: 55px;
+  bottom: 4px;
+  padding: 9px;
+  border-radius: 5px;
+  color: black !important;
+  background-color: #f5a22c !important;
+
+  font-size: 16px !important;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+}
+
+.ion-color-fab {
+  --ion-color-base: #f5a22c !important;
+  --ion-color-base-rgb: #f5a22c !important;
+  --ion-color-contrast-rgb: #f5a22c !important;
+  --ion-color-shade: #f5a22c !important;
+  --ion-color-tint: #f5a22c !important;
+}

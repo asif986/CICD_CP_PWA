@@ -244,6 +244,12 @@ export class APIService {
     );
   }
 
+  getBenefits(apitoken: any) {
+    return this.apiClient.get(
+      this.webServer.getCPBenefits_current + "?api_token=" + apitoken
+    );
+  }
+
   // getAllProjects
   getAllProjects(apitoken: any) {
     return this.apiClient.get(
@@ -788,5 +794,3 @@ export class APIService {
     );
   }
 }
-
-// performance page slider api

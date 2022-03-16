@@ -105,6 +105,7 @@ const routes: Routes = [
   { path: 'show-logs', loadChildren: './show-logs/show-logs.module#ShowLogsPageModule' },
   { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
   { path: 'sales-performance', loadChildren: './sales-performance/sales-performance.module#SalesPerformancePageModule' },
+  { path: 'aop-approval-benefit', loadChildren: './aop-approval-benefit/aop-approval-benefit.module#AopApprovalBenefitPageModule' },
 ];
 
 @NgModule({
