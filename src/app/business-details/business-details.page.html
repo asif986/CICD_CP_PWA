@@ -1,0 +1,10 @@
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="10" offset="1">
+                <app-json-form [isRadioAvailable]="1" (returnformdata)="businessFormValidation($event)" (returnchangeorg)="changeOrg($event)" [jsonFormData]="form"></app-json-form>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>

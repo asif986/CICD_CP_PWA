@@ -27,7 +27,12 @@
 
 // mat-input error outline color
 ::ng-deep .mat-form-field-appearance-outline.mat-form-field-invalid.mat-form-field-invalid .mat-form-field-outline-thick {
-    color: black !important;
+    color: #f38383 !important;
+    opacity: 0.8 !important;
+}
+
+::ng-deep .mat-form-field .mat-form-field-appearance-outline .ng-dirty .ng-valid {
+    color: rgba(10, 143, 0, 1) !important;
     opacity: 0.8 !important;
 }
 

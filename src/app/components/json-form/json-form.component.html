@@ -1,0 +1,33 @@
+<form [formGroup]="myForm">
+    <div *ngFor="let headeritem of jsonFormData.header; let i1 = index">
+        <p class="text-center">{{headeritem.headernm}}</p>
+        <div *ngFor="let controls of headeritem.controls let i=index">
+            <div *ngIf="controls.inputtype==2">
+                <mat-form-field appearance="outline" class="inputtextfield">
+                    <input [formControlName]="controls.name" [placeholder]="controls.placeholder" matInput [type]="controls.type" class="inputtextfield">
+                </mat-form-field>
+            </div>
+            <div *ngIf="controls.inputtype==8">
+                <mat-form-field appearance="outline" class="inputtextfield">
+                    <input [formControlName]="controls.name" [placeholder]="controls.placeholder" matInput [type]="controls.type" class="inputtextfield">
+                </mat-form-field>
+                <p class="d-flex justify-content-end verify">
+                    <a (click)="otpVerification()">Verify</a>
+                </p>
+            </div>
+            <div *ngIf="controls.inputtype==4">
+                <mat-radio-group aria-label="Select an option" (change)="changeOrgz($event)" [formControlName]="controls.name" class="d-flex justify-content-around pt-4 pb-4">
+                    <mat-radio-button [value]="menu.index" *ngFor="let menu of controls.sub_menus">{{menu.value}}</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div *ngIf="controls.inputtype==6" [class]="controls.cssClass">
+                <mat-checkbox [formControlName]="controls.name" (click)="openDialog()" style="margin-left: 5%!important;padding-top: 5%!important;margin-top: 10%!important;" class="newusertext">{{controls.label}}</mat-checkbox>
+            </div>
+            <div *ngIf="controls.inputtype==3" [class]="controls.cssClass">
+                <button mat-button class="common-btn" (click)="submitData()" routerDirection="forward">{{controls.label}}</button><br>
+            </div>
+        </div>
+        <ion-img *ngIf="i1!=2" class="pt-2" src="assets/channelPartner_Icons/vjd_Logos/register.png"></ion-img>
+    </div>
+</form>
+<!-- <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" *ngIf="showOtpComponent" [config]="config"></ng-otp-input> -->

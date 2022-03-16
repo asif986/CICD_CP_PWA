@@ -1,13 +1,14 @@
-import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import Swal from "sweetalert2";
-import { WebServer } from "./WebServer";
-import { Router } from "@angular/router";
-import { ToastController } from "@ionic/angular";
-import { BehaviorSubject } from "rxjs";
+
 import { APIClient } from "./APIClient";
+import { BehaviorSubject } from "rxjs";
 import { CPFeed } from "../models/CPFeed";
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import { Storage } from "@ionic/storage";
+import Swal from "sweetalert2";
+import { ToastController } from "@ionic/angular";
+import { WebServer } from "./WebServer";
 @Injectable({
   providedIn: "root",
 })
@@ -771,5 +772,8 @@ export class APIService {
         "&appVersion=" +
         version
     );
+  }
+  cpRegistration(psData: any) {
+    return this.apiClient.post(this.webServer.cpRegistration, psData);
   }
 }

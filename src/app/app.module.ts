@@ -30,6 +30,7 @@ import { PopUpRaiseBillPageModule } from "./pop-up-raise-bill/pop-up-raise-bill.
 import { PopupalertPageModule } from "./popupalert/popupalert.module";
 import { Push } from "@ionic-native/push/ngx";
 import { RouteReuseStrategy } from "@angular/router";
+import { SharedComponentModule } from "./shared/shared-component/shared-component.module";
 import { ShowLogsPageModule } from "./show-logs/show-logs.module";
 import { SocialSharing } from "@ionic-native/social-sharing/ngx";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
