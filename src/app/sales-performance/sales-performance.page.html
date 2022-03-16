@@ -25,7 +25,7 @@
                     <mat-datepicker #picker></mat-datepicker>
                     <button mat-button (click)="picker.open()" matSuffix mat-icon-button aria-label="Clear">
                         <mat-icon>
-                            <ion-icon name="calendar"></ion-icon>
+                            <ion-icon name="calendar" color="new-primary"></ion-icon>
                         </mat-icon>
                     </button>
                 </mat-form-field>
@@ -38,16 +38,16 @@
                     <mat-datepicker #picker1></mat-datepicker>
                     <button mat-button (click)="picker1.open()" matSuffix mat-icon-button aria-label="Clear">
                         <mat-icon>
-                            <ion-icon name="calendar"></ion-icon>
+                            <ion-icon name="calendar" color="new-primary"></ion-icon>
                         </mat-icon>
                     </button>
                 </mat-form-field>
             </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col size="10" offset="1" class="pt-5">
+            <ion-col sizeMd="4" offsetMd="4" sizeSm="10" sizeXs="10" offsetXs="1" offsetSm="1" class="pt-5">
                 <div class="p-3  custom-tb">
-                    <div class="d-flex justify-content-between pb-5 ">
+                    <div class="d-flex justify-content-between pb-3 ">
                         <div class="custom-card w-25 rounded">
                             <img src="assets/channelPartner_Icons/profile/pp.jpeg" class="rounded-img thumb-img_Banner rounded" />
                         </div>
@@ -87,7 +87,7 @@
                 </div>
 
             </ion-col>
-            <ion-col size="10" offset="1" class="pt-5">
+            <ion-col sizeMd="4" offsetMd="4" sizeSm="10" sizeXs="10" offsetXs="1" offsetSm="1" class="pt-5">
                 <div class="p-3  custom-tb">
                     <h3 class="text-center">Total</h3>
                     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">

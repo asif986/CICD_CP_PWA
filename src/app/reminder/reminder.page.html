@@ -28,7 +28,7 @@
     </ion-refresher-content>
   </ion-refresher>
   <div *ngFor="let val of reminderList">
-    <ion-card class="outline" style="margin-bottom:10px!important;margin-left: 5%;margin-right: 5%;margin-top: 20px;">
+    <ion-card class="outline" class="reminder-card">
 
       <ion-row style="margin-bottom: 5px!important;">
 
@@ -59,7 +59,7 @@
         <ion-col class="ion-text-end" size="8">
           <div>
             <button mat-button (click)="doneReminder(val.reminder_id)"
-              style="color: var(--ion-color-primary);margin-top:15px!important;margin-right: 5px!important;font-size: 16px!important;font-family: 'Metropolis Medium'">Mark
+              style="color: var(--ion-color-primary);margin-right: 5px!important;font-size: 16px!important;font-family: 'Metropolis Medium'">Mark
               as done</button>
           </div>
         </ion-col>

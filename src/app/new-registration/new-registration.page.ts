@@ -12,8 +12,11 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { APIService } from "../services/APIService";
+import { BehaviorSubject } from "rxjs";
+import { CommonHelperService } from "../services/common-helper.service";
 import { Helper } from "../services/Helper";
 import { HttpClient } from "@angular/common/http";
+import { JsonFormControls } from "./../Model/JsonToform";
 import { KYCRegDocuments } from "../models/KYCRegDocuments";
 import { Login } from "../models/Login";
 import { MatDialog } from "@angular/material";
@@ -22,6 +25,7 @@ import { NewRegistration } from "../models/NewRegistration";
 import { PostLoginResponce } from "../models/PostLoginResponce";
 import { PostRegistrationResponce } from "../models/PostRegistrationResponce";
 import { Router } from "@angular/router";
+import { StateService } from "./../services/state.service";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { Storage } from "@ionic/storage";
 import Swal from "sweetalert2";
@@ -42,20 +46,22 @@ export class NewRegistrationPage implements OnInit {
   loader: any;
   selectedNameprefixid: any;
   selectedNameprefixName: any;
+  state = new BehaviorSubject<any>(null);
   kycdocumentspath: Array<KYCRegDocuments> = [];
   newRegistration: NewRegistration = new NewRegistration();
   verifyOTP: VerifyOTP = new VerifyOTP();
+  public myForm: FormGroup = this.formBuilder.group({});
   panelOpenState = true;
-headrarr = ['Registration Form','Business Details','Bank Details'];
+  headrarr = ["Registration Form", "Business Details", "Bank Details"];
   expanded = true;
   credentialsForm: FormGroup;
   personaldetailsForm: FormGroup;
   businessDetails: FormGroup;
-  bankdetails :FormGroup;
+  bankdetails: FormGroup;
   successvalue: any;
   kycsuccessvalue: any;
   relativeDiv: any;
-  headrindex = 0;
+  headrindex = 2;
   // tslint:disable-next-line:ban-types
   isActiveToggleTextPassword: Boolean = true;
   mobile: any;
@@ -68,6 +74,101 @@ headrarr = ['Registration Form','Business Details','Bank Details'];
   alive: boolean;
   hideMe: Boolean = false;
   read: Boolean = false;
+  temp: any = {
+    header: [
+      {
+        headernm: "Personal Details",
+        index: 0,
+        controls: [
+          {
+            inputtype: 2,
+            placeholder: "Full Name",
+            name: "name",
+            cssClass: "col",
+            label: "Name:",
+            value: "",
+            inital: 0,
+            type: "text",
+            requiredError: "Please enter a valid full name!.",
+            patternError: "Please proper full name!.",
+            validators: {
+              required: true,
+              pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+            },
+          },
+          {
+            inputtype: 2,
+            placeholder: "Official Mobile",
+            name: "mobile",
+            cssClass: "col",
+            label: "Name:",
+            value: "",
+            inital: 0,
+            type: "text",
+            requiredError: "Please enter a valid Mobile number!.",
+            patternError: "Please proper Mobile number!.",
+            validators: {
+              required: true,
+              pattern: /^[6-9]\d{9}$/gi,
+            },
+          },
+          {
+            inputtype: 2,
+            placeholder: "Official Email",
+            name: "email",
+            cssClass: "col",
+            label: "Name:",
+            value: "",
+            inital: 0,
+            type: "text",
+            requiredError: "Please enter a valid Email ID!.",
+            patternError: "Please proper Email ID!.",
+            validators: {
+              required: true,
+              pattern: "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
+            },
+          },
+          {
+            inputtype: 2,
+            placeholder: "Password",
+            name: "password",
+            cssClass: "col",
+            label: "Name:",
+            value: "",
+            inital: 0,
+            type: "text",
+            requiredError: "Please enter a valid Password!.",
+            patternError: "Please proper Password!.",
+            validators: {
+              required: true,
+              pattern:
+                "^(?=.*[0-9])" +
+                "(?=.*[a-z])(?=.*[A-Z])" +
+                "(?=.*[@#$%^&+=])" +
+                "(?=\\S+$).{8,20}$",
+            },
+          },
+          {
+            inputtype: 3,
+            placeholder: "Password",
+            name: "password",
+            cssClass: "col",
+            label: "Proceed to Business Details",
+            value: "",
+            inital: 0,
+            type: "text",
+            requiredError: "Please enter a valid full name!.",
+            patternError: "Please proper full name!.",
+            validators: {
+              required: true,
+              pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+            },
+          },
+        ],
+      },
+    ],
+  };
+  form: any = { ...this.temp };
   kycregDocuments: KYCRegDocuments;
   color1 = true;
   public disabled = true;
@@ -81,13 +182,15 @@ headrarr = ['Registration Form','Business Details','Bank Details'];
   Regex = /^(\+\d{1,3}[- ]?)?\d{10}$/;
   // tslint:disable-next-line:max-line-length
   EmailRegex =
-    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
   // tslint:disable-next-line:max-line-length
   organisation = 1;
   postregistrationresponce: PostRegistrationResponce;
   // tslint:disable-next-line:max-line-length
   constructor(
     private statusBar: StatusBar,
+
+    private CommonHelper: CommonHelperService,
     public navCtrl: NavController,
     public loadingController: LoadingController,
     private camera: Camera,
@@ -107,24 +210,24 @@ headrarr = ['Registration Form','Business Details','Bank Details'];
     private loadingCtrl: LoadingController,
     private http: HttpClient,
     private storage: Storage,
+    public statefromservices: StateService,
     private menuctrl: MenuController
   ) {
     this.postregistrationresponce = new PostRegistrationResponce();
     this.kycregDocuments = new KYCRegDocuments();
     this.newRegistration = new NewRegistration();
-    this.bankdetails = this.formBuilder.group(
-      {
-        bank_name : ['', Validators.required],
-        bank_branch_name:['', Validators.required],
-        account_number:['', Validators.required],
-        iffc_code:['', Validators.required],
-        isChecked :[false,Validators.required]
-      })
+    this.bankdetails = this.formBuilder.group({
+      bank_name: ["", Validators.required],
+      bank_branch_name: ["", Validators.required],
+      account_number: ["", Validators.required],
+      iffc_code: ["", Validators.required],
+      isChecked: [false, Validators.required],
+    });
     this.personaldetailsForm = this.formBuilder.group({
-      firstName: [
+      fullName: [
         "",
         Validators.compose([
-          Validators.pattern("[a-zA-Z ]+"),
+          Validators.pattern("[a-zA-Z][a-zA-Z ]+[a-zA-Z]$"),
           Validators.required,
         ]),
       ],
@@ -135,20 +238,20 @@ headrarr = ['Registration Form','Business Details','Bank Details'];
           Validators.required,
         ]),
       ],
-      middlename: [
-        "",
-        Validators.compose([
-          Validators.pattern("[a-zA-Z ]+"),
-          Validators.required,
-        ]),
-      ],
-      lastname: [
-        "",
-        Validators.compose([
-          Validators.pattern("[a-zA-Z ]+"),
-          Validators.required,
-        ]),
-      ],
+      // middlename: [
+      //   "",
+      //   Validators.compose([
+      //     Validators.pattern("[a-zA-Z ]+"),
+      //     Validators.required,
+      //   ]),
+      // ],
+      // lastname: [
+      //   "",
+      //   Validators.compose([
+      //     Validators.pattern("[a-zA-Z ]+"),
+      //     Validators.required,
+      //   ]),
+      // ],
       mobile: [
         "",
         Validators.compose([
@@ -172,28 +275,28 @@ headrarr = ['Registration Form','Business Details','Bank Details'];
         ]),
       ],
     });
-this.businessDetails = this.formBuilder.group({
-  // gst: ["", Validators.compose([Validators.pattern(this.GSTRegex)])],
+    this.businessDetails = this.formBuilder.group({
+      // gst: ["", Validators.compose([Validators.pattern(this.GSTRegex)])],
 
-  name: [
-    "",
-    Validators.compose([
-      Validators.pattern("[a-zA-Z ]+"),
-      Validators.required,
-    ]),
-  ],
-  org: ["1", Validators.compose([ Validators.required])],
-  billing_name:["", Validators.compose([ Validators.required])],
-  rera_no:["", Validators.compose([ Validators.required])],
-  gst_no:["", Validators.compose([Validators.pattern(this.GSTRegex)])],
-  pan_no: [
-    "",
-    Validators.compose([
-      Validators.pattern(this.PANRegex),
-      Validators.required,
-    ]),
-  ],
-})
+      name: [
+        "",
+        Validators.compose([
+          Validators.pattern("[a-zA-Z ]+"),
+          Validators.required,
+        ]),
+      ],
+      org: ["1", Validators.compose([Validators.required])],
+      billing_name: ["", Validators.compose([Validators.required])],
+      rera_no: ["", Validators.compose([Validators.required])],
+      gst_no: ["", Validators.compose([Validators.pattern(this.GSTRegex)])],
+      pan_no: [
+        "",
+        Validators.compose([
+          Validators.pattern(this.PANRegex),
+          Validators.required,
+        ]),
+      ],
+    });
     this.credentialsForm = this.formBuilder.group({
       mobile: [
         "",
@@ -225,7 +328,7 @@ this.businessDetails = this.formBuilder.group({
           Validators.required,
         ]),
       ],
-      firstName: [
+      fullName: [
         "",
         Validators.compose([
           Validators.pattern("[a-zA-Z ]+"),
@@ -263,7 +366,68 @@ this.businessDetails = this.formBuilder.group({
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.temp);
+    let fm = this.form.header;
+    this.state.next(this.temp.header);
+    this.form.header.forEach((element: any) => {
+      console.log("controls", element.controls);
+      this.createForm(element.controls);
+    });
+    this.filterArray(0);
+  }
+  createForm(controls: JsonFormControls[]) {
+    for (const control of controls) {
+      const validatorsToAdd = [];
+      for (const [key, value] of Object.entries(control.validators)) {
+        switch (key) {
+          case "min":
+            validatorsToAdd.push(Validators.min(value));
+            break;
+          case "max":
+            validatorsToAdd.push(Validators.max(value));
+            break;
+          case "required":
+            if (value) {
+              validatorsToAdd.push(Validators.required);
+            }
+            break;
+          case "requiredTrue":
+            if (value) {
+              validatorsToAdd.push(Validators.requiredTrue);
+            }
+            break;
+          case "email":
+            if (value) {
+              validatorsToAdd.push(Validators.email);
+            }
+            break;
+          case "minLength":
+            validatorsToAdd.push(Validators.minLength(value));
+            break;
+          case "maxLength":
+            validatorsToAdd.push(Validators.maxLength(value));
+            break;
+          case "pattern":
+            validatorsToAdd.push(Validators.pattern(value));
+            break;
+          case "nullValidator":
+            if (value) {
+              validatorsToAdd.push(Validators.nullValidator);
+            }
+            break;
+          default:
+            break;
+        }
+      }
+      console.log("name", control.name);
+      console.log(control.value);
+      this.myForm.addControl(
+        control.name,
+        this.formBuilder.control(control.value, validatorsToAdd)
+      );
+    }
+  }
 
   gstNo() {
     // console.log(this.newRegistration.gst_no);
@@ -858,19 +1022,9 @@ this.businessDetails = this.formBuilder.group({
   processedtobankdetails() {
     let personErros = [
       {
-        formnm: "firstName",
+        formnm: "fullName",
         requiredError: "Please enter a valid first name!.",
         patternError: "Please proper first name!.",
-      },
-      {
-        formnm: "middlename",
-        requiredError: "Please enter a valid middle name!.",
-        patternError: "Please proper middle name!.",
-      },
-      {
-        formnm: "lastname",
-        requiredError: "Please enter a valid last name!.",
-        patternError: "Please proper last name!.",
       },
       {
         formnm: "mobile",
@@ -908,7 +1062,7 @@ this.businessDetails = this.formBuilder.group({
             // console.log("line", errormsg);
             invalid = true;
             this.presentToast(errormsg.requiredError);
-          } else if (controls[key].hasError("pattern")&& key != 'otp') {
+          } else if (controls[key].hasError("pattern") && key != "otp") {
             let errormsg = personErros.find((item) => item.formnm == key);
             console.log("line", errormsg);
             invalid = true;
@@ -922,16 +1076,16 @@ this.businessDetails = this.formBuilder.group({
           this.dismissLoading();
           return;
         }
-        if (
-          this.personaldetailsForm.valid &&
-          !this.personaldetailsForm.controls["mobile"].disabled
-        ) {
-          this.dismissLoading();
+        // if (
+        //   this.personaldetailsForm.valid &&
+        //   !this.personaldetailsForm.controls["mobile"].disabled
+        // ) {
+        //   this.dismissLoading();
 
-          this.presentToast("Please verify your mobile number");
-          return;
-        }
-    this.headrindex = 1;
+        //   this.presentToast("Please verify your mobile number");
+        //   return;
+        // }
+        this.headrindex = 1;
 
         console.log("validated", this.personaldetailsForm.value);
       } catch (error) {
@@ -973,7 +1127,7 @@ this.businessDetails = this.formBuilder.group({
         formnm: "isChecked",
         requiredError: "Please accept an agreement!.",
         patternError: "Please proper passoword!.",
-      }
+      },
     ];
     this.presentLoading().then(() => {
       try {
@@ -1004,13 +1158,15 @@ this.businessDetails = this.formBuilder.group({
           this.dismissLoading();
           return;
         }
-if(this.bankdetails.valid&& this.bankdetails.controls['isChecked'].value==false)
-{
-  this.presentToast("Please accept an agreement!.");
-  this.dismissLoading();
+        if (
+          this.bankdetails.valid &&
+          this.bankdetails.controls["isChecked"].value == false
+        ) {
+          this.presentToast("Please accept an agreement!.");
+          this.dismissLoading();
 
-  return;
-}      
+          return;
+        }
         console.log("validated", this.bankdetails.value);
       } catch (error) {
         this.dismissLoading();
@@ -1024,8 +1180,316 @@ if(this.bankdetails.valid&& this.bankdetails.controls['isChecked'].value==false)
       }, 2000);
     });
   }
-  submitBankDetails()
-  {
+  filterArray(index: any) {
+    console.log("value", this.state.value);
+    let arr = this.state.value;
+    this.form.header = arr.filter((item) => {
+      return item.index == index;
+    });
+    console.log(this.form.header);
+    console.log(index);
+  }
+  changeOrgz(event: any) {
+    let arr: any = {
+      header: [
+        {
+          headernm: "Personal Details",
+          index: 0,
+          controls: [
+            {
+              inputtype: 2,
+              placeholder: "Full Name",
+              name: "fullName",
+              cssClass: "col",
+              label: "Name:",
+              value: "",
+              inital: 0,
+              type: "text",
+              requiredError: "Please enter a valid full name!.",
+              patternError: "Please proper full name!.",
+              validators: {
+                required: true,
+                pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+              },
+            },
+            {
+              inputtype: 2,
+              placeholder: "Official Mobile",
+              name: "mobile",
+              cssClass: "col",
+              label: "Name:",
+              value: "",
+              inital: 0,
+              type: "text",
+              requiredError: "Please enter a valid mobile number!.",
+              patternError: "Please proper mobile number!.",
+              validators: {
+                required: true,
+                pattern: this.Regex,
+              },
+            },
+            {
+              inputtype: 2,
+              placeholder: "Official Email",
+              name: "email",
+              cssClass: "col",
+              label: "Name:",
+              value: "",
+              inital: 0,
+              type: "text",
+              requiredError: "Please enter a valid email address!.",
+              patternError: "Please proper email address!.",
+              validators: {
+                required: true,
+                pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+              },
+            },
+            {
+              inputtype: 2,
+              placeholder: "Password",
+              name: "password",
+              cssClass: "col",
+              label: "Name:",
+              value: "",
+              inital: 0,
+              type: "text",
+              requiredError: "Please enter a valid full name!.",
+              patternError: "Please proper full name!.",
+              validators: {
+                required: true,
+                pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+              },
+            },
+            {
+              inputtype: 3,
+              placeholder: "Password",
+              name: "password",
+              cssClass: "col",
+              label: "Proceed to Business Detailsy",
+              value: "",
+              inital: 0,
+              type: "text",
+              requiredError: "Please enter a valid full name!.",
+              patternError: "Please proper full name!.",
+              validators: {
+                required: true,
+                pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+              },
+            },
+          ],
+        },
+        {
+          headernm: "Business Details",
+          index: 1,
+          controls: [
+            {
+              inputtype: 4,
+              placeholder: "CP Name",
+              name: "org",
+              cssClass: "col",
+              label: "Name:",
+              value: 1,
+              is_fos: 1,
+              is_cp: 1,
+              is_cp_indivial: 1,
+              inital: 0,
+              type: "text",
+              sub_menus: [
+                { index: 1, value: "CP Entitiy" },
+                { index: 2, value: "CP indivisual" },
+                { index: 3, value: "FOS" },
+              ],
+              requiredError: "Please enter a valid full name!.",
+              patternError: "Please proper full name!.",
+              validators: {
+                required: true,
+                pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+              },
+            },
+            {
+              inputtype: 2,
+              is_fos: 0,
+              is_cp: 1,
+              is_cp_indivial: 1,
+              placeholder: "CP Name",
+              name: "cp_nm",
+              cssClass: "col",
+              label: "Name:",
+              value: "",
+              inital: 0,
+              type: "text",
+              requiredError: "Please enter a valid full name!.",
+              patternError: "Please proper full name!.",
+              validators: {
+                required: true,
+                pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+              },
+            },
+            {
+              is_fos: 0,
+              is_cp: 1,
+              is_cp_indivial: 1,
+              inputtype: 2,
+              placeholder: "Billing Name",
+              name: "billing_nm",
+              cssClass: "col",
+              label: "Name:",
+              value: "",
+              inital: 0,
+              type: "text",
+              requiredError: "Please enter a valid full name!.",
+              patternError: "Please proper full name!.",
+              validators: {
+                required: true,
+                pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+              },
+            },
+            {
+              is_fos: 0,
+              is_cp: 1,
+              is_cp_indivial: 1,
+              inputtype: 2,
+              placeholder: "Rera Number",
+              name: "rera",
+              cssClass: "col",
+              label: "Name:",
+              value: "",
+              inital: 0,
+              type: "text",
+              requiredError: "Please enter a valid full name!.",
+              patternError: "Please proper full name!.",
+              validators: {
+                required: true,
+                pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+              },
+            },
+            {
+              is_fos: 1,
+              is_cp: 1,
+              is_cp_indivial: 1,
+              inputtype: 2,
+              placeholder: "PAN Number",
+              name: "pan_no",
+              cssClass: "col",
+              label: "Name:",
+              value: "",
+              inital: 0,
+              type: "text",
+              requiredError: "Please enter a valid full name!.",
+              patternError: "Please proper full name!.",
+              validators: {
+                required: true,
+                pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+              },
+            },
+            {
+              is_fos: 1,
+              is_cp: 1,
+              is_cp_indivial: 1,
+              inputtype: 2,
+              placeholder: "GST Number",
+              name: "gst_no",
+              cssClass: "col",
+              label: "Name:",
+              value: "",
+              inital: 0,
+              type: "text",
+              requiredError: "Please enter a valid full name!.",
+              patternError: "Please proper full name!.",
+              validators: {
+                required: true,
+                pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+              },
+            },
+            {
+              is_fos: 1,
+              is_cp: 1,
+              is_cp_indivial: 1,
+              inputtype: 3,
+              placeholder: "btn2",
+              name: "btn2",
+              cssClass: "col",
+              label: "Proceed to Bank Details",
+              value: "",
+              inital: 0,
+              type: "text",
+              requiredError: "Please enter a valid full name!.",
+              patternError: "Please proper full name!.",
+              validators: {},
+            },
+          ],
+        },
+      ],
+    };
+    // let putarr = [];
+    console.log(arr);
+    if (event.value == 1) {
+      let temp_arr = [];
+      arr.header.filter((item: any) => {
+        if (item.index == 1) {
+          temp_arr = item.controls.filter((it) => it.is_cp);
+          return temp_arr;
+        }
+      });
+      this.form.header[0].controls = [];
+      this.form.header[0].controls = temp_arr;
+    } else if (event.value == 2) {
+      let temp_arr = [];
+      arr.header.filter((item: any) => {
+        if (item.index == 1) {
+          temp_arr = item.controls.filter((it) => it.is_cp_indivial);
+          return temp_arr;
+        }
+      });
+      this.form.header[0].controls = temp_arr;
+    } else if (event.value == 3) {
+      // console.log(event.value,"vvvvv")
+      let temp_arr = [];
+      arr.header.filter((item: any) => {
+        if (item.index == 1) {
+          temp_arr = item.controls.filter((it) => it.is_fos);
+          temp_arr.map((item) => {
+            console.log("item", item);
+            if (item.name == "btn2") {
+              item.label = "Register";
+              return item;
+            } else {
+              return item;
+            }
+            // ...item,lable
+            return item;
+          });
+          return temp_arr;
+        }
+      });
+      this.form.header[0].controls = temp_arr;
+    }
+    // console.log(putarr)
+    // console.log(event.value)
+  }
+  submitBankDetails(index: any) {
+    console.log(index);
+
+    if (index >= 2) {
+      return;
+    }
+    if (this.myForm.controls["org"].value == 3) {
+      console.log("submit");
+      return;
+    }
+    this.presentLoading().then(() => {
+      this.filterArray(index + 1);
+      this.dismissLoading();
+    });
+
+    this.form.header.map((item) => {
+      console.log(item);
+      return item.controls.map((it) => {
+        return it;
+        // {...it,inital:it.inital+1}
+      });
+    });
+    return;
     let bankDetailsErros = [
       {
         formnm: "org",
@@ -1101,6 +1565,59 @@ if(this.bankdetails.valid&& this.bankdetails.controls['isChecked'].value==false)
         this.dismissLoading();
       }, 2000);
     });
+  }
+
+  personalDetailsvalidation($event: FormGroup) {
+    this.CommonHelper.presentLoading().then(() => {
+      try {
+        let controls = $event.controls;
+        let invalid = false;
+        let newcontrols = Object.keys(controls).sort((a: any, b: any) => {
+          return a - b;
+        });
+        newcontrols = newcontrols.reverse();
+        newcontrols.forEach((key) => {
+          console.log({ key });
+          if (controls[key].hasError("required")) {
+            this.form.header.forEach((element: any) => {
+              let errormsg = element.controls.find((item) => item.name == key);
+              this.CommonHelper.presentToast(errormsg.requiredError);
+            });
+            invalid = true;
+          } else if (controls[key].hasError("pattern")) {
+            this.form.header.forEach((element: any) => {
+              let errormsg = element.controls.find((item) => item.name == key);
+              this.CommonHelper.presentToast(errormsg.patternError);
+              console.log("line", errormsg);
+            });
+            invalid = true;
+          }
+        });
+        if (invalid) {
+          this.CommonHelper.dismissLoading();
+          return;
+        }
+
+        this.statefromservices.formValue.next($event.value);
+        console.log(
+          "registration form",
+          this.statefromservices.formValue.value
+        );
+        this.navCtrl.navigateForward("business-details");
+
+        console.log("validated", $event.value);
+      } catch (error) {
+        this.CommonHelper.dismissLoading();
+
+        console.log(error);
+      }
+      // console.log("form",controls);
+      //  console.log("loading started")
+      setTimeout(() => {
+        this.CommonHelper.dismissLoading();
+      }, 2000);
+    });
+    console.log($event);
   }
 }
 @Component({

@@ -80,6 +80,7 @@ export const checkForUpdates = (
     ShowLogsPageModule,
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
+      registrationStrategy:'registerImmediately'
     }),
   ],
   providers: [

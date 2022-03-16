@@ -131,17 +131,16 @@ ion-toolbar {
     border-radius: 25px!important;
     // border-color: #F5A22C!important;
     background-color: var(--ion-color-btn-primary);
-    font-family: "Metropolis Medium" !important;
+    font-family: "Metropolis Medium"!important;
     // border: 1px solid #F5A22C!important;
-    color: white !important;
+    color: white!important;
 }
 
 .common-btn-disabled {
     margin-left: auto !important;
     margin-right: auto !important;
     width: 100% !important;
-    padding-top: 5px !important;
-    padding-bottom: 5px !important;
+    padding: 0.5rem!important;
     font-size: 18px !important;
     border-radius: 25px !important;
     background-color: rgba(0, 0, 0, 0.26);

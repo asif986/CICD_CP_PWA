@@ -105,6 +105,9 @@ const routes: Routes = [
   { path: 'show-logs', loadChildren: './show-logs/show-logs.module#ShowLogsPageModule' },
   { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
   { path: 'sales-performance', loadChildren: './sales-performance/sales-performance.module#SalesPerformancePageModule' },
+  { path: 'business-details', loadChildren: './business-details/business-details.module#BusinessDetailsPageModule' },
+  { path: 'bank-details', loadChildren: './bank-details/bank-details.module#BankDetailsPageModule' },
+  { path: 'approve-fosrequest', loadChildren: './approve-fosrequest/approve-fosrequest.module#ApproveFOSRequestPageModule' },
 ];
 
 @NgModule({

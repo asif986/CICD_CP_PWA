@@ -1,7 +1,8 @@
-import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import Swal from "sweetalert2";
+
 import { APIService } from "./APIService";
+import { Injectable } from "@angular/core";
+import Swal from "sweetalert2";
 
 @Injectable({
   providedIn: "root",
@@ -17,7 +18,7 @@ export class WebServer {
 
   //public BASE_URL = "http://vjpartners.co.in/ongoing/v7_new_merge/public/api/"; //Live Test Version Without CORS
   // public BASE_URL = " https://vjpartners.co.in/ongoing/v7_new_clone/vj-sales-modules/public/api/"; //Live Test Version Without CORS
-  public BASE_URL = " https://vjpartners.co.in/ongoing/v7_new/vj-sales-modules/public/api/"; //Live Test Version Without CORS
+  public BASE_URL = " https://vjpartners.co.in/ongoing/v7_new_clone_2/vj-sales-modules/public/api/"; //Live Test Version Without CORS
  
   /*Web External Token*/
   public API_TOKEN_EXTERNAL =
@@ -172,5 +173,7 @@ export class WebServer {
 
   //For App Update
   public appUpdateAvailable = this.BASE_URL + "appUpdateSociety";
- 
+
+  //cp Registration
+  public cpRegistration = this.BASE_URL+'cpRegistration';
 }
