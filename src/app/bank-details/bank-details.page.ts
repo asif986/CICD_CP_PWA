@@ -55,6 +55,22 @@ export class BankDetailsPage implements OnInit {
           },
           {
             inputtype: 2,
+            placeholder: "Account Name",
+            name: "account_name",
+            cssClass: "col",
+            label: "Name:",
+            value: "",
+            inital: 0,
+            type: "text",
+            requiredError: "Please enter a valid Account Name!.",
+            patternError: "Please proper Account Name!.",
+            validators: {
+              required: true,
+              pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+            },
+          },
+          {
+            inputtype: 2,
             placeholder: "Account Number",
             name: "account_number",
             cssClass: "col",

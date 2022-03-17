@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CpstatusPage implements OnInit {
 
-  sucess:boolean =false;
+  sucess:boolean =true;
   constructor() { }
 
   ngOnInit() {
