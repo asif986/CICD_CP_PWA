@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -108,6 +107,19 @@ export class DataService {
     });
     // }
   }
-
+public firms()
+{
+  const Firms = [
+    { name: "Percepta Pvt Ltd", id: 1 },
+    { name: "Exela Movers", id: 2 },
+    { name: "Intrepid Travel", id: 3 },
+    { name: "Twisters Gymnastics Academy", id: 4 },
+    { name: "Kaboom Fireworks", id: 5 },
+    { name: "Compass Mortgage", id: 6 },
+    { name: "Marathon Physical Therapy", id: 7 },
+    { name: "Semicolon Bookstore", id: 8 },
+  ];
+  return Firms;
+}
 
 }

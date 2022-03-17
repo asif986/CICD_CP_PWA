@@ -1,0 +1,28 @@
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12" class="pt-5 text-center">
+                <h6>
+
+                    Confirmation for CP
+                </h6>
+            </ion-col>
+            <ion-col size="12">
+                <div>
+                    <p class="mb-0 text-center">
+                        Are you sure you want to<br> continue with
+                    </p>
+                    <p class="text-center">
+                        <b>  
+                      {{firmnm}}
+                    </b>
+                    </p>
+                </div>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col size="6"><button mat-button class="common-btn-outline" (click)="closeModel()">Cancel</button><br></ion-col>
+            <ion-col size="6"><button mat-button class="common-btn" (click)="SendMailMsg()">Ok</button><br></ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

@@ -137,7 +137,7 @@ export class AppComponent {
           // this.storage.get('verification_status_id').then((val) => {
           if (val.verification_status_id == 1) {
             console.log("Your verification_status_id", val);
-            this.navCtrl.navigateRoot("/aop-approval-benefit");
+            this.navCtrl.navigateRoot("/home");
             this.storage.set("IDFromPerformance", 2);
           } else if (val.verification_status_id == 2) {
             console.log("Your verification_status_id", val);
@@ -149,9 +149,45 @@ export class AppComponent {
           this.navCtrl.navigateRoot("/login");
         }
 
-        // this.navCtrl.navigateRoot('/new-registration');
+        this.navCtrl.navigateRoot("/new-registration");
         // this.navCtrl.navigateRoot('/business-details');
-        // this.navCtrl.navigateRoot("/approve-fosrequest");
+        // this.navCtrl.navigateRoot('/bank-details');
+        /*
+        {
+        "name":"Harsh prakash tibile",
+        "mobile":"9145661112",
+        "email":"harshadtibile@gmail.com",
+        "password":"Harsh@123",
+        "registration_type_id":1,
+        "fos_name":"Prashant",
+        "billing_name":"Prashant savant",
+        "rera_no":"123456789",
+        "pan_no":"BACPT8381A",
+        "gst_no":"06BZAHM6385P6Z2",
+        "bank_name":"SBI",
+        "branch_name":"SBI",
+        "account_name":"prashant savant",
+        "account_number":"33483639155",
+        "ifsc_code":"SBIN0000413"
+      }
+      
+      
+      {
+        "name":"Harsh prakash tibile",
+        "mobile":"9145661112",
+        "email":"harshadtibile@gmail.com",
+        "password":"Harsh@123",
+        "registration_type_id":2,
+        "pan_no":"BACPT8383A",
+        "gst_no":"06BZAHM6385P6Z2",
+        "bank_name":"SBI",
+        "branch_name":"SBI",
+        "account_name":"Harsh tibile",
+        "account_number":"33483639155",
+        "ifsc_code":"SBIN0000416"
+      }
+      */
+        // this.navCtrl.navigateRoot('/select-cp');
 
         this.hideSplashScreen();
       });

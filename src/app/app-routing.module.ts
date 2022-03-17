@@ -234,6 +234,14 @@ const routes: Routes = [
       "./approve-fosrequest/approve-fosrequest.module#ApproveFOSRequestPageModule",
   },
   // { path: 'kyc-modal', loadChildren: './addnewlead/kyc-modal/kyc-modal.module#KycModalPageModule' },
+  {
+    path: "select-cp",
+    loadChildren: "./select-cp/select-cp.module#SelectCPPageModule",
+  },
+  {
+    path: "cpstatus",
+    loadChildren: "./cpstatus/cpstatus.module#CpstatusPageModule",
+  },
 ];
 
 @NgModule({

@@ -32,10 +32,10 @@ body {
   //   background: linear-gradient(0deg, #ffffff 0%, #ffeeff 100%);
   font-family: "Roboto" !important;
 }
+
 .my-custom-class {
   --background: var(--ion-color-btn-primary);
   --color: var(--ion-color-secondary);
-
   --font-max-size: 16px !important;
 }
 
@@ -43,20 +43,17 @@ body {
 .alert {
   --color: var(--ion-color-primary);
   --background: var(--ion-color-secondary);
-
   --font-max-size: 18px !important;
 }
 
 //For Toolbar-title
 .toolbar-title {
   color: var(--ion-color-secondary);
-
   font-size: 20px;
 }
 
 .toolbar-titleNew {
   color: var(--ion-color-secondary);
-
   font-size: 20px;
   background-color: #0e0614;
 }
@@ -65,7 +62,6 @@ body {
 .my-custom-toastSuceess {
   --background: var(--ion-color-btn-primary);
   color: white;
-
   --font-max-size: 16px !important;
 }
 
@@ -73,14 +69,12 @@ body {
 .my-custom-toastError {
   --background: red;
   color: white;
-
   --font-max-size: 16px !important;
 }
 
 //For TOAST
 .my-custom-toast {
   --background: black;
-
   --font-max-size: 16px !important;
 }
 
@@ -88,7 +82,6 @@ body {
 .my-custom-toast-homeSuccess {
   --background: var(--ion-color-btn-primary);
   --color: var(--ion-color-main-white);
-
   --font-max-size: 16px !important;
   padding-bottom: 120%;
   position: initial;
@@ -135,6 +128,20 @@ ion-toolbar {
   background-color: var(--ion-color-btn-primary);
   // border: 1px solid #F5A22C!important;
   color: white !important;
+}
+
+.common-btn-outline {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100% !important;
+  padding: 0.5rem !important;
+  border: 1px solid black !important;
+  font-size: 18px !important;
+  border-radius: 25px !important;
+  // border-color: #F5A22C!important;
+  background-color: white;
+  // border: 1px solid #F5A22C!important;
+  color: black !important;
 }
 
 .common-btn-disabled {

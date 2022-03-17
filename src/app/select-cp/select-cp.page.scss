@@ -1,0 +1,17 @@
+::ng-deep .mat-radio-label {
+    -webkit-box-pack: justify!important;
+    justify-content: space-between!important;
+    -webkit-box-orient: horizontal!important;
+    -webkit-box-direction: reverse!important;
+    flex-direction: row-reverse!important;
+    display: -webkit-box!important;
+    display: flex!important;
+}
+
+h3 {
+    font-weight: bold;
+}
+
+* {
+    color: #707070;
+}
