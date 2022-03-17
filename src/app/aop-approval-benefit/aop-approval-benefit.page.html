@@ -37,8 +37,8 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>From Date</th>
-                  <th>To Date</th>
+                  <th>Value</th>
+
                   <th>Brokerage</th>
                   <th>Total</th>
 
@@ -47,9 +47,12 @@
               <tbody>
 
                 <tr *ngFor="let item of benefitsData">
-                  <td>{{item.from_date}}</td>
-                  <td>{{item.to_date}}</td>
+                  <!-- <td>{{item.from_date}}</td> -->
+                  <!-- <td>{{item.to_date}}</td> -->
+                  <td>{{item.aop_qop_value}}</td>
+
                   <td>{{item.brokerage}}</td>
+
                   <td>{{item.total}}</td>
                 </tr>
 

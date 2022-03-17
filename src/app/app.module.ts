@@ -37,6 +37,8 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { UniqueDeviceID } from "@ionic-native/unique-device-id/ngx";
 import { environment } from "../environments/environment";
 
+import { KycModalPageModule } from "./addnewlead/kyc-modal/kyc-modal.module";
+
 export const checkForUpdates = (
   swUpdate: SwUpdate,
   helper: Helper
@@ -64,7 +66,7 @@ export const checkForUpdates = (
 
 @NgModule({
   declarations: [AppComponent],
-  entryComponents: [],
+
   imports: [
     BrowserModule,
     MatDatepickerModule,
@@ -78,9 +80,10 @@ export const checkForUpdates = (
     AmazingTimePickerModule,
     PopupalertPageModule,
     ShowLogsPageModule,
+    KycModalPageModule,
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
-      registrationStrategy:'registerImmediately'
+      registrationStrategy: "registerImmediately",
     }),
   ],
   providers: [
@@ -111,5 +114,6 @@ export const checkForUpdates = (
     },
   ],
   bootstrap: [AppComponent],
+  entryComponents: [],
 })
 export class AppModule {}

@@ -233,6 +233,7 @@ const routes: Routes = [
     loadChildren:
       "./approve-fosrequest/approve-fosrequest.module#ApproveFOSRequestPageModule",
   },
+  // { path: 'kyc-modal', loadChildren: './addnewlead/kyc-modal/kyc-modal.module#KycModalPageModule' },
 ];
 
 @NgModule({

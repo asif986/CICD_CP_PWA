@@ -5,6 +5,7 @@ import {
   ActionSheetController,
   AlertController,
   LoadingController,
+  ModalController,
   NavController,
   Platform,
 } from "@ionic/angular";
@@ -25,6 +26,7 @@ import Swal from "sweetalert2";
 import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 
 import { MatDialog, DateAdapter } from "@angular/material";
+import { KycModalPage } from "./kyc-modal/kyc-modal.page";
 @Component({
   selector: "app-addnewlead",
   templateUrl: "./addnewlead.page.html",
@@ -109,7 +111,8 @@ export class AddnewleadPage implements OnInit {
     public loadingController: LoadingController,
     public apiservice: APIService,
     private webserver: WebServer,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    public modalController: ModalController
   ) {
     dateAdapter.setLocale("en-In");
     this.addNewLead = new AddNewLead();
@@ -385,7 +388,7 @@ export class AddnewleadPage implements OnInit {
             /this.helper.showLoader('Processing..');/;
             this.presentLoading().then(() => {
               console.log(this.postNewLead);
-              return;
+              // return;
               this.apiservice.postCPLead(this.postNewLead).subscribe(
                 (response) => {
                   this.successvalue = JSON.stringify(response.body);
@@ -665,29 +668,45 @@ export class AddnewleadPage implements OnInit {
   }
 
   async presentActionSheet(ductypeId: any) {
-    const actionSheet = await this.actionSheetController.create({
-      header: "Select Using",
-      buttons: [
-        {
-          text: "Camera",
-          handler: () => {
-            this.takephoto(ductypeId);
-          },
-        },
-        {
-          text: "Gallery",
-          handler: () => {
-            this.openGalley(ductypeId);
-          },
-        },
-        {
-          text: "Cancel",
-          role: "cancel",
-          handler: () => {},
-        },
-      ],
+    // const actionSheet = await this.actionSheetController.create({
+    //   header: "Select Using",
+    //   buttons: [
+    //     {
+    //       text: "Camera",
+    //       handler: () => {
+    //         this.takephoto(ductypeId);
+    //       },
+    //     },
+    //     {
+    //       text: "Gallery",
+    //       handler: () => {
+    //         this.openGalley(ductypeId);
+    //       },
+    //     },
+    //     {
+    //       text: "Cancel",
+    //       role: "cancel",
+    //       handler: () => {},
+    //     },
+    //   ],
+    // });
+    // await actionSheet.present();
+    const modal = await this.modalController.create({
+      component: KycModalPage,
+      componentProps: {
+        paramID: 123,
+        paramTitle: "Test Title",
+      },
     });
-    await actionSheet.present();
+
+    modal.onDidDismiss().then((dataReturned) => {
+      if (dataReturned !== null) {
+        // this.dataReturned = dataReturned.data;
+        alert("Modal Sent Data :" + dataReturned);
+      }
+    });
+
+    return await modal.present();
   }
 
   takephoto(ductypeId: any) {
