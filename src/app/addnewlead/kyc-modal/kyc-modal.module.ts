@@ -6,6 +6,8 @@ import { Routes, RouterModule } from "@angular/router";
 import { IonicModule, NavParams } from "@ionic/angular";
 
 import { KycModalPage } from "./kyc-modal.page";
+import { MaterialModule } from "src/app/material.module";
+import { AngularOtpLibModule } from "angular-otp-box";
 
 const routes: Routes = [
   {
@@ -20,6 +22,8 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
+    MaterialModule,
+    AngularOtpLibModule,
   ],
   declarations: [KycModalPage],
   // // exports: [KycModalPage],

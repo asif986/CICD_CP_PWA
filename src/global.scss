@@ -217,3 +217,8 @@ svg {
   --ion-color-shade: var(--ion-color-new-primary) !important;
   --ion-color-tint: var(--ion-color-new-primary) !important;
 }
+
+ion-modal.select-modal {
+  --height: 75%;
+  --width: 90%;
+}

@@ -157,7 +157,8 @@
             </div>
 
             <!--Register Button-->
-            <div class="ion-text-center" style="margin-top: 10px!important;margin-bottom: 10px!important;">
+            <div class="ion-text-center"
+              style="margin-top: 10px!important;margin-bottom: 10px!important;color: white !important;">
               <button mat-stroked-button class="Resendbuttons" [disabled]="disabled"
                 [style.background-color]="this.color1 === true ? '#a5a5a5' : '#f38383'" (click)="Resendotp()">Resend
                 OTP</button>
@@ -276,10 +277,9 @@
 
       <!--KYC Documents-->
       <ion-list>
-        <ion-card style="box-shadow: none!important;margin-top: -20px!important;"
-          *ngFor="let kycdoc of addNewLead.kyc_doc_types">
+        <ion-card style="box-shadow: none!important;margin-top: -20px!important;" *ngFor="let kycdoc of kyc_doc_info">
           <ion-grid>
-            <ion-row (click)="presentActionSheet(kycdoc.doc_type_id)">
+            <ion-row (click)="presentActionSheet(kycdoc.doc_type_id,kycdoc.docs_type)">
               <ion-col class="ion-text-start" size="10">
                 <div class="newusertext" class="inputtextfield" style="margin-top: 15px!important;">
                   <ion-label class="inputtextfield">{{kycdoc.docs_type}}
@@ -292,7 +292,13 @@
               <ion-col class="ion-text-end" size="2">
                 <div>
                   <!-- <ion-icon style="margin-top: 5px;zoom: 2.0" name="attach"></ion-icon> -->
-                  <label class="verfiy-txt">Verfiy</label>
+                  <ng-container *ngIf="kycdoc.is_verified ==true">
+                    <!-- <img src="assets/new_icons/verfiy.png" alt=""> -->
+                    <ion-icon style="margin-top: 5px;zoom: 2.2;color:green" name="checkmark-circle-outline"></ion-icon>
+                  </ng-container>
+                  <ng-container *ngIf="kycdoc.is_verified ==false">
+                    <label class="verfiy-txt">Verfiy</label>
+                  </ng-container>
 
                 </div>
               </ion-col>
@@ -360,7 +366,7 @@
 
 </ion-content>
 
-<div class="ion-text-center">
-  <button mat-raised-button class="common-btn loginbutton " [disabled]="credentialsForm.invalid"
+<div class="ion-text-center footer-box">
+  <button mat-raised-button class="common-btn loginbutton" [disabled]="credentialsForm.invalid"
     (click)="addlead(credentialsForm.value)" routerDirection="forward">Submit Lead</button><br>
 </div>

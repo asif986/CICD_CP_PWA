@@ -6,6 +6,7 @@ import {
   ToastController,
 } from "@ionic/angular";
 import { Network } from "@ionic-native/network/ngx";
+import Swal from "sweetalert2";
 
 export enum ConnectionStatusEnum {
   Online,
@@ -183,6 +184,15 @@ export class Helper {
         ],
       });
       await alert.present();
+    });
+  }
+  swAlert(type, title) {
+    Swal.fire({
+      type: type,
+      title: title,
+      showConfirmButton: false,
+      timer: 1500,
+      position: "center",
     });
   }
 }

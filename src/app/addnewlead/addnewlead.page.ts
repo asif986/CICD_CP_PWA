@@ -90,6 +90,25 @@ export class AddnewleadPage implements OnInit {
   private startDate: string;
   private endDate: string;
 
+  kyc_data = { adhar_no: null, pan_no: null, voter_no: null };
+  kyc_doc_info: any = [
+    {
+      docs_type: "Adhar Card",
+      doc_type_id: 1,
+      is_verified: false,
+    },
+    {
+      docs_type: "Pan Card",
+      doc_type_id: 2,
+      is_verified: false,
+    },
+    {
+      docs_type: "Voter ID",
+      doc_type_id: 3,
+      is_verified: false,
+    },
+  ];
+
   // tslint:disable-next-line:max-line-length
   constructor(
     private dateAdapter: DateAdapter<Date>,
@@ -159,6 +178,7 @@ export class AddnewleadPage implements OnInit {
       this.postNewLead.country_code = "91";
       this.countrycode = "91";
     }
+    // this.presentActionSheet();
   }
 
   ionViewDidEnter() {
@@ -388,27 +408,36 @@ export class AddnewleadPage implements OnInit {
             /this.helper.showLoader('Processing..');/;
             this.presentLoading().then(() => {
               console.log(this.postNewLead);
+              let data = { ...this.postNewLead, ...this.kyc_data };
               // return;
-              this.apiservice.postCPLead(this.postNewLead).subscribe(
+              this.apiservice.postCPLead(data).subscribe(
                 (response) => {
                   this.successvalue = JSON.stringify(response.body);
                   const Value = JSON.parse(this.successvalue);
-                  if (Value.success === 1) {
-                    this.kycDocuments.lead_id = Value.data.lead_id;
-                    // this.kycDocuments.api_token=this.successvalue.data.api_token;
-                    me.postKYCDocuments(Value.data.lead_id);
-                    this.dismissLoading();
-                    console.log("Value.success_lead added" + Value.success);
-                    /* this.helper.hideLoader();*/
 
-                    this.helper.presentToastSuccess("File Upload Successfully");
-                    this.alert();
+                  if (Value.success === 1) {
+                    this.helper.swAlert("success", "Lead Added Successfully!");
                     this.storage.set("IDFromPerformance", 2);
                     this.router.navigate(["/home/"]);
-                    //  this.dismissLoading();
+                    this.dismissLoading();
                   }
-                  return response;
+
+                  //   this.kycDocuments.lead_id = Value.data.lead_id;
+                  //   // this.kycDocuments.api_token=this.successvalue.data.api_token;
+                  //   me.postKYCDocuments(Value.data.lead_id);
+                  //   this.dismissLoading();
+                  //   console.log("Value.success_lead added" + Value.success);
+                  //   /* this.helper.hideLoader();*/
+
+                  //   this.helper.presentToastSuccess("File Upload Successfully");
+                  //   this.alert();
+                  //   this.storage.set("IDFromPerformance", 2);
+                  //   this.router.navigate(["/home/"]);
+                  //   //  this.dismissLoading();
+                  // }
+                  // return response;
                 },
+
                 (error) => {
                   this.dismissLoading();
                   this.helper.presentToastError("Something went wrong");
@@ -631,21 +660,21 @@ export class AddnewleadPage implements OnInit {
     } else {
       this.helper.showLoader("");
       this.helper.hideLoader();
-      this.alertVerification();
+      this.helper.swAlert("success", "Verification Succesfully!");
       this.hide();
       this.isReadonly();
     }
   }
 
-  alert() {
-    Swal.fire({
-      type: "success",
-      title: "Lead Added Successfully!",
-      showConfirmButton: false,
-      timer: 1500,
-      position: "center",
-    });
-  }
+  // alert() {
+  //   Swal.fire({
+  //     type: "success",
+  //     title: "Lead Added Successfully!",
+  //     showConfirmButton: false,
+  //     timer: 1500,
+  //     position: "center",
+  //   });
+  // }
 
   alertVerification() {
     Swal.fire({
@@ -667,7 +696,7 @@ export class AddnewleadPage implements OnInit {
     this.read = true;
   }
 
-  async presentActionSheet(ductypeId: any) {
+  async presentActionSheet(ductypeId: any = 1, dyc_name: any = "Adhar card") {
     // const actionSheet = await this.actionSheetController.create({
     //   header: "Select Using",
     //   buttons: [
@@ -691,18 +720,35 @@ export class AddnewleadPage implements OnInit {
     //   ],
     // });
     // await actionSheet.present();
+    let data = { ductypeId, dyc_name };
     const modal = await this.modalController.create({
       component: KycModalPage,
-      componentProps: {
-        paramID: 123,
-        paramTitle: "Test Title",
-      },
+      componentProps: data,
+      cssClass: "select-modal",
     });
 
     modal.onDidDismiss().then((dataReturned) => {
       if (dataReturned !== null) {
+        console.log(dataReturned.data);
+        if (dataReturned.data != null) {
+          let { voter_no, adhar_no, pan_no } = dataReturned.data;
+          if (dataReturned.data.doc_id == 1) {
+            this.kyc_data.adhar_no = dataReturned.data.adhar_no;
+          } else if (dataReturned.data.doc_id == 2) {
+            this.kyc_data.pan_no = dataReturned.data.pan_no;
+          } else if (dataReturned.data.doc_id == 3) {
+            this.kyc_data.voter_no = dataReturned.data.voter_no;
+          }
+
+          let objIndex = this.kyc_doc_info.findIndex(
+            (obj) => obj.doc_type_id == dataReturned.data.doc_id
+          );
+          this.kyc_doc_info[objIndex].is_verified = true;
+        }
+
+        console.log(this.kyc_data);
         // this.dataReturned = dataReturned.data;
-        alert("Modal Sent Data :" + dataReturned);
+        // alert("Modal Sent Data :" + dataReturned);
       }
     });
 

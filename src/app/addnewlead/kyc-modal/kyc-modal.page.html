@@ -1,21 +1,46 @@
 <!-- my-modal.page.html -->
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar color="danger">
     <ion-title>my-modal</ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
 <ion-content class="ion-padding">
 
+  <!-- <ion-button class="common-btn" (click)="closeModal()">Close Modal</ion-button> -->
+
+
   <ion-grid>
     <ion-row>
-      <ion-col text-center>
-        ID : {{modelId}}
+      <ion-col size="12">
+        <div class="d-flex justify-content-between mb-2">
+          <!-- <img class="nav-header-img" src="assets/new_icons/7.png" (click)="gotoProfile()" /> -->
+          <label>Verification - {{kycInfo.dyc_name}}</label>
+          <ion-icon icon="close" (click)="closeModal()" style="font-size: 22px;"></ion-icon>
+        </div>
       </ion-col>
     </ion-row>
+    <br />
     <ion-row>
-      <ion-col text-center>
-        <ion-button (click)="closeModal()">Close Modal</ion-button>
+      <ion-col size="12">
+        <mat-form-field appearance="outline" style="width: 100%;padding-right: 5px">
+          <mat-label class=" ">{{kycInfo.dyc_name}}</mat-label>
+          <input matInput [readonly]="" [(ngModel)]="doc" class="inputtextfield">
+        </mat-form-field>
+      </ion-col>
+      <ion-col size="12">
+        <button mat-stroked-button class="Resendbuttons common-btn" (click)="verfiy()">Verify</button>
+      </ion-col>
+
+    </ion-row>
+    <br />
+    <ion-row *ngIf="isOtpSend">
+      <ion-col size="12">
+        <div class="d-flex flex-column justify-content-start  item-box">
+          <p>Enter verification code</p>
+          <otp [setting]="settings" (onValueChange)="onInputChange($event,kycInfo.ductypeId)"></otp>
+
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>

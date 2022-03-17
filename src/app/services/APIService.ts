@@ -245,10 +245,18 @@ export class APIService {
     );
   }
 
-  getBenefits(apitoken: any) {
+  getBenefits(apitoken: any, cp_id) {
     return this.apiClient.get(
-      this.webServer.getCPBenefits_current + "?api_token=" + apitoken
+      this.webServer.getCPBenefits_current +
+        "?api_token=" +
+        apitoken +
+        "&cp_id=" +
+        cp_id
     );
+  }
+  addBenefits(apitoken: any, cp_id, cp_benefit_id: any) {
+    let postData = { api_token: apitoken, cp_id, cp_benefit_id };
+    return this.apiClient.post(this.webServer.getCPBenefits_current, postData);
   }
 
   // getAllProjects
