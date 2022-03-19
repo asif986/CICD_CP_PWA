@@ -34,7 +34,10 @@ export class WebServer {
     "HGFTYFCGHAVSJHASASASASSdfdfcsefrwefazsfdaefZASCXADA";
 
   // POST CP Login
-  public PostCPLogin = this.BASE_URL + "cpLogin";
+  public PostCPLogin = this.BASE_URL + "cpNewLogin";
+
+    // POST CP Login
+    public GETCPLogin = this.BASE_URL + "cpNewLogin";
 
   // Forgot Password
   public POSTForgotPasswordSendOTP =

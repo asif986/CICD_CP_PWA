@@ -81,7 +81,7 @@ export class BankDetailsPage implements OnInit {
             label: "Name:",
             value: "",
             inital: 0,
-            type: "text",
+            type: "number",
             requiredError: "Please enter a valid Account Number!.",
             patternError: "Please proper Account Number!.",
             validators: {
@@ -492,6 +492,7 @@ export class BankDetailsPage implements OnInit {
         newcontrols = newcontrols.reverse();
         newcontrols.forEach((key) => {
           console.log({ key });
+    
           if (controls[key].hasError("required")) {
             this.form.header.forEach((element: any) => {
               let errormsg = element.controls.find((item) => item.name == key);
@@ -505,6 +506,20 @@ export class BankDetailsPage implements OnInit {
               console.log("line", errormsg);
             });
             invalid = true;
+          }
+
+          if (key == "checkbx1") {
+            console.log("checkbox");
+            this.form.header.forEach((element: any) => {
+              let errormsg = element.controls.find((item) => item.name == key);
+              if (controls[key].value == false) {
+                this.CommonHelper.presentToast(errormsg.requiredError);
+                invalid = true;
+                return;
+              }
+            });
+            console.log(controls[key].value);
+            // break;
           }
         });
         if (invalid) {
@@ -539,14 +554,11 @@ export class BankDetailsPage implements OnInit {
             let info: responsefromserver = data.body;
             for (let key in info.data) {
               console.log("Object", key);
-              if(key !='api_token')
-              {
-                
+              if (key != "api_token") {
                 this.storage.set(key, info.data[key]);
-              }else
-              {
-                this.storage.set('apiToken', info.data[key]);
-                this.storage.set('api_token', info.data[key]);
+              } else {
+                this.storage.set("apiToken", info.data[key]);
+                this.storage.set("api_token", info.data[key]);
               }
               // console.log("value", info.data[key]);
             }
@@ -554,7 +566,10 @@ export class BankDetailsPage implements OnInit {
             this.storage.set("userinfo", JSON.stringify(info.data));
             this.navctrl.navigateRoot("home");
           },
-          (error) => {}
+          (error) =>     
+          {
+            console.log(error)
+          }
         );
         console.log("body", body);
         console.log("validated1", this.state.formValue.value);

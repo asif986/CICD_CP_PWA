@@ -13,6 +13,7 @@ import { JsonFormControls, JsonFormData } from "src/app/Model/JsonToform";
 
 import { AlertController } from '@ionic/angular';
 import { CommonHelperService } from "./../../services/common-helper.service";
+import { ConfirmationDialogComponent } from "../confirmation-dialog/confirmation-dialog.component";
 import { MatDialog } from "@angular/material";
 import { StateService } from "./../../services/state.service";
 
@@ -149,17 +150,35 @@ export class JsonFormComponent implements OnChanges {
     console.log("Form values: ", this.myForm.value);
   }
   openDialog() {
-    // const dialogRef = this.dialog.open(DialogContentExampleDialog);
-    // dialogRef.afterClosed().subscribe((result) => {
-    //   console.log(`Dialog result: ${result}`);
-    //   console.log(`Dialog result: ` + result);
-    //   if (result === true) {
-    //     console.log(`True ` + result);
-    //     this.isChecked = true;
-    //   } else {
-    //     this.isChecked = false;
-    //   }
-    // });
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
+      data:{
+        header:'Terms and Conditions',
+        message: 'Terms and Conditions',
+        buttonText: {
+          ok: 'Agree',
+          cancel: 'Disgree'
+        }
+      }
+    });
+    // const snack = this.snackBar.open('Snack bar open before dialog');
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        // snack.dismiss();
+        console.log("Confirmed")
+        this.myForm.controls['checkbx1'].setValue(true);
+        const a = document.createElement('a');
+        a.click();
+        a.remove();
+        // snack.dismiss();
+        // this.snackBar.open('Closing snack bar in a few seconds', 'Fechar', {
+        //   duration: 2000,
+        // });
+      }else
+      {
+        this.myForm.controls['checkbx1'].setValue(false);
+      }
+    });
   }
 
   submitBankDetails(index: any) {
