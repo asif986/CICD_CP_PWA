@@ -2,9 +2,13 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { JsonFormControls, JsonFormData } from "../Model/JsonToform";
 
-import { APIService } from './../services/APIService';
+import { APIService } from "./../services/APIService";
 import { CommonHelperService } from "./../services/common-helper.service";
-import { StateService } from './../services/state.service';
+import { HttpResponse } from "@angular/common/http";
+import { NavController } from "@ionic/angular";
+import { StateService } from "./../services/state.service";
+import { Storage } from "@ionic/storage";
+import { responsefromserver } from "../models/Registration";
 
 @Component({
   selector: "app-bank-details",
@@ -34,7 +38,7 @@ export class BankDetailsPage implements OnInit {
             patternError: "Please proper Bank Name!.",
             validators: {
               required: true,
-              pattern: 	"^\s*[a-zA-Z,\s]+\s*$",
+              pattern: "^s*[a-zA-Z,s]+s*$",
             },
           },
           {
@@ -50,7 +54,7 @@ export class BankDetailsPage implements OnInit {
             patternError: "Please proper Branch Name!.",
             validators: {
               required: true,
-              pattern: 	"^\s*[a-zA-Z,\s]+\s*$",
+              pattern: "^s*[a-zA-Z,s]+s*$",
             },
           },
           {
@@ -98,7 +102,7 @@ export class BankDetailsPage implements OnInit {
             patternError: "Please proper IFSC Number!.",
             validators: {
               required: true,
-              pattern:"^[A-Z]{4}0[A-Z0-9]{6}$",
+              pattern: "^[A-Z]{4}0[A-Z0-9]{6}$",
             },
           },
           {
@@ -140,8 +144,10 @@ export class BankDetailsPage implements OnInit {
   form: any = this.temp;
   constructor(
     private formBuilder: FormBuilder,
-    public apiservice:APIService,
-    public state :StateService,
+    public apiservice: APIService,
+    private navctrl: NavController,
+    private storage: Storage,
+    public state: StateService,
     private CommonHelper: CommonHelperService
   ) {}
   createForm(controls: JsonFormControls[]) {
@@ -485,10 +491,10 @@ export class BankDetailsPage implements OnInit {
         });
         newcontrols = newcontrols.reverse();
         newcontrols.forEach((key) => {
-          console.log({key})
+          console.log({ key });
           if (controls[key].hasError("required")) {
             this.form.header.forEach((element: any) => {
-              let errormsg = element.controls.find((item) => item.name == key);           
+              let errormsg = element.controls.find((item) => item.name == key);
               this.CommonHelper.presentToast(errormsg.requiredError);
             });
             invalid = true;
@@ -517,25 +523,40 @@ export class BankDetailsPage implements OnInit {
         // }
         let formdata = this.state.formValue.value;
         let aftersubmit = $event.value;
-        this.state.formValue.next({...formdata,...aftersubmit})
+        this.state.formValue.next({ ...formdata, ...aftersubmit });
         // "registration_type_id",'name', 'billing_name', 'rera_no', 'pan_no', 'gst_no', 'bank_name', 'branch_name', 'account_number', 'ifsc_code',
         // 'fos_name', 'mobile', 'email', 'fos_aadhar', 'fos_pan_card',
         // 'password'
-        let body = this.state.formValue.value
+        let body = this.state.formValue.value;
         delete body.btn;
         delete body.btn1;
         delete body.btn2;
         delete body.checkbx1;
 
-        this.apiservice.cpRegistration(body).subscribe(data=>
-          {
+        this.apiservice.cpRegistration(body).subscribe(
+          (data: HttpResponse<any>) => {
             this.CommonHelper.presentToast("Thank u for registration");
-            console.log("Data submitted")
-          },error=>
-          {
+            let info: responsefromserver = data.body;
+            for (let key in info.data) {
+              console.log("Object", key);
+              if(key !='api_token')
+              {
+                
+                this.storage.set(key, info.data[key]);
+              }else
+              {
+                this.storage.set('apiToken', info.data[key]);
+                this.storage.set('api_token', info.data[key]);
+              }
+              // console.log("value", info.data[key]);
+            }
 
-          })
-        console.log("body",body)
+            this.storage.set("userinfo", JSON.stringify(info.data));
+            this.navctrl.navigateRoot("home");
+          },
+          (error) => {}
+        );
+        console.log("body", body);
         console.log("validated1", this.state.formValue.value);
         console.log("validated", $event.value);
       } catch (error) {
