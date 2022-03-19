@@ -2,14 +2,44 @@
     <div *ngFor="let headeritem of jsonFormData.header; let i1 = index">
         <p class="text-center">{{headeritem.headernm}}</p>
         <div *ngFor="let controls of headeritem.controls let i=index">
+
+            <button style="display: none;" (click)="validate2()" nzSize="default" nzShape="round">
+            </button>
+
             <div *ngIf="controls.inputtype==2">
                 <mat-form-field appearance="outline" class="inputtextfield">
-                    <input [formControlName]="controls.name" [placeholder]="controls.placeholder" matInput [type]="controls.type" class="inputtextfield">
+                    <mat-label>{{controls.placeholder}}</mat-label>
+                    <input *ngIf="controls.isButton" [formControlName]="controls.name" [placeholder]="controls.placeholder" matInput [type]="controls.defaultval?controls.type:controls.type_2" class="inputtextfield">
+                    <input *ngIf="!controls.isButton" [formControlName]="controls.name" [placeholder]="controls.placeholder" matInput [type]="controls.type" class="inputtextfield">
+                    <button *ngIf="controls.isButton" mat-button style="color: var(--ion-color-medium-tint)" (click)="toggleBtn(controls.name,controls.defaultval)" matSuffix mat-icon-button>
+                        <mat-icon>
+                            <ion-icon color="dark" [name]="controls.defaultval?controls.icon:controls.icontoggle"></ion-icon>
+                        </mat-icon>
+                    </button>
+                    <button mat-button *ngIf="!controls.isButton" style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button>
+                        <mat-icon>
+                            <ion-icon color="dark" [name]="controls.icon"></ion-icon>
+                        </mat-icon>
+                    </button>
+                    <mat-hint>
+                        <div *ngIf="myForm.controls[controls.name].hasError('required') && myForm.controls[controls.name].dirty" class="error">
+                            {{controls.requiredError}}
+                        </div>
+                        <div *ngIf="myForm.controls[controls.name].hasError('pattern') && myForm.controls[controls.name].dirty" class="error">
+                            {{controls.patternError}}
+                        </div>
+                    </mat-hint>
                 </mat-form-field>
             </div>
             <div *ngIf="controls.inputtype==8">
                 <mat-form-field appearance="outline" class="inputtextfield">
+                    <mat-label>{{controls.placeholder}}</mat-label>
                     <input [formControlName]="controls.name" [placeholder]="controls.placeholder" matInput [type]="controls.type" class="inputtextfield">
+                    <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button>
+                        <mat-icon>
+                            <ion-icon color="dark" [name]="controls.icon"></ion-icon>
+                        </mat-icon>
+                    </button>
                 </mat-form-field>
                 <p class="d-flex justify-content-end verify">
                     <a (click)="otpVerification()">Verify</a>
