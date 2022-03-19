@@ -63,7 +63,8 @@
         <br />
 
         <div class="d-flex  justify-content-center align-items-center">
-          <mat-checkbox (change)="checked($event.checked)"></mat-checkbox>
+          <mat-checkbox [(checked)]="isChecked" [disabled]="isChecked" (change)="checked($event.checked)">
+          </mat-checkbox>
           &nbsp;&nbsp;
           <label class="pt-1"><a href="">Term and
               Conditions</a></label>
@@ -74,7 +75,7 @@
   </div>
 </ion-content>
 
-<ion-footer collapse="fade" class="ion-no-border" transparent>
+<ion-footer *ngIf="isAccepted!=1" collapse="fade" class="ion-no-border" transparent>
   <div class='btn-box'>
     <button [disabled]="!isChecked" (click)="accept()" [class.grey]="!isChecked" mat-button
       class="common-btn">Accept</button>

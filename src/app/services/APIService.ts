@@ -245,17 +245,17 @@ export class APIService {
     );
   }
 
-  getBenefits(apitoken: any, cp_id) {
+  getBenefits(apitoken: any, cp_entity_id) {
     return this.apiClient.get(
       this.webServer.getCPBenefits_current +
         "?api_token=" +
         apitoken +
-        "&cp_id=" +
-        cp_id
+        "&cp_entity_id=" +
+        cp_entity_id
     );
   }
-  addBenefits(apitoken: any, cp_id, cp_benefit_id: any) {
-    let postData = { api_token: apitoken, cp_id, cp_benefit_id };
+  addBenefits(apitoken: any, cp_id, cp_benefit_id: any, accepted) {
+    let postData = { api_token: apitoken, cp_id, cp_benefit_id, accepted };
     return this.apiClient.post(this.webServer.getCPBenefits_current, postData);
   }
 

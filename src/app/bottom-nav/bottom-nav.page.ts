@@ -25,6 +25,7 @@ export class BottomNavPage implements OnInit {
   is_team_lead: any = 0;
   is_admin: any = 0;
   CPLoginData: any = "";
+  login_type;
   username = "";
   name = "";
   apiToken = "";
@@ -113,15 +114,16 @@ export class BottomNavPage implements OnInit {
 
   ngOnInit() {
     const me = this;
-    this.storage.get("verification_status_id").then((val2) => {
-      this.storage.get("cpLoginData").then((val1) => {
-        this.storage.get("login").then((val) => {
-          me.CPLoginData = val1;
-          me.isLogin = val;
-          me.isVerfied = val2;
-        });
-      });
-    });
+
+    // this.storage.get("verification_status_id").then((val2) => {
+    //   this.storage.get("cpLoginData").then((val1) => {
+    //     this.storage.get("login").then((val) => {
+    //       me.CPLoginData = val1;
+    //       me.isLogin = val;
+    //       me.isVerfied = val2;
+    //     });
+    //   });
+    // });
     this.storage.get("fullname").then((val) => {
       this.username = val;
       console.log(this.username);
@@ -131,15 +133,21 @@ export class BottomNavPage implements OnInit {
       console.log(this.name);
     });
 
+    this.storage.get("user_info").then((val: any) => {
+      this.login_type = val.login_type;
+      console.log("is_team_lead" + this.login_type);
+    });
+
     console.log("isverified" + this.isVerfied);
-    this.storage.get("is_team_lead").then((val3) => {
-      this.is_team_lead = val3;
-      console.log("is_team_lead" + this.is_team_lead);
-    });
-    this.storage.get("is_admin").then((val4) => {
-      this.is_admin = val4;
-      console.log("is_admin" + this.is_admin);
-    });
+
+    // this.storage.get("is_team_lead").then((val3) => {
+    //   this.is_team_lead = val3;
+    //   console.log("is_team_lead" + this.is_team_lead);
+    // });
+    // this.storage.get("is_admin").then((val4) => {
+    //   this.is_admin = val4;
+    //   console.log("is_admin" + this.is_admin);
+    // });
   }
 
   ionViewDidEnter() {
@@ -148,21 +156,10 @@ export class BottomNavPage implements OnInit {
       console.log(res);
       menus = res;
 
-      if (
-        this.isVerfied == 1 &&
-        (this.is_team_lead == 1 || this.is_admin == 1)
-      ) {
-        console.log("1");
-        this.menusList = menus.isVerfied_isteamlead_isadmin;
-      } else if (this.isVerfied == 1 && this.is_team_lead == 1) {
-        console.log("2");
-        this.menusList = menus.isVerfied_isteamlead;
-      } else if (this.isVerfied == 1 && this.is_admin == 1) {
-        console.log("3");
-        this.menusList = menus.isVerfied_isadmin;
+      if (this.login_type == 1) {
+        this.menusList = menus.menu_list_cp;
       } else {
-        console.log("4");
-        this.menusList = menus.isVerfied;
+        this.menusList = menus.menu_list_fos;
       }
     });
     /*const me = this;
@@ -247,10 +244,9 @@ export class BottomNavPage implements OnInit {
       }
     });
   }
-  gotoProfile()
-  {
-    console.log("clicked")
-    this.navCtrl.navigateForward('profile');
-    this.goback()
+  gotoProfile() {
+    console.log("clicked");
+    this.navCtrl.navigateForward("profile");
+    this.goback();
   }
 }
