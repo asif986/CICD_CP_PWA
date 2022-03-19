@@ -62,6 +62,7 @@ export class AopApprovalBenefitPage implements OnInit {
       .map((res) => res.body)
       .subscribe(
         (res) => {
+          console.log(res);
           res.success == 1 &&
             this.helper.swAlert("success", "Approval Succesfully!");
           // this.benefitsData = res.data.aop_data;

@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { ModalController, NavParams } from "@ionic/angular";
+import { APIService } from "src/app/services/APIService";
 import { Helper } from "src/app/services/Helper";
 import Swal from "sweetalert2";
 
@@ -20,6 +22,8 @@ export class KycModalPage implements OnInit {
 
   voterValidation = /^([a-zA-Z]){3}([0-9]){7}?$/g;
 
+  url = "https://kyc-api.aadhaarkyc.io/api/v1/";
+
   public settings = {
     length: 4,
     numbersOnly: true,
@@ -35,7 +39,8 @@ export class KycModalPage implements OnInit {
     private modalController: ModalController,
     // private route: ActivatedRoute
     private navParams: NavParams,
-    public helper: Helper
+    public helper: Helper,
+    public apiService: APIService
   ) {
     console.log(this.navParams.data);
     this.kycInfo = this.navParams.data;
@@ -74,7 +79,7 @@ export class KycModalPage implements OnInit {
     }
     this.isOtpSend = false;
     // this.alertVerification();
-    this.helper.swAlert("Success", "Verification Succesfully!");
+    this.helper.swAlert("success", "Verification Succesfully!");
     this.closeModal();
   }
 
@@ -84,10 +89,15 @@ export class KycModalPage implements OnInit {
     if (this.kycInfo.ductypeId == 1) {
       if (this.doc != "") {
         if (this.doc.match(this.adharcardTwelveDigit)) {
-          this.isOtpSend = true;
+          // this.isOtpSend = true;
+          let A_URL = this.url + "aadhaar-validation/aadhaar-validation";
+          this.kycVerfications(A_URL, this.doc, 1);
+          // this.updateData(1);
           // return true;
         } else if (this.doc.match(this.adharSixteenDigit)) {
-          this.isOtpSend = true;
+          // this.isOtpSend = true;
+          let A_URL = this.url + "aadhaar-validation/aadhaar-validation";
+          this.kycVerfications(A_URL, this.doc, 1);
           // return true;
         } else {
           // alert("Enter valid Aadhar Number");
@@ -100,8 +110,10 @@ export class KycModalPage implements OnInit {
     else if (this.kycInfo.ductypeId == 2) {
       if (this.doc != "") {
         if (this.doc.match(this.panValidation)) {
-          this.isOtpSend = true;
+          // this.isOtpSend = true;
           // return true;
+          let PAN_URL = this.url + "pan/pan";
+          this.kycVerfications(PAN_URL, this.doc, 2);
         } else {
           // alert("Enter valid Aadhar Number");
           this.helper.presentToast("Enter valid Pan number");
@@ -113,7 +125,9 @@ export class KycModalPage implements OnInit {
     else if (this.kycInfo.ductypeId == 3) {
       if (this.doc != "") {
         if (this.doc.match(this.voterValidation)) {
-          this.isOtpSend = true;
+          // this.isOtpSend = true;
+          let V_URL = this.url + "voter-id/voter-id";
+          this.kycVerfications(V_URL, this.doc, 3);
           // return true;
         } else {
           // alert("Enter valid Aadhar Number");
@@ -124,5 +138,21 @@ export class KycModalPage implements OnInit {
     }
   }
 
-  sendOtp() {}
+  kycVerfications(url, id_number, doc_id) {
+    this.apiService.kycVerifications(url, id_number).subscribe(
+      (res: any) => {
+        console.log(res);
+        if (res.success == true) {
+          this.updateData(doc_id);
+        } else {
+          this.helper.presentToastError("Something went to wrong");
+        }
+        // this.updateData(2);
+      },
+      (e: HttpErrorResponse) => {
+        // console.log(e.error.);
+        this.helper.presentToastError(e.error.message);
+      }
+    );
+  }
 }

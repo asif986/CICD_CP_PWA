@@ -148,7 +148,7 @@ export class MyperformancePage implements OnInit {
       showSelectionBar: true,
       tickStep: this.dynamicSlider(this.value, 4),
       getLegend: (value: number): string => {
-        return value + "<b> CR</b>";
+        return value + "<b>CR</b>";
       },
     };
   }
