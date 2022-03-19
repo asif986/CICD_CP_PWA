@@ -30,15 +30,15 @@
                 <div [formGroup]="credentialsForm">
                     <mat-form-field appearance="outline" style="width: 100%;margin-top: 5px!important;">
                         <!-- <mat-label class="inputtextfield">User ID</mat-label> -->
-                        <input placeholder="User ID" matInput [formControl]="credentialsForm.controls['mobile']" max="10" min="10" type="number" class="inputtextfield" required>
+                        <input placeholder="Enter CPUID or FOSID" matInput [formControl]="credentialsForm.controls['user_id']" type="text" class="inputtextfield" required>
                         <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button>
                             <mat-icon>
                                 <ion-icon color="dark" name="paper-plane"></ion-icon>
                             </mat-icon>
                         </button>
                         <mat-hint>
-                            <div *ngIf="!credentialsForm.controls.mobile.valid && credentialsForm.controls.mobile.dirty" class="error">
-                                Please enter a valid mobile number.
+                            <div *ngIf="!credentialsForm.controls.user_id.valid && credentialsForm.controls.user_id.dirty" class="error">
+                                Please enter a valid CPUID or FOSID!.
                             </div>
                         </mat-hint>
                     </mat-form-field>
@@ -49,10 +49,10 @@
                 <div [formGroup]="credentialsForm" class="input-field-text" style="margin-top: 5px!important;">
                     <mat-form-field appearance="outline" style="width: 100%">
                         <!-- <mat-label class="inputtextfield">Password</mat-label> -->
-                        <input placeholder="Password" class="inputtextfield" matInput [formControl]="credentialsForm.controls['pwd']" [type]="getType()" [(ngModel)]="loginifo.password" name="password" required>
-                        <!-- <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword()">
-                  <mat-icon><ion-icon [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'" ></ion-icon></mat-icon>
-                </button> -->
+                        <input placeholder="Password" class="inputtextfield" matInput [formControl]="credentialsForm.controls['password']" [type]="getType()" [(ngModel)]="loginifo.password" name="password" required>
+                        <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword()">
+                  <mat-icon><ion-icon color="dark" [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'" ></ion-icon></mat-icon>
+                </button>
                     </mat-form-field>
                 </div>
             </ion-col>

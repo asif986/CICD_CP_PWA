@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { ConfirmationDialogComponent } from 'src/app/components/confirmation-dialog/confirmation-dialog.component';
 import { CustomModelComponent } from '../../components/custom-model/custom-model.component';
 import { IonicModule } from '@ionic/angular';
 import { JsonFormComponent } from 'src/app/components/json-form/json-form.component';
@@ -8,7 +9,7 @@ import { NgOtpInputModule } from 'ng-otp-input';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [JsonFormComponent,CustomModelComponent],
+  declarations: [JsonFormComponent,CustomModelComponent,ConfirmationDialogComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -16,7 +17,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgOtpInputModule,
     ReactiveFormsModule
   ],
-  entryComponents:[CustomModelComponent],
-  exports:[JsonFormComponent,CustomModelComponent]
+  entryComponents:[CustomModelComponent,ConfirmationDialogComponent],
+  exports:[JsonFormComponent,CustomModelComponent,ConfirmationDialogComponent]
 })
 export class SharedComponentModule { }

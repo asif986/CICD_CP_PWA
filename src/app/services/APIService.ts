@@ -9,6 +9,7 @@ import { Storage } from "@ionic/storage";
 import Swal from "sweetalert2";
 import { ToastController } from "@ionic/angular";
 import { WebServer } from "./WebServer";
+
 @Injectable({
   providedIn: "root",
 })
@@ -27,6 +28,10 @@ export class APIService {
   postCpLogin(psdata) {
     return this.apiClient.post(this.webServer.PostCPLogin, psdata);
   }
+    /*CP Login*/
+    getCpLogin(user_id:string,password:string) {
+      return this.apiClient.get(this.webServer.GETCPLogin+"?user_id="+user_id+"&password="+password);
+    }
 
   // Post_CPForgotPasswordSendOTP
   forgotPasswordSendOTP(psdata: any) {

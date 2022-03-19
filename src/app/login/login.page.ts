@@ -12,12 +12,13 @@ import {
 import { BehaviorSubject, timer } from "rxjs";
 import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Login, responsefromlogin } from "../models/Login";
 
 import { APIClient } from "../services/APIClient";
 import { APIService } from "../services/APIService";
 import { Helper } from "../services/Helper";
 import { HttpClient } from "@angular/common/http";
-import { Login } from "../models/Login";
+import { HttpResponse } from '@angular/common/http';
 import { Network } from "@ionic-native/network/ngx";
 import { PostLoginResponce } from "../models/PostLoginResponce";
 import { Router } from "@angular/router";
@@ -43,6 +44,7 @@ export class LoginPage implements OnInit {
   // tslint:disable-next-line:ban-types
   isActiveToggleTextPassword: Boolean = true;
   Regex = /^(\+\d{1,3}[- ]?)?\d{10}$/;
+  RegexforLogin = /^([a-z]{4}|[a-z]{5}|)\d{6}$/i
   async;
   subscribe: any;
   verifyStatusId: any = 0;
@@ -82,14 +84,14 @@ export class LoginPage implements OnInit {
     this.loginifo = new Login();
     this.postloginresponce = new PostLoginResponce();
     this.credentialsForm = this.formBuilder.group({
-      mobile: [
+      user_id: [
         "",
         Validators.compose([
-          Validators.pattern(this.Regex),
+          Validators.pattern(this.RegexforLogin),
           Validators.required,
         ]),
       ],
-      pwd: ["", Validators.compose([Validators.required])],
+      password: ["", Validators.compose([Validators.required])],
     });
     this.menuctrl.enable(false);
 
@@ -154,60 +156,49 @@ export class LoginPage implements OnInit {
 
   /*Login*/
   login(value: any) {
-    if (!value.mobile) {
+    console.log(this.credentialsForm.value)
+    if (!value.user_id) {
       this.presentToast("Please Enter Mobile Number!");
-    } else if (!this.loginifo.password) {
+    } else if (!value.password) {
       this.presentToast("Please Enter Password!");
-      // tslint:disable-next-line:triple-equals
     } else if (
       !(this.network.type !== "none" && this.network.type !== "unknown")
     ) {
       this.presentToast("Please on Internet Connection!");
     } else {
-      this.loginifo.username = "91" + value.mobile;
-      this.loginifo.password = value.pwd;
-      this.loginifo.login_provider_id = 1;
-      this.loginifo.provider_id = 1;
-      this.loginifo.api_token = this.webServer.API_TOKEN_EXTERNAL;
+      // this.loginifo.username = "91" + value.mobile;
+      // this.loginifo.password = value.pwd;
+      // this.loginifo.login_provider_id = 1;
+      // this.loginifo.provider_id = 1;
+      // this.loginifo.api_token = this.webServer.API_TOKEN_EXTERNAL;
 
       /*Call API For Login*/
       /*this.helper.showLoader('Processing');*/
       this.presentLoading().then(() => {
-        this.apiservice.postCpLogin(this.loginifo).subscribe(
-          (response) => {
+        this.apiservice.postCpLogin(this.credentialsForm.value).subscribe(
+          (response:HttpResponse<any>) => {
             console.log("responseBody", response.body);
             // this.successvalue = JSON.stringify(response.body);
             this.successvalue = response.body;
+            let userInfo:responsefromlogin =  response.body;
             if (this.successvalue.success === 1) {
               /*this.helper.showLoader('Login Successfully');*/
               this.storage.set("login", 1);
+              this.storage.set('user_info',JSON.stringify(userInfo));
               this.storage.set("cpLoginData", this.successvalue.data);
-              this.storeData(this.successvalue.data);
-              /* this.storage.set('apiToken',  this.postloginresponce.api_token);*/
               this.events.publish("user:update_fcm");
               this.events.publish("user:logout");
               this.helper.presentToastHomePage("Login Successful!");
+              this.navCtrl.navigateRoot('home');
               this.dismissLoading();
               console.log("IDV", this.postloginresponce.verification_status_id);
-              if (this.postloginresponce.verification_status_id == 1) {
-                this.verifyStatusId =
-                  this.postloginresponce.verification_status_id;
-                this.storage.set("perform_id", 5);
-                this.navCtrl.navigateRoot(["/home/"]);
-                this.storage.set("IDFromPerformance", 2);
-                /* this.helper.hideLoader();*/
-              } else if (this.postloginresponce.verification_status_id == 2) {
-                this.verifyStatusId =
-                  this.postloginresponce.verification_status_id;
-                this.navCtrl.navigateRoot(["/verificationpending/"]);
-                /*this.helper.hideLoader();*/
-              }
+              
             } else {
               this.dismissLoading();
               this.helper.presentToastError("Your account does not exists!");
             }
             return response;
-          },
+          },  
           (error) => {
             this.dismissLoading();
             this.helper.presentToastError("Something went wrong!");
