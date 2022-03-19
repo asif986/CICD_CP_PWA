@@ -1,8 +1,8 @@
 {
-    "name": "VJ CP APP",
-    "short_name": "VJ CP APP",
+    "name": "VJ Channel Partners",
+    "short_name": "VJ Channel Partners",
     "theme_color": "#ffeeff",
-    "background_color": "#ffeeff",
+    "background_color": "#ffffff",
     "display": "standalone",
     "scope": "./",
     "start_url": "./",
