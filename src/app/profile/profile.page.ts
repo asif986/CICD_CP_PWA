@@ -40,6 +40,7 @@ export class ProfilePage implements OnInit {
   apiToken = "";
   userId = 0;
   uuid = 0;
+  login_type;
 
   constructor(
     public storage: Storage,
@@ -58,7 +59,11 @@ export class ProfilePage implements OnInit {
       .catch((error: any) => {});
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.helper.getUserInfo().then((val: any) => {
+      this.login_type = val.login_type;
+    });
+  }
 
   async presentAlertConfirm() {
     const alert = await this.alertController.create({

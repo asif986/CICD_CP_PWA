@@ -24,7 +24,7 @@
 
                 <mat-divider class="divider pt-3"></mat-divider>
 
-                <div class="d-flex justify-content-between pt-3">
+                <div *ngIf="login_type ==1" class="d-flex justify-content-between pt-3">
                     <div (click)="goto()">
                         <h5>Approved AOP/QOP</h5>
                     </div>

@@ -52,24 +52,16 @@
                 <div [formGroup]="credentialsForm" class="input-field-text" style="margin-top: 5px!important;">
                     <mat-form-field appearance="outline" style="width: 100%">
                         <!-- <mat-label class="inputtextfield">Password</mat-label> -->
-                        <<<<<<< HEAD <input placeholder="Password" class="inputtextfield" matInput
-                            [formControl]="credentialsForm.controls['pwd']" [type]="getType()"
+                        <input placeholder="Password" class="inputtextfield" matInput
+                            [formControl]="credentialsForm.controls['password']" [type]="getType()"
                             [(ngModel)]="loginifo.password" name="password" required>
-                            <!-- <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword()">
-                  <mat-icon><ion-icon [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'" ></ion-icon></mat-icon>
-                </button> -->
-                            =======
-                            <input placeholder="Password" class="inputtextfield" matInput
-                                [formControl]="credentialsForm.controls['password']" [type]="getType()"
-                                [(ngModel)]="loginifo.password" name="password" required>
-                            <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button
-                                aria-label="Clear" (click)="toggleTextPassword()">
-                                <mat-icon>
-                                    <ion-icon color="dark" [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'">
-                                    </ion-icon>
-                                </mat-icon>
-                            </button>
-                            >>>>>>> origin/dev_Harsh
+                        <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button
+                            aria-label="Clear" (click)="toggleTextPassword()">
+                            <mat-icon>
+                                <ion-icon color="dark" [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'">
+                                </ion-icon>
+                            </mat-icon>
+                        </button>
                     </mat-form-field>
                 </div>
             </ion-col>

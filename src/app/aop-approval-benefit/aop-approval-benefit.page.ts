@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { APIService } from "../services/APIService";
-import { Storage } from "@ionic/storage";
 import { Helper } from "../services/Helper";
 
 @Component({
@@ -11,24 +10,25 @@ import { Helper } from "../services/Helper";
 })
 export class AopApprovalBenefitPage implements OnInit {
   isChecked: boolean = false;
-  api_token = "hQhcmZ4Ka0oBkkHxwdi81Zn8ma7hL2SYL1DQkNIemAIZVGDQmoR3MPUkhh7y";
-  cp_entity_id = 7;
+  api_token = "";
+  cp_entity_id;
   cpBenefitId;
   isAccepted = 0;
   benefitsData: any = [];
   constructor(
     public router: Router,
     public apiService: APIService,
-    private storage: Storage,
     public helper: Helper
   ) {}
 
   ngOnInit() {
-    this.storage.get("user_info").then((val) => {
-      this.api_token = val.api_token;
-      this.cp_entity_id = val.cp_entity_id;
+    this.helper.getUserInfo().then((val: any) => {
+      console.log(val);
+      this.api_token = val.data.api_token;
+      this.cp_entity_id = val.data.cp_entity_id;
+      console.log(this.cp_entity_id);
+      this.getBenefits(this.api_token, this.cp_entity_id);
     });
-    this.getBenefits(this.api_token, this.cp_entity_id);
   }
 
   getBenefits(api_token, cp_entity_id) {
@@ -37,9 +37,9 @@ export class AopApprovalBenefitPage implements OnInit {
       .map((res) => res.body)
       .subscribe(
         (res) => {
-          this.benefitsData = res.data;
-          this.cpBenefitId = res.data[0].cp_benefit_id;
-          if (res.accepted == 1) {
+          this.benefitsData = res.data.benefitsData;
+          this.cpBenefitId = res.data.benefitsData[0].cp_benefit_id;
+          if (res.is_accepted == 1) {
             this.isChecked = true;
             this.isAccepted = 1;
           }

@@ -156,25 +156,29 @@ export class MyperformancePage implements OnInit {
   ngOnInit() {}
 
   ionViewDidEnter() {
-    this.platform.backButton.subscribeWithPriority(1, () => {
-      this.storage.set("perform_id", 5);
-      this.storage.set("stat_check", 1);
-      this.storage.set("IDFromPerformance", 2);
-      this.navCtrl.navigateBack("/home"); //c
+    // this.platform.backButton.subscribeWithPriority(1, () => {
+    //   this.storage.set("perform_id", 5);
+    //   this.storage.set("stat_check", 1);
+    //   this.storage.set("IDFromPerformance", 2);
+    //   this.navCtrl.navigateBack("/home"); //c
+    // });
+    this.helper.getUserInfo().then((val2: any) => {
+      this.api_token = val2.data.api_token;
+      this.isSpinner = true;
+      this.from_date = null;
+      this.to_date = null;
+      console.log(this.from_date);
+      console.log(this.to_date);
+      this.getPreformance();
     });
 
-    this.storage.get("cp_executive_id").then((val1) => {
-      this.cp_executive_id = val1;
-      this.storage.get("apiToken").then((val2) => {
-        this.api_token = val2;
-        this.isSpinner = true;
-        this.from_date = null;
-        this.to_date = null;
-        console.log(this.from_date);
-        console.log(this.to_date);
-        this.getPreformance();
-      });
-    });
+    // this.storage.get("cp_executive_id").then((val1) => {
+    //   this.cp_executive_id = val1;
+
+    //   this.storage.get("apiToken").then((val2) => {
+
+    //   });
+    // });
   }
 
   Click() {
@@ -208,80 +212,86 @@ export class MyperformancePage implements OnInit {
           this.apiservice
             .getAllProjects(this.api_token)
             .map((res) => res.body)
-            .subscribe((res) => {
-              console.log(res);
-              this.dismissLoading();
-              this.PerformanceList = res.data;
-              this.selectedCategoryId = this.PerformanceList[0].project_id;
-              this.selectedCategory = this.PerformanceList[0].project_name;
+            .subscribe(
+              (res) => {
+                console.log(res);
+                this.dismissLoading();
+                this.PerformanceList = res.data;
+                this.selectedCategoryId = this.PerformanceList[0].project_id;
+                this.selectedCategory = this.PerformanceList[0].project_name;
 
-              this.apiservice
-                .getMyPerformance(
-                  this.cp_executive_id,
-                  this.api_token,
-                  this.from_date,
-                  this.to_date,
-                  this.selectedCategoryId
-                )
-                .map((res) => res.body)
-                .subscribe(
-                  (res) => {
-                    // this.successValue = JSON.stringify(data.body);
-                    // const Value = JSON.parse(this.successValue);
-                    this.isSpinner = false;
-                    if (res.success === 1) {
-                      this.leads_site_visits = res.data.site_visits;
-                      this.leads = res.data.leads;
-                      this.lead_tokens = res.data.gt_count;
-                      this.lead_tokens_ghp_plus = res.data.ps_count;
-                      this.booking_master = res.data.allotments;
-                      this.dismissLoading();
-                      console.log(this.PerformanceList);
-                      console.log(this.selectedCategory);
-                      console.log(this.leads_site_visits);
-                      console.log(this.leads);
-                      console.log(this.lead_tokens);
-                      console.log(this.booking_master);
-                      this.value = res.data.total_sales_in_cr;
-                      this.approxArokerageInCr =
-                        res.data.approx_brokerage_in_cr;
-                      this.createSlider();
-                      this.cardInfo = [
-                        {
-                          name: "Leads",
-                          count: this.leads,
-                          bg_color: "bg1",
-                        },
-                        {
-                          name: "Site Visit",
-                          count: this.leads_site_visits,
-                          bg_color: "bg2",
-                        },
-                        {
-                          name: "Tokens",
-                          count: this.lead_tokens,
-                          bg_color: "bg3",
-                        },
-                        {
-                          name: "G+ Generated",
-                          count: this.lead_tokens_ghp_plus,
-                          bg_color: "bg3",
-                        },
-                      ];
-                      this.isCollapsed = true;
-                    } else {
+                this.apiservice
+                  .getMyPerformance(
+                    this.cp_executive_id,
+                    this.api_token,
+                    this.from_date,
+                    this.to_date,
+                    this.selectedCategoryId
+                  )
+                  .map((res) => res.body)
+                  .subscribe(
+                    (res) => {
+                      // this.successValue = JSON.stringify(data.body);
+                      // const Value = JSON.parse(this.successValue);
+                      this.isSpinner = false;
+                      if (res.success === 1) {
+                        this.leads_site_visits = res.data.site_visits;
+                        this.leads = res.data.leads;
+                        this.lead_tokens = res.data.gt_count;
+                        this.lead_tokens_ghp_plus = res.data.ps_count;
+                        this.booking_master = res.data.allotments;
+                        this.dismissLoading();
+                        console.log(this.PerformanceList);
+                        console.log(this.selectedCategory);
+                        console.log(this.leads_site_visits);
+                        console.log(this.leads);
+                        console.log(this.lead_tokens);
+                        console.log(this.booking_master);
+                        this.value = res.data.total_sales_in_cr;
+                        this.approxArokerageInCr =
+                          res.data.approx_brokerage_in_cr;
+                        this.createSlider();
+                        this.cardInfo = [
+                          {
+                            name: "Leads",
+                            count: this.leads,
+                            bg_color: "bg1",
+                          },
+                          {
+                            name: "Site Visit",
+                            count: this.leads_site_visits,
+                            bg_color: "bg2",
+                          },
+                          {
+                            name: "Tokens",
+                            count: this.lead_tokens,
+                            bg_color: "bg3",
+                          },
+                          {
+                            name: "G+ Generated",
+                            count: this.lead_tokens_ghp_plus,
+                            bg_color: "bg3",
+                          },
+                        ];
+                        this.isCollapsed = true;
+                      } else {
+                        this.dismissLoading();
+                        this.isSpinner = false;
+                        this.helper.presentToast("Something went wrong!");
+                      }
+                    },
+                    (error) => {
                       this.dismissLoading();
                       this.isSpinner = false;
                       this.helper.presentToast("Something went wrong!");
                     }
-                  },
-                  (error) => {
-                    this.dismissLoading();
-                    this.isSpinner = false;
-                    this.helper.presentToast("Something went wrong!");
-                  }
-                );
-            });
+                  );
+              },
+              (e) => {
+                this.dismissLoading();
+                this.isSpinner = false;
+              }
+            );
         } else {
           this.dismissLoading();
           this.isSpinner = false;

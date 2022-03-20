@@ -36,8 +36,8 @@ export class WebServer {
   // POST CP Login
   public PostCPLogin = this.BASE_URL + "cpNewLogin";
 
-    // POST CP Login
-    public GETCPLogin = this.BASE_URL + "cpNewLogin";
+  // POST CP Login
+  public GETCPLogin = this.BASE_URL + "cpNewLogin";
 
   // Forgot Password
   public POSTForgotPasswordSendOTP =
@@ -56,7 +56,7 @@ export class WebServer {
   public GetRegistrationFormData = this.BASE_URL + "getCpRegistrationFormData";
 
   // Post CP Lead Data
-  public PostCPLead = this.BASE_URL + "addCpLead";
+  public PostCPLead = this.BASE_URL + "addNewCpLead";
 
   // CPLead Add kyc docs
   public POSTKYCDocument = this.BASE_URL + "addUploadKycCp";

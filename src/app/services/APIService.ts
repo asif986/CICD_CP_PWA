@@ -28,10 +28,16 @@ export class APIService {
   postCpLogin(psdata) {
     return this.apiClient.post(this.webServer.PostCPLogin, psdata);
   }
-    /*CP Login*/
-    getCpLogin(user_id:string,password:string) {
-      return this.apiClient.get(this.webServer.GETCPLogin+"?user_id="+user_id+"&password="+password);
-    }
+  /*CP Login*/
+  getCpLogin(user_id: string, password: string) {
+    return this.apiClient.get(
+      this.webServer.GETCPLogin +
+        "?user_id=" +
+        user_id +
+        "&password=" +
+        password
+    );
+  }
 
   // Post_CPForgotPasswordSendOTP
   forgotPasswordSendOTP(psdata: any) {
@@ -260,7 +266,12 @@ export class APIService {
     );
   }
   addBenefits(apitoken: any, cp_id, cp_benefit_id: any, accepted) {
-    let postData = { api_token: apitoken, cp_id, cp_benefit_id, accepted };
+    let postData = {
+      api_token: apitoken,
+      cp_id,
+      cp_benefit_id,
+      is_accepted: accepted,
+    };
     return this.apiClient.post(this.webServer.getCPBenefits_current, postData);
   }
 

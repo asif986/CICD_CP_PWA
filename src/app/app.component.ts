@@ -130,20 +130,18 @@ export class AppComponent {
       // this.checkAppUpdate();
 
       //For Storage Set
-      this.storage.get("cpLoginData").then((val) => {
-        console.log("YourData", val);
+      this.storage.get("user_info").then((val) => {
+        // console.log("YourData", val);
         if (val) {
-          // this.checkTokenValidity();
-          // this.storage.get('verification_status_id').then((val) => {
-          if (val.verification_status_id == 1) {
-            console.log("Your verification_status_id", val);
-            this.navCtrl.navigateRoot("/aop-approval-benefit");
-            this.storage.set("IDFromPerformance", 2);
-          } else if (val.verification_status_id == 2) {
-            console.log("Your verification_status_id", val);
-            this.navCtrl.navigateRoot("/verificationpending");
-          }
-          // });
+          // if (val.verification_status_id == 1) {
+          //   console.log("Your verification_status_id", val);
+          //   this.navCtrl.navigateRoot("/aop-approval-benefit");
+          //   this.storage.set("IDFromPerformance", 2);
+          // } else if (val.verification_status_id == 2) {
+          //   console.log("Your verification_status_id", val);
+          //   this.navCtrl.navigateRoot("/verificationpending");
+          // }
+          this.navCtrl.navigateRoot("/home");
         } else {
           // alert('4');
           this.navCtrl.navigateRoot("/login");

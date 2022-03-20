@@ -18,7 +18,7 @@ import { APIClient } from "../services/APIClient";
 import { APIService } from "../services/APIService";
 import { Helper } from "../services/Helper";
 import { HttpClient } from "@angular/common/http";
-import { HttpResponse } from '@angular/common/http';
+import { HttpResponse } from "@angular/common/http";
 import { Network } from "@ionic-native/network/ngx";
 import { PostLoginResponce } from "../models/PostLoginResponce";
 import { Router } from "@angular/router";
@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
   // tslint:disable-next-line:ban-types
   isActiveToggleTextPassword: Boolean = true;
   Regex = /^(\+\d{1,3}[- ]?)?\d{10}$/;
-  RegexforLogin = /^([a-z]{4}|[a-z]{5}|)\d{6}$/i
+  RegexforLogin = /^([a-z]{4}|[a-z]{5}|)\d{6}$/i;
   async;
   subscribe: any;
   verifyStatusId: any = 0;
@@ -73,8 +73,8 @@ export class LoginPage implements OnInit {
       // alert(event);
       this.promptEvent = event;
     });
-    console.log("promptEvent",this.promptEvent)
-    console.log("promptEvent")
+    console.log("promptEvent", this.promptEvent);
+    console.log("promptEvent");
     if (this.promptEvent) {
       this.presentAlert(
         "Install application",
@@ -139,8 +139,7 @@ export class LoginPage implements OnInit {
           text: "Cancel",
           role: "cancel",
           cssClass: "secondary",
-          handler: (blah) => {
-          },
+          handler: (blah) => {},
         },
         {
           text: "Yes",
@@ -156,7 +155,7 @@ export class LoginPage implements OnInit {
 
   /*Login*/
   login(value: any) {
-    console.log(this.credentialsForm.value)
+    console.log(this.credentialsForm.value);
     if (!value.user_id) {
       this.presentToast("Please Enter Mobile Number!");
     } else if (!value.password) {
@@ -176,29 +175,28 @@ export class LoginPage implements OnInit {
       /*this.helper.showLoader('Processing');*/
       this.presentLoading().then(() => {
         this.apiservice.postCpLogin(this.credentialsForm.value).subscribe(
-          (response:HttpResponse<any>) => {
+          (response: HttpResponse<any>) => {
             console.log("responseBody", response.body);
             // this.successvalue = JSON.stringify(response.body);
             this.successvalue = response.body;
-            let userInfo:responsefromlogin =  response.body;
+            let userInfo: responsefromlogin = response.body;
             if (this.successvalue.success === 1) {
               /*this.helper.showLoader('Login Successfully');*/
               this.storage.set("login", 1);
-              this.storage.set('user_info',JSON.stringify(userInfo));
+              this.storage.set("user_info", JSON.stringify(userInfo));
               this.storage.set("cpLoginData", this.successvalue.data);
               this.events.publish("user:update_fcm");
               this.events.publish("user:logout");
               this.helper.presentToastHomePage("Login Successful!");
-              this.navCtrl.navigateRoot('home');
+              this.navCtrl.navigateRoot("home");
               this.dismissLoading();
               console.log("IDV", this.postloginresponce.verification_status_id);
-              
             } else {
               this.dismissLoading();
               this.helper.presentToastError("Your account does not exists!");
             }
             return response;
-          },  
+          },
           (error) => {
             this.dismissLoading();
             this.helper.presentToastError("Something went wrong!");

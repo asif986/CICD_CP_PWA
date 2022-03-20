@@ -1,5 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { Storage } from "@ionic/storage";
+
 import {
   AlertController,
   LoadingController,
@@ -26,7 +28,8 @@ export class Helper {
     private alertController: AlertController,
     public toastController: ToastController,
     public loadingController: LoadingController,
-    private http: HttpClient
+    private http: HttpClient,
+    public storage: Storage
   ) {
     this.previousStatus = ConnectionStatusEnum.Online;
   }
@@ -193,6 +196,17 @@ export class Helper {
       showConfirmButton: false,
       timer: 1500,
       position: "center",
+    });
+  }
+
+  getUserInfo() {
+    return new Promise((reslove, reject) => {
+      this.storage
+        .get("user_info")
+        .then((res) => JSON.parse(res))
+        .then((val) => {
+          reslove(val);
+        });
     });
   }
 }

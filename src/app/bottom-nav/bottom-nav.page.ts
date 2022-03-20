@@ -133,21 +133,15 @@ export class BottomNavPage implements OnInit {
       console.log(this.name);
     });
 
-    this.storage.get("user_info").then((val: any) => {
-      this.login_type = val.login_type;
-      console.log("is_team_lead" + this.login_type);
-    });
-
-    console.log("isverified" + this.isVerfied);
-
-    // this.storage.get("is_team_lead").then((val3) => {
-    //   this.is_team_lead = val3;
-    //   console.log("is_team_lead" + this.is_team_lead);
-    // });
-    // this.storage.get("is_admin").then((val4) => {
-    //   this.is_admin = val4;
-    //   console.log("is_admin" + this.is_admin);
-    // });
+    this.helper
+      .getUserInfo()
+      .then((val: any) => {
+        console.log(val);
+        this.login_type = val.login_type;
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }
 
   ionViewDidEnter() {
@@ -185,27 +179,8 @@ export class BottomNavPage implements OnInit {
   // || val=='readytosubmit-bills'|| val=='submitted-bill-page'
   navigateMenu(val) {
     this.modalController.dismiss();
-    if (
-      (val == "home" ||
-        val == "reminder" ||
-        val == "notification" ||
-        val == "myperformance" ||
-        val == "team-stats" ||
-        val == "teamlist" ||
-        val == "projectbrochures" ||
-        val == "readytosubmit-bills" ||
-        val == "submitted-bill-page" ||
-        val == "incentive-bills" ||
-        val == "cpawards" ||
-        val == "claim-awards") &&
-      this.isLogin != 1
-    ) {
-      this.navCtrl.navigateForward("login");
-    } else {
-      this.storage.set("FOS", 2);
-      this.storage.set("FromLeadList", 0);
-      this.navCtrl.navigateRoot([val]);
-    }
+
+    this.navCtrl.navigateForward(val);
   }
 
   goback() {

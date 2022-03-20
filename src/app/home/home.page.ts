@@ -124,6 +124,7 @@ export class HomePage implements OnInit {
       });
     });
     // From Call API
+
     this.storage.get("IDFromPerformance").then((IDFromPerformancea) => {
       this.storage.get("cp_executive_id").then((cp_executive_id) => {
         this.storage.get("apiToken").then((apiToken) => {
@@ -203,12 +204,12 @@ export class HomePage implements OnInit {
             console.log("this.societyEventBanners", this.societyEventBanners);
           } else {
             this.isSpinner = false;
-            this.helper.presentToast("Something Went Wrong");
+            // this.helper.presentToast("Something Went Wrong");
           }
         },
         (err) => {
           this.isSpinner = false;
-          this.helper.presentToast("Something Went Wrong");
+          // this.helper.presentToast("Something Went Wrong");
         }
       );
     }
@@ -249,7 +250,7 @@ export class HomePage implements OnInit {
           },
           (err) => {
             this.isSpinner = false;
-            this.helper.presentToast("Something Went Wrong");
+            // this.helper.presentToast("Something Went Wrong");
           }
         );
     }
@@ -292,12 +293,12 @@ export class HomePage implements OnInit {
                 }
               } else {
                 me.isSpinner = false;
-                this.helper.presentToast("Something Went Wrong");
+                // this.helper.presentToast("Something Went Wrong");
               }
             },
             (err) => {
               me.isSpinner = false;
-              this.helper.presentToast("Something Went Wrong");
+              // this.helper.presentToast("Something Went Wrong");
             }
           );
       }
@@ -472,7 +473,7 @@ export class HomePage implements OnInit {
           },
           (err) => {
             me.isSpinner = false;
-            this.helper.presentToast("Something Went Wrong");
+            // this.helper.presentToast("Something Went Wrong");
           }
         );
     }
@@ -615,7 +616,7 @@ export class HomePage implements OnInit {
           (err) => {
             this.dismissLoading();
             this.isSpinner = false;
-            this.helper.presentToast("Something Went Wrong");
+            // this.helper.presentToast("Something Went Wrong");
           }
         );
     }

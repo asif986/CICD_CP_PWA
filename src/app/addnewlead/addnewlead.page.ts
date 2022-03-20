@@ -188,19 +188,26 @@ export class AddnewleadPage implements OnInit {
     });
 
     this.route.snapshot.paramMap.get("id");
+
+    this.helper.getUserInfo().then((val: any) => {
+      this.username = val.name;
+      this.newapi = val.data.api_token;
+      this.api_token = val.data.api_token;
+    });
+
     // get CP Info
     this.storage.get("fullname").then((val) => {
-      this.username = val;
+      // this.username = val;
       this.storage.get("position").then((val1) => {
         this.position = val1;
         this.storage.get("cp_executive_id").then((val2) => {
           this.postNewLead.cp_executive_id = val2;
           this.storage.get("apiToken").then((val3) => {
-            this.newapi = val3;
-            this.api_token = val3;
-            this.kycDocuments.api_token = val3;
-            console.log("newleadflag " + this.newapi);
-            console.log("newleadflag " + this.kycDocuments.api_token);
+            // this.newapi = val3;
+            // this.api_token = val3;
+            // this.kycDocuments.api_token = val3;
+            // console.log("newleadflag " + this.newapi);
+            // console.log("newleadflag " + this.kycDocuments.api_token);
             this.postNewLead.buying_for = 1;
             if (
               !(this.network.type !== "none" && this.network.type !== "unknown")
