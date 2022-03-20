@@ -85,6 +85,7 @@ export class NewRegistrationPage implements OnInit {
             placeholder: "Full Name",
             name: "name",
             cssClass: "col",
+            icon:"person",
             label: "Name:",
             value: "",
             inital: 0,
@@ -99,6 +100,7 @@ export class NewRegistrationPage implements OnInit {
           {
             inputtype: 2,
             placeholder: "Official Mobile",
+            icon:"phone-portrait",
             name: "mobile",
             cssClass: "col",
             label: "Name:",
@@ -116,6 +118,7 @@ export class NewRegistrationPage implements OnInit {
             inputtype: 2,
             placeholder: "Official Email",
             name: "email",
+            icon: "mail",
             cssClass: "col",
             label: "Name:",
             value: "",
@@ -132,19 +135,24 @@ export class NewRegistrationPage implements OnInit {
             inputtype: 2,
             placeholder: "Password",
             name: "password",
+            isButton:true,
+            icontoggle:"eye-off",
+            defaultval:false,
+            icon:"eye",
             cssClass: "col",
             label: "Name:",
             value: "",
             inital: 0,
             type: "text",
+            type_2: "password",
             requiredError: "Please enter a valid Password!.",
-            patternError: "Please proper Password!.",
+            patternError: "Password must contain characters and numbers at least 8 !.",
             validators: {
               required: true,
               pattern:
                 "^(?=.*[0-9])" +
                 "(?=.*[a-z])(?=.*[A-Z])" +
-                "(?=.*[@#$%^&+=])" +
+                // "(?=.*[@#$%^&+=])" +
                 "(?=\\S+$).{8,20}$",
             },
           },
@@ -1204,6 +1212,7 @@ export class NewRegistrationPage implements OnInit {
               label: "Name:",
               value: "",
               inital: 0,
+              
               type: "text",
               requiredError: "Please enter a valid full name!.",
               patternError: "Please proper full name!.",
@@ -1219,6 +1228,7 @@ export class NewRegistrationPage implements OnInit {
               cssClass: "col",
               label: "Name:",
               value: "",
+            
               inital: 0,
               type: "text",
               requiredError: "Please enter a valid mobile number!.",
@@ -1235,6 +1245,7 @@ export class NewRegistrationPage implements OnInit {
               cssClass: "col",
               label: "Name:",
               value: "",
+              icon:"mail",
               inital: 0,
               type: "text",
               requiredError: "Please enter a valid email address!.",
@@ -1251,6 +1262,7 @@ export class NewRegistrationPage implements OnInit {
               cssClass: "col",
               label: "Name:",
               value: "",
+          
               inital: 0,
               type: "text",
               requiredError: "Please enter a valid full name!.",
@@ -1264,6 +1276,7 @@ export class NewRegistrationPage implements OnInit {
               inputtype: 3,
               placeholder: "Password",
               name: "password",
+
               cssClass: "col",
               label: "Proceed to Business Detailsy",
               value: "",

@@ -11,7 +11,7 @@ import {
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { JsonFormControls, JsonFormData } from "src/app/Model/JsonToform";
 
-import { AlertController } from '@ionic/angular';
+import { AlertController } from "@ionic/angular";
 import { CommonHelperService } from "./../../services/common-helper.service";
 import { ConfirmationDialogComponent } from "../confirmation-dialog/confirmation-dialog.component";
 import { MatDialog } from "@angular/material";
@@ -27,27 +27,27 @@ export class JsonFormComponent implements OnChanges {
   @Input() isRadioAvailable: any;
   @Output() returnformdata = new EventEmitter<FormGroup>();
   @Output() returnchangeorg = new EventEmitter<any>();
-  
-  @ViewChild('ngOtpInput', { static: false}) ngOtpInput: any;
+
+  @ViewChild("ngOtpInput", { static: false }) ngOtpInput: any;
   otp: string;
   showOtpComponent = true;
-  config :any = {
+  config: any = {
     allowNumbersOnly: false,
     length: 5,
     isPasswordInput: false,
     disableAutoFocus: false,
-    placeholder: '',
+    placeholder: "",
     inputStyles: {
-      'width': '50px',
-      'height': '50px'
-    }
+      width: "50px",
+      height: "50px",
+    },
   };
   public myForm: FormGroup = this.fb.group({});
   isChecked: Boolean = false;
 
   constructor(
     private fb: FormBuilder,
-    public alertctrl:AlertController,
+    public alertctrl: AlertController,
     public dialog: MatDialog,
     public CommonHelper: CommonHelperService,
     private state: StateService
@@ -150,33 +150,32 @@ export class JsonFormComponent implements OnChanges {
     console.log("Form values: ", this.myForm.value);
   }
   openDialog() {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
-      data:{
-        header:'Terms and Conditions',
-        message: 'Terms and Conditions',
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        header: "Terms and Conditions",
+        message: "Terms and Conditions",
         buttonText: {
-          ok: 'Agree',
-          cancel: 'Disgree'
-        }
-      }
+          ok: "Agree",
+          cancel: "Disgree",
+        },
+      },
     });
     // const snack = this.snackBar.open('Snack bar open before dialog');
 
     dialogRef.afterClosed().subscribe((confirmed: boolean) => {
       if (confirmed) {
         // snack.dismiss();
-        console.log("Confirmed")
-        this.myForm.controls['checkbx1'].setValue(true);
-        const a = document.createElement('a');
+        console.log("Confirmed");
+        this.myForm.controls["checkbx1"].setValue(true);
+        const a = document.createElement("a");
         a.click();
         a.remove();
         // snack.dismiss();
         // this.snackBar.open('Closing snack bar in a few seconds', 'Fechar', {
         //   duration: 2000,
         // });
-      }else
-      {
-        this.myForm.controls['checkbx1'].setValue(false);
+      } else {
+        this.myForm.controls["checkbx1"].setValue(false);
       }
     });
   }
@@ -237,10 +236,8 @@ export class JsonFormComponent implements OnChanges {
     this.returnformdata.emit(this.myForm);
   }
 
-  async otpVerification() 
-  {
-  
-   console.log("called") 
+  async otpVerification() {
+    console.log("called");
   }
   onOtpChange(otp) {
     this.otp = otp;
@@ -255,4 +252,17 @@ export class JsonFormComponent implements OnChanges {
       this.showOtpComponent = true;
     }, 0);
   }
+  toggleBtn(ctrlnm: string, defaultval: any) {
+    const modifiedata = this.jsonFormData.header.map((element: any) => {
+      const subElement = element.controls.map((item) => {
+        if (item.name == ctrlnm) {
+          item.defaultval = !item.defaultval
+        }
+        return item
+      });
+      return { headernm: element.headernm, controls: subElement };
+    });
+    console.log("modifiedata", modifiedata);
+  }
+  validate2() {}
 }
