@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { MaterialModule } from '../material.module';
 import { NgModule } from '@angular/core';
 import { ProfilePage } from './profile.page';
+import { SharedComponentModule } from '../shared/shared-component/shared-component.module';
 
 const routes: Routes = [
   {
@@ -19,6 +20,7 @@ const routes: Routes = [
     CommonModule,
     MaterialModule,
     FormsModule,
+    SharedComponentModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
