@@ -21,6 +21,7 @@ import { Router } from "@angular/router";
 import { Storage } from "@ionic/storage";
 import { TeamLeaderOrNot } from "../models/TeamLeaderOrNot";
 import { UniqueDeviceID } from "@ionic-native/unique-device-id/ngx";
+import { responsefromlogin } from "../models/Login";
 
 @Component({
   selector: "app-home",
@@ -33,6 +34,7 @@ export class HomePage implements OnInit {
   searchVal: any = "";
   apiToken = "";
   userId = 0;
+  cp_entity_id;
   USERNEWID = 1;
   uuid = 0;
   fcmToken: any;
@@ -62,6 +64,7 @@ export class HomePage implements OnInit {
   SelectCategoryID_FromFilter: number;
   token_type_id_FromFilter: any;
 
+  fos_id;
   societyEventBanners = [
     { media_type_id: "1", media_path: "assets/new_icons/banner_img/1.png" },
   ];
@@ -124,6 +127,11 @@ export class HomePage implements OnInit {
         console.log(this.is_team_lead);
       });
     });
+    this.helper.getUserInfo().then((val: responsefromlogin) => {
+      this.cp_entity_id = val.data.cp_entity_id;
+      this.apiToken = val.data.api_token;
+      this.fos_id = val.data.fos_id;
+    });
     // From Call API
 
     this.storage.get("IDFromPerformance").then((IDFromPerformancea) => {
@@ -137,7 +145,7 @@ export class HomePage implements OnInit {
                     this.IDFromPerformance = IDFromPerformancea;
                     console.log(this.IDFromPerformance);
                     this.newExecutiveId = cp_executive_id;
-                    this.newLoginApi = apiToken;
+                    // this.newLoginApi = apiToken;
                     this.is_team_lead = is_team_lead;
                     this.is_admin = is_admin;
                     this.SelectCategoryID_FromFilter = SelectCategoryID;
@@ -222,12 +230,7 @@ export class HomePage implements OnInit {
     this.cpfeedData.cp_executive_id = this.newExecutiveId;
     if (this.network.type !== "none" && this.network.type !== "unknown") {
       this.apiservice
-        .getCPFeed(
-          this.cpfeedData.cp_executive_id,
-          this.cpfeedData.api_token,
-          0,
-          null
-        )
+        .getCPFeed(this.cp_entity_id, this.apiToken, this.fos_id, 0, null)
         .subscribe(
           (data) => {
             this.successvalue = JSON.stringify(data.body);
@@ -361,6 +364,7 @@ export class HomePage implements OnInit {
           .getCPFeed(
             this.cpfeedData.cp_executive_id,
             this.cpfeedData.api_token,
+            this.fos_id,
             count,
             this.last_lead_updated_at
           )

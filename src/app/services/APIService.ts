@@ -90,19 +90,22 @@ export class APIService {
 
   /*Get CP Feed */
   getCPFeed(
-    cpexecutiveid: any,
+    cp_entity_id: any,
     apitoken: any,
+    fos_id: any,
     skip_count: any,
     last_lead_updated_at: any
   ) {
-    console.log(cpexecutiveid);
+    console.log(cp_entity_id);
     // tslint:disable-next-line:max-line-length
     return this.apiClient.get(
       this.webServer.GetCPFeed +
         "?api_token=" +
         apitoken +
-        "&cp_executive_id=" +
-        cpexecutiveid +
+        "&cp_entity_id=" +
+        cp_entity_id +
+        "&fos_id=" +
+        fos_id +
         "&limit=8&skip=" +
         skip_count +
         "&last_lead_updated_at=" +
@@ -265,10 +268,10 @@ export class APIService {
         cp_entity_id
     );
   }
-  addBenefits(apitoken: any, cp_id, cp_benefit_id: any, accepted) {
+  addBenefits(apitoken: any, cp_entity_id, cp_benefit_id: any, accepted) {
     let postData = {
       api_token: apitoken,
-      cp_id,
+      cp_entity_id,
       cp_benefit_id,
       is_accepted: accepted,
     };
