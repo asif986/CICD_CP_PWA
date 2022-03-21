@@ -21,7 +21,7 @@ import { PostNewLead } from "../models/PostNewLead";
 import { KYCDocuments } from "../models/KYCDocuments";
 import { DatePipe } from "@angular/common";
 import { VerifyOTP } from "../models/VerifyOTP";
-import { Login } from "../models/Login";
+import { Login, responsefromlogin } from "../models/Login";
 import Swal from "sweetalert2";
 import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 
@@ -37,6 +37,8 @@ export class AddnewleadPage implements OnInit {
   verifyOTP: VerifyOTP = new VerifyOTP();
   loginifo: Login = new Login();
   addNewLead: AddNewLead;
+  cp_entity_id;
+  fos_id;
   postNewLead: PostNewLead;
   kycDocuments: KYCDocuments;
   successvalue: any;
@@ -189,10 +191,12 @@ export class AddnewleadPage implements OnInit {
 
     this.route.snapshot.paramMap.get("id");
 
-    this.helper.getUserInfo().then((val: any) => {
-      this.username = val.name;
+    this.helper.getUserInfo().then((val: responsefromlogin) => {
+      this.username = val.data.name;
       this.newapi = val.data.api_token;
       this.api_token = val.data.api_token;
+      this.cp_entity_id = val.data.cp_entity_id;
+      this.fos_id = val.data.fos_id;
     });
 
     // get CP Info
@@ -415,7 +419,12 @@ export class AddnewleadPage implements OnInit {
             /this.helper.showLoader('Processing..');/;
             this.presentLoading().then(() => {
               console.log(this.postNewLead);
-              let data = { ...this.postNewLead, ...this.kyc_data };
+              let data = {
+                ...this.postNewLead,
+                ...this.kyc_data,
+                cp_entity_id: this.cp_entity_id,
+                fos_id: this.fos_id,
+              };
               // return;
               this.apiservice.postCPLead(data).subscribe(
                 (response) => {
