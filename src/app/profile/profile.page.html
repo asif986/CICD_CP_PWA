@@ -25,9 +25,9 @@
 
                 <mat-divider class="divider pt-3"></mat-divider>
 
-                <div (click)="login_type ==2?goto():gotoFOs()" class="d-flex justify-content-between pt-3">
+                <div (click)="login_type ==1?goto():gotoFOs()" class="d-flex justify-content-between pt-3">
                     <div>
-                        <h5>Approved AOP/QOP</h5>
+                        <h5>{{login_type ==1?'Approved AOP/QOP':'CP Acceptance'}}</h5>
                     </div>
                     <div>
                         <mat-icon>
