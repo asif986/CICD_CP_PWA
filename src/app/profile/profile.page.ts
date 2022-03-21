@@ -1,5 +1,3 @@
-import { Component, OnInit } from "@angular/core";
-import { Storage } from "@ionic/storage";
 import {
   AlertController,
   Events,
@@ -8,8 +6,11 @@ import {
   Platform,
   ToastController,
 } from "@ionic/angular";
+import { Component, OnInit } from "@angular/core";
+
 import { Helper } from "../services/Helper";
 import { HttpClient } from "@angular/common/http";
+import { Storage } from "@ionic/storage";
 import { UniqueDeviceID } from "@ionic-native/unique-device-id/ngx";
 
 @Component({
@@ -141,4 +142,8 @@ export class ProfilePage implements OnInit {
   goto() {
     this.navCtrl.navigateForward("aop-approval-benefit");
   }
+ gotoFOs()
+ {
+   this.navCtrl.navigateForward("select-cp");
+   } 
 }
