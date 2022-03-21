@@ -1,8 +1,3 @@
-import { HttpClient } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { Network } from "@ionic-native/network/ngx";
-import { UniqueDeviceID } from "@ionic-native/unique-device-id/ngx";
 import {
   ActionSheetController,
   AlertController,
@@ -13,13 +8,19 @@ import {
   NavController,
   Platform,
 } from "@ionic/angular";
-import { Storage } from "@ionic/storage";
+import { Component, OnInit } from "@angular/core";
+
+import { APIService } from "../services/APIService";
 import { BottomNavPage } from "../bottom-nav/bottom-nav.page";
 import { CPFeed } from "../models/CPFeed";
-import { TeamLeaderOrNot } from "../models/TeamLeaderOrNot";
-import { APIService } from "../services/APIService";
 import { DataService } from "../services/data.service";
 import { Helper } from "../services/Helper";
+import { HttpClient } from "@angular/common/http";
+import { Network } from "@ionic-native/network/ngx";
+import { Router } from "@angular/router";
+import { Storage } from "@ionic/storage";
+import { TeamLeaderOrNot } from "../models/TeamLeaderOrNot";
+import { UniqueDeviceID } from "@ionic-native/unique-device-id/ngx";
 
 @Component({
   selector: "app-home",
@@ -655,7 +656,7 @@ export class HomePage implements OnInit {
   addFOS() {
     this.storage.set("ID", 1);
     this.storage.set("FromHome", 0);
-    this.router.navigate(["/add-fos-list/"]);
+    this.router.navigate(["/approve-fosrequest"]);
   }
 
   // Card Click Fuctions
