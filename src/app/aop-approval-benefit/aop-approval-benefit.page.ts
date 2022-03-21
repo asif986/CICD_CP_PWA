@@ -39,7 +39,7 @@ export class AopApprovalBenefitPage implements OnInit {
         (res) => {
           this.benefitsData = res.data.benefitsData;
           this.cpBenefitId = res.data.benefitsData[0].cp_benefit_id;
-          if (res.is_accepted == 1) {
+          if (res.data.is_accepted == 1) {
             this.isChecked = true;
             this.isAccepted = 1;
           }

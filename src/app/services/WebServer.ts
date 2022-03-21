@@ -65,7 +65,7 @@ export class WebServer {
   public POSTREGKYCDocument = this.BASE_URL + "addUploadRegDocs";
 
   // Get CP LeadForm Data
-  public GetCPFeed = this.BASE_URL + "getCpFeed";
+  public GetCPFeed = this.BASE_URL + "getNewCpFeed";
 
   // Post CP Lead Data
   public PostVerifyOTP = this.BASE_URL + "sendOtp";
