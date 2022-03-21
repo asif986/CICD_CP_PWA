@@ -40,6 +40,7 @@ export class SelectCPPage implements OnInit {
     const model = await this.popoverController.create({
       component: CustomModelComponent,
       translucent:true,
+      cssClass:'custom-popover',
       componentProps:{cp_id}
     });
 
