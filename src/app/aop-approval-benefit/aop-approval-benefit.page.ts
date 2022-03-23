@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { APIService } from "../services/APIService";
 import { Helper } from "../services/Helper";
 
@@ -14,14 +14,30 @@ export class AopApprovalBenefitPage implements OnInit {
   cp_entity_id;
   cpBenefitId;
   isAccepted = 0;
+
+  isArrowHide = false;
   benefitsData: any = [];
   constructor(
     public router: Router,
     public apiService: APIService,
-    public helper: Helper
-  ) {}
+    public helper: Helper,
+    public route: ActivatedRoute
+  ) {
+    // console.log(this.isArrowHide);
+  }
 
   ngOnInit() {
+    this.route.queryParams.subscribe((params) => {
+      console.log(params);
+      if (Object.keys(params).length != 0) {
+        params["pending"] == true || params.pending == true
+          ? (this.isArrowHide = true)
+          : (this.isArrowHide = false);
+      } else {
+        this.isArrowHide = false;
+      }
+    });
+
     this.helper.getUserInfo().then((val: any) => {
       console.log(val);
       this.api_token = val.data.api_token;
