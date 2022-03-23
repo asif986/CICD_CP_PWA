@@ -28,6 +28,10 @@ export class APIService {
   postCpLogin(psdata) {
     return this.apiClient.post(this.webServer.PostCPLogin, psdata);
   }
+  /*CP validation*/
+  getCardValidation(psdata) {
+    return this.apiClient.get(this.webServer.getValidationCard + psdata);
+  }
   /*CP Login*/
   getCpLogin(user_id: string, password: string) {
     return this.apiClient.get(

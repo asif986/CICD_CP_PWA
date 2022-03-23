@@ -36,6 +36,9 @@ export class WebServer {
   // POST CP Login
   public PostCPLogin = this.BASE_URL + "cpNewLogin";
 
+    // get CP Login
+    public getValidationCard = this.BASE_URL + "docNoExists";
+
   // POST CP Login
   public GETCPLogin = this.BASE_URL + "cpNewLogin";
 

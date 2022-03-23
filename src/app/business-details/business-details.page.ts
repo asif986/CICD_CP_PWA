@@ -2,8 +2,8 @@ import { Component, OnInit } from "@angular/core";
 
 import { CommonHelperService } from "../services/common-helper.service";
 import { FormGroup } from "@angular/forms";
-import { NavController } from '@ionic/angular';
-import { StateService } from './../services/state.service';
+import { NavController } from "@ionic/angular";
+import { StateService } from "./../services/state.service";
 
 @Component({
   selector: "app-business-details",
@@ -46,7 +46,7 @@ export class BusinessDetailsPage implements OnInit {
             is_cp_indivial: 1,
             placeholder: "CP Name",
             name: "fos_name",
-            icon:"person",
+            icon: "person",
             cssClass: "col",
             label: "Name:",
             value: "",
@@ -69,7 +69,7 @@ export class BusinessDetailsPage implements OnInit {
             cssClass: "col",
             label: "Name:",
             value: "",
-            icon:"business",
+            icon: "business",
             inital: 0,
             type: "text",
             requiredError: "Please enter a valid Billing Name!.",
@@ -86,7 +86,7 @@ export class BusinessDetailsPage implements OnInit {
             inputtype: 8,
             placeholder: "Rera Number",
             name: "rera_no",
-            icon:'aperture',
+            icon: "aperture",
             cssClass: "col",
             label: "Name:",
             value: "",
@@ -103,11 +103,11 @@ export class BusinessDetailsPage implements OnInit {
             is_fos: 1,
             is_cp: 1,
             is_cp_indivial: 1,
-            inputtype: 2,
+            inputtype: 9,
             placeholder: "PAN Number",
             name: "pan_no",
             cssClass: "col",
-            icon:'card',
+            icon: "card",
             label: "Name:",
             value: "",
             inital: 0,
@@ -120,13 +120,13 @@ export class BusinessDetailsPage implements OnInit {
             },
           },
           {
-            is_fos: 1,
+            is_fos: 0,
             is_cp: 1,
             is_cp_indivial: 1,
             inputtype: 2,
             placeholder: "GST Number",
             name: "gst_no",
-            icon:'card',
+            icon: "card",
             cssClass: "col",
             label: "Name:",
             value: "",
@@ -136,9 +136,30 @@ export class BusinessDetailsPage implements OnInit {
             patternError: "Please proper GST number!.",
             validators: {
               required: true,
-              pattern: "^[0-9]{2}[A-Z]{5}[0-9]{4}"
-              + "[A-Z]{1}[1-9A-Z]{1}"
-              + "Z[0-9A-Z]{1}$",
+              pattern:
+                "^[0-9]{2}[A-Z]{5}[0-9]{4}" +
+                "[A-Z]{1}[1-9A-Z]{1}" +
+                "Z[0-9A-Z]{1}$",
+            },
+          },
+          {
+            is_fos: 1,
+            is_cp: 0,
+            is_cp_indivial: 0,
+            inputtype: 9,
+            placeholder: "AADHAR Number",
+            name: "adhar_no",
+            icon: "card",
+            cssClass: "col",
+            label: "Name:",
+            value: "",
+            inital: 0,
+            type: "text",
+            requiredError: "Please enter a valid ADHAR number!.",
+            patternError: "Please proper ADHAR number!.",
+            validators: {
+              required: true,
+              pattern: "^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$",
             },
           },
           {
@@ -165,17 +186,16 @@ export class BusinessDetailsPage implements OnInit {
 
   constructor(
     private CommonHelper: CommonHelperService,
-    private state:StateService,
-    private navCtrl:NavController
-    ) {}
+    private state: StateService,
+    private navCtrl: NavController
+  ) {}
 
   ngOnInit() {}
   businessFormValidation($event: FormGroup) {
-
     this.CommonHelper.presentLoading().then(() => {
       try {
         let controls = $event.controls;
-        console.warn({controls})
+        console.warn({ controls });
         let invalid = false;
         let newcontrols = Object.keys(controls).sort((a: any, b: any) => {
           return a - b;
@@ -211,11 +231,11 @@ export class BusinessDetailsPage implements OnInit {
         //   this.presentToast("Please verify your mobile number");
         //   return;
         // }
-        this.navCtrl.navigateForward("bank-details")
+        this.navCtrl.navigateForward("bank-details");
         let formdata = this.state.formValue.value;
         let aftersubmit = $event.value;
-        this.state.formValue.next({...formdata,...aftersubmit})
-     
+        this.state.formValue.next({ ...formdata, ...aftersubmit });
+
         console.log("validated", $event.value);
       } catch (error) {
         this.CommonHelper.dismissLoading();
@@ -234,26 +254,36 @@ export class BusinessDetailsPage implements OnInit {
     console.log({ $event });
     let filteredcontrols = [];
     if ($event == 1) {
-       filteredcontrols = this.temp.header.map((items) => {
+      filteredcontrols = this.temp.header.map((items) => {
         const subfiltered = items.controls.filter((filtered) => {
           return filtered.is_cp == 1;
         });
-        return {headernm:items.headernm,index:items.index,controls:subfiltered};
+        return {
+          headernm: items.headernm,
+          index: items.index,
+          controls: subfiltered,
+        };
       });
-      this.state.formArray.next(filteredcontrols)
+      this.state.formArray.next(filteredcontrols);
       console.log({ filteredcontrols });
     } else if ($event == 2) {
-       filteredcontrols = this.temp.header.map((items) => {
+      filteredcontrols = this.temp.header.map((items) => {
         const subfiltered = items.controls.filter((filtered) => {
-        
           return filtered.is_fos == 1;
         });
-        return {headernm:items.headernm,index:items.index,controls:subfiltered};
+        return {
+          headernm: items.headernm,
+          index: items.index,
+          controls: subfiltered,
+        };
       });
       console.log({ filteredcontrols });
-      this.state.formArray.next(filteredcontrols)
+      this.state.formArray.next(filteredcontrols);
       // this.form.header = []
       // this.form.header = [...filteredcontrols]
     }
+  }
+  validationApi(event: any) {
+    console.log(event);
   }
 }

@@ -1,4 +1,6 @@
 import {
+  AfterContentChecked,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -11,9 +13,11 @@ import {
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { JsonFormControls, JsonFormData } from "src/app/Model/JsonToform";
 
+import { APIService } from "src/app/services/APIService";
 import { AlertController } from "@ionic/angular";
 import { CommonHelperService } from "./../../services/common-helper.service";
 import { ConfirmationDialogComponent } from "../confirmation-dialog/confirmation-dialog.component";
+import { HttpResponse } from '@angular/common/http';
 import { MatDialog } from "@angular/material";
 import { StateService } from "./../../services/state.service";
 
@@ -22,11 +26,12 @@ import { StateService } from "./../../services/state.service";
   templateUrl: "./json-form.component.html",
   styleUrls: ["./json-form.component.scss"],
 })
-export class JsonFormComponent implements OnChanges {
+export class JsonFormComponent implements OnChanges, AfterContentChecked {
   @Input() jsonFormData: any;
   @Input() isRadioAvailable: any;
   @Output() returnformdata = new EventEmitter<FormGroup>();
   @Output() returnchangeorg = new EventEmitter<any>();
+  @Output() returnvaliadation = new EventEmitter<any>();
 
   @ViewChild("ngOtpInput", { static: false }) ngOtpInput: any;
   otp: string;
@@ -49,11 +54,15 @@ export class JsonFormComponent implements OnChanges {
     private fb: FormBuilder,
     public alertctrl: AlertController,
     public dialog: MatDialog,
+    private cdref: ChangeDetectorRef,
     public CommonHelper: CommonHelperService,
-    private state: StateService
+    private state: StateService,
+    private apiService: APIService
   ) {}
+  ngAfterContentChecked() {
+    this.cdref.detectChanges();
+  }
   ngOnChanges(changes: SimpleChanges) {
-    console.log("controls", "element.controls");
     if (this.isRadioAvailable == 1) {
       this.state.formArray.subscribe((data) => {
         console.log({ data });
@@ -83,6 +92,7 @@ export class JsonFormComponent implements OnChanges {
         this.createForm(element.controls);
       });
     }
+    console.log("controls", "element.controls");
   }
   // console.log("changes");
 
@@ -256,13 +266,32 @@ export class JsonFormComponent implements OnChanges {
     const modifiedata = this.jsonFormData.header.map((element: any) => {
       const subElement = element.controls.map((item) => {
         if (item.name == ctrlnm) {
-          item.defaultval = !item.defaultval
+          item.defaultval = !item.defaultval;
         }
-        return item
+        return item;
       });
       return { headernm: element.headernm, controls: subElement };
     });
     console.log("modifiedata", modifiedata);
   }
   validate2() {}
+  validateCards(doc_type) {
+    let body =
+      "?doc_type=" +
+      doc_type +
+      "&doc_no=" +
+      this.myForm.controls[doc_type].value;
+
+    this.apiService.getCardValidation(body).subscribe((data :HttpResponse<any>) => {
+      console.log(data.body);
+      if(data.body ==0)
+      {
+        this.myForm.controls[doc_type].disable()
+      }else
+      {
+        this.CommonHelper.presentToast("Already Exists");
+      }
+    });
+    this.returnvaliadation.emit(body);
+  }
 }

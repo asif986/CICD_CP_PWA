@@ -148,7 +148,7 @@ export class AppComponent {
         }
 
         // this.navCtrl.navigateRoot('/select-cp');
-        // this.navCtrl.navigateRoot('/business-details');
+        this.navCtrl.navigateRoot('/business-details');
         // this.navCtrl.navigateRoot("/bank-details");
         /*
         {
