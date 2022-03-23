@@ -18,6 +18,8 @@ import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { Storage } from "@ionic/storage";
 import { UniqueDeviceID } from "@ionic-native/unique-device-id/ngx";
+import { responsefromlogin } from "./models/Login";
+import { Helper } from "./services/Helper";
 
 @Component({
   selector: "app-root",
@@ -56,7 +58,8 @@ export class AppComponent {
     public http: HttpClient,
     private uniqueDeviceID: UniqueDeviceID,
     private alertCtrl: AlertController,
-    public apiservice: APIService
+    public apiservice: APIService,
+    public helper: Helper
   ) {
     this.initializeApp();
     events.subscribe("user:update_fcm", () => {
@@ -129,68 +132,34 @@ export class AppComponent {
       //For checking App Update is available or not?
       // this.checkAppUpdate();
 
-      //For Storage Set
-      this.storage.get("user_info").then((val) => {
-        // console.log("YourData", val);
-        if (val) {
-          // if (val.verification_status_id == 1) {
-          //   console.log("Your verification_status_id", val);
-          //   this.navCtrl.navigateRoot("/aop-approval-benefit");
-          //   this.storage.set("IDFromPerformance", 2);
-          // } else if (val.verification_status_id == 2) {
-          //   console.log("Your verification_status_id", val);
-          //   this.navCtrl.navigateRoot("/verificationpending");
-          // }
-          this.navCtrl.navigateRoot("/home");
-        } else {
-          // alert('4');
+      this.helper
+        .getUserInfo()
+        .then((val: responsefromlogin) => {
+          if (val) {
+            console.log(val);
+
+            if (val.data.verification_status_id == 1) {
+              console.log("Your verification_status_id", val);
+              if (val.data.aop_qop_accepted == 1) {
+                this.navCtrl.navigateRoot("/home");
+              } else {
+                this.navCtrl.navigateForward("/aop-approval-benefit", {
+                  queryParams: { pending: true },
+                });
+              }
+            } else if (val.data.verification_status_id == 2) {
+              console.log("Your verification_status_id", val);
+              // this.navCtrl.navigateRoot("/verificationpending");
+              this.navCtrl.navigateRoot("/home");
+            }
+          } else {
+            // alert('4');
+            this.navCtrl.navigateRoot("/login");
+          }
+        })
+        .catch(() => {
           this.navCtrl.navigateRoot("/login");
-        }
-
-        // this.navCtrl.navigateRoot('/select-cp');
-        // this.navCtrl.navigateRoot('/business-details');
-        // this.navCtrl.navigateRoot("/bank-details");
-        /*
-        {
-        "name":"Harsh prakash tibile",
-        "mobile":"9145661112",
-        "email":"harshadtibile@gmail.com",
-        "password":"Harsh@123",
-        "registration_type_id":1,
-        "fos_name":"Prashant",
-        "billing_name":"Prashant savant",
-        "rera_no":"123456789",
-        "pan_no":"BACPT8381A",
-        "gst_no":"06BZAHM6385P6Z2",
-        "bank_name":"SBI",
-        "branch_name":"SBI",
-        "account_name":"prashant savant",
-        "account_number":"33483639155",
-        "ifsc_code":"SBIN0000413"
-      }
-      
-      
-      {
-        "name":"Harsh prakash tibile",
-        "mobile":"9145661112",
-        "email":"harshadtibile@gmail.com",
-        "password":"Harsh@123",
-        "registration_type_id":2,
-        "pan_no":"BACPT8383A",
-        "gst_no":"06BZAHM6385P6Z2",
-        "bank_name":"SBI",
-        "branch_name":"SBI",
-        "account_name":"Harsh tibile",
-        "account_number":"33483639155",
-        "ifsc_code":"SBIN0000416"
-      }
-      */
-        // this.navCtrl.navigateRoot('/select-cp');
-
-        this.hideSplashScreen();
-      });
-      //   }
-      // });
+        });
       // this.statusBar.backgroundColorByHexString("#2ac9a9");
     });
   }
