@@ -12,6 +12,15 @@ h3 {
     font-weight: bold;
 }
 
+::ng-deep .popover-content.sc-ion-popover-md {
+    border-radius: 25px;
+}
+
+.popover-content {
+    // border-radius: 20px;
+    border-radius: 25px !important;
+}
+
 * {
     color: #707070;
 }

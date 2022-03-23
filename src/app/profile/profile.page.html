@@ -24,15 +24,30 @@
                 </div>
 
                 <mat-divider class="divider pt-3"></mat-divider>
-
-                <div (click)="login_type ==1?goto():gotoFOs()" class="d-flex justify-content-between pt-3">
-                    <div>
-                        <h5>{{login_type ==1?'Approved AOP/QOP':'CP Acceptance'}}</h5>
+                <!-- CP Acceptance -->
+                <div *ngIf="login_type ==1" class="d-flex flex-column pt-3">
+                    <div class="d-flex justify-content-between" (click)="goto()">
+                        <div>
+                            <h5>Approved AOP/QOP</h5>
+                        </div>
+                        <div>
+                            <mat-icon>
+                                <ion-icon name="arrow-dropright"></ion-icon>
+                            </mat-icon>
+                        </div>
                     </div>
-                    <div>
-                        <mat-icon>
-                            <ion-icon name="arrow-dropright"></ion-icon>
-                        </mat-icon>
+
+
+
+                    <div class="d-flex justify-content-between pt-3" (click)="gotoFOs()">
+                        <div>
+                            <h5>Your Organisation</h5>
+                        </div>
+                        <div>
+                            <mat-icon>
+                                <ion-icon name="arrow-dropright"></ion-icon>
+                            </mat-icon>
+                        </div>
                     </div>
                 </div>
             </ion-col>
