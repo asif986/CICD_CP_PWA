@@ -14,15 +14,16 @@ export class CpstatusPage implements OnInit {
   fosId;
   cpEntityId;
   cpName;
+  login_type;
   constructor(
     public apiService: APIService,
     public helper: Helper,
     public navCtrl: NavController
   ) {}
 
-  getStatusOfTagging(fos_id, cp_entity_id) {
+  getStatusOfTagging(fos_id, cp_entity_id, login_type) {
     this.apiService
-      .cpEntityTaggingRequestList(fos_id, cp_entity_id)
+      .cpEntityTaggingRequestList(fos_id, cp_entity_id, login_type)
       .map((r) => r.body)
       .subscribe(
         (res) => {
@@ -40,12 +41,31 @@ export class CpstatusPage implements OnInit {
     this.helper.getUserInfo().then((val: responsefromlogin) => {
       this.fosId = val.data.fos_id;
       this.cpEntityId = val.data.cp_entity_id;
+      this.login_type = val.login_type;
       console.log(this.cpEntityId);
-      this.getStatusOfTagging(this.fosId, this.cpEntityId);
+      this.checkTagging();
     });
   }
   ngOnInit() {
     this.getUserInfo();
+  }
+  checkTagging() {
+    this.apiService
+      .checkTagging(this.fosId)
+      .map((r) => r.body)
+      .subscribe(
+        (res) => {
+          console.log(res);
+
+          if (res == 2) {
+            this.sucess = false;
+          }
+          this.getStatusOfTagging(this.fosId, this.cpEntityId, this.login_type);
+        },
+        (e) => {
+          this.helper.presentToastError("Something went to wrong");
+        }
+      );
   }
 
   cancelRequest() {

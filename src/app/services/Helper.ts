@@ -246,26 +246,25 @@ export class Helper {
           else {
             console.log("FOS Login INFO", val);
             if (
-              val.data.cp_entity_id !== null &&
-              val.is_cp_tagging_requested == 1
+              val.data.cp_entity_id == null &&
+              val.is_cp_tagging_requested == 0
             ) {
               // this.navCtrl.navigateRoot("/home");
-              this.navCtrl.navigateRoot("/cpstatus", {
+              this.navCtrl.navigateRoot("/select-cp", {
                 queryParams: { pending: true },
               });
             } else if (
               val.data.cp_entity_id == null &&
-              (val.is_cp_tagging_requested == 0 ||
-                val.is_cp_tagging_requested == 1)
+              val.is_cp_tagging_requested == 1
             ) {
               // for 1 is for pending tagging
-              // this.navCtrl.navigateRoot("/select-cp", {
-              //   queryParams: { pending: true },
-              // });
-              // this.navCtrl.navigateRoot("/home");
               this.navCtrl.navigateRoot("/cpstatus", {
                 queryParams: { pending: true },
               });
+              // this.navCtrl.navigateRoot("/home");
+              // this.navCtrl.navigateRoot("/cpstatus", {
+              //   queryParams: { pending: true },
+              // });
             } else {
               this.navCtrl.navigateRoot("/home");
             }

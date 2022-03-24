@@ -36,8 +36,8 @@ export class WebServer {
   // POST CP Login
   public PostCPLogin = this.BASE_URL + "cpNewLogin";
 
-    // get CP Login
-    public getValidationCard = this.BASE_URL + "docNoExists";
+  // get CP Login
+  public getValidationCard = this.BASE_URL + "docNoExists";
 
   // POST CP Login
   public GETCPLogin = this.BASE_URL + "cpNewLogin";
@@ -70,7 +70,8 @@ export class WebServer {
   public verifyPan = "https://kyc-api.aadhaarkyc.io/api/v1/pan/pan";
   public verifyrera = "https://kyc-api.aadhaarkyc.io/api/v1/pan/pan";
   public verifyGST = "https://kyc-api.aadhaarkyc.io/api/v1/corporate/gstin";
-  public verifyaadhar = "https://kyc-api.aadhaarkyc.io/api/v1/aadhaar-validation/aadhaar-validation";
+  public verifyaadhar =
+    "https://kyc-api.aadhaarkyc.io/api/v1/aadhaar-validation/aadhaar-validation";
   // Get CP LeadForm Data
   public GetCPFeed = this.BASE_URL + "getNewCpFeed";
 
@@ -166,6 +167,9 @@ export class WebServer {
 
   //For get cp Entity search
   public cpEntitySearch = this.BASE_URL + "cpEntitySearch";
+
+  // for check tagging
+  public checkTagging = this.BASE_URL + "checkTagging";
 
   // For  add tagging
   public cpEntityTaggingRequest = this.BASE_URL + "cpEntityTaggingRequest";

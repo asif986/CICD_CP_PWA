@@ -841,18 +841,24 @@ export class APIService {
   }
 
   getcpEntitySearch(name: any) {
-    return this.apiClient.get(this.webServer.cpEntitySearch + "?+name=" + name);
+    return this.apiClient.get(this.webServer.cpEntitySearch + "?name=" + name);
+  }
+  checkTagging(fos_id) {
+    return this.apiClient.get(
+      this.webServer.checkTagging + "?fos_id=" + fos_id
+    );
   }
   cpEntityTaggingRequest(psData) {
     return this.apiClient.post(this.webServer.cpEntityTaggingRequest, psData);
   }
-  cpEntityTaggingRequestList(cp_fos_id, cp_entity_id) {
+  cpEntityTaggingRequestList(cp_fos_id, cp_entity_id, login_type) {
     return this.apiClient.get(
       this.webServer.cpEntityTaggingRequestList +
-        "?cp_entity_id=" +
-        cp_entity_id +
-        "&cp_fos_id=" +
-        cp_fos_id
+        `${
+          login_type == 1
+            ? "?cp_entity_id=" + cp_entity_id
+            : "?cp_fos_id=" + cp_fos_id
+        }`
     );
   }
 
