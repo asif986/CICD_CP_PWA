@@ -7,6 +7,7 @@ import { IonicModule } from "@ionic/angular";
 
 import { AopApprovalBenefitPage } from "./aop-approval-benefit.page";
 import { MaterialModule } from "../material.module";
+import { SharedComponentModule } from "../shared/shared-component/shared-component.module";
 
 const routes: Routes = [
   {
@@ -21,6 +22,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     MaterialModule,
+    SharedComponentModule,
     RouterModule.forChild(routes),
   ],
   declarations: [AopApprovalBenefitPage],

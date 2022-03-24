@@ -835,4 +835,30 @@ export class APIService {
     console.log(headers);
     return this.http.post(url, { id_number }, { headers });
   }
+
+  getcpEntitySearch(name: any) {
+    return this.apiClient.get(this.webServer.cpEntitySearch + "?+name=" + name);
+  }
+  cpEntityTaggingRequest(psData) {
+    return this.apiClient.post(this.webServer.cpEntityTaggingRequest, psData);
+  }
+  cpEntityTaggingRequestList(cp_fos_id, cp_entity_id) {
+    return this.apiClient.get(
+      this.webServer.cpEntityTaggingRequestList +
+        "?cp_entity_id=" +
+        cp_entity_id +
+        "&cp_fos_id=" +
+        cp_fos_id
+    );
+  }
+
+  cpEntityTaggingCancel(cp_fos_id, cp_entity_id) {
+    return this.apiClient.get(
+      this.webServer.cpEntityTaggingRequestList +
+        "?cp_entity_id=" +
+        cp_entity_id +
+        "&cp_fos_id=" +
+        cp_fos_id
+    );
+  }
 }

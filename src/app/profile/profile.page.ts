@@ -82,6 +82,7 @@ export class ProfilePage implements OnInit {
             this.updateToken();
             setTimeout(() => {
               this.storage.remove("data");
+              this.storage.remove("user_info");
               this.storage.remove("cpLoginData");
               this.storage.remove("cp_executive_id");
               this.storage.remove("apiToken");
@@ -139,11 +140,7 @@ export class ProfilePage implements OnInit {
     });
   }
 
-  goto() {
-    this.navCtrl.navigateForward("aop-approval-benefit");
+  goto(url) {
+    this.navCtrl.navigateForward(url);
   }
- gotoFOs()
- {
-   this.navCtrl.navigateForward("select-cp");
-   } 
 }

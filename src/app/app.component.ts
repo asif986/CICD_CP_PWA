@@ -132,34 +132,7 @@ export class AppComponent {
       //For checking App Update is available or not?
       // this.checkAppUpdate();
 
-      this.helper
-        .getUserInfo()
-        .then((val: responsefromlogin) => {
-          if (val) {
-            console.log(val);
-
-            if (val.data.verification_status_id == 1) {
-              console.log("Your verification_status_id", val);
-              if (val.data.aop_qop_accepted == 1) {
-                this.navCtrl.navigateRoot("/home");
-              } else {
-                this.navCtrl.navigateForward("/aop-approval-benefit", {
-                  queryParams: { pending: true },
-                });
-              }
-            } else if (val.data.verification_status_id == 2) {
-              console.log("Your verification_status_id", val);
-              // this.navCtrl.navigateRoot("/verificationpending");
-              this.navCtrl.navigateRoot("/home");
-            }
-          } else {
-            // alert('4');
-            this.navCtrl.navigateRoot("/login");
-          }
-        })
-        .catch(() => {
-          this.navCtrl.navigateRoot("/login");
-        });
+      this.helper.redirectionOfUser();
       // this.statusBar.backgroundColorByHexString("#2ac9a9");
     });
   }

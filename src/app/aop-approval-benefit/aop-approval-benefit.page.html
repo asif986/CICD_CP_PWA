@@ -1,27 +1,20 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar color="color_d">
-    <ion-row>
-      <ion-col *ngIf="isArrowHide">
-        <div>
-          <ion-buttons slot="start" style="margin-left: 3%">
-            <i class="material-icons icon" (click)="goBack()">arrow_back_ios</i>
-          </ion-buttons>
 
-        </div>
-      </ion-col>
-      <ion-col>
-        <div class="text-center">
-          <ion-title class="TITLETOOLBAR">Approve AOP/QOP</ion-title>
-        </div>
-      </ion-col>
-
-      <!-- <ion-col style="text-align: end;margin-right: 10px;">? -->
-      <!-- <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 38%!important;"> -->
-      <!-- </ion-col> -->
-    </ion-row>
+    <div [ngClass]="{'arrow_header': isArrowHide ==true, 'no_arrow_header': isArrowHide ==false}">
+      <div *ngIf="isArrowHide ">
+        <ion-buttons slot="start" style="margin-left: 3%">
+          <i class="material-icons icon" (click)="goBack()">arrow_back_ios</i>
+        </ion-buttons>
+      </div>
+      <div class="text-center">
+        <ion-title class="TITLETOOLBAR" style="margin-left: 0px !important;">Approve AOP/QOP</ion-title>
+      </div>
+    </div>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
+<app-header headernam="Approve AOP/QOP" url="profile"></app-header>
 <ion-content>
   <div class="main">
     <ion-row align-items-center>

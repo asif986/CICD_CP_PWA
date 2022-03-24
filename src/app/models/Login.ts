@@ -37,4 +37,5 @@ export interface responsefromlogin {
   success: number;
   data: Data;
   login_type: number;
+  is_cp_tagging_requested?: any;
 }

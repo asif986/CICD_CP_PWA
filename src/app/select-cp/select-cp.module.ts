@@ -7,7 +7,7 @@ import { MaterialModule } from "../material.module";
 import { NgModule } from "@angular/core";
 import { SelectCPPage } from "./select-cp.page";
 import { SharedComponentModule } from "./../shared/shared-component/shared-component.module";
-
+import { Ng2SearchPipeModule } from "ng2-search-filter";
 const routes: Routes = [
   {
     path: "",
@@ -20,12 +20,13 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     SharedComponentModule,
+    Ng2SearchPipeModule,
     MaterialModule,
     ReactiveFormsModule,
     IonicModule,
     RouterModule.forChild(routes),
   ],
-  declarations: [SelectCPPage,],
-  entryComponents:[]
+  declarations: [SelectCPPage],
+  entryComponents: [],
 })
 export class SelectCPPageModule {}

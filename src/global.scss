@@ -229,3 +229,8 @@ ion-modal.select-modal {
   --height: 42%;
   --width: 90%;
 }
+ion-modal.cp-confirm-modal {
+  --height: 38%;
+  --width: 90%;
+  --border-radius: 32px !important;
+}

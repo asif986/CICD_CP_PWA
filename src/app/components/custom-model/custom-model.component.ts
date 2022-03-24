@@ -1,36 +1,39 @@
-import { Component, OnInit } from '@angular/core';
-import { NavParams, PopoverController } from '@ionic/angular';
+import { Component, OnInit } from "@angular/core";
+import { ModalController, NavParams, PopoverController } from "@ionic/angular";
 
-import { DataService } from './../../services/data.service';
-import { NavController } from '@ionic/angular';
+import { DataService } from "./../../services/data.service";
+import { NavController } from "@ionic/angular";
 
 @Component({
-  selector: 'app-custom-model',
-  templateUrl: './custom-model.component.html',
-  styleUrls: ['./custom-model.component.scss'],
+  selector: "app-custom-model",
+  templateUrl: "./custom-model.component.html",
+  styleUrls: ["./custom-model.component.scss"],
 })
 export class CustomModelComponent implements OnInit {
-firms = [];
-firmnm='';
+  cp_entity_id;
+  firmnm = "";
   constructor(
-    public data:DataService,
-    public popoverctrl:PopoverController,
-    public navctrl:NavController,public navParams : NavParams) { }
+    public data: DataService,
+    public popoverctrl: PopoverController,
+    public modalCtrl: ModalController,
+    public navctrl: NavController,
+    public navParams: NavParams
+  ) {}
 
-  ngOnInit() 
-  {
-    this.firms = this.data.firms();
-    const id = this.navParams.get('cp_id');
-   this.firmnm = this.firms.find(item=>item.id==id).name
-    console.log("cp_id",)
+  ngOnInit() {
+    // this.firms = this.data.firms();
+    this.cp_entity_id = this.navParams.get("cp_id");
+    this.firmnm = this.navParams.get("name");
+
+    console.log("cp_id");
   }
-closeModel()
-{
-  this.popoverctrl.dismiss({data:0});
-}
-SendMailMsg()
-{
-  this.popoverctrl.dismiss({data:1});
-this.navctrl.navigateForward("cpstatus");
-}
+  closeModel() {
+    this.modalCtrl.dismiss(null);
+  }
+  SendMailMsg() {
+    this.modalCtrl.dismiss({
+      cp_entity_id: this.cp_entity_id,
+      cp_nm: this.firmnm,
+    });
+  }
 }

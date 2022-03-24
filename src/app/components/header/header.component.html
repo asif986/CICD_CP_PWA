@@ -1,20 +1,15 @@
 <ion-header>
     <ion-toolbar color="color_d">
-        <ion-row>
-            <ion-col>
-                <div>
-                    <ion-buttons slot="start" style="margin-left: 3%">
-                        <i class="material-icons icon" (click)="goBack()">arrow_back_ios</i>
-                    </ion-buttons>
-                </div>
-            </ion-col>
-            <ion-col style="text-align: start;margin-left: -30px!important;">
-                <div>
-                    <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;">{{headernam}}</ion-title>
-                </div>
-            </ion-col>
-            <ion-col style="text-align: end;margin-right: 10px;">
-            </ion-col>
-        </ion-row>
+
+        <div [ngClass]="{'arrow_header': isArrowHide ==true, 'no_arrow_header': isArrowHide ==false}">
+            <div *ngIf="isArrowHide ">
+                <ion-buttons slot="start" style="margin-left: 3%">
+                    <i class="material-icons icon" (click)="goBack()">arrow_back_ios</i>
+                </ion-buttons>
+            </div>
+            <div class="text-center">
+                <ion-title class="TITLETOOLBAR" style="margin-left: 0px !important;">{{headernam}}</ion-title>
+            </div>
+        </div>
     </ion-toolbar>
 </ion-header>
