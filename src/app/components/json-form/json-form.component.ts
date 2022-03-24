@@ -1,4 +1,6 @@
 import {
+  AfterContentChecked,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
@@ -11,9 +13,12 @@ import {
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { JsonFormControls, JsonFormData } from "src/app/Model/JsonToform";
 
+import { APIService } from "src/app/services/APIService";
 import { AlertController } from "@ionic/angular";
 import { CommonHelperService } from "./../../services/common-helper.service";
 import { ConfirmationDialogComponent } from "../confirmation-dialog/confirmation-dialog.component";
+import { DataService } from "./../../services/data.service";
+import { HttpResponse } from "@angular/common/http";
 import { MatDialog } from "@angular/material";
 import { StateService } from "./../../services/state.service";
 
@@ -22,11 +27,12 @@ import { StateService } from "./../../services/state.service";
   templateUrl: "./json-form.component.html",
   styleUrls: ["./json-form.component.scss"],
 })
-export class JsonFormComponent implements OnChanges {
+export class JsonFormComponent implements OnChanges, AfterContentChecked {
   @Input() jsonFormData: any;
   @Input() isRadioAvailable: any;
   @Output() returnformdata = new EventEmitter<FormGroup>();
   @Output() returnchangeorg = new EventEmitter<any>();
+  @Output() returnvaliadation = new EventEmitter<any>();
 
   @ViewChild("ngOtpInput", { static: false }) ngOtpInput: any;
   otp: string;
@@ -49,11 +55,16 @@ export class JsonFormComponent implements OnChanges {
     private fb: FormBuilder,
     public alertctrl: AlertController,
     public dialog: MatDialog,
+    private cdref: ChangeDetectorRef,
     public CommonHelper: CommonHelperService,
-    private state: StateService
+    private state: StateService,
+    public dataSer: DataService,
+    private apiService: APIService
   ) {}
+  ngAfterContentChecked() {
+    this.cdref.detectChanges();
+  }
   ngOnChanges(changes: SimpleChanges) {
-    console.log("controls", "element.controls");
     if (this.isRadioAvailable == 1) {
       this.state.formArray.subscribe((data) => {
         console.log({ data });
@@ -83,6 +94,7 @@ export class JsonFormComponent implements OnChanges {
         this.createForm(element.controls);
       });
     }
+    console.log("controls", "element.controls");
   }
   // console.log("changes");
 
@@ -256,13 +268,130 @@ export class JsonFormComponent implements OnChanges {
     const modifiedata = this.jsonFormData.header.map((element: any) => {
       const subElement = element.controls.map((item) => {
         if (item.name == ctrlnm) {
-          item.defaultval = !item.defaultval
+          item.defaultval = !item.defaultval;
         }
-        return item
+        return item;
       });
       return { headernm: element.headernm, controls: subElement };
     });
     console.log("modifiedata", modifiedata);
   }
   validate2() {}
+  validateCards(doc_type) {
+    this.CommonHelper.presentLoading().then(()=>
+    {
+
+      if (
+        this.myForm.controls[doc_type].hasError("required") ||
+      this.myForm.controls[doc_type].hasError("pattern")
+    ) {
+      this.jsonFormData.header.forEach((element: any) => {
+        let single_controls = element.controls.find(
+          (item) => item.name == doc_type
+        );
+        if (this.myForm.controls[doc_type].hasError("required")) {
+          this.CommonHelper.presentToast(single_controls.requiredError);
+        } else if (this.myForm.controls[doc_type].hasError("pattern")) {
+          this.CommonHelper.presentToast(single_controls.patternError);
+        }
+      });
+      this.CommonHelper.dismissLoading();
+      return;
+    } else {
+      let values = this.myForm.controls[doc_type].value;
+      let body =
+        "?doc_type=" +
+        doc_type +
+        "&doc_no=" +
+        values +
+        "&for=" +
+        (this.myForm.controls["registration_type_id"].value == 1
+          ? "cp"
+          : "fos");
+
+      this.apiService
+        .getCardValidation(body)
+        .subscribe((data: HttpResponse<any>) => {
+          console.log(data.body);
+          // this.jsonFormData.header.
+          let single_controls: any = {};
+          this.jsonFormData.header.forEach((element: any) => {
+            single_controls = {
+              ...element.controls.find((item) => item.name == doc_type),
+            };
+          });
+          console.log("header", single_controls);
+          // let single_controls_focheckin:any={}
+          let personDetails = this.dataSer.persondetailsForm();
+
+          // console.log(single_controls_focheckin)
+          if (data.body == 0) {
+            this.apiService
+              .kycVerifications_registration(
+                single_controls.isValidatedid,
+                values
+              )
+              .subscribe(
+                (data: any) => {
+                  // console.log("data",this.state.formValue.value)
+                  // return;
+                  console.log("validated", data);
+                  let single_controls_focheckin: any = {};
+                  let alreadyData = this.state.formValue.value;
+                  personDetails.header.forEach((element: any) => {
+                    single_controls_focheckin = {
+                      ...element.controls.find((item) => item.ischekble == 1),
+                    };
+                    console.log({ element });
+                  });
+                  let key = "";
+                  console.log({ single_controls_focheckin });
+                  console.log("namecontrolnm", single_controls_focheckin.name);
+                  console.log(
+                    "namesaved",
+                    alreadyData[single_controls_focheckin.name]
+                  );
+                  console.log("data", data);
+                  console.log("data.data.full_name", data.data.full_name);
+                  console.log(
+                    "data condition",
+                    (alreadyData[single_controls_focheckin.name]).toLowerCase() ==
+                      (data.data.full_name).toLowerCase()
+                  );
+//PRAMOD KUMAR MAHTO
+                  if (
+                    (alreadyData[single_controls_focheckin.name]).toLowerCase() ==
+                    (data.data.full_name).toLowerCase()
+                  ) {
+                    this.myForm.controls[doc_type].disable();
+                    this.CommonHelper.presentToast(
+                      "Your PAN is verified"
+                    );
+
+                  } else {
+                    this.CommonHelper.presentToast(
+                      "Pleaser enter your name as per PAN number"
+                    );
+                    this.CommonHelper.dismissLoading();
+                    return;
+                  }
+                  this.CommonHelper.dismissLoading();
+                  return;
+                },
+                (error) => {
+                  this.CommonHelper.presentToast(error.error.message);
+                  this.CommonHelper.dismissLoading();
+                  return;
+                }
+              );
+          } else {
+            this.CommonHelper.dismissLoading();
+            this.CommonHelper.presentToast("Already Exists");
+            return;
+          }
+        });
+      this.returnvaliadation.emit(body);
+    }
+  })
+  }
 }

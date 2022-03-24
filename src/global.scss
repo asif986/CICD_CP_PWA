@@ -130,6 +130,31 @@ ion-toolbar {
   color: white !important;
 }
 
+.common-btn-for-popover {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100% !important;
+  padding: 0.25rem !important;
+  font-size: 18px !important;
+  border-radius: 25px !important;
+  background-color: var(--ion-color-btn-primary);
+  color: white !important;
+}
+
+.common-btn-outline-for-popover {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  width: 100% !important;
+  padding: 0.25rem !important;
+  border: 1px solid black !important;
+  font-size: 18px !important;
+  border-radius: 25px !important;
+  // border-color: #F5A22C!important;
+  background-color: white;
+  // border: 1px solid #F5A22C!important;
+  color: black !important;
+}
+
 .common-btn-outline {
   margin-left: auto !important;
   margin-right: auto !important;

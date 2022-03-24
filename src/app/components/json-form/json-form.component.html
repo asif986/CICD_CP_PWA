@@ -45,6 +45,20 @@
                     <a (click)="otpVerification()">Verify</a>
                 </p>
             </div>
+            <div *ngIf="controls.inputtype==9">
+                <mat-form-field appearance="outline" class="inputtextfield">
+                    <mat-label>{{controls.placeholder}}</mat-label>
+                    <input [formControlName]="controls.name" [placeholder]="controls.placeholder" matInput [type]="controls.type" class="inputtextfield">
+                    <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button>
+                        <mat-icon>
+                            <ion-icon color="dark" [name]="controls.icon"></ion-icon>
+                        </mat-icon>
+                    </button>
+                </mat-form-field>
+                <p class="d-flex justify-content-end verify">
+                    <a (click)="validateCards(controls.name)">Verify</a>
+                </p>
+            </div>
             <div *ngIf="controls.inputtype==4">
                 <mat-radio-group aria-label="Select an option" (change)="changeOrgz($event)" [formControlName]="controls.name" class="d-flex justify-content-around pt-4 pb-4">
                     <mat-radio-button [value]="menu.index" *ngFor="let menu of controls.sub_menus">{{menu.value}}</mat-radio-button>

@@ -36,6 +36,9 @@ export class WebServer {
   // POST CP Login
   public PostCPLogin = this.BASE_URL + "cpNewLogin";
 
+    // get CP Login
+    public getValidationCard = this.BASE_URL + "docNoExists";
+
   // POST CP Login
   public GETCPLogin = this.BASE_URL + "cpNewLogin";
 
@@ -64,6 +67,10 @@ export class WebServer {
   // CPRegistration Add kyc docs
   public POSTREGKYCDocument = this.BASE_URL + "addUploadRegDocs";
 
+  public verifyPan = "https://kyc-api.aadhaarkyc.io/api/v1/pan/pan";
+  public verifyrera = "https://kyc-api.aadhaarkyc.io/api/v1/pan/pan";
+  public verifyGST = "https://kyc-api.aadhaarkyc.io/api/v1/corporate/gstin";
+  public verifyaadhar = "https://kyc-api.aadhaarkyc.io/api/v1/aadhaar-validation/aadhaar-validation";
   // Get CP LeadForm Data
   public GetCPFeed = this.BASE_URL + "getNewCpFeed";
 

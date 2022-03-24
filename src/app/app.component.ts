@@ -9,6 +9,7 @@ import { Component, NgZone, OnInit, enableProdMode } from "@angular/core";
 import { Push, PushObject, PushOptions } from "@ionic-native/push/ngx";
 
 import { APIService } from "./services/APIService";
+import { Helper } from "./services/Helper";
 import { HttpClient } from "@angular/common/http";
 import { MobileAccessibility } from "@ionic-native/mobile-accessibility/ngx";
 import { PopupalertPage } from "./popupalert/popupalert.page";
@@ -19,7 +20,6 @@ import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { Storage } from "@ionic/storage";
 import { UniqueDeviceID } from "@ionic-native/unique-device-id/ngx";
 import { responsefromlogin } from "./models/Login";
-import { Helper } from "./services/Helper";
 
 @Component({
   selector: "app-root",

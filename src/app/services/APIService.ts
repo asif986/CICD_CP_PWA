@@ -28,6 +28,10 @@ export class APIService {
   postCpLogin(psdata) {
     return this.apiClient.post(this.webServer.PostCPLogin, psdata);
   }
+  /*CP validation*/
+  getCardValidation(psdata) {
+    return this.apiClient.get(this.webServer.getValidationCard + psdata);
+  }
   /*CP Login*/
   getCpLogin(user_id: string, password: string) {
     return this.apiClient.get(
@@ -860,5 +864,31 @@ export class APIService {
         "&cp_fos_id=" +
         cp_fos_id
     );
+  }
+
+  kycVerifications_registration(id, id_number) {
+    let TOKEN =
+      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NzEwNDcxNCwianRpIjoiOWNhMDViZTAtZTMwYS00NTc5LTk5MzEtYWY3MmVmYzg1ZGFhIiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiZGV2LmphdmRla2Fyc0BhYWRoYWFyYXBpLmlvIiwibmJmIjoxNjQ3MTA0NzE0LCJleHAiOjE5NjI0NjQ3MTQsInVzZXJfY2xhaW1zIjp7InNjb3BlcyI6WyJyZWFkIl19fQ.cGYIaxfNm0BDCol5_7I1DaJFZE-jXSel2E63EHl2A4A";
+    const headers = new HttpHeaders().set(
+      "Authorization",
+      `${"Bearer" + " " + TOKEN}`
+    );
+    console.log(headers);
+    let url = "";
+    switch (id) {
+      case 1:
+        url = this.webServer.verifyPan;
+        break;
+      case 2:
+        url = this.webServer.verifyaadhar;
+        break;
+      case 3:
+        url = this.webServer.verifyrera;
+        break;
+      case 4:
+        url = this.webServer.verifyGST;
+        break;
+    }
+    return this.http.post(url, { id_number }, { headers });
   }
 }
