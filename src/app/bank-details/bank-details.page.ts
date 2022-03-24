@@ -552,7 +552,8 @@ export class BankDetailsPage implements OnInit {
         delete body.btn1;
         delete body.btn2;
         delete body.checkbx1;
-
+console.log({body})
+        // return;
         this.apiservice.cpRegistration(body).subscribe(
           (data: HttpResponse<any>) => {
             this.CommonHelper.presentToast("Thank u for registration");

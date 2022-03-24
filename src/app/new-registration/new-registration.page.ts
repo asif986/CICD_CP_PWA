@@ -14,6 +14,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { APIService } from "../services/APIService";
 import { BehaviorSubject } from "rxjs";
 import { CommonHelperService } from "../services/common-helper.service";
+import { DataService } from "../services/data.service";
 import { Helper } from "../services/Helper";
 import { HttpClient } from "@angular/common/http";
 import { JsonFormControls } from "./../Model/JsonToform";
@@ -74,109 +75,8 @@ export class NewRegistrationPage implements OnInit {
   alive: boolean;
   hideMe: Boolean = false;
   read: Boolean = false;
-  temp: any = {
-    header: [
-      {
-        headernm: "Personal Details",
-        index: 0,
-        controls: [
-          {
-            inputtype: 2,
-            placeholder: "Full Name",
-            name: "name",
-            cssClass: "col",
-            icon:"person",
-            label: "Name:",
-            value: "",
-            inital: 0,
-            type: "text",
-            requiredError: "Please enter a valid full name!.",
-            patternError: "Please proper full name!.",
-            validators: {
-              required: true,
-              pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
-            },
-          },
-          {
-            inputtype: 2,
-            placeholder: "Official Mobile",
-            icon:"phone-portrait",
-            name: "mobile",
-            cssClass: "col",
-            label: "Name:",
-            value: "",
-            inital: 0,
-            type: "text",
-            requiredError: "Please enter a valid Mobile number!.",
-            patternError: "Please proper Mobile number!.",
-            validators: {
-              required: true,
-              pattern: /^[6-9]\d{9}$/gi,
-            },
-          },
-          {
-            inputtype: 2,
-            placeholder: "Official Email",
-            name: "email",
-            icon: "mail",
-            cssClass: "col",
-            label: "Name:",
-            value: "",
-            inital: 0,
-            type: "text",
-            requiredError: "Please enter a valid Email ID!.",
-            patternError: "Please proper Email ID!.",
-            validators: {
-              required: true,
-              pattern: "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
-            },
-          },
-          {
-            inputtype: 2,
-            placeholder: "Password",
-            name: "password",
-            isButton:true,
-            icontoggle:"eye-off",
-            defaultval:false,
-            icon:"eye",
-            cssClass: "col",
-            label: "Name:",
-            value: "",
-            inital: 0,
-            type: "text",
-            type_2: "password",
-            requiredError: "Please enter a valid Password!.",
-            patternError: "Password must contain characters and numbers at least 8 !.",
-            validators: {
-              required: true,
-              pattern:
-                "^(?=.*[0-9])" +
-                "(?=.*[a-z])(?=.*[A-Z])" +
-                // "(?=.*[@#$%^&+=])" +
-                "(?=\\S+$).{8,20}$",
-            },
-          },
-          {
-            inputtype: 3,
-            placeholder: "Password",
-            name: "password",
-            cssClass: "col",
-            label: "Proceed to Business Details",
-            value: "",
-            inital: 0,
-            type: "text",
-            requiredError: "Please enter a valid full name!.",
-            patternError: "Please proper full name!.",
-            validators: {
-              required: true,
-              pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
-            },
-          },
-        ],
-      },
-    ],
-  };
-  form: any = { ...this.temp };
+  
+  form: any = { };
   kycregDocuments: KYCRegDocuments;
   color1 = true;
   public disabled = true;
@@ -197,7 +97,7 @@ export class NewRegistrationPage implements OnInit {
   // tslint:disable-next-line:max-line-length
   constructor(
     private statusBar: StatusBar,
-
+public dataSer:DataService,
     private CommonHelper: CommonHelperService,
     public navCtrl: NavController,
     public loadingController: LoadingController,
@@ -375,9 +275,9 @@ export class NewRegistrationPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.temp);
-    let fm = this.form.header;
-    this.state.next(this.temp.header);
+let data =     this.dataSer.persondetailsForm();
+this.form = {...data}
+    this.state.next(data.header);
     this.form.header.forEach((element: any) => {
       console.log("controls", element.controls);
       this.createForm(element.controls);

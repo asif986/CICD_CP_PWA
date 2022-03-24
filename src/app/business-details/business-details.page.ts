@@ -94,6 +94,9 @@ export class BusinessDetailsPage implements OnInit {
             type: "text",
             requiredError: "Please enter a valid Rera Number!.",
             patternError: "Please proper Rera Number!.",
+            validateError: "Please validated Rera Number!.",
+            // isValidatedError: 1,
+            isValidatedid: 3,
             validators: {
               required: true,
               // pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
@@ -114,16 +117,19 @@ export class BusinessDetailsPage implements OnInit {
             type: "text",
             requiredError: "Please enter a valid PAN!.",
             patternError: "Please proper PAN!.",
+            validateError: "Please validated PAN!.",
+            isValidatedid: 1,
+            isValidatedError: 1,
             validators: {
               required: true,
-              pattern: /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/,
+              pattern: "[A-Z]{5}[0-9]{4}[A-Z]{1}",
             },
           },
           {
             is_fos: 0,
             is_cp: 1,
             is_cp_indivial: 1,
-            inputtype: 2,
+            inputtype: 9,
             placeholder: "GST Number",
             name: "gst_no",
             icon: "card",
@@ -134,6 +140,9 @@ export class BusinessDetailsPage implements OnInit {
             type: "text",
             requiredError: "Please enter a valid GST number!.",
             patternError: "Please proper GST number!.",
+            validateError: "Please validated GST Number!.",
+            isValidatedError: 1,
+            isValidatedid: 4,
             validators: {
               required: true,
               pattern:
@@ -148,7 +157,7 @@ export class BusinessDetailsPage implements OnInit {
             is_cp_indivial: 0,
             inputtype: 9,
             placeholder: "AADHAR Number",
-            name: "adhar_no",
+            name: "aadhar_no",
             icon: "card",
             cssClass: "col",
             label: "Name:",
@@ -157,6 +166,9 @@ export class BusinessDetailsPage implements OnInit {
             type: "text",
             requiredError: "Please enter a valid ADHAR number!.",
             patternError: "Please proper ADHAR number!.",
+            validateError: "Please validated ADHAR number!.",
+            isValidatedError: 1,
+            isValidatedid: 2,
             validators: {
               required: true,
               pattern: "^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$",
@@ -195,27 +207,57 @@ export class BusinessDetailsPage implements OnInit {
     this.CommonHelper.presentLoading().then(() => {
       try {
         let controls = $event.controls;
-        console.warn({ controls });
+        // console.warn({ controls });
         let invalid = false;
+
+        let form_fields = [];
+        this.form.header.forEach((element: any) => {
+          element.controls.map((item) => {
+            if (item.isValidatedError == 1) {
+              form_fields.push(item.name);
+            }
+            return item;
+          });
+        });
+        // return;
         let newcontrols = Object.keys(controls).sort((a: any, b: any) => {
           return a - b;
         });
         newcontrols = newcontrols.reverse();
         newcontrols.forEach((key) => {
-          console.log({ key });
-          if (controls[key].hasError("required")) {
-            this.form.header.forEach((element: any) => {
-              let errormsg = element.controls.find((item) => item.name == key);
-              this.CommonHelper.presentToast(errormsg.requiredError);
-            });
-            invalid = true;
-          } else if (controls[key].hasError("pattern")) {
-            this.form.header.forEach((element: any) => {
-              let errormsg = element.controls.find((item) => item.name == key);
-              this.CommonHelper.presentToast(errormsg.patternError);
-              console.log("line", errormsg);
-            });
-            invalid = true;
+          // console.log({ key });
+          if (
+            controls[key].hasError("required") ||
+            controls[key].hasError("pattern")
+          ) {
+            if (controls[key].hasError("required")) {
+              this.form.header.forEach((element: any) => {
+                let errormsg = element.controls.find(
+                  (item) => item.name == key
+                );
+                this.CommonHelper.presentToast(errormsg.requiredError);
+              });
+              invalid = true;
+            } else if (controls[key].hasError("pattern")) {
+              this.form.header.forEach((element: any) => {
+                let errormsg = element.controls.find(
+                  (item) => item.name == key
+                );
+                this.CommonHelper.presentToast(errormsg.patternError);
+              });
+              invalid = true;
+            }
+          } else {
+            if (form_fields.includes(key) && controls[key].enabled) {
+              console.log("Invalid");
+              this.form.header.forEach((element: any) => {
+                let errormsg = element.controls.find(
+                  (item) => item.name == key
+                );
+                this.CommonHelper.presentToast(errormsg.validateError);
+                });
+              invalid = true;
+            }
           }
         });
         if (invalid) {
@@ -231,12 +273,13 @@ export class BusinessDetailsPage implements OnInit {
         //   this.presentToast("Please verify your mobile number");
         //   return;
         // }
-        this.navCtrl.navigateForward("bank-details");
+        console.log("validated", $event.value);
+        this.CommonHelper.dismissLoading();
+        // return;
         let formdata = this.state.formValue.value;
+        this.navCtrl.navigateForward("bank-details");
         let aftersubmit = $event.value;
         this.state.formValue.next({ ...formdata, ...aftersubmit });
-
-        console.log("validated", $event.value);
       } catch (error) {
         this.CommonHelper.dismissLoading();
 
@@ -248,7 +291,7 @@ export class BusinessDetailsPage implements OnInit {
         this.CommonHelper.dismissLoading();
       }, 2000);
     });
-    console.log($event);
+      console.log($event);
   }
   changeOrg($event) {
     console.log({ $event });

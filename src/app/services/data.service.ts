@@ -121,5 +121,111 @@ public firms()
   ];
   return Firms;
 }
-
+public persondetailsForm()
+{
+  const filels =  {
+    header: [
+      {
+        headernm: "Personal Details",
+        index: 0,
+        controls: [
+          {
+            inputtype: 2,
+            placeholder: "Full Name",
+            name: "name",
+            cssClass: "col",
+            icon:"person",
+            label: "Name:",
+            value: "",
+            inital: 0,
+            type: "text",
+            ischekble:1,
+            requiredError: "Please enter a valid full name!.",
+            patternError: "Please proper full name!.",
+            validators: {
+              required: true,
+              pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+            },
+          },
+          {
+            inputtype: 2,
+            placeholder: "Official Mobile",
+            icon:"phone-portrait",
+            name: "mobile",
+            cssClass: "col",
+            label: "Name:",
+            value: "",
+            inital: 0,
+            type: "text",
+            requiredError: "Please enter a valid Mobile number!.",
+            patternError: "Please proper Mobile number!.",
+            validators: {
+              required: true,
+              pattern: /^[6-9]\d{9}$/gi,
+            },
+          },
+          {
+            inputtype: 2,
+            placeholder: "Official Email",
+            name: "email",
+            icon: "mail",
+            cssClass: "col",
+            label: "Name:",
+            value: "",
+            inital: 0,
+            type: "text",
+            requiredError: "Please enter a valid Email ID!.",
+            patternError: "Please proper Email ID!.",
+            validators: {
+              required: true,
+              pattern: "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$",
+            },
+          },
+          {
+            inputtype: 2,
+            placeholder: "Password",
+            name: "password",
+            isButton:true,
+            icontoggle:"eye-off",
+            defaultval:false,
+            icon:"eye",
+            cssClass: "col",
+            label: "Name:",
+            value: "",
+            inital: 0,
+            type: "text",
+            type_2: "password",
+            requiredError: "Please enter a valid Password!.",
+            patternError: "Password must contain characters and numbers at least 8 !.",
+            validators: {
+              required: true,
+              pattern:
+                "^(?=.*[0-9])" +
+                "(?=.*[a-z])(?=.*[A-Z])" +
+                // "(?=.*[@#$%^&+=])" +
+                "(?=\\S+$).{8,20}$",
+            },
+          },
+          {
+            inputtype: 3,
+            placeholder: "Password",
+            name: "password",
+            cssClass: "col",
+            label: "Proceed to Business Details",
+            value: "",
+            inital: 0,
+            type: "text",
+            requiredError: "Please enter a valid full name!.",
+            patternError: "Please proper full name!.",
+            validators: {
+              required: true,
+              pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+            },
+          },
+        ],
+      },
+    ],
+  };
+  return filels;
+}
 }
