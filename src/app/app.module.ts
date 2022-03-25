@@ -1,7 +1,7 @@
 import { APP_INITIALIZER, NgModule } from "@angular/core";
 import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
 import { MatDatepickerModule, MatNativeDateModule } from "@angular/material";
-import { ServiceWorkerModule, SwUpdate } from "@angular/service-worker";
+import { ServiceWorkerModule } from "@angular/service-worker";
 
 import { AmazingTimePickerModule } from "amazing-time-picker";
 import { AppComponent } from "./app.component";
@@ -19,7 +19,7 @@ import { FileOpener } from "@ionic-native/file-opener/ngx";
 import { FilePath } from "@ionic-native/file-path/ngx";
 import { FileTransfer } from "@ionic-native/file-transfer/ngx";
 import { HTTP } from "@ionic-native/http/ngx";
-import { Helper } from "./services/Helper";
+
 import { HttpClientModule } from "@angular/common/http";
 import { InAppBrowser } from "@ionic-native/in-app-browser/ngx";
 import { IonicStorageModule } from "@ionic/storage";
@@ -38,31 +38,6 @@ import { UniqueDeviceID } from "@ionic-native/unique-device-id/ngx";
 import { environment } from "../environments/environment";
 
 import { KycModalPageModule } from "./addnewlead/kyc-modal/kyc-modal.module";
-
-export const checkForUpdates = (
-  swUpdate: SwUpdate,
-  helper: Helper
-): (() => Promise<any>) => {
-  return (): Promise<void> =>
-    new Promise((resolve) => {
-      swUpdate.checkForUpdate();
-
-      swUpdate.available.subscribe(() => {
-        //   showAppUpdateAlert();
-        const header = "App Update Available";
-        const message = "Choose OK to update";
-
-        //alert('App Update Available');
-        // Use MatDialog or ionicframework's AlertController or similar
-        helper.presentAlert(header, message, "UPDATE", (cb) => {
-          window.location.reload();
-        });
-        // window.location.reload();
-      });
-
-      resolve();
-    });
-};
 
 @NgModule({
   declarations: [AppComponent],
@@ -83,7 +58,6 @@ export const checkForUpdates = (
     KycModalPageModule,
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
-      registrationStrategy: "registerImmediately",
     }),
   ],
   providers: [
@@ -106,12 +80,6 @@ export const checkForUpdates = (
     FileOpener,
     DocumentViewer,
     MobileAccessibility,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: checkForUpdates,
-      deps: [SwUpdate, Helper],
-      multi: true,
-    },
   ],
   bootstrap: [AppComponent],
   entryComponents: [],

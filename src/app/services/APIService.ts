@@ -95,8 +95,9 @@ export class APIService {
   /*Get CP Feed */
   getCPFeed(
     cp_entity_id: any,
-    apitoken: any,
     fos_id: any,
+    login_type: any,
+    apitoken: any,
     skip_count: any,
     last_lead_updated_at: any
   ) {
@@ -104,12 +105,13 @@ export class APIService {
     // tslint:disable-next-line:max-line-length
     return this.apiClient.get(
       this.webServer.GetCPFeed +
-        "?api_token=" +
+        `${
+          login_type == 1
+            ? "?cp_entity_id=" + cp_entity_id
+            : "?cp_fos_id=" + fos_id
+        }` +
+        "&api_token=" +
         apitoken +
-        "&cp_entity_id=" +
-        cp_entity_id +
-        "&fos_id=" +
-        fos_id +
         "&limit=8&skip=" +
         skip_count +
         "&last_lead_updated_at=" +
@@ -120,20 +122,24 @@ export class APIService {
 
   /*Get CP Feed */
   getCPFeedSeach(
-    cpexecutiveid: any,
+    cp_entity_id: any,
+    fos_id: any,
+    login_type: any,
     apitoken: any,
     Site: any,
     skip_count: any,
     last_lead_updated_at: any
   ) {
-    console.log(cpexecutiveid);
     // tslint:disable-next-line:max-line-length
     return this.apiClient.get(
       this.webServer.GetCPFeed +
         "?api_token=" +
         apitoken +
-        "&cp_executive_id=" +
-        cpexecutiveid +
+        `${
+          login_type == 1
+            ? "&cp_entity_id=" + cp_entity_id
+            : "&cp_fos_id=" + fos_id
+        }` +
         "&filter_text=" +
         Site +
         "&limit=8&skip=" +
@@ -144,20 +150,24 @@ export class APIService {
   }
   /*Get CP Feed */
   getCPFeedFilter(
-    cpexecutiveid: any,
+    cp_entity_id: any,
+    fos_id: any,
+    login_type: any,
     apitoken: any,
     param,
     skip_count: any,
     last_lead_updated_at: any
   ) {
-    console.log(cpexecutiveid);
     // tslint:disable-next-line:max-line-length
     return this.apiClient.get(
       this.webServer.GetCPFeed +
         "?api_token=" +
         apitoken +
-        "&cp_executive_id=" +
-        cpexecutiveid +
+        `${
+          login_type == 1
+            ? "&cp_entity_id=" + cp_entity_id
+            : "&cp_fos_id=" + fos_id
+        }` +
         "&filter_text=" +
         " " +
         "&other_ids=" +
@@ -175,8 +185,10 @@ export class APIService {
   }
 
   /*VerifyStatus*/
-  PostLoginVerification(psdata: any) {
-    return this.apiClient.post(this.webServer.PostLoginVerifyStatus, psdata);
+  PostLoginVerification(cp_entity_id: any) {
+    return this.apiClient.get(
+      this.webServer.PostLoginVerifyStatus + "?cp_entity_id=" + cp_entity_id
+    );
   }
 
   /*PostReminder*/
@@ -862,14 +874,10 @@ export class APIService {
     );
   }
 
-  cpEntityTaggingCancel(cp_fos_id, cp_entity_id) {
-    return this.apiClient.get(
-      this.webServer.cpEntityTaggingRequestList +
-        "?cp_entity_id=" +
-        cp_entity_id +
-        "&cp_fos_id=" +
-        cp_fos_id
-    );
+  cpEntityTaggingCancel(tagging_id) {
+    return this.apiClient.post(this.webServer.cpEntityCancelTagging, {
+      tagging_id,
+    });
   }
 
   kycVerifications_registration(id, id_number) {

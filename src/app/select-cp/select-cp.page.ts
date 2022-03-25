@@ -105,7 +105,9 @@ export class SelectCPPage implements OnInit {
                       val.is_cp_tagging_requested = 1;
 
                       this.storage.set("user_info", JSON.stringify(val));
-                      this.navctrl.navigateRoot("cpstatus");
+                      this.navctrl.navigateRoot("cpstatus", {
+                        replaceUrl: true,
+                      });
                     });
                   }
                 );

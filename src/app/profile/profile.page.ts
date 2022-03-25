@@ -91,7 +91,8 @@ export class ProfilePage implements OnInit {
               this.storage.remove("fullname");
               this.storage.remove("channelname");
               this.helper.presentToastSuccess("Logout Successfully!");
-              this.navCtrl.navigateRoot("login");
+              this.navCtrl.navigateRoot("login", { replaceUrl: true });
+
               this.alertController.dismiss();
               this.modalController.dismiss();
             }, 500);

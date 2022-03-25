@@ -3,6 +3,7 @@ import { NavController } from "@ionic/angular";
 import { responsefromlogin } from "../models/Login";
 import { APIService } from "../services/APIService";
 import { Helper } from "../services/Helper";
+import { Storage } from "@ionic/storage";
 
 @Component({
   selector: "app-cpstatus",
@@ -15,10 +16,12 @@ export class CpstatusPage implements OnInit {
   cpEntityId;
   cpName;
   login_type;
+  tagging_id;
   constructor(
     public apiService: APIService,
     public helper: Helper,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public storage: Storage
   ) {}
 
   getStatusOfTagging(fos_id, cp_entity_id, login_type) {
@@ -28,8 +31,10 @@ export class CpstatusPage implements OnInit {
       .subscribe(
         (res) => {
           console.log(res);
+
           if (res.length != 0) {
             this.cpName = res.cp_entity_name;
+            this.tagging_id = res.tagging_id;
           }
         },
         (e) => {
@@ -71,16 +76,31 @@ export class CpstatusPage implements OnInit {
   cancelRequest() {
     this.helper.presentAlert("Cancel", "Cancel the Request?", "OK", () => {
       console.log("ok");
-      this.navCtrl.navigateRoot("/select-cp", {
-        queryParams: { pending: true },
-      });
-      return;
-      this.apiService.cpEntityTaggingCancel("", "").subscribe(
-        () => {},
-        (e) => {
-          this.helper.presentAlertError("Something went to wrong");
-        }
-      );
+
+      // return;
+      this.apiService
+        .cpEntityTaggingCancel(this.tagging_id)
+        .map((r) => r.body)
+        .subscribe(
+          (res) => {
+            console.log(res);
+            if (res != null || res == null) {
+              this.helper.presentToast("Request Canceled.");
+              this.helper.getUserInfo().then((val: responsefromlogin) => {
+                // val.data.cp_entity_id = res.cp_entity_id;
+                val.is_cp_tagging_requested = 0;
+
+                this.storage.set("user_info", JSON.stringify(val));
+                this.navCtrl.navigateRoot("select-cp", {
+                  replaceUrl: true,
+                });
+              });
+            }
+          },
+          (e) => {
+            this.helper.presentAlertError("Something went to wrong");
+          }
+        );
     });
   }
 }

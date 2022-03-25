@@ -79,7 +79,7 @@ export class WebServer {
   public PostVerifyOTP = this.BASE_URL + "sendOtp";
 
   // Post tVerification
-  public PostLoginVerifyStatus = this.BASE_URL + "checkCpVerificationStatus";
+  public PostLoginVerifyStatus = this.BASE_URL + "checkNewCpVerificationStatus";
 
   // Post CP Reminde
   public PostReminder = this.BASE_URL + "addReminder";
@@ -177,6 +177,8 @@ export class WebServer {
   // For  get tagging list
   public cpEntityTaggingRequestList =
     this.BASE_URL + "cpEntityTaggingRequestList";
+
+  public cpEntityCancelTagging = this.BASE_URL + "cancelTagging";
 
   // For Submitted List(Get)
   public getAOPBills = this.BASE_URL + "cpbills/getAllAOPForCP";

@@ -221,44 +221,45 @@ export class Helper {
       .then((val: responsefromlogin) => {
         if (val) {
           console.log(val);
-          //FOR CP
+          // //FOR CP
+          // this.navCtrl.navigateRoot("/home", {
+          //   replaceUrl: true,
+          // });
+          // return;
           if (val.login_type == 1) {
             if (val.data.verification_status_id == 1) {
               console.log("Your verification_status_id", val);
+
               if (val.data.aop_qop_accepted == 1) {
-                this.navCtrl.navigateRoot("/home");
+                this.navCtrl.navigateRoot("/home", { replaceUrl: true });
               } else {
-                this.navCtrl.navigateForward("/aop-approval-benefit", {
+                this.navCtrl.navigateRoot("/aop-approval-benefit", {
+                  replaceUrl: true,
                   queryParams: { pending: true },
                 });
               }
             } else if (val.data.verification_status_id == 2) {
+              // 2 for pending
               console.log("Your verification_status_id", val);
-              this.navCtrl.navigateRoot("/home");
-              // this.navCtrl.navigateRoot("/verificationpending");
 
-              // this.navCtrl.navigateForward("/aop-approval-benefit", {
-              //   queryParams: { pending: true },
-              // });
+              this.navCtrl.navigateRoot("/verificationpending", {
+                replaceUrl: true,
+              });
             }
           }
           // FOR FOS
           else {
             console.log("FOS Login INFO", val);
-            if (
-              val.data.cp_entity_id == null &&
-              val.is_cp_tagging_requested == 0
-            ) {
+            if (val.is_cp_tagging_requested == 0) {
               // this.navCtrl.navigateRoot("/home");
               this.navCtrl.navigateRoot("/select-cp", {
+                replaceUrl: true,
                 queryParams: { pending: true },
               });
-            } else if (
-              val.data.cp_entity_id == null &&
-              val.is_cp_tagging_requested == 1
-            ) {
+            } else if (val.is_cp_tagging_requested == 1) {
               // for 1 is for pending tagging
               this.navCtrl.navigateRoot("/cpstatus", {
+                replaceUrl: true,
                 queryParams: { pending: true },
               });
               // this.navCtrl.navigateRoot("/home");
@@ -266,16 +267,16 @@ export class Helper {
               //   queryParams: { pending: true },
               // });
             } else {
-              this.navCtrl.navigateRoot("/home");
+              this.navCtrl.navigateRoot("/home", { replaceUrl: true });
             }
           }
         } else {
           // alert('4');
-          this.navCtrl.navigateRoot("/login");
+          this.navCtrl.navigateRoot("/login", { replaceUrl: true });
         }
       })
       .catch(() => {
-        this.navCtrl.navigateRoot("/login");
+        this.navCtrl.navigateRoot("/login", { replaceUrl: true });
       });
   }
 }

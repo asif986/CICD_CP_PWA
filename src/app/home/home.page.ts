@@ -35,6 +35,7 @@ export class HomePage implements OnInit {
   apiToken = "";
   userId = 0;
   cp_entity_id;
+  login_type;
   USERNEWID = 1;
   uuid = 0;
   fcmToken: any;
@@ -131,55 +132,57 @@ export class HomePage implements OnInit {
       this.cp_entity_id = val.data.cp_entity_id;
       this.apiToken = val.data.api_token;
       this.fos_id = val.data.fos_id;
+      this.login_type = val.login_type;
+      this.getFeedData();
     });
     // From Call API
 
-    this.storage.get("IDFromPerformance").then((IDFromPerformancea) => {
-      this.storage.get("cp_executive_id").then((cp_executive_id) => {
-        this.storage.get("apiToken").then((apiToken) => {
-          this.storage.get("is_team_lead").then((is_team_lead) => {
-            this.storage.get("is_admin").then((is_admin) => {
-              this.storage.get("SelectCategoryID").then((SelectCategoryID) => {
-                this.storage.get("lead_status_id").then((lead_status_id) => {
-                  this.storage.get("token_type_id").then((token_type_id) => {
-                    this.IDFromPerformance = IDFromPerformancea;
-                    console.log(this.IDFromPerformance);
-                    this.newExecutiveId = cp_executive_id;
-                    // this.newLoginApi = apiToken;
-                    this.is_team_lead = is_team_lead;
-                    this.is_admin = is_admin;
-                    this.SelectCategoryID_FromFilter = SelectCategoryID;
-                    this.lead_status_id_FromFilter = lead_status_id;
-                    this.token_type_id_FromFilter = token_type_id;
-                    console.log(this.SelectCategoryID_FromFilter);
-                    console.log(this.lead_status_id_FromFilter);
-                    console.log(this.token_type_id_FromFilter);
-                    if (
-                      !(
-                        this.network.type !== "none" &&
-                        this.network.type !== "unknown"
-                      )
-                    ) {
-                      this.helper.presentToast("Please on Internet Connection");
-                      this.isSpinner = false;
-                    } else {
-                      this.isSpinner = true;
-                      if (IDFromPerformancea == 2) {
-                        this.getFeedData();
-                        // this.getBannerData();
-                        this.updateToken();
-                      } else if (IDFromPerformancea == 1) {
-                        this.Filter();
-                      }
-                    }
-                  });
-                });
-              });
-            });
-          });
-        });
-      });
-    });
+    // this.storage.get("IDFromPerformance").then((IDFromPerformancea) => {
+    //   this.storage.get("cp_executive_id").then((cp_executive_id) => {
+    //     this.storage.get("apiToken").then((apiToken) => {
+    //       this.storage.get("is_team_lead").then((is_team_lead) => {
+    //         this.storage.get("is_admin").then((is_admin) => {
+    //           this.storage.get("SelectCategoryID").then((SelectCategoryID) => {
+    //             this.storage.get("lead_status_id").then((lead_status_id) => {
+    //               this.storage.get("token_type_id").then((token_type_id) => {
+    //                 this.IDFromPerformance = IDFromPerformancea;
+    //                 console.log(this.IDFromPerformance);
+    //                 this.newExecutiveId = cp_executive_id;
+    //                 // this.newLoginApi = apiToken;
+    //                 this.is_team_lead = is_team_lead;
+    //                 this.is_admin = is_admin;
+    //                 this.SelectCategoryID_FromFilter = SelectCategoryID;
+    //                 this.lead_status_id_FromFilter = lead_status_id;
+    //                 this.token_type_id_FromFilter = token_type_id;
+    //                 console.log(this.SelectCategoryID_FromFilter);
+    //                 console.log(this.lead_status_id_FromFilter);
+    //                 console.log(this.token_type_id_FromFilter);
+    //                 if (
+    //                   !(
+    //                     this.network.type !== "none" &&
+    //                     this.network.type !== "unknown"
+    //                   )
+    //                 ) {
+    //                   this.helper.presentToast("Please on Internet Connection");
+    //                   this.isSpinner = false;
+    //                 } else {
+    //                   this.isSpinner = true;
+    //                   // if (IDFromPerformancea == 2) {
+    //                   //   this.getFeedData();
+    //                   //   // this.getBannerData();
+    //                   //   this.updateToken();
+    //                   // } else if (IDFromPerformancea == 1) {
+    //                   //   this.Filter();
+    //                   // }
+    //                 }
+    //               });
+    //             });
+    //           });
+    //         });
+    //       });
+    //     });
+    //   });
+    // });
 
     this.platform.backButton.subscribeWithPriority(1, () => {
       if (this.IDFromPerformance == 1) {
@@ -230,7 +233,14 @@ export class HomePage implements OnInit {
     this.cpfeedData.cp_executive_id = this.newExecutiveId;
     if (this.network.type !== "none" && this.network.type !== "unknown") {
       this.apiservice
-        .getCPFeed(this.cp_entity_id, this.apiToken, this.fos_id, 0, null)
+        .getCPFeed(
+          this.cp_entity_id,
+          this.fos_id,
+          this.login_type,
+          this.apiToken,
+          0,
+          null
+        )
         .subscribe(
           (data) => {
             this.successvalue = JSON.stringify(data.body);
@@ -238,7 +248,7 @@ export class HomePage implements OnInit {
             console.log("successvalue", Value.success);
             this.isSpinner = false;
             if (Value.success === 1) {
-              this.getTeamLeaderRemoveOrUpdate();
+              // this.getTeamLeaderRemoveOrUpdate();
               this.leadlist = Value.data;
               this.last_lead_updated_at =
                 this.leadlist[this.leadlist.length - 1].ids.updated_at;
@@ -274,7 +284,9 @@ export class HomePage implements OnInit {
       } else {
         this.apiservice
           .getCPFeedSeach(
-            this.cpfeedData.cp_executive_id,
+            this.cp_entity_id,
+            this.fos_id,
+            this.login_type,
             this.cpfeedData.api_token,
             title,
             0,
@@ -292,7 +304,7 @@ export class HomePage implements OnInit {
                 for (let i = 0; i < this.leadlist.length; i++) {
                   if (this.leadlist[i]) {
                     this.lead_status_id = this.leadlist[i].ids.lead_status_id;
-                    console.log("this.is_kyc_uploaded", this.lead_status_id);
+                    // console.log("this.is_kyc_uploaded", this.lead_status_id);
                   }
                 }
               } else {
@@ -322,7 +334,9 @@ export class HomePage implements OnInit {
         this.cpfeedData.cp_executive_id = this.newExecutiveId;
         this.apiservice
           .getCPFeedSeach(
-            this.cpfeedData.cp_executive_id,
+            this.cp_entity_id,
+            this.fos_id,
+            this.login_type,
             this.cpfeedData.api_token,
             title,
             count,
@@ -362,9 +376,10 @@ export class HomePage implements OnInit {
         const me = this;
         this.apiservice
           .getCPFeed(
-            this.cpfeedData.cp_executive_id,
-            this.cpfeedData.api_token,
+            this.cp_entity_id,
             this.fos_id,
+            this.login_type,
+            this.cpfeedData.api_token,
             count,
             this.last_lead_updated_at
           )
@@ -452,7 +467,9 @@ export class HomePage implements OnInit {
     } else {
       this.apiservice
         .getCPFeedFilter(
-          this.cpfeedData.cp_executive_id,
+          this.cp_entity_id,
+          this.fos_id,
+          this.login_type,
           this.cpfeedData.api_token,
           JSON.stringify(param),
           0,
@@ -533,7 +550,9 @@ export class HomePage implements OnInit {
         console.log(this.leadlist.length);
         this.apiservice
           .getCPFeedFilter(
-            this.cpfeedData.cp_executive_id,
+            this.cp_entity_id,
+            this.fos_id,
+            this.login_type,
             this.cpfeedData.api_token,
             JSON.stringify(param),
             count,
