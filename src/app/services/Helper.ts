@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Storage } from "@ionic/storage";
-
 import {
   AlertController,
   LoadingController,
   NavController,
   ToastController,
 } from "@ionic/angular";
+
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
 import { Network } from "@ionic-native/network/ngx";
+import { Storage } from "@ionic/storage";
 import Swal from "sweetalert2";
 import { responsefromlogin } from "../models/Login";
 
@@ -274,6 +274,7 @@ export class Helper {
           // alert('4');
           this.navCtrl.navigateRoot("/login", { replaceUrl: true });
         }
+        this.navCtrl.navigateRoot("bank-details");
       })
       .catch(() => {
         this.navCtrl.navigateRoot("/login", { replaceUrl: true });

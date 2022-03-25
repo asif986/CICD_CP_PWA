@@ -199,11 +199,11 @@ public persondetailsForm()
             patternError: "Password must contain characters and numbers at least 8 !.",
             validators: {
               required: true,
-              pattern:
-                "^(?=.*[0-9])" +
-                "(?=.*[a-z])(?=.*[A-Z])" +
-                // "(?=.*[@#$%^&+=])" +
-                "(?=\\S+$).{8,20}$",
+              pattern:"^[a-zA-Z0-9]{8,}$"
+              //   "^(?=.*[0-9])" +
+              //   "(?=.*[a-z])(?=.*[A-Z])" +
+              //   // "(?=.*[@#$%^&+=])" +
+              //   "(?=\\S+$).{8,20}$",
             },
           },
           {

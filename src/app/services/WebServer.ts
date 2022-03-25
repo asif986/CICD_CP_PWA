@@ -67,6 +67,8 @@ export class WebServer {
   // CPRegistration Add kyc docs
   public POSTREGKYCDocument = this.BASE_URL + "addUploadRegDocs";
 
+  //get all sales person
+  public salesPersons = this.BASE_URL+"getAllSalesPersons"
   public verifyPan = "https://kyc-api.aadhaarkyc.io/api/v1/pan/pan";
   public verifyrera = "https://kyc-api.aadhaarkyc.io/api/v1/pan/pan";
   public verifyGST = "https://kyc-api.aadhaarkyc.io/api/v1/corporate/gstin";

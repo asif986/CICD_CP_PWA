@@ -1,9 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 
+import { APIService } from "../services/APIService";
 import { CommonHelperService } from "../services/common-helper.service";
 import { FormGroup } from "@angular/forms";
+import { HttpResponse } from "@angular/common/http";
 import { NavController } from "@ionic/angular";
 import { StateService } from "./../services/state.service";
+import { responsefromSalesPerson } from "../models/business-details";
 
 @Component({
   selector: "app-business-details",
@@ -11,6 +14,7 @@ import { StateService } from "./../services/state.service";
   styleUrls: ["./business-details.page.scss"],
 })
 export class BusinessDetailsPage implements OnInit {
+  getAllSalesPerson = [];
   temp: any = {
     header: [
       {
@@ -83,7 +87,7 @@ export class BusinessDetailsPage implements OnInit {
             is_fos: 0,
             is_cp: 1,
             is_cp_indivial: 1,
-            inputtype: 8,
+            inputtype: 9,
             placeholder: "Rera Number",
             name: "rera_no",
             icon: "aperture",
@@ -91,12 +95,14 @@ export class BusinessDetailsPage implements OnInit {
             label: "Name:",
             value: "",
             inital: 0,
+            verificationmsg: "RERA NUMBER  IS VERIFIED",
             type: "text",
             requiredError: "Please enter a valid Rera Number!.",
             patternError: "Please proper Rera Number!.",
             validateError: "Please validated Rera Number!.",
-            // isValidatedError: 1,
-            isValidatedid: 3,
+            isValidatedError: 0,
+            isValidatedtoDBError: 1,
+            isValidatedid: 0,
             validators: {
               required: true,
               // pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
@@ -111,6 +117,7 @@ export class BusinessDetailsPage implements OnInit {
             name: "pan_no",
             cssClass: "col",
             icon: "card",
+            verificationmsg: "PAN CARD IS VERIFIED",
             label: "Name:",
             value: "",
             inital: 0,
@@ -120,6 +127,9 @@ export class BusinessDetailsPage implements OnInit {
             validateError: "Please validated PAN!.",
             isValidatedid: 1,
             isValidatedError: 1,
+            isValidatedtoDBError: 1,
+            isStrictCheck: 1,
+            stricklyfailedmsg: "Does not match PAN name with your name",
             validators: {
               required: true,
               pattern: "[A-Z]{5}[0-9]{4}[A-Z]{1}",
@@ -136,12 +146,14 @@ export class BusinessDetailsPage implements OnInit {
             cssClass: "col",
             label: "Name:",
             value: "",
+            verificationmsg: "GST Number IS VERIFIED",
             inital: 0,
             type: "text",
             requiredError: "Please enter a valid GST number!.",
             patternError: "Please proper GST number!.",
             validateError: "Please validated GST Number!.",
             isValidatedError: 1,
+            isValidatedtoDBError: 1,
             isValidatedid: 4,
             validators: {
               required: true,
@@ -168,10 +180,36 @@ export class BusinessDetailsPage implements OnInit {
             patternError: "Please proper ADHAR number!.",
             validateError: "Please validated ADHAR number!.",
             isValidatedError: 1,
+            verificationmsg: "AADHAR CARD IS VERIFIED",
+            isValidatedtoDBError: 1,
             isValidatedid: 2,
             validators: {
               required: true,
               pattern: "^[2-9]{1}[0-9]{3}[0-9]{4}[0-9]{4}$",
+            },
+          },
+          {
+            is_fos: 0,
+            is_cp: 1,
+            is_cp_indivial: 0,
+            inputtype: 10,
+            placeholder: "Select sales person",
+            name: "sales_person_id",
+            cssClass: "col",
+            icon: "card",
+            verificationmsg: "PAN CARD IS VERIFIED",
+            label: "Select sales person",
+            value: "",
+            inital: 0,
+            issalesperson_available: 1,
+
+            type: "text",
+            requiredError: "Please enter a select sales person!.",
+            // patternError: "Please proper PAN!.",
+            // sales_person_ids: [...this.getAllSalesPerson],
+            validateError: "Please validated PAN!.",
+            validators: {
+              required: true,
             },
           },
           {
@@ -194,15 +232,39 @@ export class BusinessDetailsPage implements OnInit {
       },
     ],
   };
-  form: any = { ...this.temp };
+  form: any = {};
 
   constructor(
     private CommonHelper: CommonHelperService,
     private state: StateService,
+    private apiSer: APIService,
     private navCtrl: NavController
   ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+
+    this.form.header = [
+      ...this.temp.header.map((item) => {
+        const filtered = item.controls.filter((item2) => item2.is_cp == 1);
+        let getPerson_name = item.controls.find(
+          (item2) => item2.issalesperson_available == 1
+        );
+        getPerson_name = getPerson_name.name;
+        const attacthedsales = filtered.map((item) => {
+     
+          return item;
+        });
+        console.log({ attacthedsales });
+        return {
+          headernm: item.headernm,
+          index: item.index,
+          controls: attacthedsales,
+        };
+      }),
+    ];
+    // this.form  = { ...this.temp };
+    console.log("form", this.form);
+  }
   businessFormValidation($event: FormGroup) {
     this.CommonHelper.presentLoading().then(() => {
       try {
@@ -211,10 +273,14 @@ export class BusinessDetailsPage implements OnInit {
         let invalid = false;
 
         let form_fields = [];
+        let form_fields_for_DB = [];
         this.form.header.forEach((element: any) => {
           element.controls.map((item) => {
             if (item.isValidatedError == 1) {
               form_fields.push(item.name);
+            }
+            if (item.isValidatedtoDBError == 1) {
+              form_fields_for_DB.push(item.name);
             }
             return item;
           });
@@ -255,7 +321,7 @@ export class BusinessDetailsPage implements OnInit {
                   (item) => item.name == key
                 );
                 this.CommonHelper.presentToast(errormsg.validateError);
-                });
+              });
               invalid = true;
             }
           }
@@ -291,7 +357,7 @@ export class BusinessDetailsPage implements OnInit {
         this.CommonHelper.dismissLoading();
       }, 2000);
     });
-      console.log($event);
+    console.log($event);
   }
   changeOrg($event) {
     console.log({ $event });

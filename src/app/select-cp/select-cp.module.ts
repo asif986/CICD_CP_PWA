@@ -4,10 +4,11 @@ import { RouterModule, Routes } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { IonicModule } from "@ionic/angular";
 import { MaterialModule } from "../material.module";
+import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { NgModule } from "@angular/core";
 import { SelectCPPage } from "./select-cp.page";
 import { SharedComponentModule } from "./../shared/shared-component/shared-component.module";
-import { Ng2SearchPipeModule } from "ng2-search-filter";
+
 const routes: Routes = [
   {
     path: "",

@@ -31,6 +31,16 @@
                     </mat-hint>
                 </mat-form-field>
             </div>
+
+            <hr *ngIf="controls.inputtype==10">
+            <mat-form-field appearance="outline" class="pb-3" *ngIf="controls.inputtype==10">
+                <mat-label>{{controls.label}}</mat-label>
+                <mat-select [formControlName]="controls.name">
+                    <mat-option *ngFor="let singlesalesperson of salePersonList" [value]="singlesalesperson.person_id">
+                        {{singlesalesperson.full_name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
             <div *ngIf="controls.inputtype==8">
                 <mat-form-field appearance="outline" class="inputtextfield">
                     <mat-label>{{controls.placeholder}}</mat-label>
