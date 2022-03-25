@@ -33,7 +33,11 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
   @Output() returnformdata = new EventEmitter<FormGroup>();
   @Output() returnchangeorg = new EventEmitter<any>();
   @Output() returnvaliadation = new EventEmitter<any>();
-
+  foods: any[] = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'},
+  ];
   @ViewChild("ngOtpInput", { static: false }) ngOtpInput: any;
   otp: string;
   showOtpComponent = true;
@@ -278,120 +282,152 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
   }
   validate2() {}
   validateCards(doc_type) {
-    this.CommonHelper.presentLoading().then(()=>
-    {
-
+    this.CommonHelper.presentLoading().then(() => {
       if (
         this.myForm.controls[doc_type].hasError("required") ||
-      this.myForm.controls[doc_type].hasError("pattern")
-    ) {
-      this.jsonFormData.header.forEach((element: any) => {
-        let single_controls = element.controls.find(
-          (item) => item.name == doc_type
-        );
-        if (this.myForm.controls[doc_type].hasError("required")) {
-          this.CommonHelper.presentToast(single_controls.requiredError);
-        } else if (this.myForm.controls[doc_type].hasError("pattern")) {
-          this.CommonHelper.presentToast(single_controls.patternError);
-        }
-      });
-      this.CommonHelper.dismissLoading();
-      return;
-    } else {
-      let values = this.myForm.controls[doc_type].value;
-      let body =
-        "?doc_type=" +
-        doc_type +
-        "&doc_no=" +
-        values +
-        "&for=" +
-        (this.myForm.controls["registration_type_id"].value == 1
-          ? "cp"
-          : "fos");
-
-      this.apiService
-        .getCardValidation(body)
-        .subscribe((data: HttpResponse<any>) => {
-          console.log(data.body);
-          // this.jsonFormData.header.
-          let single_controls: any = {};
-          this.jsonFormData.header.forEach((element: any) => {
-            single_controls = {
-              ...element.controls.find((item) => item.name == doc_type),
-            };
-          });
-          console.log("header", single_controls);
-          // let single_controls_focheckin:any={}
-          let personDetails = this.dataSer.persondetailsForm();
-
-          // console.log(single_controls_focheckin)
-          if (data.body == 0) {
-            this.apiService
-              .kycVerifications_registration(
-                single_controls.isValidatedid,
-                values
-              )
-              .subscribe(
-                (data: any) => {
-                  // console.log("data",this.state.formValue.value)
-                  // return;
-                  console.log("validated", data);
-                  let single_controls_focheckin: any = {};
-                  let alreadyData = this.state.formValue.value;
-                  personDetails.header.forEach((element: any) => {
-                    single_controls_focheckin = {
-                      ...element.controls.find((item) => item.ischekble == 1),
-                    };
-                    console.log({ element });
-                  });
-                  let key = "";
-                  console.log({ single_controls_focheckin });
-                  console.log("namecontrolnm", single_controls_focheckin.name);
-                  console.log(
-                    "namesaved",
-                    alreadyData[single_controls_focheckin.name]
-                  );
-                  console.log("data", data);
-                  console.log("data.data.full_name", data.data.full_name);
-                  console.log(
-                    "data condition",
-                    (alreadyData[single_controls_focheckin.name]).toLowerCase() ==
-                      (data.data.full_name).toLowerCase()
-                  );
-//PRAMOD KUMAR MAHTO
-                  if (
-                    (alreadyData[single_controls_focheckin.name]).toLowerCase() ==
-                    (data.data.full_name).toLowerCase()
-                  ) {
-                    this.myForm.controls[doc_type].disable();
-                    this.CommonHelper.presentToast(
-                      "Your PAN is verified"
-                    );
-
-                  } else {
-                    this.CommonHelper.presentToast(
-                      "Pleaser enter your name as per PAN number"
-                    );
-                    this.CommonHelper.dismissLoading();
-                    return;
-                  }
-                  this.CommonHelper.dismissLoading();
-                  return;
-                },
-                (error) => {
-                  this.CommonHelper.presentToast(error.error.message);
-                  this.CommonHelper.dismissLoading();
-                  return;
-                }
-              );
-          } else {
-            this.CommonHelper.dismissLoading();
-            this.CommonHelper.presentToast("Already Exists");
-            return;
+        this.myForm.controls[doc_type].hasError("pattern")
+      ) {
+        this.jsonFormData.header.forEach((element: any) => {
+          let single_controls = element.controls.find(
+            (item) => item.name == doc_type
+          );
+          if (this.myForm.controls[doc_type].hasError("required")) {
+            this.CommonHelper.presentToast(single_controls.requiredError);
+          } else if (this.myForm.controls[doc_type].hasError("pattern")) {
+            this.CommonHelper.presentToast(single_controls.patternError);
           }
         });
-      this.returnvaliadation.emit(body);
-    }
-  })
+        this.CommonHelper.dismissLoading();
+        return;
+      } else {
+        let values = this.myForm.controls[doc_type].value;
+        let body =
+          "?doc_type=" +
+          doc_type +
+          "&doc_no=" +
+          values +
+          "&for=" +
+          (this.myForm.controls["registration_type_id"].value == 1
+            ? "cp"
+            : "fos");
+        let single_controls: any = {};
+        let checkOnlyinDb = [];
+        let checkOnlyinvalidateApi = [];
+        let stricktcheck = [];
+
+        this.jsonFormData.header.forEach((element: any) => {
+          single_controls = {
+            ...element.controls.find((item) => item.name == doc_type),
+          };
+          checkOnlyinDb = element.controls.filter((item2) => {
+            return item2.isValidatedtoDBError == 1;
+          });
+          checkOnlyinDb = checkOnlyinDb.map((item3) => item3.name);
+          checkOnlyinvalidateApi = element.controls.filter((item2) => {
+            return item2.isValidatedError == 1;
+          });
+          checkOnlyinvalidateApi = checkOnlyinvalidateApi.map(
+            (item3) => item3.name
+          );
+          stricktcheck = element.controls.filter((item2) => {
+            return item2.isStrictCheck == 1;
+          });
+          stricktcheck = stricktcheck.map((item3) => item3.name);
+        });
+        console.log("header", single_controls);
+        console.log("checkOnlyinDb", checkOnlyinDb);
+        console.log("checkOnlyinvalidateApi", checkOnlyinvalidateApi);
+        console.log("stricktcheck", stricktcheck);
+
+        if (checkOnlyinDb.includes(doc_type)) {
+          this.apiService
+            .getCardValidation(body)
+            .subscribe((data: HttpResponse<any>) => {
+              console.log(data.body);
+              this.CommonHelper.dismissLoading();
+              // let single_controls_focheckin:any={}
+              let personDetails = this.dataSer.persondetailsForm();
+
+              // console.log(single_controls_focheckin)
+              // return;
+              let single_controls_focheckin: any = {};
+              if (data.body == 0) {
+                if (checkOnlyinvalidateApi.includes(doc_type)) {
+                  this.apiService
+                    .kycVerifications_registration(
+                      single_controls.isValidatedid,
+                      values
+                    )
+                    .subscribe(
+                      //DURAISAMY MANIKANDAN
+                      //BNZPM2501F
+                      //EJAPS0276M
+                      //532859830339
+                      (data: any) => {
+                        try {
+                          console.log("validated", data);
+                          let alreadyData = this.state.formValue.value;
+                          personDetails.header.forEach((element: any) => {
+                            single_controls_focheckin = {
+                              ...element.controls.find(
+                                (item) => item.ischekble == 1
+                              ),
+                            };
+                          });
+
+                          if (stricktcheck.includes(doc_type)) {
+                            if (
+                              alreadyData[
+                                single_controls_focheckin.name
+                              ].toLowerCase() ==
+                              data.data.full_name.toLowerCase()
+                            ) {
+                              this.myForm.controls[doc_type].disable();
+                              this.CommonHelper.presentToast(
+                                single_controls.verificationmsg
+                              );
+                            } else {
+                              this.CommonHelper.presentToast(
+                                single_controls.stricklyfailedmsg
+                              );
+                              this.CommonHelper.dismissLoading();
+                              // return;
+                            }
+                          } else {
+                            this.myForm.controls[doc_type].disable();
+                            this.CommonHelper.presentToast(
+                              single_controls.verificationmsg
+                            );
+                          }
+                          this.CommonHelper.dismissLoading();
+                          return;
+                        } catch (error) {
+                          console.log(error)
+                          this.CommonHelper.presentToast("something goes wrong");
+
+                          this.CommonHelper.dismissLoading();
+                        }
+                      },
+                      (error) => {
+                        this.CommonHelper.presentToast(error.error.message);
+                        this.CommonHelper.dismissLoading();
+                        return;
+                      }
+                    );
+                } else {
+                  this.myForm.controls[doc_type].disable();
+                  this.CommonHelper.presentToast(single_controls.verificationmsg);
+                }
+              } else {
+                this.CommonHelper.dismissLoading();
+                this.CommonHelper.presentToast("Already Exists");
+                return;
+              }
+            });
+        }
+
+        this.returnvaliadation.emit(body);
+      }
+    });
   }
 }

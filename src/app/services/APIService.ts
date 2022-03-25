@@ -828,6 +828,9 @@ export class APIService {
   cpRegistration(psData: any) {
     return this.apiClient.post(this.webServer.cpRegistration, psData);
   }
+  getAllSalesPerson() {
+    return this.apiClient.get(this.webServer.salesPersons);
+  }
   // KYC Verification
   kycVerifications(url, id_number) {
     let TOKEN =

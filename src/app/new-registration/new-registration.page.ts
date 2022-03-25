@@ -142,7 +142,7 @@ public dataSer:DataService,
       password: [
         "",
         Validators.compose([
-          Validators.pattern("[a-zA-Z ]+"),
+          // Validators.pattern("[a-zA-Z ]+"),
           Validators.required,
         ]),
       ],
