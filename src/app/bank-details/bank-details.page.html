@@ -1,6 +1,14 @@
 <app-header headernam="Bank Details" url="business-details"></app-header>
 <ion-content>
+    <div class="col-md-12 col-lg-12 ion-text-center">
+        <img src="assets/channelPartner_Icons/vjd_Logos/VJLOGO.png" class="img-responsive header-logo">
+    </div>
     <ion-grid>
+        <ion-row>
+            <ion-col size="10" offset="1">
+                <p class="mb-0 text-center">Channel Partner Application</p>
+            </ion-col>
+        </ion-row>
         <ion-row>
             <ion-col size="10" offset="1">
                 <app-json-form (returnformdata)="bankFormValidation($event)" [jsonFormData]="form"></app-json-form>

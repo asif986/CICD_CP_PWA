@@ -274,7 +274,7 @@ export class Helper {
           // alert('4');
           this.navCtrl.navigateRoot("/login");
         }
-        // this.navCtrl.navigateRoot("new-registration");
+        this.navCtrl.navigateRoot("bank-details");
       })
       .catch(() => {
         this.navCtrl.navigateRoot("/login");
