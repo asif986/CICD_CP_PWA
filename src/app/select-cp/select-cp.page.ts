@@ -101,11 +101,13 @@ export class SelectCPPage implements OnInit {
                   "OK",
                   () => {
                     this.helper.getUserInfo().then((val: responsefromlogin) => {
-                      val.data.cp_entity_id = res.cp_entity_id;
+                      // val.data.cp_entity_id = res.cp_entity_id;
                       val.is_cp_tagging_requested = 1;
 
                       this.storage.set("user_info", JSON.stringify(val));
-                      this.navctrl.navigateRoot("cpstatus");
+                      this.navctrl.navigateRoot("cpstatus", {
+                        replaceUrl: true,
+                      });
                     });
                   }
                 );
@@ -155,5 +157,10 @@ export class SelectCPPage implements OnInit {
           this.helper.presentToastError("something went wrong");
         }
       );
+  }
+  clear() {
+    this.firms = [];
+    this.searchbox_nm = "";
+    // getCPList();
   }
 }

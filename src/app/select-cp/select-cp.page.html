@@ -19,8 +19,7 @@
                     </mat-form-field> -->
 
                     <ion-searchbar formControlName="searchbox" placeholder="Enter CP name" [(ngModel)]="searchbox_nm"
-                        debounce="270" (ionInput)="search($event)" (ionClear)="firms=[];searchVal='';getCPList();"
-                        class="search">
+                        debounce="270" (ionInput)="search($event)" (ionClear)="clear()" class="search">
                     </ion-searchbar>
                 </ion-col>
             </ion-row>
