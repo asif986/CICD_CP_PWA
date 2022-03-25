@@ -244,8 +244,7 @@ circle {
   border-radius: 28px 0 0 28px !important;
   min-width: 28px !important;
 }
-
-::ng-deep .mat-form-field-outline-end {
+.custom-popover ::ng-deep .mat-form-field-outline-end {
   border-radius: 0 28px 28px 0 !important;
 }
 
@@ -268,6 +267,7 @@ circle {
   text-transform: capitalize !important;
   overflow: hidden;
 }
+.custom-popover
 
 // ::ng-deep .mat-form-field-appearance-outline .mat-form-field-infix {
 //     padding: 1em 0 1em 0 !important;

@@ -1,3 +1,4 @@
+<app-header headernam="Organisation" url="profile"></app-header>
 <ion-content>
     <ion-grid>
         <ion-row *ngIf="sucess">
@@ -8,12 +9,12 @@
                             Your request is pending with
                         </p>
                         <p class="text-center">
-                            <b>  
-                          Percepta Pvt Ltd 
-                                        </b>
+                            <b>
+                                {{cpName}}
+                            </b>
                         </p>
 
-                        <p class="link-css">
+                        <p class="link-css" (click)="cancelRequest()">
                             Cancel and create new request
                         </p>
                     </div>
@@ -38,9 +39,9 @@
                         Congratulations for working with
                     </p>
                     <p class="text-center">
-                        <b>  
-                          Percepta Pvt Ltd 
-                                  </b>
+                        <b>
+                            Percepta Pvt Ltd
+                        </b>
                     </p>
 
                     <!-- <p class="link-css">
@@ -53,6 +54,6 @@
 
 
 </ion-content>
-<div class="d-flex justify-content-center col-md-4 offset-md-4 col-lg-4 offset-lg-4 pb-4">
+<!-- <div class="d-flex justify-content-center col-md-4 offset-md-4 col-lg-4 offset-lg-4 pb-4">
     <button mat-button class="common-btn w-75 " routerDirection="forward">Change organisation</button><br>
-</div>
+</div> -->

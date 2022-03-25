@@ -17,3 +17,13 @@
   padding: 8px;
   font-size: 12px;
 }
+.arrow_header {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.no_arrow_header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

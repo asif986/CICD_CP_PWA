@@ -166,6 +166,16 @@ export class WebServer {
   // For Submitted List(Get)
   public getSubmittedList = this.BASE_URL + "cpbills/getAllSubmittedBills";
 
+  //For get cp Entity search
+  public cpEntitySearch = this.BASE_URL + "cpEntitySearch";
+
+  // For  add tagging
+  public cpEntityTaggingRequest = this.BASE_URL + "cpEntityTaggingRequest";
+
+  // For  get tagging list
+  public cpEntityTaggingRequestList =
+    this.BASE_URL + "cpEntityTaggingRequestList";
+
   // For Submitted List(Get)
   public getAOPBills = this.BASE_URL + "cpbills/getAllAOPForCP";
 

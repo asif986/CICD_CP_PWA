@@ -5,10 +5,12 @@ import { Storage } from "@ionic/storage";
 import {
   AlertController,
   LoadingController,
+  NavController,
   ToastController,
 } from "@ionic/angular";
 import { Network } from "@ionic-native/network/ngx";
 import Swal from "sweetalert2";
+import { responsefromlogin } from "../models/Login";
 
 export enum ConnectionStatusEnum {
   Online,
@@ -28,6 +30,7 @@ export class Helper {
     private alertController: AlertController,
     public toastController: ToastController,
     public loadingController: LoadingController,
+    public navCtrl: NavController,
     private http: HttpClient,
     public storage: Storage
   ) {
@@ -89,7 +92,6 @@ export class Helper {
       })
       .then((res) => {
         res.present();
-
         res.onDidDismiss().then((dis) => {});
       });
   }
@@ -161,33 +163,37 @@ export class Helper {
     callback?: any,
     enableBackdropDismiss = false
   ) {
-    return new Promise(async (resolve) => {
-      const alert = await this.alertController.create({
-        cssClass: "my-custom-class1",
+    const alert = await this.alertController.create({
+      cssClass: "my-custom-class1",
 
-        header: header,
+      header: header,
 
-        backdropDismiss: enableBackdropDismiss,
-        // subHeader: 'Subtitle',
-        message: msg,
-        buttons: [
-          {
-            text: text,
-            role: "ok",
-            cssClass: "secondary",
-            handler: (cancel) => {
-              //              resolve('ok');
-              if (callback) {
-                callback();
+      backdropDismiss: enableBackdropDismiss,
+      // subHeader: 'Subtitle',
+      message: msg,
+      buttons: [
+        {
+          text: "cancel",
+          role: "cancel",
+          cssClass: "secondary",
+          handler: (cancel) => {},
+        },
+        {
+          text: text,
+          role: "ok",
+          cssClass: "secondary",
+          handler: (cancel) => {
+            //              resolve('ok');
+            if (callback) {
+              callback();
 
-                // return false;
-              }
-            },
+              // return false;
+            }
           },
-        ],
-      });
-      await alert.present();
+        },
+      ],
     });
+    await alert.present();
   }
   swAlert(type, title) {
     Swal.fire({
@@ -208,5 +214,69 @@ export class Helper {
           reslove(val);
         });
     });
+  }
+
+  redirectionOfUser() {
+    this.getUserInfo()
+      .then((val: responsefromlogin) => {
+        if (val) {
+          console.log(val);
+          //FOR CP
+          if (val.login_type == 1) {
+            if (val.data.verification_status_id == 1) {
+              console.log("Your verification_status_id", val);
+              if (val.data.aop_qop_accepted == 1) {
+                this.navCtrl.navigateRoot("/home");
+              } else {
+                this.navCtrl.navigateForward("/aop-approval-benefit", {
+                  queryParams: { pending: true },
+                });
+              }
+            } else if (val.data.verification_status_id == 2) {
+              console.log("Your verification_status_id", val);
+              this.navCtrl.navigateRoot("/home");
+              // this.navCtrl.navigateRoot("/verificationpending");
+
+              // this.navCtrl.navigateForward("/aop-approval-benefit", {
+              //   queryParams: { pending: true },
+              // });
+            }
+          }
+          // FOR FOS
+          else {
+            console.log("FOS Login INFO", val);
+            if (
+              val.data.cp_entity_id !== null &&
+              val.is_cp_tagging_requested == 1
+            ) {
+              // this.navCtrl.navigateRoot("/home");
+              this.navCtrl.navigateRoot("/cpstatus", {
+                queryParams: { pending: true },
+              });
+            } else if (
+              val.data.cp_entity_id == null &&
+              (val.is_cp_tagging_requested == 0 ||
+                val.is_cp_tagging_requested == 1)
+            ) {
+              // for 1 is for pending tagging
+              // this.navCtrl.navigateRoot("/select-cp", {
+              //   queryParams: { pending: true },
+              // });
+              // this.navCtrl.navigateRoot("/home");
+              this.navCtrl.navigateRoot("/cpstatus", {
+                queryParams: { pending: true },
+              });
+            } else {
+              this.navCtrl.navigateRoot("/home");
+            }
+          }
+        } else {
+          // alert('4');
+          this.navCtrl.navigateRoot("/login");
+        }
+      })
+      .catch(() => {
+        this.navCtrl.navigateRoot("/login");
+      });
   }
 }

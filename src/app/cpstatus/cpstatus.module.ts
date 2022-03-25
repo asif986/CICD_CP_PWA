@@ -1,17 +1,18 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { Routes, RouterModule } from "@angular/router";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { CpstatusPage } from './cpstatus.page';
+import { CpstatusPage } from "./cpstatus.page";
+import { SharedComponentModule } from "../shared/shared-component/shared-component.module";
 
 const routes: Routes = [
   {
-    path: '',
-    component: CpstatusPage
-  }
+    path: "",
+    component: CpstatusPage,
+  },
 ];
 
 @NgModule({
@@ -19,8 +20,9 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    SharedComponentModule,
+    RouterModule.forChild(routes),
   ],
-  declarations: [CpstatusPage]
+  declarations: [CpstatusPage],
 })
 export class CpstatusPageModule {}

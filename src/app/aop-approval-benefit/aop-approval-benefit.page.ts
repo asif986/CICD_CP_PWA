@@ -15,7 +15,7 @@ export class AopApprovalBenefitPage implements OnInit {
   cpBenefitId;
   isAccepted = 0;
 
-  isArrowHide = false;
+  isArrowHide = true;
   benefitsData: any = [];
   constructor(
     public router: Router,
@@ -28,13 +28,16 @@ export class AopApprovalBenefitPage implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
-      console.log(params);
       if (Object.keys(params).length != 0) {
-        params["pending"] == true || params.pending == true
-          ? (this.isArrowHide = true)
-          : (this.isArrowHide = false);
+        console.log(params);
+        if (params["pending"] == true || params.pending == true) {
+          console.log("hi");
+          this.isArrowHide = false;
+        } else {
+          this.isArrowHide = true;
+        }
       } else {
-        this.isArrowHide = false;
+        this.isArrowHide = true;
       }
     });
 

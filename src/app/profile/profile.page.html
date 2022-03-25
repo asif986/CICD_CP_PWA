@@ -1,4 +1,4 @@
-<app-header headernam="Profile Page" url="home"></app-header>
+<app-header headernam="Profile" url="home"></app-header>
 <ion-content>
     <ion-grid>
         <ion-row align-items-center>
@@ -26,7 +26,7 @@
                 <mat-divider class="divider pt-3"></mat-divider>
                 <!-- CP Acceptance -->
                 <div *ngIf="login_type ==1" class="d-flex flex-column pt-3">
-                    <div class="d-flex justify-content-between" (click)="goto()">
+                    <div class="d-flex justify-content-between" (click)="goto('aop-approval-benefit')">
                         <div>
                             <h5>Approved AOP/QOP</h5>
                         </div>
@@ -39,9 +39,9 @@
 
 
 
-                    <div class="d-flex justify-content-between pt-3" (click)="gotoFOs()">
+                    <div class="d-flex justify-content-between pt-3" (click)="goto('aop-approval-benefit')">
                         <div>
-                            <h5>Your Organisation</h5>
+                            <h5>FOS LIST</h5>
                         </div>
                         <div>
                             <mat-icon>
@@ -49,6 +49,20 @@
                             </mat-icon>
                         </div>
                     </div>
+                </div>
+
+                <div *ngIf="login_type ==2" class="d-flex flex-column pt-3">
+                    <div class="d-flex justify-content-between" (click)="goto('cpstatus')">
+                        <div>
+                            <h5>SELECT ORGANIZATION </h5>
+                        </div>
+                        <div>
+                            <mat-icon>
+                                <ion-icon name="arrow-dropright"></ion-icon>
+                            </mat-icon>
+                        </div>
+                    </div>
+
                 </div>
             </ion-col>
             <ion-col size="10" offsetXs="1" offsetSm="1" class="">
@@ -87,6 +101,7 @@
         </div>
     </div>
     <div class="d-flex justify-content-center">
-        <button mat-button style="max-width: 80% !important " (click)="logout()" class="common-btn  mb-3">Logout</button><br>
+        <button mat-button style="max-width: 80% !important " (click)="logout()"
+            class="common-btn  mb-3">Logout</button><br>
     </div>
 </div>

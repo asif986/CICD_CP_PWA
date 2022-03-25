@@ -2,10 +2,9 @@
 <ion-content>
     <ion-grid>
         <ion-row>
-            <ion-col size="10" offset="1">
-                <h3 class="pt-4">
+            <ion-col size="10" offset="">
+                <h3 class="pt-4 select-cp_text">
                     <b>
-
                         Select your CP
                     </b>
                 </h3>
@@ -13,20 +12,33 @@
         </ion-row>
         <form [formGroup]="myForm">
             <ion-row>
-                <ion-col size="10" offset="1">
-                    <mat-form-field appearance="outline">
-                        <input formControlName="searchbox" (input)="valuechange($event)" placeholder="Search" matInput type="text">
-                    </mat-form-field>
+                <ion-col size="12">
+                    <!-- <mat-form-field appearance="outline">
+
+                        <input formControlName="searchbox" (input)="valuechange($event)"  matInput type="text">
+                    </mat-form-field> -->
+
+                    <ion-searchbar formControlName="searchbox" placeholder="Enter CP name" [(ngModel)]="searchbox_nm"
+                        debounce="270" (ionInput)="search($event)" (ionClear)="firms=[];searchVal='';getCPList();"
+                        class="search">
+                    </ion-searchbar>
                 </ion-col>
             </ion-row>
             <ion-row>
-                <ion-col size="10" offset="1">
+                <ion-col size="12" class="cp_list">
 
-                    <mat-radio-group (change)="changeOrgz($event)" formControlName="firm" class="d-flex justify-content-around pt-4 pb-4">
+                    <mat-radio-group (change)="changeOrgz($event)" formControlName="firm"
+                        class="d-flex justify-content-around pt-4 pb-4">
                         <div class="d-flex flex-column w-100">
-                            <mat-radio-button class="pt-3" [value]="firm.id" *ngFor="let firm of firms">{{firm.name}}</mat-radio-button>
+                            <!-- | filter:searchbox_nm -->
+                            <mat-radio-button class="pt-3" [value]="firm.cp_entity_id" *ngFor="let firm of firms ">
+                                {{firm.name}}
+                            </mat-radio-button>
                         </div>
                     </mat-radio-group>
+
+                    <p *ngIf="firms.length ===0 && searchbox_nm!=null" style="color: black;text-align: center;">No CP
+                        found.</p>
                 </ion-col>
             </ion-row>
         </form>
