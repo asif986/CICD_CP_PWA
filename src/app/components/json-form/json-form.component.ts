@@ -21,6 +21,7 @@ import { DataService } from "./../../services/data.service";
 import { HttpResponse } from "@angular/common/http";
 import { MatDialog } from "@angular/material";
 import { StateService } from "./../../services/state.service";
+import { responsefromSalesPerson } from "src/app/models/business-details";
 
 @Component({
   selector: "app-json-form",
@@ -33,6 +34,7 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
   @Output() returnformdata = new EventEmitter<FormGroup>();
   @Output() returnchangeorg = new EventEmitter<any>();
   @Output() returnvaliadation = new EventEmitter<any>();
+  salePersonList:any = [];
   foods: any[] = [
     {value: 'steak-0', viewValue: 'Steak'},
     {value: 'pizza-1', viewValue: 'Pizza'},
@@ -155,7 +157,16 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
       // this.myForm.controls[control.value].updateValueAndValidity();
     }
   }
+
   ngOnInit() {
+    this.apiService.getAllSalesPerson().subscribe((data: HttpResponse<any>)=>
+      {
+        let allSalesPerson: responsefromSalesPerson = data.body;
+        if (allSalesPerson.success == 1) {
+          this.salePersonList = allSalesPerson.data;
+          console.log(allSalesPerson.data);
+        }
+      })
     // console.log("Compentned called")
     // event.value =1;
     // console.log("data",this.jsonFormData)
