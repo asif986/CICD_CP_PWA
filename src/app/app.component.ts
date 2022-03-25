@@ -6,11 +6,11 @@ import {
   Platform,
 } from "@ionic/angular";
 import {
+  ApplicationRef,
   Component,
   NgZone,
   OnInit,
   enableProdMode,
-  ApplicationRef,
 } from "@angular/core";
 import { Push, PushObject, PushOptions } from "@ionic-native/push/ngx";
 
@@ -24,10 +24,10 @@ import { Router } from "@angular/router";
 import { SplashScreen } from "@ionic-native/splash-screen/ngx";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { Storage } from "@ionic/storage";
-import { UniqueDeviceID } from "@ionic-native/unique-device-id/ngx";
-import { responsefromlogin } from "./models/Login";
 import { SwUpdate } from "@angular/service-worker";
+import { UniqueDeviceID } from "@ionic-native/unique-device-id/ngx";
 import { interval } from "rxjs";
+import { responsefromlogin } from "./models/Login";
 
 @Component({
   selector: "app-root",
@@ -100,7 +100,7 @@ export class AppComponent {
         this.helper.presentAlert(
           "Update",
           "update available for the app please conform",
-          "",
+          "OK",
           () => {
             this.update.activateUpdate().then(() => location.reload());
           }
