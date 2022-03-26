@@ -12,6 +12,7 @@ import { Helper } from "../services/Helper";
 import { HttpClient } from "@angular/common/http";
 import { Storage } from "@ionic/storage";
 import { UniqueDeviceID } from "@ionic-native/unique-device-id/ngx";
+import { responsefromlogin } from "./../models/Login";
 
 @Component({
   selector: "app-profile",
@@ -20,22 +21,22 @@ import { UniqueDeviceID } from "@ionic-native/unique-device-id/ngx";
 })
 export class ProfilePage implements OnInit {
   detailsArray = [
-    {
-      info: "Sameer Kulkarni",
-      iconnm: "person",
-    },
-    {
-      info: "+91 9876543210",
-      iconnm: "phone-portrait",
-    },
-    {
-      info: "Sameer.kulkarni@gmail.com",
-      iconnm: "mail",
-    },
-    {
-      info: "SunOrbit",
-      iconnm: "business",
-    },
+    // {
+    //   info: "Sameer Kulkarni",
+    //   iconnm: "person",
+    // },
+    // {
+    //   info: "+91 9876543210",
+    //   iconnm: "phone-portrait",
+    // },
+    // {
+    //   info: "Sameer.kulkarni@gmail.com",
+    //   iconnm: "mail",
+    // },
+    // {
+    //   info: "SunOrbit",
+    //   iconnm: "business",
+    // },
   ];
 
   apiToken = "";
@@ -61,8 +62,20 @@ export class ProfilePage implements OnInit {
   }
 
   ngOnInit() {
+    let getOnlyFields = [
+      { control: "name", iconnm: "person" },
+      { control: "mobile", iconnm: "phone-portrait" },
+      { control: "email", iconnm: "mail" },
+      { control: "billing_name", iconnm: "person" },
+    ];
     this.helper.getUserInfo().then((val: any) => {
       this.login_type = val.login_type;
+      this.detailsArray = getOnlyFields.map((item: any) => {
+        // console.log(item.control);
+        // console.log(val.data[item.control]);
+
+        return { ...item, info: val.data[item.control] };
+      });
     });
   }
 

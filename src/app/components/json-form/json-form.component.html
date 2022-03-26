@@ -36,6 +36,7 @@
             <mat-form-field appearance="outline" class="pb-3" *ngIf="controls.inputtype==10">
                 <mat-label>{{controls.label}}</mat-label>
                 <mat-select [formControlName]="controls.name">
+                    <!-- user_id -->
                     <mat-option *ngFor="let singlesalesperson of salePersonList" [value]="singlesalesperson.person_id">
                         {{singlesalesperson.full_name}}
                     </mat-option>

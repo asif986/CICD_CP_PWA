@@ -69,6 +69,12 @@ export class WebServer {
 
   //get all sales person
   public salesPersons = this.BASE_URL+"getAllSalesPersons"
+  //get approve-fosrequest 
+  public approve_fos_requests = this.BASE_URL+"cpEntityTaggingRequestList";
+  //reject fos
+  public rejectFosRequest = this.BASE_URL+"cancelTagging";
+  //accept fos
+  public acceptFosRequest  = this.BASE_URL+"cpEntityTaggingRequestUpdate";
   public verifyPan = "https://kyc-api.aadhaarkyc.io/api/v1/pan/pan";
   public verifyrera = "https://kyc-api.aadhaarkyc.io/api/v1/pan/pan";
   public verifyGST = "https://kyc-api.aadhaarkyc.io/api/v1/corporate/gstin";

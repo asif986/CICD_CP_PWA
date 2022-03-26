@@ -269,7 +269,7 @@ export class BusinessDetailsPage implements OnInit {
     this.CommonHelper.presentLoading().then(() => {
       try {
         let controls = $event.controls;
-        // console.warn({ controls });
+        console.log({ controls });
         let invalid = false;
 
         let form_fields = [];
@@ -339,12 +339,12 @@ export class BusinessDetailsPage implements OnInit {
         //   this.presentToast("Please verify your mobile number");
         //   return;
         // }
-        console.log("validated", $event.value);
+        console.log("validated", $event.getRawValue());
         this.CommonHelper.dismissLoading();
         // return;
         let formdata = this.state.formValue.value;
         this.navCtrl.navigateForward("bank-details");
-        let aftersubmit = $event.value;
+        let aftersubmit = $event.getRawValue();
         this.state.formValue.next({ ...formdata, ...aftersubmit });
       } catch (error) {
         this.CommonHelper.dismissLoading();

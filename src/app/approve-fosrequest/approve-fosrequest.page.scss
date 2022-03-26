@@ -6,3 +6,15 @@ ion-button {
     border-radius: 15%;
     border: 1px solid #707070;
 }
+
+.img-mx {
+    max-width: 80%;
+}
+
+::ng-deep ion-searchbar {
+    .searchbar-input-container {
+        .searchbar-input {
+            border-radius: 30px !important;
+        }
+    }
+}

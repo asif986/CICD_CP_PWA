@@ -840,6 +840,18 @@ export class APIService {
   cpRegistration(psData: any) {
     return this.apiClient.post(this.webServer.cpRegistration, psData);
   }
+  //get all fos requests
+  allFosRequests(getData: any) {
+    return this.apiClient.get(this.webServer.approve_fos_requests + getData);
+  }
+  //reject fos requests
+  rejectFosRequest(getData: any) {
+    return this.apiClient.post(this.webServer.rejectFosRequest, getData);
+  }
+  //accept fos requests
+  acceptFosRequest(getData: any) {
+    return this.apiClient.post(this.webServer.acceptFosRequest, getData);
+  }
   getAllSalesPerson() {
     return this.apiClient.get(this.webServer.salesPersons);
   }
