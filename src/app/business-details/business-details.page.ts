@@ -242,7 +242,6 @@ export class BusinessDetailsPage implements OnInit {
   ) {}
 
   ngOnInit() {
-
     this.form.header = [
       ...this.temp.header.map((item) => {
         const filtered = item.controls.filter((item2) => item2.is_cp == 1);
@@ -251,7 +250,6 @@ export class BusinessDetailsPage implements OnInit {
         );
         getPerson_name = getPerson_name.name;
         const attacthedsales = filtered.map((item) => {
-     
           return item;
         });
         console.log({ attacthedsales });
@@ -286,6 +284,7 @@ export class BusinessDetailsPage implements OnInit {
           });
         });
         // return;
+        console.log({ form_fields_for_DB });
         let newcontrols = Object.keys(controls).sort((a: any, b: any) => {
           return a - b;
         });
@@ -314,7 +313,10 @@ export class BusinessDetailsPage implements OnInit {
               invalid = true;
             }
           } else {
-            if (form_fields.includes(key) && controls[key].enabled) {
+            if (
+              (form_fields.includes(key) || form_fields_for_DB.includes(key)) &&
+              controls[key].enabled
+            ) {
               console.log("Invalid");
               this.form.header.forEach((element: any) => {
                 let errormsg = element.controls.find(
