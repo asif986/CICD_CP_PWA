@@ -102,4 +102,13 @@ export class ApproveFOSRequestPage implements OnInit {
     this.allRequests = allrequest;
     console.log($event.detail.value);
   }
+  doRefresh($event) {
+    console.log({ $event });
+    setTimeout(() => {
+      // this.VerficationStatus();
+      this.getAllFosRequest()
+      console.log("Async operation has ended");
+      $event.target.complete();
+    }, 500);
+  }
 }
