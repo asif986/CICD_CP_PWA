@@ -196,10 +196,12 @@ public persondetailsForm()
             type: "text",
             type_2: "password",
             requiredError: "Please enter a valid Password!.",
-            patternError: "Password must contain characters and numbers at least 8 !.",
+            patternError: "Password must contain at least 8 characters !.",
             validators: {
               required: true,
-              pattern:"^[a-zA-Z0-9]{8,}$"
+              pattern:"^[A-Za-z0-9_@./#&+-]{8,}$",
+              // minLength:8,
+              // maxLength:8
               //   "^(?=.*[0-9])" +
               //   "(?=.*[a-z])(?=.*[A-Z])" +
               //   // "(?=.*[@#$%^&+=])" +

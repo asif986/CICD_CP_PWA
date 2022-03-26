@@ -33,7 +33,8 @@ export class ApproveFOSRequestPage implements OnInit {
       this.helper.getUserInfo().then(
         (res: responsefromlogin) => {
           // let body = "?cp_entity_id=" + 1;
-          let body = "?cp_entity_id=" + res.data.cp_entity_id;
+          let body = "?cp_entity_id=" +res.data.cp_entity_id;
+          //  res.data.cp_entity_id;
           this.apiService.allFosRequests(body).subscribe(
             (data: HttpResponse<any>) => {
               console.log(data.body);
@@ -90,16 +91,16 @@ export class ApproveFOSRequestPage implements OnInit {
     );
   }
   onSearchChange($event: CustomEvent) {
-    let inputfrom = $event.detail.value.toLowerCase();
-    if (inputfrom == "") {
-      this.getAllFosRequest();
-      return;
-    }
-    // let inputfrom = (($event.detail.value)).toLowerCase();
-    let allrequest = this.allRequests.filter(
-      (item) => item.cp_fos_name.toLowerCase() == inputfrom
-    );
-    this.allRequests = allrequest;
+    // let inputfrom = $event.detail.value.toLowerCase();
+    // if (inputfrom == "") {
+    //   this.getAllFosRequest();
+    //   return;
+    // }
+    // // let inputfrom = (($event.detail.value)).toLowerCase();
+    // let allrequest = this.allRequests.filter(
+    //   (item) => item.cp_fos_name.toLowerCase() == inputfrom
+    // );
+    // this.allRequests = allrequest;
     console.log($event.detail.value);
   }
   doRefresh($event) {
