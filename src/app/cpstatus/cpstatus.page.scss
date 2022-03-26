@@ -1,11 +1,14 @@
 .center-page {
-    height: calc(35vh);
-    display: flex!important;
-    align-content: center!important;
-    align-items: flex-end;
+  height: calc(35vh);
+  display: flex !important;
+  align-content: center !important;
+  align-items: flex-end;
 }
 
 .link-css {
-    color: #4D53FF;
-    text-decoration: underline;
+  color: #4d53ff;
+  text-decoration: underline;
+}
+.btn-box {
+  margin: 12px 29px;
 }

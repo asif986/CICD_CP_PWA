@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 import { NavController } from "@ionic/angular";
+import { responsefromlogin } from "src/app/models/Login";
+import { Helper } from "src/app/services/Helper";
 
 @Component({
   selector: "app-header",
@@ -12,8 +14,13 @@ export class HeaderComponent implements OnInit {
   @Input() headernam: string = "";
   @Input() url: string = "";
   isArrowHide = true;
+  userInfo: responsefromlogin;
 
-  constructor(public navctrl: NavController, public route: ActivatedRoute) {}
+  constructor(
+    public navCtrl: NavController,
+    public route: ActivatedRoute,
+    public helper: Helper
+  ) {}
 
   ngOnInit() {
     this.route.queryParams.subscribe((params) => {
@@ -29,8 +36,25 @@ export class HeaderComponent implements OnInit {
         this.isArrowHide = true;
       }
     });
+
+    this.helper.getUserInfo().then((val: responsefromlogin) => {
+      this.userInfo.data.verification_status_id =
+        val.data.verification_status_id;
+      this.userInfo.is_cp_tagging_requested = val.is_cp_tagging_requested;
+    });
   }
+
   goBack() {
-    this.navctrl.navigateBack(this.url);
+    if (this.userInfo.data.verification_status_id == 2) {
+      this.navCtrl.navigateRoot("/verificationpending", {
+        replaceUrl: true,
+      });
+    } else if (this.userInfo.is_cp_tagging_requested == 1) {
+      this.navCtrl.navigateRoot("/cpstatus", {
+        replaceUrl: true,
+      });
+    } else {
+      this.navCtrl.navigateBack(this.url);
+    }
   }
 }

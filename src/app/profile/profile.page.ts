@@ -43,6 +43,8 @@ export class ProfilePage implements OnInit {
   userId = 0;
   uuid = 0;
   login_type;
+  verification_status_id;
+  is_cp_tagging_requested;
 
   constructor(
     public storage: Storage,
@@ -68,8 +70,10 @@ export class ProfilePage implements OnInit {
       { control: "email", iconnm: "mail" },
       { control: "billing_name", iconnm: "person" },
     ];
-    this.helper.getUserInfo().then((val: any) => {
+    this.helper.getUserInfo().then((val: responsefromlogin) => {
       this.login_type = val.login_type;
+      this.verification_status_id = val.data.verification_status_id;
+      this.is_cp_tagging_requested = val.is_cp_tagging_requested;
       this.detailsArray = getOnlyFields.map((item: any) => {
         // console.log(item.control);
         // console.log(val.data[item.control]);
