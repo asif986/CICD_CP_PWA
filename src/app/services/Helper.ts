@@ -222,7 +222,7 @@ export class Helper {
         if (val) {
           console.log(val);
           // //FOR CP
-          // this.navCtrl.navigateRoot("/home", {
+          // this.navCtrl.navigateRoot("/addnewlead", {
           //   replaceUrl: true,
           // });
           // return;
