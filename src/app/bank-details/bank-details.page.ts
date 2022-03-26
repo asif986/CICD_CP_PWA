@@ -570,7 +570,7 @@ console.log({body})
             }
 
             this.storage.set("userinfo", JSON.stringify(info.data));
-            this.navctrl.navigateRoot("login");
+            this.navctrl.navigateRoot("login", { replaceUrl: true });
           },
           (error) =>     
           {

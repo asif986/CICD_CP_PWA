@@ -676,7 +676,7 @@ export class HomePage implements OnInit {
     this.router.navigate(["/customer-unique-id/"]);
   }
 
-  addFOS() {
+  approvefos() {
     this.storage.set("ID", 1);
     this.storage.set("FromHome", 0);
     this.router.navigate(["/approve-fosrequest"]);

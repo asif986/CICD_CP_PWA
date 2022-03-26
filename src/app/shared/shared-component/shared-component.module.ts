@@ -5,6 +5,7 @@ import { HeaderComponent } from "src/app/components/header/header.component";
 import { IonicModule } from "@ionic/angular";
 import { JsonFormComponent } from "src/app/components/json-form/json-form.component";
 import { MaterialModule } from "src/app/material.module";
+import { Ng2SearchPipeModule } from "ng2-search-filter";
 import { NgModule } from "@angular/core";
 import { NgOtpInputModule } from "ng-otp-input";
 import { ReactiveFormsModule } from "@angular/forms";
@@ -19,6 +20,7 @@ import { ReactiveFormsModule } from "@angular/forms";
   imports: [
     CommonModule,
     MaterialModule,
+    Ng2SearchPipeModule,
     IonicModule,
     NgOtpInputModule,
     ReactiveFormsModule,
@@ -30,6 +32,7 @@ import { ReactiveFormsModule } from "@angular/forms";
   ],
   exports: [
     JsonFormComponent,
+    Ng2SearchPipeModule,
     CustomModelComponent,
     HeaderComponent,
     ConfirmationDialogComponent,

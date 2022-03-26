@@ -28,6 +28,9 @@
                         <div *ngIf="myForm.controls[controls.name].hasError('pattern') && myForm.controls[controls.name].dirty" class="error">
                             {{controls.patternError}}
                         </div>
+                        <div *ngIf="myForm.controls[controls.name].hasError('minLength') && myForm.controls[controls.name].dirty" class="error">
+                            {{controls.patternError}}
+                        </div>
                     </mat-hint>
                 </mat-form-field>
             </div>

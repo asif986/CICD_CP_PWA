@@ -1,3 +1,5 @@
+<app-header headernam="Approve FOS Request" url="home"></app-header>
+
 <ion-content>
     <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
         <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing Data">
@@ -18,7 +20,7 @@
             <ion-col size="12">
                 <h4 *ngIf="allRequests.length < 1" class="text-center">No data found</h4>
             </ion-col>
-            <ion-col *ngFor="let item of allRequests" class="p-3 pl-3 pr-3 pt-0 " size="10" offset="1">
+            <ion-col *ngFor="let item of allRequests| filter: (myForm.controls['searchbox'].value)" class="p-3 pl-3 pr-3 pt-0 " size="10" offset="1">
                 <div class="p-3 card-css">
 
                     <div class="d-flex justify-content-between">
@@ -38,7 +40,7 @@
                     </div>
                     <div>
                         <div>
-                            <h6>+91 9876543210</h6>
+                            <h6>{{item.mobile}}</h6>
                         </div>
                     </div>
                     <div class="d-flex justify-content-end">
