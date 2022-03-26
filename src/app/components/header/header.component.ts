@@ -14,7 +14,9 @@ export class HeaderComponent implements OnInit {
   @Input() headernam: string = "";
   @Input() url: string = "";
   isArrowHide = true;
-  userInfo: responsefromlogin;
+
+  verification_status_id;
+  is_cp_tagging_requested;
 
   constructor(
     public navCtrl: NavController,
@@ -38,20 +40,21 @@ export class HeaderComponent implements OnInit {
     });
 
     this.helper.getUserInfo().then((val: responsefromlogin) => {
-      this.userInfo.data.verification_status_id =
-        val.data.verification_status_id;
-      this.userInfo.is_cp_tagging_requested = val.is_cp_tagging_requested;
+      this.verification_status_id = val.data.verification_status_id;
+      this.is_cp_tagging_requested = val.is_cp_tagging_requested;
+      // this.userInfo.login_type = val.login_type;
     });
   }
 
   goBack() {
-    if (this.userInfo.data.verification_status_id == 2) {
+    if (this.verification_status_id == 2) {
       this.navCtrl.navigateRoot("/verificationpending", {
         replaceUrl: true,
       });
-    } else if (this.userInfo.is_cp_tagging_requested == 1) {
+    } else if (this.is_cp_tagging_requested == 1) {
       this.navCtrl.navigateRoot("/cpstatus", {
         replaceUrl: true,
+        queryParams: { pending: true },
       });
     } else {
       this.navCtrl.navigateBack(this.url);
