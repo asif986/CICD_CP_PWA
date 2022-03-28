@@ -108,7 +108,7 @@ export class ProfilePage implements OnInit {
               this.storage.remove("fullname");
               this.storage.remove("channelname");
               this.helper.presentToastSuccess("Logout Successfully!");
-              this.navCtrl.navigateRoot("login", { replaceUrl: true });
+              this.navCtrl.navigateRoot("/login", { replaceUrl: true });
 
               this.alertController.dismiss();
               this.modalController.dismiss();
@@ -159,6 +159,6 @@ export class ProfilePage implements OnInit {
   }
 
   goto(url) {
-    this.navCtrl.navigateForward(url);
+    this.navCtrl.navigateForward(url, { replaceUrl: true });
   }
 }
