@@ -222,9 +222,9 @@ export class Helper {
         if (val) {
           console.log(val);
           // //FOR CP
-          // this.navCtrl.navigateRoot("/addnewlead", {
-          //   replaceUrl: true,
-          // });
+          this.navCtrl.navigateRoot("/home", {
+            replaceUrl: true,
+          });
           // return;
           if (val.login_type == 1) {
             if (val.data.verification_status_id == 1) {

@@ -73,7 +73,10 @@ export class KycModalPage implements OnInit {
     if (doc_id == 1) {
       this.cb_data = { adhar_no: this.doc, doc_id };
     } else if (doc_id == 2) {
+      console.log(res);
       let { full_name } = res;
+      console.log(full_name);
+      console.log(this.kycInfo.lead_name.toUpperCase());
       if (this.kycInfo.lead_name.toUpperCase() == full_name) {
         this.cb_data = { pan_no: this.doc, doc_id };
       } else {
@@ -157,7 +160,7 @@ export class KycModalPage implements OnInit {
       (res: any) => {
         console.log(res);
         if (res.success == true) {
-          this.updateData(doc_id, res);
+          this.updateData(doc_id, res.data);
         } else {
           this.helper.presentToastError("Something went to wrong");
         }

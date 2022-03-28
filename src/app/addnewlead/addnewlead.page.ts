@@ -423,7 +423,7 @@ export class AddnewleadPage implements OnInit {
                 ...this.postNewLead,
                 ...this.kyc_data,
                 cp_entity_id: this.cp_entity_id,
-                fos_id: this.fos_id,
+                cp_fos_id: this.fos_id,
               };
               // return;
               this.apiservice.postCPLead(data).subscribe(

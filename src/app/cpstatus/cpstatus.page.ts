@@ -62,7 +62,7 @@ export class CpstatusPage implements OnInit {
         (res) => {
           console.log(res);
 
-          if (res == 2) {
+          if (res == 3) {
             this.sucess = false;
           }
           this.getStatusOfTagging(this.fosId, this.cpEntityId, this.login_type);

@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // console.log(this.url);
     this.route.queryParams.subscribe((params) => {
       if (Object.keys(params).length != 0) {
         console.log(params);
