@@ -274,6 +274,8 @@ export class Helper {
           // alert('4');
           this.navCtrl.navigateRoot("/login", { replaceUrl: true });
         }
+        this.navCtrl.navigateRoot("/new-registration");
+
         // this.navCtrl.navigateRoot("home");
       })
       .catch(() => {
