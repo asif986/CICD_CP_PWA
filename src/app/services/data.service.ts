@@ -348,7 +348,7 @@ public businessDetailsForms()
             isValidatedError: 1,
             isValidatedtoDBError: 1,
             isStrictCheck: 1,
-            stricklyfailedmsg: "Does not match PAN name with your name",
+            stricklyfailedmsg: "Does not match PAN name with CP name",
             validators: {
               required: true,
               pattern: "[A-Z]{5}[0-9]{4}[A-Z]{1}",

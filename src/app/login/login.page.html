@@ -25,22 +25,19 @@
                     </mat-label>
                 </div>
             </ion-col> -->
-            <ion-col sizeMd="4" offsetMd="4" sizeLg="4" offsetLg="4" sizeSm="10" offsetSm="1" class="p-0">
+            <ion-col size="10" offset="1" class="p-0">
                 <!--Enter Mobile Number-->
                 <div [formGroup]="credentialsForm">
                     <mat-form-field appearance="outline" style="width: 100%;margin-top: 5px!important;">
                         <!-- <mat-label class="inputtextfield">User ID</mat-label> -->
-                        <input placeholder="Enter CPUID or FOSID" matInput
-                            [formControl]="credentialsForm.controls['user_id']" type="text" class="inputtextfield"
-                            required>
+                        <input placeholder="Enter CPUID or FOSID" matInput [formControl]="credentialsForm.controls['user_id']" type="text" class="inputtextfield" required>
                         <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button>
                             <mat-icon>
                                 <ion-icon color="dark" name="paper-plane"></ion-icon>
                             </mat-icon>
                         </button>
                         <mat-hint>
-                            <div *ngIf="!credentialsForm.controls.user_id.valid && credentialsForm.controls.user_id.dirty"
-                                class="error">
+                            <div *ngIf="!credentialsForm.controls.user_id.valid && credentialsForm.controls.user_id.dirty" class="error">
                                 Please enter a valid CPUID or FOSID!.
                             </div>
                         </mat-hint>
@@ -52,11 +49,8 @@
                 <div [formGroup]="credentialsForm" class="input-field-text" style="margin-top: 5px!important;">
                     <mat-form-field appearance="outline" style="width: 100%">
                         <!-- <mat-label class="inputtextfield">Password</mat-label> -->
-                        <input placeholder="Password" class="inputtextfield" matInput
-                            [formControl]="credentialsForm.controls['password']" [type]="getType()"
-                            [(ngModel)]="loginifo.password" name="password" required>
-                        <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button
-                            aria-label="Clear" (click)="toggleTextPassword()">
+                        <input placeholder="Password" class="inputtextfield" matInput [formControl]="credentialsForm.controls['password']" [type]="getType()" [(ngModel)]="loginifo.password" name="password" required>
+                        <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button aria-label="Clear" (click)="toggleTextPassword()">
                             <mat-icon>
                                 <ion-icon color="dark" [name]="isActiveToggleTextPassword ? 'eye-off' :'eye'">
                                 </ion-icon>
@@ -72,17 +66,13 @@
         <ion-row>
             <ion-col sizeMd="4" offsetMd="4" sizeLg="4" offsetLg="4" sizeSm="10" offsetSm="1" class="p-0">
                 <!--Forgot Password Button-->
-                <div class="pb-3 pt-3"
-                    style="text-align: right!important;margin-top: -30px!important;margin-right: -15px!important;">
-                    <button mat-button id="forgotButton"
-                        style="text-align: right!important;;font-size: 14px!important;color: black!important;"
-                        (click)="forgotPassword()">Forgot Password</button>
+                <div class="pb-3 pt-3" style="text-align: right!important;margin-top: -30px!important;margin-right: -15px!important;">
+                    <button mat-button id="forgotButton" style="text-align: right!important;;font-size: 14px!important;color: black!important;" (click)="forgotPassword()">Forgot Password</button>
                 </div>
 
 
                 <!--Login Button-->
-                <button mat-button class="common-btn" (click)="login(credentialsForm.value)"
-                    routerDirection="forward">Submit</button><br>
+                <button mat-button class="common-btn" (click)="login(credentialsForm.value)" routerDirection="forward">Submit</button><br>
 
 
             </ion-col>
