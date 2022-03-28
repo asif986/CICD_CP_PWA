@@ -1516,7 +1516,7 @@ this.form = {...data}
           "registration form",
           this.statefromservices.formValue.value
         );
-        this.navCtrl.navigateForward("business-details");
+        this.navCtrl.navigateForward("bank-details");
 
         console.log("validated", $event.value);
       } catch (error) {

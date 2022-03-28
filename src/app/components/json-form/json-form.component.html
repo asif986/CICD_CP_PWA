@@ -7,7 +7,7 @@
             </button>
 
             <div *ngIf="controls.inputtype==2">
-                <mat-form-field appearance="outline" class="inputtextfield">
+                <mat-form-field appearance="outline" class="inputtextfield mt-3">
                     <mat-label>{{controls.placeholder}}</mat-label>
                     <input *ngIf="controls.isButton" [formControlName]="controls.name" [placeholder]="controls.placeholder" matInput [type]="controls.defaultval?controls.type:controls.type_2" class="inputtextfield">
                     <input *ngIf="!controls.isButton" [formControlName]="controls.name" [placeholder]="controls.placeholder" matInput [type]="controls.type" class="inputtextfield">
@@ -36,7 +36,7 @@
             </div>
 
             <hr *ngIf="controls.inputtype==10">
-            <mat-form-field appearance="outline" class="pb-3" *ngIf="controls.inputtype==10">
+            <mat-form-field appearance="outline" class="pb-3 " *ngIf="controls.inputtype==10">
                 <mat-label>{{controls.label}}</mat-label>
                 <mat-select [formControlName]="controls.name">
                     <!-- user_id -->
@@ -60,7 +60,7 @@
                 </p>
             </div>
             <div *ngIf="controls.inputtype==9">
-                <mat-form-field appearance="outline" class="inputtextfield">
+                <mat-form-field appearance="outline" class="inputtextfield mt-3">
                     <mat-label>{{controls.placeholder}}</mat-label>
                     <input [formControlName]="controls.name" [placeholder]="controls.placeholder" matInput [type]="controls.type" class="inputtextfield">
                     <button mat-button style="color: var(--ion-color-medium-tint)" matSuffix mat-icon-button>

@@ -21,6 +21,7 @@ export interface JsonFormControlOptions {
     label: string;
     value: string;
     type: string;
+    disabled?:boolean;
     options?: JsonFormControlOptions;
     required: boolean;
     validators: JsonFormValidators;

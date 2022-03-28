@@ -917,6 +917,9 @@ export class APIService {
       case 4:
         url = this.webServer.verifyGST;
         break;
+      case 5:
+        url = this.webServer.verifyBank;
+        break;
     }
     return this.http.post(url, { id_number }, { headers });
   }

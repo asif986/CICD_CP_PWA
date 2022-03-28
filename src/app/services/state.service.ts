@@ -7,5 +7,6 @@ import { Injectable } from '@angular/core';
 export class StateService {
 public formArray = new BehaviorSubject<any>(null);
 public formValue = new BehaviorSubject<any>(null);
+public persondetails = new BehaviorSubject<any>(null);
   constructor() { }
 }

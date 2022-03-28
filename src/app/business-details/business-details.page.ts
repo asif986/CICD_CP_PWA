@@ -29,6 +29,7 @@ export class BusinessDetailsPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.dataService.persondetailsForm();
     this.temp ={...this.dataService.businessDetailsForms()};
     this.form.header = [
       ...this.temp.header.map((item) => {
@@ -133,7 +134,7 @@ export class BusinessDetailsPage implements OnInit {
         this.CommonHelper.dismissLoading();
         // return;
         let formdata = this.state.formValue.value;
-        this.navCtrl.navigateForward("bank-details");
+        this.navCtrl.navigateForward("new-registration");
         let aftersubmit = $event.getRawValue();
         this.state.formValue.next({ ...formdata, ...aftersubmit });
       } catch (error) {
