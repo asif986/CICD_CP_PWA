@@ -59,7 +59,7 @@ export class KycModalPage implements OnInit {
       // e will emit values entered as otp and,
       console.log("otp is", e);
 
-      this.updateData(doc_id);
+      // this.updateData(doc_id);
     } else if (e == -1) {
       // if e == -1, timer has stopped
       console.log(e, "resend button enables");
@@ -69,11 +69,22 @@ export class KycModalPage implements OnInit {
     }
   }
 
-  updateData(doc_id) {
+  updateData(doc_id, res: any) {
     if (doc_id == 1) {
       this.cb_data = { adhar_no: this.doc, doc_id };
     } else if (doc_id == 2) {
-      this.cb_data = { pan_no: this.doc, doc_id };
+      console.log(res);
+      let { full_name } = res;
+      console.log(full_name);
+      console.log(this.kycInfo.lead_name.toUpperCase());
+      if (this.kycInfo.lead_name.toUpperCase() == full_name) {
+        this.cb_data = { pan_no: this.doc, doc_id };
+      } else {
+        this.helper.presentToastError(
+          "Entered Pan number is invalid for this lead"
+        );
+        return false;
+      }
     } else if (doc_id == 3) {
       this.cb_data = { voter_no: this.doc, doc_id };
     }
@@ -108,17 +119,23 @@ export class KycModalPage implements OnInit {
     }
     // PAN card
     else if (this.kycInfo.ductypeId == 2) {
-      if (this.doc != "") {
+      if (this.doc != "" && this.doc != null) {
         if (this.doc.match(this.panValidation)) {
           // this.isOtpSend = true;
           // return true;
-          let PAN_URL = this.url + "pan/pan";
-          this.kycVerfications(PAN_URL, this.doc, 2);
+          if (this.kycInfo.lead_name != null) {
+            let PAN_URL = this.url + "pan/pan";
+            this.kycVerfications(PAN_URL, this.doc, 2);
+          } else {
+            this.helper.presentToast("Enter valid Name for Name Field");
+          }
         } else {
           // alert("Enter valid Aadhar Number");
-          this.helper.presentToast("Enter valid Pan number");
+          this.helper.presentToastError("Entered Pan number is invalid");
           return false;
         }
+      } else {
+        this.helper.presentToastError(" Please Enter valid Pan number");
       }
     }
     // Voter ID
@@ -143,7 +160,7 @@ export class KycModalPage implements OnInit {
       (res: any) => {
         console.log(res);
         if (res.success == true) {
-          this.updateData(doc_id);
+          this.updateData(doc_id, res.data);
         } else {
           this.helper.presentToastError("Something went to wrong");
         }

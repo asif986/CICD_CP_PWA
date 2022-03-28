@@ -113,7 +113,7 @@ export class MyperformancePage implements OnInit {
       } else if (val >= 20 && val <= 100) {
         return [25, 50, 75, 100, 125];
       } else {
-        return [75, 100, 125, 175, 200];
+        return [75, 100, 125, 150, 175, 200];
       }
     } else if (flag == 4) {
       if (val < 20) {

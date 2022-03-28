@@ -222,9 +222,9 @@ export class Helper {
         if (val) {
           console.log(val);
           // //FOR CP
-          // this.navCtrl.navigateRoot("/home", {
-          //   replaceUrl: true,
-          // });
+          this.navCtrl.navigateRoot("/home", {
+            replaceUrl: true,
+          });
           // return;
           if (val.login_type == 1) {
             if (val.data.verification_status_id == 1) {
@@ -274,8 +274,6 @@ export class Helper {
           // alert('4');
           this.navCtrl.navigateRoot("/login", { replaceUrl: true });
         }
-        this.navCtrl.navigateRoot("/new-registration");
-
         // this.navCtrl.navigateRoot("home");
       })
       .catch(() => {

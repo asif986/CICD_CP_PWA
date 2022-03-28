@@ -94,21 +94,21 @@ export class AddnewleadPage implements OnInit {
 
   kyc_data = { adhar_no: null, pan_no: null, voter_no: null };
   kyc_doc_info: any = [
-    {
-      docs_type: "Adhar Card",
-      doc_type_id: 1,
-      is_verified: false,
-    },
+    // {
+    //   docs_type: "Adhar Card",
+    //   doc_type_id: 1,
+    //   is_verified: false,
+    // },
     {
       docs_type: "Pan Card",
       doc_type_id: 2,
       is_verified: false,
     },
-    {
-      docs_type: "Voter ID",
-      doc_type_id: 3,
-      is_verified: false,
-    },
+    // {
+    //   docs_type: "Voter ID",
+    //   doc_type_id: 3,
+    //   is_verified: false,
+    // },
   ];
 
   // tslint:disable-next-line:max-line-length
@@ -423,7 +423,7 @@ export class AddnewleadPage implements OnInit {
                 ...this.postNewLead,
                 ...this.kyc_data,
                 cp_entity_id: this.cp_entity_id,
-                fos_id: this.fos_id,
+                cp_fos_id: this.fos_id,
               };
               // return;
               this.apiservice.postCPLead(data).subscribe(
@@ -736,7 +736,7 @@ export class AddnewleadPage implements OnInit {
     //   ],
     // });
     // await actionSheet.present();
-    let data = { ductypeId, dyc_name };
+    let data = { ductypeId, dyc_name, lead_name: this.postNewLead.first_name };
     const modal = await this.modalController.create({
       component: KycModalPage,
       componentProps: data,

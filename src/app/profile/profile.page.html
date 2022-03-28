@@ -4,7 +4,7 @@
         <ion-row align-items-center>
             <ion-col size="10" offsetXs="1" offsetSm="1">
 
-                <p class="mb-0">Profile Page</p>
+                <!-- <p class="mb-0">Profile Page</p> -->
             </ion-col>
             <ion-col size="6" offsetMd="5" sizeMd="2" offsetXs="3" offsetSm="3">
                 <ion-img src="assets/channelPartner_Icons/profile/profile.png"></ion-img>
@@ -25,45 +25,49 @@
 
                 <mat-divider class="divider pt-3"></mat-divider>
                 <!-- CP Acceptance -->
-                <div *ngIf="login_type ==1" class="d-flex flex-column pt-3">
-                    <div class="d-flex justify-content-between" (click)="goto('aop-approval-benefit')">
-                        <div>
-                            <h5>Approved AOP/QOP</h5>
+                <ng-container *ngIf="verification_status_id ==1">
+                    <div *ngIf="login_type ==1" class="d-flex flex-column pt-3">
+                        <div class="d-flex justify-content-between" (click)="goto('aop-approval-benefit')">
+                            <div>
+                                <h5>Approved AOP/QOP</h5>
+                            </div>
+                            <div>
+                                <mat-icon>
+                                    <ion-icon name="arrow-dropright"></ion-icon>
+                                </mat-icon>
+                            </div>
                         </div>
-                        <div>
-                            <mat-icon>
-                                <ion-icon name="arrow-dropright"></ion-icon>
-                            </mat-icon>
+
+                        <!-- (click)="goto('')" -->
+
+                        <div class="d-flex justify-content-between pt-3">
+                            <div>
+                                <h5>FOS LIST</h5>
+                            </div>
+                            <div>
+                                <mat-icon>
+                                    <ion-icon name="arrow-dropright"></ion-icon>
+                                </mat-icon>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- (click)="goto('')" -->
-
-                    <div class="d-flex justify-content-between pt-3">
-                        <div>
-                            <h5>FOS LIST</h5>
+                </ng-container>
+                <ng-container *ngIf="is_cp_tagging_requested ==2">
+                    <div *ngIf="login_type ==2" class="d-flex flex-column pt-3">
+                        <div class="d-flex justify-content-between" (click)="goto('cpstatus')">
+                            <div>
+                                <h5>SELECT ORGANIZATION </h5>
+                            </div>
+                            <div>
+                                <mat-icon>
+                                    <ion-icon name="arrow-dropright"></ion-icon>
+                                </mat-icon>
+                            </div>
                         </div>
-                        <div>
-                            <mat-icon>
-                                <ion-icon name="arrow-dropright"></ion-icon>
-                            </mat-icon>
-                        </div>
+
                     </div>
-                </div>
+                </ng-container>
 
-                <div *ngIf="login_type ==2" class="d-flex flex-column pt-3">
-                    <div class="d-flex justify-content-between" (click)="goto('cpstatus')">
-                        <div>
-                            <h5>SELECT ORGANIZATION </h5>
-                        </div>
-                        <div>
-                            <mat-icon>
-                                <ion-icon name="arrow-dropright"></ion-icon>
-                            </mat-icon>
-                        </div>
-                    </div>
-
-                </div>
             </ion-col>
             <ion-col size="10" offsetXs="1" offsetSm="1" class="">
 

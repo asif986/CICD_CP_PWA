@@ -193,4 +193,8 @@ export class VerificationpendingPage implements OnInit {
     });
     return await modal.present();
   }
+
+  goto() {
+    this.navCtrl.navigateRoot("/profile");
+  }
 }

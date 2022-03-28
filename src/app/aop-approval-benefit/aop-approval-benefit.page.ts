@@ -1,7 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
+import { NavController } from "@ionic/angular";
+import { responsefromlogin } from "../models/Login";
 import { APIService } from "../services/APIService";
 import { Helper } from "../services/Helper";
+import { Storage } from "@ionic/storage";
 
 @Component({
   selector: "app-aop-approval-benefit",
@@ -21,7 +24,9 @@ export class AopApprovalBenefitPage implements OnInit {
     public router: Router,
     public apiService: APIService,
     public helper: Helper,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public navCtrl: NavController,
+    public storage: Storage
   ) {
     // console.log(this.isArrowHide);
   }
@@ -90,6 +95,16 @@ export class AopApprovalBenefitPage implements OnInit {
           console.log(res);
           res.success == 1 &&
             this.helper.swAlert("success", "Approval Succesfully!");
+
+          this.helper.getUserInfo().then((val: responsefromlogin) => {
+            // val.data.cp_entity_id = res.cp_entity_id;
+            val.data.aop_qop_accepted = 1;
+            this.storage.set("user_info", JSON.stringify(val));
+            this.navCtrl.navigateRoot("/home", {
+              replaceUrl: true,
+            });
+          });
+
           // this.benefitsData = res.data.aop_data;
           // console.log(this.benefitsData);
         },

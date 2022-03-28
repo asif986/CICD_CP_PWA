@@ -251,8 +251,28 @@ svg {
 }
 
 ion-modal.select-modal {
-  --height: 42%;
-  --width: 90%;
+  // // Extra small devices (portrait phones, less than 576px)
+  // @media (max-width: 575.98px) {
+  //   --height: 42%;
+  //   --width: 90%;
+  // }
+  --border-radius: 28px;
+
+  @media screen and (min-width: 360px), screen and (max-height: 700px) {
+    --height: 39%;
+    --width: 90%;
+  }
+
+  @media screen and (min-width: 390px), screen and (min-height: 800px) {
+    --height: 32%;
+    --width: 90%;
+  }
+
+  // Extra large devices (large desktops, 1200px and up)
+  @media (min-width: 1200px) {
+    --height: 42%;
+    --width: 90%;
+  }
 }
 ion-modal.cp-confirm-modal {
   --height: 35%;
