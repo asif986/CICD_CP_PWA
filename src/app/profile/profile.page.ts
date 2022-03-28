@@ -97,22 +97,22 @@ export class ProfilePage implements OnInit {
           text: "Logout",
           handler: () => {
             this.updateToken();
-            setTimeout(() => {
-              this.storage.remove("data");
-              this.storage.remove("user_info");
-              this.storage.remove("cpLoginData");
-              this.storage.remove("cp_executive_id");
-              this.storage.remove("apiToken");
-              this.storage.remove("cp_id");
-              this.storage.remove("verification_status_id");
-              this.storage.remove("fullname");
-              this.storage.remove("channelname");
-              this.helper.presentToastSuccess("Logout Successfully!");
-              this.navCtrl.navigateRoot("/login", { replaceUrl: true });
+            // setTimeout(() => {
+            this.storage.remove("data");
+            this.storage.remove("user_info");
+            this.storage.remove("cpLoginData");
+            this.storage.remove("cp_executive_id");
+            this.storage.remove("apiToken");
+            this.storage.remove("cp_id");
+            this.storage.remove("verification_status_id");
+            this.storage.remove("fullname");
+            this.storage.remove("channelname");
+            this.navCtrl.navigateRoot("/login", { replaceUrl: true });
+            this.helper.presentToastSuccess("Logout Successfully!");
 
-              this.alertController.dismiss();
-              this.modalController.dismiss();
-            }, 500);
+            this.alertController.dismiss();
+            this.modalController.dismiss();
+            // }, 500);
           },
         },
       ],
