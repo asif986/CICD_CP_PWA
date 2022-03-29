@@ -78,6 +78,7 @@ export class WebServer {
   public verifyPan = "https://kyc-api.aadhaarkyc.io/api/v1/pan/pan";
   public verifyrera = "https://kyc-api.aadhaarkyc.io/api/v1/pan/pan";
   public verifyGST = "https://kyc-api.aadhaarkyc.io/api/v1/corporate/gstin";
+  public verifyBank = "https://kyc-api.aadhaarkyc.io/api/v1/bank-verification/";
   public verifyaadhar =
     "https://kyc-api.aadhaarkyc.io/api/v1/aadhaar-validation/aadhaar-validation";
   // Get CP LeadForm Data
