@@ -28,6 +28,7 @@ export class SelectCPPage implements OnInit {
   searchbox_nm;
   loader;
   fosId;
+  is_cp_tagging_requested;
 
   constructor(
     public fb: FormBuilder,
@@ -45,6 +46,7 @@ export class SelectCPPage implements OnInit {
   getUserInfo() {
     this.helper.getUserInfo().then((val: responsefromlogin) => {
       this.fosId = val.data.fos_id;
+      this.is_cp_tagging_requested = val.is_cp_tagging_requested;
     });
   }
   ngOnInit() {
@@ -63,12 +65,14 @@ export class SelectCPPage implements OnInit {
   }
   async confirmBox() {
     const cp_id = this.myForm.controls[SelectCPPage.firm].value;
-    let name = this.firms.find((item) => item.cp_entity_id == cp_id).name;
-    console.log(typeof cp_id);
-    console.log(cp_id);
+    let name;
+    // console.log(typeof cp_id);
+    // console.log(cp_id);
     if (!cp_id) {
       this.commonser.presentToast("Please select any one of Firm");
       return;
+    } else {
+      name = this.firms.find((item) => item.cp_entity_id == cp_id).cp_name;
     }
     const model = await this.modalController.create({
       component: CustomModelComponent,

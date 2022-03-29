@@ -13,7 +13,7 @@ import { Helper } from "src/app/services/Helper";
 export class HeaderComponent implements OnInit {
   @Input() headernam: string = "";
   @Input() url: string = "";
-  isArrowHide = true;
+  isArrowHide;
 
   verification_status_id;
   is_cp_tagging_requested;
@@ -29,8 +29,8 @@ export class HeaderComponent implements OnInit {
     this.route.queryParams.subscribe((params) => {
       if (Object.keys(params).length != 0) {
         console.log(params);
-        if (params["pending"] == true || params.pending == true) {
-          // console.log("hi");
+        if (params["pending"] == true || params.pending == "true") {
+          console.log("hi");
           this.isArrowHide = false;
         } else {
           this.isArrowHide = true;
@@ -48,17 +48,8 @@ export class HeaderComponent implements OnInit {
   }
 
   goBack() {
-    if (this.verification_status_id == 2) {
-      this.navCtrl.navigateRoot("/verificationpending", {
-        replaceUrl: true,
-      });
-    } else if (this.is_cp_tagging_requested == 1) {
-      this.navCtrl.navigateRoot("/cpstatus", {
-        replaceUrl: true,
-        queryParams: { pending: true },
-      });
-    } else {
-      this.navCtrl.navigateBack(this.url);
-    }
+    // this.navCtrl.navigateBack(this.url);
+    // console.log(this.navCtrl.pop());
+    this.navCtrl.back();
   }
 }

@@ -2,7 +2,7 @@
     <ion-toolbar color="color_d">
 
         <div [ngClass]="{'arrow_header': isArrowHide ==true, 'no_arrow_header': isArrowHide ==false}">
-            <div *ngIf="isArrowHide ">
+            <div *ngIf="isArrowHide">
                 <ion-buttons slot="start" style="margin-left: 3%">
                     <i class="material-icons icon" (click)="goBack()">arrow_back_ios</i>
                 </ion-buttons>

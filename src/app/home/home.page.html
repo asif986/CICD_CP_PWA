@@ -415,7 +415,8 @@
             <!-- <ion-fab-button color="fab" (click)="gotoGHP()" data-desc="Generate GHP" class="fab-btn-item">
         <ion-icon name="document" class="fab-icon" (click)="gotoGHP()"></ion-icon>
       </ion-fab-button> -->
-            <ion-fab-button color="fab" (click)="approvefos()" data-desc="Approve FOS" class="fab-btn-item">
+            <ion-fab-button color="fab" *ngIf="login_type !=2" (click)="approvefos()" data-desc="Approve FOS"
+                class="fab-btn-item">
                 <ion-icon name="person-add" class="fab-icon" (click)="approvefos()"></ion-icon>
             </ion-fab-button>
         </ion-fab-list>

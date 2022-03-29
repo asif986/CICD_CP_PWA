@@ -58,7 +58,7 @@
         <br />
 
         <div class="d-flex  justify-content-center align-items-center">
-          <mat-checkbox [(checked)]="isChecked" [disabled]="isChecked" (change)="checked($event.checked)">
+          <mat-checkbox [(checked)]="isChecked" [disabled]="isAccepted ==1" (change)="checked($event.checked)">
           </mat-checkbox>
           &nbsp;&nbsp;
           <label class="pt-1"><a href="">Term and
@@ -68,11 +68,16 @@
       </ion-col>
     </ion-row>
   </div>
+  <div *ngIf="isAccepted!=1" collapse="fade" class="ion-no-border" transparent>
+    <div class='btn-box'>
+      <button [disabled]="!isChecked" (click)="accept()" [class.grey]="!isChecked" mat-button
+        class="common-btn">Accept</button>
+    </div>
+  </div>
 </ion-content>
 
 <ion-footer *ngIf="isAccepted!=1" collapse="fade" class="ion-no-border" transparent>
   <div class='btn-box'>
-    <button [disabled]="!isChecked" (click)="accept()" [class.grey]="!isChecked" mat-button
-      class="common-btn">Accept</button>
+    <button [routerLink]="['/profile']" routerLinkActive="router-link-active" class="common-btn">Profile</button>
   </div>
 </ion-footer>

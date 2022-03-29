@@ -14,36 +14,6 @@
             "image": "/assets/new_icons/performance.png",
             "label": "My Performance",
             "navigation": "myperformance"
-        },
-        {
-            "image": "/assets/new_icons/stats.png",
-            "label": "Team Leader Stats",
-            "navigation": "team-stats"
-        },
-        {
-            "image": "/assets/new_icons/salesperformance.png",
-            "label": "Sales Performance",
-            "navigation": "team-stats"
-        },
-        {
-            "image": "/assets/new_icons/list.png",
-            "label": "FOS List",
-            "navigation": "foslist"
-        },
-        {
-            "image": "/assets/new_icons/profile.png",
-            "label": "Team Leaders List",
-            "navigation": "teamlist"
-        },
-        {
-            "image": "/assets/new_icons/reminder.png",
-            "label": "Reminder",
-            "navigation": "reminder"
-        },
-        {
-            "image": "/assets/new_icons/notification.png",
-            "label": "Notification",
-            "navigation": "notification"
         }
     ],
     "menu_list_fos": [
@@ -61,36 +31,6 @@
             "image": "/assets/new_icons/performance.png",
             "label": "My Performance",
             "navigation": "myperformance"
-        },
-        {
-            "image": "/assets/new_icons/stats.png",
-            "label": "Team Leader Stats",
-            "navigation": "team-stats"
-        },
-        {
-            "image": "/assets/new_icons/salesperformance.png",
-            "label": "Sales Performance",
-            "navigation": "team-stats"
-        },
-        {
-            "image": "/assets/new_icons/list.png",
-            "label": "FOS List",
-            "navigation": "foslist"
-        },
-        {
-            "image": "/assets/new_icons/profile.png",
-            "label": "Team Leaders List",
-            "navigation": "teamlist"
-        },
-        {
-            "image": "/assets/new_icons/reminder.png",
-            "label": "Reminder",
-            "navigation": "reminder"
-        },
-        {
-            "image": "/assets/new_icons/notification.png",
-            "label": "Notification",
-            "navigation": "notification"
         }
     ]
 }

@@ -47,7 +47,6 @@ export class VerificationpendingPage implements OnInit {
     });
   }
 
-  /*Login*/
   VerficationStatus() {
     if (!(this.network.type !== "none" && this.network.type !== "unknown")) {
       this.helper.presentToast("Please on Internet Connection!");
@@ -73,9 +72,10 @@ export class VerificationpendingPage implements OnInit {
             this.helper.getUserInfo().then((val: responsefromlogin) => {
               // val.data.cp_entity_id = res.cp_entity_id;
               val.data.verification_status_id = 1;
-
-              this.storage.set("user_info", JSON.stringify(val));
-              this.helper.redirectionOfUser();
+              console.log(val);
+              this.storage.set("user_info", JSON.stringify(val)).then(() => {
+                this.helper.redirectionOfUser();
+              });
             });
             this.helper.hideLoader();
           } else {
