@@ -1,5 +1,10 @@
 <app-header headernam="Organisation" url="profile"></app-header>
 <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+            refreshingText="Refreshing Data">
+        </ion-refresher-content>
+    </ion-refresher>
     <ion-grid>
         <ion-row *ngIf="sucess">
             <ion-col class="d-flex justify-content-center">
@@ -54,7 +59,7 @@
 
 
 </ion-content>
-<ion-footer collapse="fade" class="ion-no-border" transparent>
+<ion-footer *ngIf="sucess" collapse="fade" class="ion-no-border" transparent>
     <div class='btn-box'>
         <button [routerLink]="['/profile']" routerLinkActive="router-link-active" mat-button
             class="common-btn">Profile</button>

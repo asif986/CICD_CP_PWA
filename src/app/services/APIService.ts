@@ -254,7 +254,9 @@ export class APIService {
 
   /*My Performance*/
   getMyPerformance(
-    cpUserID: any,
+    cp_entity_id,
+    cp_fos_id,
+    login_type,
     apitoken: any,
     from_date: any,
     to_date: any,
@@ -264,13 +266,16 @@ export class APIService {
       this.webServer.performanceNewOfChannelPartner +
         "?api_token=" +
         apitoken +
-        "&cp_executive_id=" +
-        cpUserID +
+        `${
+          login_type == 1
+            ? "&cp_entity_id=" + cp_entity_id
+            : "&cp_fos_id=" + cp_fos_id
+        }` +
         "&from_date=" +
         from_date +
         "&to_date=" +
         to_date +
-        "&project_id" +
+        "&project_id=" +
         project_id
     );
   }

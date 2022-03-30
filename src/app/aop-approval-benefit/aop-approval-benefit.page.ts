@@ -32,20 +32,6 @@ export class AopApprovalBenefitPage implements OnInit {
   }
 
   ngOnInit() {
-    this.route.queryParams.subscribe((params) => {
-      if (Object.keys(params).length != 0) {
-        console.log(params);
-        if (params["pending"] == true || params.pending == true) {
-          console.log("hi");
-          this.isArrowHide = false;
-        } else {
-          this.isArrowHide = true;
-        }
-      } else {
-        this.isArrowHide = true;
-      }
-    });
-
     this.helper.getUserInfo().then((val: any) => {
       console.log(val);
       this.api_token = val.data.api_token;
@@ -99,9 +85,10 @@ export class AopApprovalBenefitPage implements OnInit {
           this.helper.getUserInfo().then((val: responsefromlogin) => {
             // val.data.cp_entity_id = res.cp_entity_id;
             val.data.aop_qop_accepted = 1;
-            this.storage.set("user_info", JSON.stringify(val));
-            this.navCtrl.navigateRoot("/home", {
-              replaceUrl: true,
+            this.storage.set("user_info", JSON.stringify(val)).then(() => {
+              this.navCtrl.navigateRoot("/home", {
+                replaceUrl: true,
+              });
             });
           });
 

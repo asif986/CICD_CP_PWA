@@ -31,7 +31,7 @@
                         <div class="d-flex flex-column w-100">
                             <!-- | filter:searchbox_nm -->
                             <mat-radio-button class="pt-3" [value]="firm.cp_entity_id" *ngFor="let firm of firms ">
-                                {{firm.name}}
+                                {{firm.cp_name}}
                             </mat-radio-button>
                         </div>
                     </mat-radio-group>
@@ -42,7 +42,16 @@
             </ion-row>
         </form>
     </ion-grid>
+
 </ion-content>
 <div class="d-flex justify-content-center col-md-4 offset-md-4 col-lg-4col-md-4 offset-md-4 col-lg-4 pb-4">
     <button mat-button class="common-btn w-75 " (click)="confirmBox()" routerDirection="forward">Confirm</button><br>
 </div>
+
+
+<ion-footer *ngIf="is_cp_tagging_requested ==0" collapse="fade" class="ion-no-border" transparent>
+    <div class='btn-box'>
+        <button [routerLink]="['/profile']" routerLinkActive="router-link-active" mat-button
+            class="common-btn">Profile</button>
+    </div>
+</ion-footer>

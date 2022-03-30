@@ -18,6 +18,7 @@ import { Helper } from "../services/Helper";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import { MatDialog, DateAdapter } from "@angular/material";
 import { Options } from "@angular-slider/ngx-slider";
+import { responsefromlogin } from "../models/Login";
 @Component({
   selector: "app-myperformance",
   templateUrl: "./myperformance.page.html",
@@ -55,6 +56,12 @@ export class MyperformancePage implements OnInit {
   isCollapsed = false;
 
   options = {};
+
+  cp_entity_id;
+  cp_fos_id;
+  login_type;
+
+  sales_brokerage_range: any = [];
 
   constructor(
     private dateAdapter: DateAdapter<Date>,
@@ -141,14 +148,14 @@ export class MyperformancePage implements OnInit {
         return `
       <div class='img-slider'>
       <img class='man-img' src='assets/new_icons/man.png'/>
-      <b>You are here</b>
+      <b>You are here (${value} CR)</b>
       </div>
       `;
       },
       showSelectionBar: true,
       tickStep: this.dynamicSlider(this.value, 4),
       getLegend: (value: number): string => {
-        return value + "<b>CR</b>";
+        return `${value}<b>CR</b>`;
       },
     };
   }
@@ -162,8 +169,11 @@ export class MyperformancePage implements OnInit {
     //   this.storage.set("IDFromPerformance", 2);
     //   this.navCtrl.navigateBack("/home"); //c
     // });
-    this.helper.getUserInfo().then((val2: any) => {
+    this.helper.getUserInfo().then((val2: responsefromlogin) => {
       this.api_token = val2.data.api_token;
+      this.cp_entity_id = val2.data.cp_entity_id;
+      this.cp_fos_id = val2.data.fos_id;
+      this.login_type = val2.login_type;
       this.isSpinner = true;
       this.from_date = null;
       this.to_date = null;
@@ -222,7 +232,9 @@ export class MyperformancePage implements OnInit {
 
                 this.apiservice
                   .getMyPerformance(
-                    this.cp_executive_id,
+                    this.cp_entity_id,
+                    this.cp_fos_id,
+                    this.login_type,
                     this.api_token,
                     this.from_date,
                     this.to_date,
@@ -248,6 +260,8 @@ export class MyperformancePage implements OnInit {
                         console.log(this.lead_tokens);
                         console.log(this.booking_master);
                         this.value = res.data.total_sales_in_cr;
+                        this.sales_brokerage_range =
+                          res.data.sales_brokerage_range;
                         this.approxArokerageInCr =
                           res.data.approx_brokerage_in_cr;
                         this.createSlider();
@@ -312,7 +326,9 @@ export class MyperformancePage implements OnInit {
         if (this.network.type !== "none" && this.network.type !== "unknown") {
           this.apiservice
             .getMyPerformance(
-              this.cp_executive_id,
+              this.cp_entity_id,
+              this.cp_fos_id,
+              this.login_type,
               this.api_token,
               this.from_date,
               this.to_date,

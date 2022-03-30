@@ -32,7 +32,7 @@ export class CpstatusPage implements OnInit {
         (res) => {
           console.log(res);
 
-          if (res.length != 0) {
+          if (res != null) {
             this.cpName = res.cp_entity_name;
             this.tagging_id = res.tagging_id;
           }
@@ -90,9 +90,10 @@ export class CpstatusPage implements OnInit {
                 // val.data.cp_entity_id = res.cp_entity_id;
                 val.is_cp_tagging_requested = 0;
 
-                this.storage.set("user_info", JSON.stringify(val));
-                this.navCtrl.navigateRoot("select-cp", {
-                  replaceUrl: true,
+                this.storage.set("user_info", JSON.stringify(val)).then(() => {
+                  this.navCtrl.navigateRoot("select-cp", {
+                    replaceUrl: true,
+                  });
                 });
               });
             }
@@ -102,5 +103,13 @@ export class CpstatusPage implements OnInit {
           }
         );
     });
+  }
+  doRefresh(event) {
+    console.log("Begin async operation");
+    setTimeout(() => {
+      this.checkTagging();
+      console.log("Async operation has ended");
+      event.target.complete();
+    }, 500);
   }
 }

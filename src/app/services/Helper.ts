@@ -222,13 +222,15 @@ export class Helper {
         if (val) {
           console.log(val);
           // //FOR CP
-          // this.navCtrl.navigateRoot("/home", {
+          // this.navCtrl.navigateRoot("/cpstatus", {
           //   replaceUrl: true,
           // });
           // return;
+
+          //For CP Login
           if (val.login_type == 1) {
             if (val.data.verification_status_id == 1) {
-              console.log("Your verification_status_id", val);
+              // 1 for success.
 
               if (val.data.aop_qop_accepted == 1) {
                 this.navCtrl.navigateRoot("/home", { replaceUrl: true });
@@ -240,8 +242,6 @@ export class Helper {
               }
             } else if (val.data.verification_status_id == 2) {
               // 2 for pending
-              console.log("Your verification_status_id", val);
-
               this.navCtrl.navigateRoot("/verificationpending", {
                 replaceUrl: true,
               });
