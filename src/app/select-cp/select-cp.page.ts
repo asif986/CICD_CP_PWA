@@ -113,6 +113,7 @@ export class SelectCPPage implements OnInit {
                         .then(() => {
                           this.navctrl.navigateRoot("cpstatus", {
                             replaceUrl: true,
+                            queryParams: { pending: true },
                           });
                         });
                     });

@@ -53,10 +53,13 @@ export class CpstatusPage implements OnInit {
                 // val.data.cp_entity_id = res.cp_entity_id;
                 val.is_cp_tagging_requested = 3;
                 console.log(val);
+                this.helper.presentToast("cp tagging successful!");
                 this.storage.set("user_info", JSON.stringify(val)).then(() => {
                   this.helper.redirectionOfUser();
                 });
               });
+            } else {
+              this.sucess = true;
             }
           } else {
           }

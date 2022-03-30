@@ -877,7 +877,7 @@ export class APIService {
   }
   checkTagging(fos_id) {
     return this.apiClient.get(
-      this.webServer.checkTagging + "?fos_id=" + fos_id
+      this.webServer.checkTagging + "?cp_fos_id=" + fos_id
     );
   }
   cpEntityTaggingRequest(psData) {

@@ -156,7 +156,7 @@ export class MyperformancePage implements OnInit {
       // showTicksValues: true,
       // tickStep: this.dynamicSlider(this.value, 4),
       getLegend: (value: number): any => {
-        console.log(value);
+        // console.log(value);
         let modified;
         this.sales_brokerage_range.filter((res) => {
           if (res.amount == value) {
