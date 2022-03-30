@@ -162,11 +162,15 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
   }
 
   ngOnInit() {
+    let event:any={};
+    event.value =1
+    this.changeOrgz(event)
+    console.log("Im'm calling 164")
     this.apiService.getAllSalesPerson().subscribe((data: HttpResponse<any>) => {
       let allSalesPerson: responsefromSalesPerson = data.body;
       if (allSalesPerson.success == 1) {
         this.salePersonList = allSalesPerson.data;
-        console.log(allSalesPerson.data);
+        // console.log(allSalesPerson.data);
       }
     });
     // console.log("Compentned called")
