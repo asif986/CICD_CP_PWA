@@ -4,6 +4,7 @@ import { responsefromlogin } from "../models/Login";
 import { APIService } from "../services/APIService";
 import { Helper } from "../services/Helper";
 import { Storage } from "@ionic/storage";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-cpstatus",
@@ -11,30 +12,53 @@ import { Storage } from "@ionic/storage";
   styleUrls: ["./cpstatus.page.scss"],
 })
 export class CpstatusPage implements OnInit {
-  sucess: boolean = true;
+  sucess: boolean = false;
   fosId;
   cpEntityId;
   cpName;
   login_type;
   tagging_id;
+  is_redirection = false;
   constructor(
     public apiService: APIService,
     public helper: Helper,
     public navCtrl: NavController,
-    public storage: Storage
-  ) {}
+    public storage: Storage,
+    public route: ActivatedRoute
+  ) {
+    this.route.queryParams.subscribe((params) => {
+      if (Object.keys(params).length != 0) {
+        if (params["pending"] == true || params.pending == "true") {
+          // console.log("hi");
+          this.is_redirection = true;
+        }
+      }
+    });
+  }
 
-  getStatusOfTagging(fos_id, cp_entity_id, login_type) {
+  getStatusOfTagging(fos_id, cp_entity_id, login_type, sucess) {
     this.apiService
       .cpEntityTaggingRequestList(fos_id, cp_entity_id, login_type)
       .map((r) => r.body)
       .subscribe(
         (res) => {
           console.log(res);
-
           if (res != null) {
             this.cpName = res.cp_entity_name;
             this.tagging_id = res.tagging_id;
+          }
+          if (this.is_redirection) {
+            if (sucess == 3) {
+              this.helper.getUserInfo().then((val: responsefromlogin) => {
+                // val.data.cp_entity_id = res.cp_entity_id;
+                val.is_cp_tagging_requested = 3;
+                console.log(val);
+                this.storage.set("user_info", JSON.stringify(val)).then(() => {
+                  this.helper.redirectionOfUser();
+                });
+              });
+            }
+          } else {
           }
         },
         (e) => {
@@ -62,10 +86,12 @@ export class CpstatusPage implements OnInit {
         (res) => {
           console.log(res);
 
-          if (res == 3) {
-            this.sucess = false;
-          }
-          this.getStatusOfTagging(this.fosId, this.cpEntityId, this.login_type);
+          this.getStatusOfTagging(
+            this.fosId,
+            this.cpEntityId,
+            this.login_type,
+            res
+          );
         },
         (e) => {
           this.helper.presentToastError("Something went to wrong");

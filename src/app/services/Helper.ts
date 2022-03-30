@@ -222,10 +222,10 @@ export class Helper {
         if (val) {
           console.log(val);
           // //FOR CP
-          // this.navCtrl.navigateRoot("/cpstatus", {
-          //   replaceUrl: true,
-          // });
-          // return;
+          this.navCtrl.navigateRoot("/myperformance", {
+            replaceUrl: true,
+          });
+          return;
 
           //For CP Login
           if (val.login_type == 1) {
