@@ -110,7 +110,7 @@ export class MyperformancePage implements OnInit {
       if (val < 20) {
         return 25;
       } else if (val >= 20 && val <= 100) {
-        return 125;
+        return 100;
       } else {
         return 200;
       }
@@ -120,7 +120,7 @@ export class MyperformancePage implements OnInit {
       } else if (val >= 20 && val <= 100) {
         return [25, 50, 75, 100, 125];
       } else {
-        return [75, 100, 125, 150, 175, 200];
+        return [100, 125, 150, 175, 200];
       }
     } else if (flag == 4) {
       if (val < 20) {
@@ -153,9 +153,20 @@ export class MyperformancePage implements OnInit {
       `;
       },
       showSelectionBar: true,
-      tickStep: this.dynamicSlider(this.value, 4),
-      getLegend: (value: number): string => {
-        return `${value}<b>CR</b>`;
+      // showTicksValues: true,
+      // tickStep: this.dynamicSlider(this.value, 4),
+      getLegend: (value: number): any => {
+        // console.log(value);
+        let modified;
+        this.sales_brokerage_range.filter((res) => {
+          if (res.amount == value) {
+            modified = `<div class='d-flex flex-column'> <div>${res.amount}<b>CR</b></div>
+            <div>${res.brokerage}</div>
+            </div>
+            `;
+          }
+        });
+        return modified;
       },
     };
   }

@@ -108,10 +108,14 @@ export class SelectCPPage implements OnInit {
                       // val.data.cp_entity_id = res.cp_entity_id;
                       val.is_cp_tagging_requested = 1;
 
-                      this.storage.set("user_info", JSON.stringify(val));
-                      this.navctrl.navigateRoot("cpstatus", {
-                        replaceUrl: true,
-                      });
+                      this.storage
+                        .set("user_info", JSON.stringify(val))
+                        .then(() => {
+                          this.navctrl.navigateRoot("cpstatus", {
+                            replaceUrl: true,
+                            queryParams: { pending: true },
+                          });
+                        });
                     });
                   }
                 );
