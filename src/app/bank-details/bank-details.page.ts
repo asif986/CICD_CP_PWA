@@ -94,7 +94,7 @@ export class BankDetailsPage implements OnInit {
             },
           },
           {
-            inputtype: 2,
+            inputtype: 9,
             placeholder: "IFSC Number",
             name: "ifsc_code",
             icon:'card',

@@ -150,7 +150,10 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
       }
       this.myForm.addControl(
         control.name,
-        this.fb.control({value:control.value,disabled:control.disabled}, validatorsToAdd,)
+        this.fb.control(
+          { value: control.value, disabled: control.disabled },
+          validatorsToAdd
+        )
       );
       console.log("name", control.name);
       // this.myForm.controls[control.name].setErrors(null);
@@ -310,345 +313,703 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
         this.CommonHelper.dismissLoading();
         return;
       } else {
-        let values = this.myForm.controls[doc_type].value;
-        let body =
-          "?doc_type=" +
-          doc_type +
-          "&doc_no=" +
-          values +
-          "&for=" +
-          (this.myForm.controls["registration_type_id"].value == 1
-            ? "cp"
-            : "fos");
-        let single_controls: any = {};
-        let checkOnlyinDb = [];
-        let checkWithCPnameArray = [];
-        let checkWithPersonNameArray = [];
-        let checkOnlyinvalidateApi = [];
-        let stricktcheck = [];
+        try {
+          let values = this.myForm.controls[doc_type].value;
+          let isRegistrationKeyPresent = false;
+          Object.keys(this.myForm.controls).forEach((item) => {
+            if (item == "registration_type_id") {
+              isRegistrationKeyPresent = true;
+            }
+          });
+          // let registration_type_id = this.myForm.get('registration_type_id').value;
+          // return;
+          if (isRegistrationKeyPresent) {
+            let body =
+              "?doc_type=" +
+              doc_type +
+              "&doc_no=" +
+              values +
+              "&for=" +
+              (this.myForm.controls["registration_type_id"].value == 1
+                ? "cp"
+                : "fos");
+            let single_controls: any = {};
+            let checkOnlyinDb = [];
+            let checkWithCPnameArray = [];
+            let checkWithPersonNameArray = [];
+            let checkOnlyinvalidateApi = [];
+            let stricktcheck = [];
 
-        this.jsonFormData.header.forEach((element: any) => {
-          single_controls = {
-            ...element.controls.find((item) => item.name == doc_type),
-          };
-          checkOnlyinDb = element.controls.filter((item2) => {
-            return item2.isValidatedtoDBError == 1;
-          });
-          checkOnlyinDb = checkOnlyinDb.map((item3) => item3.name);
-          checkOnlyinvalidateApi = element.controls.filter((item2) => {
-            return item2.isValidatedError == 1;
-          });
-          checkOnlyinvalidateApi = checkOnlyinvalidateApi.map(
-            (item3) => item3.name
-          );
-          stricktcheck = element.controls.filter((item2) => {
-            return item2.isStrictCheck == 1;
-          });
-          checkWithCPnameArray = element.controls.filter((item2) => {
-            return item2.ischeckWithCPName == 1;
-          });
-          // filter origin object then get only name of that control
-          checkWithCPnameArray =
-            JsonFormComponent.convertTONameFromArrayOfaobject(
-              checkWithCPnameArray
-            );
-          checkWithPersonNameArray = element.controls.filter((item2) => {
-            return item2.ischeckWithPersonName == 1;
-          });
-          console.log({ checkWithCPnameArray });
-          checkWithPersonNameArray =
-            JsonFormComponent.convertTONameFromArrayOfaobject(
-              checkWithPersonNameArray
-            );
-          // filter origin object then get only name of that control
-          stricktcheck = stricktcheck.map((item3) => item3.name);
-        });
-        console.log("header", single_controls);
-        console.log("checkOnlyinDb", checkOnlyinDb);
-        console.log("checkWithPersonNameArray", checkWithPersonNameArray);
-        console.log("checkWithCPnameArray", checkWithCPnameArray);
-        console.log("checkOnlyinvalidateApi", checkOnlyinvalidateApi);
-        console.log("stricktcheck", stricktcheck);
+            this.jsonFormData.header.forEach((element: any) => {
+              single_controls = {
+                ...element.controls.find((item) => item.name == doc_type),
+              };
+              checkOnlyinDb = element.controls.filter((item2) => {
+                return item2.isValidatedtoDBError == 1;
+              });
+              checkOnlyinDb = checkOnlyinDb.map((item3) => item3.name);
+              checkOnlyinvalidateApi = element.controls.filter((item2) => {
+                return item2.isValidatedError == 1;
+              });
+              checkOnlyinvalidateApi = checkOnlyinvalidateApi.map(
+                (item3) => item3.name
+              );
+              stricktcheck = element.controls.filter((item2) => {
+                return item2.isStrictCheck == 1;
+              });
+              checkWithCPnameArray = element.controls.filter((item2) => {
+                return item2.ischeckWithCPName == 1;
+              });
+              // filter origin object then get only name of that control
+              checkWithCPnameArray =
+                JsonFormComponent.convertTONameFromArrayOfaobject(
+                  checkWithCPnameArray
+                );
+              checkWithPersonNameArray = element.controls.filter((item2) => {
+                return item2.ischeckWithPersonName == 1;
+              });
+              console.log({ checkWithCPnameArray });
+              checkWithPersonNameArray =
+                JsonFormComponent.convertTONameFromArrayOfaobject(
+                  checkWithPersonNameArray
+                );
+              // filter origin object then get only name of that control
+              stricktcheck = stricktcheck.map((item3) => item3.name);
+            });
+            console.log("header", single_controls);
+            console.log("checkOnlyinDb", checkOnlyinDb);
+            console.log("checkWithPersonNameArray", checkWithPersonNameArray);
+            console.log("checkWithCPnameArray", checkWithCPnameArray);
+            console.log("checkOnlyinvalidateApi", checkOnlyinvalidateApi);
+            console.log("stricktcheck", stricktcheck);
 
-        if (checkOnlyinDb.includes(doc_type)) {
-          this.apiService
-            .getCardValidation(body)
-            .subscribe((data: HttpResponse<any>) => {
-              console.log(data.body);
-              this.CommonHelper.dismissLoading();
-              // let single_controls_focheckin:any={}
-              let personDetails = this.dataSer.persondetailsForm();
-              let busisnessDetails = this.dataSer.businessDetailsForms();
-              // console.log(single_controls_focheckin)
-              // return;
-              let single_controls_focheckin: any = {};
-              // if (true) {
-                if (data.body == 0) {
-                if (checkOnlyinvalidateApi.includes(doc_type)) {
-                  if (checkWithPersonNameArray.includes(doc_type)) {
-                    this.apiService
-                      .kycVerifications_registration(
-                        single_controls.isValidatedid,
-                        values
-                      )
-                      .subscribe(
-                        //DURAISAMY MANIKANDAN
-                        //BNZPM2501F
-                        //MONIKA MAHADEV SHINDE
-                        //EJAPS0276M
-                        //532859830339
-                        (data: any) => {
-                          try {
-                            console.log("validated", data);
-                            let alreadyData = this.state.formValue.value;
-                            personDetails.header.forEach((element: any) => {
-                              single_controls_focheckin = {
-                                ...element.controls.find(
-                                  (item) => item.ischekble == 1
-                                ),
-                              };
-                            });
-
-                            if (stricktcheck.includes(doc_type)) {
-                              let personDetailsform =
-                                this.state.persondetails.value;
-                              console.log(personDetailsform);
-                              let newPerson: any = {};
-                              newPerson.header = personDetailsform.header.map(
-                                (item) => {
-                                  const modifiedItem = item.controls.map(
-                                    (item2) => {
-                                      if (
-                                        item2.name ==
-                                        single_controls_focheckin.name
-                                      ) {
-                                        return {
-                                          ...item2,
-                                          value: data.data.full_name,
-                                          disabled:true
-                                        };
-                                      } else {
-                                        return item2;
-                                      }
-                                    }
-                                  );
-
-                                  return {
-                                    headernm: item.headernm,
-                                    index: item.index,
-                                    controls: modifiedItem,
+            if (checkOnlyinDb.includes(doc_type)) {
+              this.apiService
+                .getCardValidation(body)
+                .subscribe((data: HttpResponse<any>) => {
+                  console.log(data.body);
+                  this.CommonHelper.dismissLoading();
+                  // let single_controls_focheckin:any={}
+                  let personDetails = this.dataSer.persondetailsForm();
+                  let busisnessDetails = this.dataSer.businessDetailsForms();
+                  // console.log(single_controls_focheckin)
+                  // return;
+                  let single_controls_focheckin: any = {};
+                  // if (true) {
+                  if (data.body == 0) {
+                    if (checkOnlyinvalidateApi.includes(doc_type)) {
+                      if (checkWithPersonNameArray.includes(doc_type)) {
+                        this.apiService
+                          .kycVerifications_registration(
+                            single_controls.isValidatedid,
+                            values
+                          )
+                          .subscribe(
+                            //DURAISAMY MANIKANDAN
+                            //BNZPM2501F
+                            //MONIKA MAHADEV SHINDE
+                            //EJAPS0276M
+                            //532859830339
+                            (data: any) => {
+                              try {
+                                console.log("validated", data);
+                                let alreadyData = this.state.formValue.value;
+                                personDetails.header.forEach((element: any) => {
+                                  single_controls_focheckin = {
+                                    ...element.controls.find(
+                                      (item) => item.ischekble == 1
+                                    ),
                                   };
-                                }
-                              );
-                              console.log(newPerson);
-                              this.state.persondetails.next(null);
-                              this.state.persondetails.next(newPerson)
+                                });
 
-                              this.CommonHelper.presentToast(
-                                single_controls_focheckin.validationSucess
-                              );
-                              this.myForm.controls[doc_type].disable();
-                              // if (
-                              //   alreadyData[
-                              //     single_controls_focheckin.name
-                              //   ].toLowerCase() ==
-                              //   data.data.full_name.toLowerCase()
-                              // ) {
-                              //   this.myForm.controls[doc_type].disable();
-                              //   this.CommonHelper.presentToast(
-                              //     single_controls.verificationmsg
-                              //   );
-                              // } else {
-                              //   this.CommonHelper.presentToast(
-                              //     single_controls.stricklyfailedmsg
-                              //   );
-                              //   // return;
-                              // }
-                              this.CommonHelper.dismissLoading();
-                            } else {
-                              this.myForm.controls[doc_type].disable();
-                              this.CommonHelper.presentToast(
-                                single_controls.verificationmsg
-                              );
-                            }
-                            this.CommonHelper.dismissLoading();
-                            return;
-                          } catch (error) {
-                            console.log(error);
-                            this.CommonHelper.presentToast(
-                              "something goes wrong"
-                            );
+                                if (stricktcheck.includes(doc_type)) {
+                                  let personDetailsform =
+                                    this.state.persondetails.value;
+                                  console.log(personDetailsform);
+                                  let newPerson: any = {};
+                                  newPerson.header =
+                                    personDetailsform.header.map((item) => {
+                                      const modifiedItem = item.controls.map(
+                                        (item2) => {
+                                          if (
+                                            item2.name ==
+                                            single_controls_focheckin.name
+                                          ) {
+                                            return {
+                                              ...item2,
+                                              value: data.data.full_name,
+                                              disabled: true,
+                                            };
+                                          } else {
+                                            return item2;
+                                          }
+                                        }
+                                      );
 
-                            this.CommonHelper.dismissLoading();
-                          }
-                        },
-                        (error) => {
-                          this.CommonHelper.presentToast(error.error.message);
-                          this.CommonHelper.dismissLoading();
-                          return;
-                        }
-                      );
-                  } else {
-                    this.apiService
-                      .kycVerifications_registration(
-                        single_controls.isValidatedid,
-                        values
-                      )
-                      .subscribe(
-                        //DURAISAMY MANIKANDAN
-                        //BNZPM2501F
-                        //MONIKA MAHADEV SHINDE
-                        //EJAPS0276M
-                        //532859830339
-                        (data: any) => {
-                          try {
-                            console.log("validated", data);
-                            let alreadyData = this.state.formValue.value;
-                            personDetails.header.forEach((element: any) => {
-                              single_controls_focheckin = {
-                                ...element.controls.find(
-                                  (item) => item.ischekble == 1
-                                ),
-                              };
-                            });
+                                      return {
+                                        headernm: item.headernm,
+                                        index: item.index,
+                                        controls: modifiedItem,
+                                      };
+                                    });
+                                  console.log(newPerson);
+                                  this.state.persondetails.next(null);
+                                  this.state.persondetails.next(newPerson);
 
-                            if (stricktcheck.includes(doc_type)) {
-                              // if (
-                              //   alreadyData[
-                              //     single_controls_focheckin.name
-                              //   ].toLowerCase() ==
-                              //   data.data.full_name.toLowerCase()
-                              // ) {
-                              //   this.myForm.controls[doc_type].disable();
-                              //   this.CommonHelper.presentToast(
-                              //     single_controls.verificationmsg
-                              //   );
-                              // } else {
-                              //   this.CommonHelper.presentToast(
-                              //     single_controls.stricklyfailedmsg
-                              //   );
-                              //   // return;
-                              // }
-                              this.CommonHelper.dismissLoading();
-                            } else {
-                              this.myForm.controls[doc_type].disable();
-                              this.CommonHelper.presentToast(
-                                single_controls.verificationmsg
-                              );
-                            }
-                            this.CommonHelper.dismissLoading();
-                            return;
-                          } catch (error) {
-                            console.log(error);
-                            this.CommonHelper.presentToast(
-                              "something goes wrong"
-                            );
-
-                            this.CommonHelper.dismissLoading();
-                          }
-                        },
-                        (error) => {
-                          this.CommonHelper.presentToast(error.error.message);
-                          this.CommonHelper.dismissLoading();
-                          return;
-                        }
-                      );
-                  }
-                  if (checkWithCPnameArray.includes(doc_type)) {
-                    this.apiService
-                      .kycVerifications_registration(
-                        single_controls.isValidatedid,
-                        values
-                      )
-                      .subscribe(
-                        //DURAISAMY MANIKANDAN
-                        //BNZPM2501F
-                        //MONIKA MAHADEV SHINDE
-                        //EJAPS0276M
-                        //532859830339
-                        (data: any) => {
-                          try {
-                            console.log("validated", data);
-                            personDetails.header.forEach((element: any) => {
-                              single_controls_focheckin = {
-                                ...element.controls.find(
-                                  (item) => item.ischekble == 1
-                                ),
-                              };
-                            });
-
-                            //get current page values
-                            let alreadyDataforcp = this.myForm.value;
-                            busisnessDetails.header.forEach((element: any) => {
-                              single_controls_focheckin = {
-                                ...element.controls.find((item) => {
-                                  console.log(item);
-                                  return item.ischekbleforcp == 1;
-                                }),
-                              };
-                              console.log(single_controls_focheckin);
-                            });
-                            console.log({ alreadyDataforcp });
-                            console.log({ single_controls_focheckin });
-                            if (stricktcheck.includes(doc_type)) {
-                              let perfrm: any = this.myForm.value;
-                              console.log({ perfrm });
-                              for (let singlecontrol in perfrm) {
-                                if (
-                                  singlecontrol ==
-                                  single_controls_focheckin.name
-                                ) {
-                                  this.myForm.controls[singlecontrol].setValue(
-                                    data.data.full_name
-                                  );
-                                  this.myForm.controls[singlecontrol].disable();
-                                  this.myForm.controls[doc_type].disable();
                                   this.CommonHelper.presentToast(
                                     single_controls_focheckin.validationSucess
                                   );
+                                  this.myForm.controls[doc_type].disable();
+                                  // if (
+                                  //   alreadyData[
+                                  //     single_controls_focheckin.name
+                                  //   ].toLowerCase() ==
+                                  //   data.data.full_name.toLowerCase()
+                                  // ) {
+                                  //   this.myForm.controls[doc_type].disable();
+                                  //   this.CommonHelper.presentToast(
+                                  //     single_controls.verificationmsg
+                                  //   );
+                                  // } else {
+                                  //   this.CommonHelper.presentToast(
+                                  //     single_controls.stricklyfailedmsg
+                                  //   );
+                                  //   // return;
+                                  // }
+                                  this.CommonHelper.dismissLoading();
+                                } else {
+                                  this.myForm.controls[doc_type].disable();
+                                  this.CommonHelper.presentToast(
+                                    single_controls.verificationmsg
+                                  );
                                 }
+                                this.CommonHelper.dismissLoading();
+                                return;
+                              } catch (error) {
+                                console.log(error);
+                                this.CommonHelper.presentToast(
+                                  "something goes wrong"
+                                );
+
+                                this.CommonHelper.dismissLoading();
                               }
-
-                              this.CommonHelper.dismissLoading();
-                            } else {
-                              this.myForm.controls[doc_type].disable();
+                            },
+                            (error) => {
                               this.CommonHelper.presentToast(
-                                single_controls.verificationmsg
+                                error.error.message
                               );
+                              this.CommonHelper.dismissLoading();
+                              return;
                             }
-                            this.CommonHelper.dismissLoading();
-                            return;
-                          } catch (error) {
-                            console.log(error);
-                            this.CommonHelper.presentToast(
-                              "something goes wrong"
-                            );
+                          );
+                      } else {
+                        this.apiService
+                          .kycVerifications_registration(
+                            single_controls.isValidatedid,
+                            values
+                          )
+                          .subscribe(
+                            //DURAISAMY MANIKANDAN
+                            //BNZPM2501F
+                            //MONIKA MAHADEV SHINDE
+                            //EJAPS0276M
+                            //532859830339
+                            (data: any) => {
+                              try {
+                                console.log("validated", data);
+                                let alreadyData = this.state.formValue.value;
+                                personDetails.header.forEach((element: any) => {
+                                  single_controls_focheckin = {
+                                    ...element.controls.find(
+                                      (item) => item.ischekble == 1
+                                    ),
+                                  };
+                                });
 
-                            this.CommonHelper.dismissLoading();
-                          }
-                        },
-                        (error) => {
-                          this.CommonHelper.presentToast(error.error.message);
-                          this.CommonHelper.dismissLoading();
-                          return;
-                        }
+                                if (stricktcheck.includes(doc_type)) {
+                                  // if (
+                                  //   alreadyData[
+                                  //     single_controls_focheckin.name
+                                  //   ].toLowerCase() ==
+                                  //   data.data.full_name.toLowerCase()
+                                  // ) {
+                                  //   this.myForm.controls[doc_type].disable();
+                                  //   this.CommonHelper.presentToast(
+                                  //     single_controls.verificationmsg
+                                  //   );
+                                  // } else {
+                                  //   this.CommonHelper.presentToast(
+                                  //     single_controls.stricklyfailedmsg
+                                  //   );
+                                  //   // return;
+                                  // }
+                                  this.CommonHelper.dismissLoading();
+                                } else {
+                                  this.myForm.controls[doc_type].disable();
+                                  this.CommonHelper.presentToast(
+                                    single_controls.verificationmsg
+                                  );
+                                }
+                                this.CommonHelper.dismissLoading();
+                                return;
+                              } catch (error) {
+                                console.log(error);
+                                this.CommonHelper.presentToast(
+                                  "something goes wrong"
+                                );
+
+                                this.CommonHelper.dismissLoading();
+                              }
+                            },
+                            (error) => {
+                              this.CommonHelper.presentToast(
+                                error.error.message
+                              );
+                              this.CommonHelper.dismissLoading();
+                              return;
+                            }
+                          );
+                      }
+                      if (checkWithCPnameArray.includes(doc_type)) {
+                        this.apiService
+                          .kycVerifications_registration(
+                            single_controls.isValidatedid,
+                            values
+                          )
+                          .subscribe(
+                            //DURAISAMY MANIKANDAN
+                            //BNZPM2501F
+                            //MONIKA MAHADEV SHINDE
+                            //EJAPS0276M
+                            //532859830339
+                            (data: any) => {
+                              try {
+                                console.log("validated", data);
+                                personDetails.header.forEach((element: any) => {
+                                  single_controls_focheckin = {
+                                    ...element.controls.find(
+                                      (item) => item.ischekble == 1
+                                    ),
+                                  };
+                                });
+
+                                //get current page values
+                                let alreadyDataforcp = this.myForm.value;
+                                busisnessDetails.header.forEach(
+                                  (element: any) => {
+                                    single_controls_focheckin = {
+                                      ...element.controls.find((item) => {
+                                        console.log(item);
+                                        return item.ischekbleforcp == 1;
+                                      }),
+                                    };
+                                    console.log(single_controls_focheckin);
+                                  }
+                                );
+                                console.log({ alreadyDataforcp });
+                                console.log({ single_controls_focheckin });
+                                if (stricktcheck.includes(doc_type)) {
+                                  let perfrm: any = this.myForm.value;
+                                  console.log({ perfrm });
+                                  for (let singlecontrol in perfrm) {
+                                    if (
+                                      singlecontrol ==
+                                      single_controls_focheckin.name
+                                    ) {
+                                      this.myForm.controls[
+                                        singlecontrol
+                                      ].setValue(data.data.full_name);
+                                      this.myForm.controls[
+                                        singlecontrol
+                                      ].disable();
+                                      this.myForm.controls[doc_type].disable();
+                                      this.CommonHelper.presentToast(
+                                        single_controls_focheckin.validationSucess
+                                      );
+                                    }
+                                  }
+
+                                  this.CommonHelper.dismissLoading();
+                                } else {
+                                  this.myForm.controls[doc_type].disable();
+                                  this.CommonHelper.presentToast(
+                                    single_controls.verificationmsg
+                                  );
+                                }
+                                this.CommonHelper.dismissLoading();
+                                return;
+                              } catch (error) {
+                                console.log(error);
+                                this.CommonHelper.presentToast(
+                                  "something goes wrong"
+                                );
+
+                                this.CommonHelper.dismissLoading();
+                              }
+                            },
+                            (error) => {
+                              this.CommonHelper.presentToast(
+                                error.error.message
+                              );
+                              this.CommonHelper.dismissLoading();
+                              return;
+                            }
+                          );
+                      }
+                    } else {
+                      this.myForm.controls[doc_type].disable();
+                      this.CommonHelper.presentToast(
+                        single_controls.verificationmsg
                       );
+                    }
+                  } else {
+                    this.CommonHelper.dismissLoading();
+                    this.CommonHelper.presentToast("Already Exists");
+                    return;
                   }
-                } else {
-                  this.myForm.controls[doc_type].disable();
-                  this.CommonHelper.presentToast(
-                    single_controls.verificationmsg
-                  );
-                }
-              } else {
-                this.CommonHelper.dismissLoading();
-                this.CommonHelper.presentToast("Already Exists");
-                return;
-              }
-            });
-        }
+                });
+            }
+            this.returnvaliadation.emit(body);
+          } else {
+            let body =
+              "?doc_type=" + doc_type + "&doc_no=" + values + "&for=" + "cp";
+            let single_controls: any = {};
+            let checkOnlyinDb = [];
+            let checkWithCPnameArray = [];
+            let checkWithPersonNameArray = [];
+            let checkOnlyinvalidateApi = [];
+            let stricktcheck = [];
 
-        this.returnvaliadation.emit(body);
+            this.jsonFormData.header.forEach((element: any) => {
+              single_controls = {
+                ...element.controls.find((item) => item.name == doc_type),
+              };
+              checkOnlyinDb = element.controls.filter((item2) => {
+                return item2.isValidatedtoDBError == 1;
+              });
+              checkOnlyinDb = checkOnlyinDb.map((item3) => item3.name);
+              checkOnlyinvalidateApi = element.controls.filter((item2) => {
+                return item2.isValidatedError == 1;
+              });
+              checkOnlyinvalidateApi = checkOnlyinvalidateApi.map(
+                (item3) => item3.name
+              );
+              stricktcheck = element.controls.filter((item2) => {
+                return item2.isStrictCheck == 1;
+              });
+              checkWithCPnameArray = element.controls.filter((item2) => {
+                return item2.ischeckWithCPName == 1;
+              });
+              // filter origin object then get only name of that control
+              checkWithCPnameArray =
+                JsonFormComponent.convertTONameFromArrayOfaobject(
+                  checkWithCPnameArray
+                );
+              checkWithPersonNameArray = element.controls.filter((item2) => {
+                return item2.ischeckWithPersonName == 1;
+              });
+              console.log({ checkWithCPnameArray });
+              checkWithPersonNameArray =
+                JsonFormComponent.convertTONameFromArrayOfaobject(
+                  checkWithPersonNameArray
+                );
+              // filter origin object then get only name of that control
+              stricktcheck = stricktcheck.map((item3) => item3.name);
+            });
+
+            if (checkOnlyinDb.includes(doc_type)) {
+              this.apiService
+                .getCardValidation(body)
+                .subscribe((data: HttpResponse<any>) => {
+                  console.log(data.body);
+                  this.CommonHelper.dismissLoading();
+                  // let single_controls_focheckin:any={}
+                  let personDetails = this.dataSer.persondetailsForm();
+                  let busisnessDetails = this.dataSer.businessDetailsForms();
+                  // console.log(single_controls_focheckin)
+                  // return;
+                  let single_controls_focheckin: any = {};
+                  // if (true) {
+                  if (data.body == 0) {
+                    if (checkOnlyinvalidateApi.includes(doc_type)) {
+                      if (checkWithPersonNameArray.includes(doc_type)) {
+                        this.apiService
+                          .kycVerifications_registration(
+                            single_controls.isValidatedid,
+                            values
+                          )
+                          .subscribe(
+                            //DURAISAMY MANIKANDAN
+                            //BNZPM2501F
+                            //MONIKA MAHADEV SHINDE
+                            //EJAPS0276M
+                            //532859830339
+                            (data: any) => {
+                              try {
+                                console.log("validated", data);
+                                let alreadyData = this.state.formValue.value;
+                                personDetails.header.forEach((element: any) => {
+                                  single_controls_focheckin = {
+                                    ...element.controls.find(
+                                      (item) => item.ischekble == 1
+                                    ),
+                                  };
+                                });
+
+                                if (stricktcheck.includes(doc_type)) {
+                                  let personDetailsform =
+                                    this.state.persondetails.value;
+                                  console.log(personDetailsform);
+                                  let newPerson: any = {};
+                                  newPerson.header =
+                                    personDetailsform.header.map((item) => {
+                                      const modifiedItem = item.controls.map(
+                                        (item2) => {
+                                          if (
+                                            item2.name ==
+                                            single_controls_focheckin.name
+                                          ) {
+                                            return {
+                                              ...item2,
+                                              value: data.data.full_name,
+                                              disabled: true,
+                                            };
+                                          } else {
+                                            return item2;
+                                          }
+                                        }
+                                      );
+
+                                      return {
+                                        headernm: item.headernm,
+                                        index: item.index,
+                                        controls: modifiedItem,
+                                      };
+                                    });
+                                  console.log(newPerson);
+                                  this.state.persondetails.next(null);
+                                  this.state.persondetails.next(newPerson);
+
+                                  this.CommonHelper.presentToast(
+                                    single_controls_focheckin.validationSucess
+                                  );
+                                  this.myForm.controls[doc_type].disable();
+                                  // if (
+                                  //   alreadyData[
+                                  //     single_controls_focheckin.name
+                                  //   ].toLowerCase() ==
+                                  //   data.data.full_name.toLowerCase()
+                                  // ) {
+                                  //   this.myForm.controls[doc_type].disable();
+                                  //   this.CommonHelper.presentToast(
+                                  //     single_controls.verificationmsg
+                                  //   );
+                                  // } else {
+                                  //   this.CommonHelper.presentToast(
+                                  //     single_controls.stricklyfailedmsg
+                                  //   );
+                                  //   // return;
+                                  // }
+                                  this.CommonHelper.dismissLoading();
+                                } else {
+                                  this.myForm.controls[doc_type].disable();
+                                  this.CommonHelper.presentToast(
+                                    single_controls.verificationmsg
+                                  );
+                                }
+                                this.CommonHelper.dismissLoading();
+                                return;
+                              } catch (error) {
+                                console.log(error);
+                                this.CommonHelper.presentToast(
+                                  "something goes wrong"
+                                );
+
+                                this.CommonHelper.dismissLoading();
+                              }
+                            },
+                            (error) => {
+                              this.CommonHelper.presentToast(
+                                error.error.message
+                              );
+                              this.CommonHelper.dismissLoading();
+                              return;
+                            }
+                          );
+                      } else {
+                        this.apiService
+                          .kycVerifications_registration(
+                            single_controls.isValidatedid,
+                            values
+                          )
+                          .subscribe(
+                            //DURAISAMY MANIKANDAN
+                            //BNZPM2501F
+                            //MONIKA MAHADEV SHINDE
+                            //EJAPS0276M
+                            //532859830339
+                            (data: any) => {
+                              try {
+                                console.log("validated", data);
+                                let alreadyData = this.state.formValue.value;
+                                personDetails.header.forEach((element: any) => {
+                                  single_controls_focheckin = {
+                                    ...element.controls.find(
+                                      (item) => item.ischekble == 1
+                                    ),
+                                  };
+                                });
+
+                                if (stricktcheck.includes(doc_type)) {
+                                  // if (
+                                  //   alreadyData[
+                                  //     single_controls_focheckin.name
+                                  //   ].toLowerCase() ==
+                                  //   data.data.full_name.toLowerCase()
+                                  // ) {
+                                  //   this.myForm.controls[doc_type].disable();
+                                  //   this.CommonHelper.presentToast(
+                                  //     single_controls.verificationmsg
+                                  //   );
+                                  // } else {
+                                  //   this.CommonHelper.presentToast(
+                                  //     single_controls.stricklyfailedmsg
+                                  //   );
+                                  //   // return;
+                                  // }
+                                  this.CommonHelper.dismissLoading();
+                                } else {
+                                  this.myForm.controls[doc_type].disable();
+                                  this.CommonHelper.presentToast(
+                                    single_controls.verificationmsg
+                                  );
+                                }
+                                this.CommonHelper.dismissLoading();
+                                return;
+                              } catch (error) {
+                                console.log(error);
+                                this.CommonHelper.presentToast(
+                                  "something goes wrong"
+                                );
+
+                                this.CommonHelper.dismissLoading();
+                              }
+                            },
+                            (error) => {
+                              this.CommonHelper.presentToast(
+                                error.error.message
+                              );
+                              this.CommonHelper.dismissLoading();
+                              return;
+                            }
+                          );
+                      }
+                      if (checkWithCPnameArray.includes(doc_type)) {
+                        this.apiService
+                          .kycVerifications_registration(
+                            single_controls.isValidatedid,
+                            values
+                          )
+                          .subscribe(
+                            //DURAISAMY MANIKANDAN
+                            //BNZPM2501F
+                            //MONIKA MAHADEV SHINDE
+                            //EJAPS0276M
+                            //532859830339
+                            (data: any) => {
+                              try {
+                                console.log("validated", data);
+                                personDetails.header.forEach((element: any) => {
+                                  single_controls_focheckin = {
+                                    ...element.controls.find(
+                                      (item) => item.ischekble == 1
+                                    ),
+                                  };
+                                });
+
+                                //get current page values
+                                let alreadyDataforcp = this.myForm.value;
+                                busisnessDetails.header.forEach(
+                                  (element: any) => {
+                                    single_controls_focheckin = {
+                                      ...element.controls.find((item) => {
+                                        console.log(item);
+                                        return item.ischekbleforcp == 1;
+                                      }),
+                                    };
+                                    console.log(single_controls_focheckin);
+                                  }
+                                );
+                                console.log({ alreadyDataforcp });
+                                console.log({ single_controls_focheckin });
+                                if (stricktcheck.includes(doc_type)) {
+                                  let perfrm: any = this.myForm.value;
+                                  console.log({ perfrm });
+                                  for (let singlecontrol in perfrm) {
+                                    if (
+                                      singlecontrol ==
+                                      single_controls_focheckin.name
+                                    ) {
+                                      this.myForm.controls[
+                                        singlecontrol
+                                      ].setValue(data.data.full_name);
+                                      this.myForm.controls[
+                                        singlecontrol
+                                      ].disable();
+                                      this.myForm.controls[doc_type].disable();
+                                      this.CommonHelper.presentToast(
+                                        single_controls_focheckin.validationSucess
+                                      );
+                                    }
+                                  }
+
+                                  this.CommonHelper.dismissLoading();
+                                } else {
+                                  this.myForm.controls[doc_type].disable();
+                                  this.CommonHelper.presentToast(
+                                    single_controls.verificationmsg
+                                  );
+                                }
+                                this.CommonHelper.dismissLoading();
+                                return;
+                              } catch (error) {
+                                console.log(error);
+                                this.CommonHelper.presentToast(
+                                  "something goes wrong"
+                                );
+
+                                this.CommonHelper.dismissLoading();
+                              }
+                            },
+                            (error) => {
+                              this.CommonHelper.presentToast(
+                                error.error.message
+                              );
+                              this.CommonHelper.dismissLoading();
+                              return;
+                            }
+                          );
+                      }
+                    } else {
+                      this.myForm.controls[doc_type].disable();
+                      this.CommonHelper.presentToast(
+                        single_controls.verificationmsg
+                      );
+                    }
+                  } else {
+                    this.CommonHelper.dismissLoading();
+                    this.CommonHelper.presentToast("Already Exists");
+                    return;
+                  }
+                });
+            }
+          }
+          console.log("not present registration");
+          this.CommonHelper.dismissLoading();
+        } catch (error) {
+          console.log(error);
+          this.CommonHelper.dismissLoading();
+        }
       }
     });
   }
