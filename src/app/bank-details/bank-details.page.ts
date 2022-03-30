@@ -553,7 +553,7 @@ export class BankDetailsPage implements OnInit {
         delete body.btn2;
         delete body.checkbx1;
 console.log({body})
-        return;
+        // return;
         this.apiservice.cpRegistration(body).subscribe(
           (data: HttpResponse<any>) => {
             this.CommonHelper.presentToast("Thank u for registration");

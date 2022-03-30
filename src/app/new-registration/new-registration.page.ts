@@ -763,7 +763,7 @@ this.form = {...data}
 
   goback() {
     if (this.newRegistration) {
-      this.abortRequest();
+      this.navCtrl.back()
     } else {
       this.navCtrl.navigateRoot("login");
       console.log("Click on backpress");
@@ -1510,8 +1510,10 @@ this.form = {...data}
           this.CommonHelper.dismissLoading();
           return;
         }
+        let aftersubmit = $event.getRawValue();
+        let formdata = this.statefromservices.formValue.value;
 
-        this.statefromservices.formValue.next($event.value);
+        this.statefromservices.formValue.next({ ...formdata, ...aftersubmit });
         console.log(
           "registration form",
           this.statefromservices.formValue.value

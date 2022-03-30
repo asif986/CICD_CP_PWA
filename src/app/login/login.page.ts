@@ -215,7 +215,7 @@ export class LoginPage implements OnInit {
     if (!(this.network.type !== "none" && this.network.type !== "unknown")) {
       this.presentToast("Please on Internet Connection");
     } else {
-      this.router.navigate(["/new-registration/"]);
+      this.router.navigate(["/business-details/"]);
     }
   }
 

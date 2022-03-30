@@ -136,6 +136,7 @@ export class BusinessDetailsPage implements OnInit {
         let formdata = this.state.formValue.value;
         this.navCtrl.navigateForward("new-registration");
         let aftersubmit = $event.getRawValue();
+        console.log({aftersubmit})
         this.state.formValue.next({ ...formdata, ...aftersubmit });
       } catch (error) {
         this.CommonHelper.dismissLoading();
@@ -186,4 +187,5 @@ export class BusinessDetailsPage implements OnInit {
   validationApi(event: any) {
     console.log(event);
   }
+
 }

@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 
+import { ActivatedRoute } from "@angular/router";
+import { CommonHelperService } from "src/app/services/common-helper.service";
+import { Helper } from "src/app/services/Helper";
 import { NavController } from "@ionic/angular";
 import { responsefromlogin } from "src/app/models/Login";
-import { Helper } from "src/app/services/Helper";
 
 @Component({
   selector: "app-header",
@@ -13,6 +14,7 @@ import { Helper } from "src/app/services/Helper";
 export class HeaderComponent implements OnInit {
   @Input() headernam: string = "";
   @Input() url: string = "";
+  @Input() isAbortcall = false;
   isArrowHide;
 
   verification_status_id;
@@ -21,6 +23,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     public navCtrl: NavController,
     public route: ActivatedRoute,
+    private CommonHelper: CommonHelperService,
     public helper: Helper
   ) {}
 
@@ -50,6 +53,10 @@ export class HeaderComponent implements OnInit {
   goBack() {
     // this.navCtrl.navigateBack(this.url);
     // console.log(this.navCtrl.pop());
-    this.navCtrl.back();
+    if (this.isAbortcall) {
+      this.CommonHelper.abortRequest();
+    } else {
+      this.navCtrl.back();
+    }
   }
 }

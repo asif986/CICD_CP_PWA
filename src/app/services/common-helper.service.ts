@@ -1,4 +1,4 @@
-import { LoadingController, ToastController } from '@ionic/angular';
+import { AlertController, LoadingController, NavController, ToastController } from '@ionic/angular';
 
 import { Injectable } from '@angular/core';
 
@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class CommonHelperService {
   loader: any;
-  constructor(private loadingController:LoadingController,public toastController:ToastController) { }
+  constructor(private loadingController:LoadingController,public navCtrl:NavController,public toastController:ToastController,public alertCtrl:AlertController) { }
   async presentLoading() {
     this.loader = await this.loadingController.create({
       translucent: true,
@@ -23,5 +23,26 @@ export class CommonHelperService {
       duration: 2000,
     });
     toast.present();
+  }
+  async abortRequest() {
+    const alert = await this.alertCtrl.create({
+      header: "Abort Registration",
+      message: "Are you sure you want to abort registration?",
+      buttons: [
+        {
+          text: "No",
+          role: "no",
+          handler: () => {},
+        },
+        {
+          text: "Yes",
+          handler: () => {
+            this.navCtrl.navigateRoot("login");
+            // this.router.navigate(['/login/']);
+          },
+        },
+      ],
+    });
+    await alert.present();
   }
 }
