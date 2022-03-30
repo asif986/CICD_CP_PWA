@@ -370,7 +370,7 @@ export class DataService {
               validationFailed:"Failed verified PAN",
               validators: {
                 required: true,
-                pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+                pattern: "[a-zA-Z0-9][a-zA-Z0-9 ]+[a-zA-Z0-9]$",
               },
             },
             {

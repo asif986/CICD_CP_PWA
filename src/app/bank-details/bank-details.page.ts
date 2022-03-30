@@ -73,7 +73,7 @@ export class BankDetailsPage implements OnInit {
             patternError: "Please proper Account Name!.",
             validators: {
               required: true,
-              pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+              pattern: "[a-zA-Z0-9][a-zA-Z0-9 ]+[a-zA-Z0-9]$",
             },
           },
           {
