@@ -287,8 +287,8 @@ export class DataService {
               requiredError: "Please enter a valid PAN!.",
               patternError: "Please proper PAN!.",
               validateError: "Please validated PAN!.",
-              isValidatedid: 1,
               isValidatedError: 1,
+              isValidatedid: 1,
               isValidatedtoDBError: 1,
               isStrictCheck: 1,
               stricklyfailedmsg: "Does not match PAN name with CP name",
@@ -370,7 +370,7 @@ export class DataService {
               validationFailed:"Failed verified PAN",
               validators: {
                 required: true,
-                pattern: "[a-zA-Z][a-zA-Z ]+[a-zA-Z]$",
+                pattern: "[a-zA-Z0-9][a-zA-Z0-9 ]+[a-zA-Z0-9]$",
               },
             },
             {

@@ -11,6 +11,10 @@ ion-button {
     max-width: 80%;
 }
 
+::ng-deep .approve-sucess {
+    --background: var(--ion-color-approve-btn-success);
+}
+
 ::ng-deep ion-searchbar {
     .searchbar-input-container {
         .searchbar-input {

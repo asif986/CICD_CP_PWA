@@ -162,10 +162,10 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
   }
 
   ngOnInit() {
-    let event:any={};
-    event.value =1
-    this.changeOrgz(event)
-    console.log("Im'm calling 164")
+    let event: any = {};
+    event.value = 1;
+    this.changeOrgz(event);
+    console.log("Im'm calling 164");
     this.apiService.getAllSalesPerson().subscribe((data: HttpResponse<any>) => {
       let allSalesPerson: responsefromSalesPerson = data.body;
       if (allSalesPerson.success == 1) {
@@ -682,6 +682,8 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
             let checkWithCPnameArray = [];
             let checkWithPersonNameArray = [];
             let checkOnlyinvalidateApi = [];
+            let bankFieldCheckArray = [];
+            let bankSupportFieldCheckArray = [];
             let stricktcheck = [];
 
             this.jsonFormData.header.forEach((element: any) => {
@@ -695,9 +697,27 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
               checkOnlyinvalidateApi = element.controls.filter((item2) => {
                 return item2.isValidatedError == 1;
               });
-              checkOnlyinvalidateApi = checkOnlyinvalidateApi.map(
-                (item3) => item3.name
-              );
+              bankFieldCheckArray = element.controls.filter((item2) => {
+                return item2.isBank == 1;
+              });
+              bankFieldCheckArray =
+                JsonFormComponent.convertTONameFromArrayOfaobject(
+                  bankFieldCheckArray
+                );
+              bankSupportFieldCheckArray = element.controls.filter((item2) => {
+                return item2.isBankSupportKey == 1;
+              });
+              // bankSupportFieldCheckArray =
+              //   JsonFormComponent.convertTONameFromArrayOfaobject(
+              //     bankSupportFieldCheckArray
+              //   );
+              checkOnlyinvalidateApi = element.controls.filter((item2) => {
+                return item2.isValidatedError == 1;
+              });
+              checkOnlyinvalidateApi =
+                JsonFormComponent.convertTONameFromArrayOfaobject(
+                  checkOnlyinvalidateApi
+                );
               stricktcheck = element.controls.filter((item2) => {
                 return item2.isStrictCheck == 1;
               });
@@ -720,7 +740,67 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
               // filter origin object then get only name of that control
               stricktcheck = stricktcheck.map((item3) => item3.name);
             });
+            //bankSupportFieldCheckArray
 
+            if (bankFieldCheckArray.includes(doc_type)) {
+              let id_number = this.myForm.controls[doc_type].value
+              let subFormcheck = false;
+              bankSupportFieldCheckArray.forEach((element: any) => {
+                console.log({element})
+                let checkRequired =
+                  this.myForm.controls[element.name].hasError("required");
+                let checkpattern =
+                  this.myForm.controls[element.name].hasError("pattern");
+                  // let supportBankfiled = element.name;
+
+                  let kyc = this.myForm.controls[element.name]
+                if (checkRequired || checkpattern) {
+                  subFormcheck = true;
+                  if(checkRequired)
+                  {
+
+                    this.CommonHelper.presentToast(element.requiredError)
+                  }
+                  if(checkpattern)
+                  {
+                    this.CommonHelper.presentToast(element.patternError)
+
+                  }
+                }
+                if(subFormcheck)
+                {
+                this.CommonHelper.dismissLoading();
+                }else
+                {
+           
+  // kycVerifications_registrationforBankOnly( id_number,ifsc) {
+    this.apiService.kycVerifications_registrationforBankOnly(id_number,kyc.value).subscribe((data:any)=>
+    {
+      // console.log(data.account_exists)
+      // console.log(data.data.account_exists)
+      if(data.data.account_exists==true)
+      {
+        this.myForm.controls[doc_type].disable()
+        kyc.disable();
+        // console.log({supportBankfiled})
+        // this.myForm.controls[supportBankfiled].disable()
+        this.CommonHelper.presentToast("Bank account verified");
+      }
+      // console.log({data})
+
+    },error=>
+    {
+    console.log(error.error.data.remarks)
+    // console.log(error.data.remarks)
+    // console.log(error.remarks)
+      this.CommonHelper.presentToast(error.error.data.remarks);
+    })
+                  console.log("Call my api")
+                }
+              });
+              // console.log({ bankFieldCheckArray });
+              // console.log({ bankSupportFieldCheckArray });
+            }
             if (checkOnlyinDb.includes(doc_type)) {
               this.apiService
                 .getCardValidation(body)
@@ -1019,6 +1099,13 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
   }
   public static convertTONameFromArrayOfaobject(Array: Array<any>): Array<any> {
     const convertedArray = Array.map((item) => item.name);
+    return convertedArray;
+  }
+  public static convertTOArrayFromArrayOfaobjectFilter(
+    Array: Array<any>,
+    key: string
+  ): Array<any> {
+    const convertedArray = Array.map((item) => item[key]);
     return convertedArray;
   }
 }

@@ -21,7 +21,7 @@
                 <h4 *ngIf="allRequests.length < 1" class="text-center">No data found</h4>
             </ion-col>
             <ion-col *ngFor="let item of allRequests| filter: (myForm.controls['searchbox'].value)" class="p-3 pl-3 pr-3 pt-0 " size="10" offset="1">
-                <div class="p-3 card-css">
+                <div class="card-css p-3 pb-2">
 
                     <div class="d-flex justify-content-between">
                         <div>
@@ -46,10 +46,10 @@
                     <div class="d-flex justify-content-end">
                         <ion-row>
                             <ion-col offset="6" size="6" class="d-flex justify-content-end">
-                                <ion-button color="success" (click)="accepctFos(item.tagging_id)" shape="round">
+                                <ion-button color="approve-btn-success" class="pt-2" (click)="accepctFos(item.tagging_id)" shape="round">
                                     Accept
                                 </ion-button>
-                                <ion-button (click)="rejectFos(item.tagging_id)" size="4" color="danger" shape="round">
+                                <ion-button color="approve-btn-reject" class="pt-2" (click)="rejectFos(item.tagging_id)" size="4" color="danger" shape="round">
                                     Reject
                                 </ion-button>
                             </ion-col>
@@ -58,6 +58,7 @@
                 </div>
 
             </ion-col>
+
             <ion-col size="10" offset="1">
 
             </ion-col>
