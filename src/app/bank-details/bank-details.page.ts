@@ -78,26 +78,12 @@ export class BankDetailsPage implements OnInit {
           },
           {
             inputtype: 2,
-            placeholder: "Account Number",
-            name: "account_number",
-            cssClass: "col",
-            label: "Name:",
-            value: "",
-            icon:'keypad',
-            inital: 0,
-            type: "number",
-            requiredError: "Please enter a valid Account Number!.",
-            patternError: "Please proper Account Number!.",
-            validators: {
-              required: true,
-              pattern: "[0-9]{9,18}",
-            },
-          },
-          {
-            inputtype: 2,
             placeholder: "IFSC Number",
             name: "ifsc_code",
             icon:'card',
+            validateError: "Please validated account number!.",
+            isValidatedError: 1,
+            isBankSupportKey:1,
             cssClass: "col",
             label: "Name:",
             value: "",
@@ -108,6 +94,26 @@ export class BankDetailsPage implements OnInit {
             validators: {
               required: true,
               pattern: "^[A-Z]{4}0[A-Z0-9]{6}$",
+            },
+          },
+          {
+            inputtype: 9,
+            placeholder: "Account Number",
+            name: "account_number",
+            cssClass: "col",
+            label: "Name:",
+            value: "",
+            icon:'keypad',
+            isBank:1,
+            inital: 0,
+            validateError: "Please validated account number",
+            isValidatedError: 1,
+            type: "number",
+            requiredError: "Please enter a valid Account Number!.",
+            patternError: "Please proper Account Number!.",
+            validators: {
+              required: true,
+              pattern: "[0-9]{9,18}",
             },
           },
           {
@@ -491,6 +497,21 @@ export class BankDetailsPage implements OnInit {
       try {
         let controls = $event.controls;
         let invalid = false;
+
+
+        let form_fields = [];
+        let form_fields_for_DB = [];
+        this.form.header.forEach((element: any) => {
+          element.controls.map((item) => {
+            if (item.isValidatedError == 1) {
+              form_fields.push(item.name);
+            }
+            // if (item.isValidatedtoDBError == 1) {
+            //   form_fields_for_DB.push(item.name);
+            // }
+            return item;
+          });
+        });
         let newcontrols = Object.keys(controls).sort((a: any, b: any) => {
           return a - b;
         });
@@ -498,21 +519,42 @@ export class BankDetailsPage implements OnInit {
         newcontrols.forEach((key) => {
           console.log({ key });
     
-          if (controls[key].hasError("required")) {
-            this.form.header.forEach((element: any) => {
-              let errormsg = element.controls.find((item) => item.name == key);
-              this.CommonHelper.presentToast(errormsg.requiredError);
-            });
-            invalid = true;
-          } else if (controls[key].hasError("pattern")) {
-            this.form.header.forEach((element: any) => {
-              let errormsg = element.controls.find((item) => item.name == key);
-              this.CommonHelper.presentToast(errormsg.patternError);
-              console.log("line", errormsg);
-            });
-            invalid = true;
+          if (
+            controls[key].hasError("required") ||
+            controls[key].hasError("pattern")
+          ) {
+            if (controls[key].hasError("required")) {
+              this.form.header.forEach((element: any) => {
+                let errormsg = element.controls.find(
+                  (item) => item.name == key
+                );
+                this.CommonHelper.presentToast(errormsg.requiredError);
+              });
+              invalid = true;
+            } else if (controls[key].hasError("pattern")) {
+              this.form.header.forEach((element: any) => {
+                let errormsg = element.controls.find(
+                  (item) => item.name == key
+                );
+                this.CommonHelper.presentToast(errormsg.patternError);
+              });
+              invalid = true;
+            }
+          } else {
+            if (
+              (form_fields.includes(key) || form_fields_for_DB.includes(key)) &&
+              controls[key].enabled
+            ) {
+              console.log("Invalid");
+              this.form.header.forEach((element: any) => {
+                let errormsg = element.controls.find(
+                  (item) => item.name == key
+                );
+                this.CommonHelper.presentToast(errormsg.validateError);
+              });
+              invalid = true;
+            }
           }
-
           if (key == "checkbx1") {
             console.log("checkbox");
             this.form.header.forEach((element: any) => {

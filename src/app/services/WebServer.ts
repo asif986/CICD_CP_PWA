@@ -219,4 +219,6 @@ export class WebServer {
   public getCPBenefits_current = this.BASE_URL + "getCPBenefits/current";
   //cp Registration
   public cpRegistration = this.BASE_URL + "cpRegistration";
+  //cp bank with validation
+  public bankValidation = "https://kyc-api.aadhaarkyc.io/api/v1/bank-verification/";
 }

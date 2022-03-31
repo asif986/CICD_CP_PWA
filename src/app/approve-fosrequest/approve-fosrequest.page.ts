@@ -32,19 +32,28 @@ export class ApproveFOSRequestPage implements OnInit {
     this.commonHelper.presentLoading().then(() => {
       this.helper.getUserInfo().then(
         (res: responsefromlogin) => {
-          // let body = "?cp_entity_id=" + 1;
-          let body = "?cp_entity_id=" +res.data.cp_entity_id;
-          //  res.data.cp_entity_id;
-          this.apiService.allFosRequests(body).subscribe(
-            (data: HttpResponse<any>) => {
-              console.log(data.body);
-              this.allRequests = data.body;
-              this.commonHelper.dismissLoading();
-            },
-            (error) => {
-              this.commonHelper.dismissLoading();
-            }
-          );
+          try
+          {
+            let body = "?cp_entity_id=" +1;
+            // let body = "?cp_entity_id=" +res.data.cp_entity_id;
+            //  res.data.cp_entity_id;
+            this.apiService.allFosRequests(body).subscribe(
+              (data: HttpResponse<any>) => {
+                console.log(data.body);
+                this.allRequests = data.body;
+                this.commonHelper.dismissLoading();
+            // let body = "?cp_entity_id=" + 1;
+              },
+              (error) => {
+                this.commonHelper.dismissLoading();
+              }
+            );
+
+          }catch(error)
+          {
+            this.commonHelper.dismissLoading();
+            this.commonHelper.presentToast("Something goes wrong")
+          }
         },
         (error) => {
           this.commonHelper.dismissLoading();
