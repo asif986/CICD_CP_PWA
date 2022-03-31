@@ -1,6 +1,7 @@
 import {
   AlertController,
   LoadingController,
+  ModalController,
   NavController,
   ToastController,
 } from "@ionic/angular";
@@ -11,6 +12,7 @@ import { Network } from "@ionic-native/network/ngx";
 import { Storage } from "@ionic/storage";
 import Swal from "sweetalert2";
 import { responsefromlogin } from "../models/Login";
+import { BottomNavPage } from "../bottom-nav/bottom-nav.page";
 
 export enum ConnectionStatusEnum {
   Online,
@@ -30,6 +32,7 @@ export class Helper {
     private alertController: AlertController,
     public toastController: ToastController,
     public loadingController: LoadingController,
+    public modalController: ModalController,
     public navCtrl: NavController,
     private http: HttpClient,
     public storage: Storage
@@ -222,7 +225,7 @@ export class Helper {
         if (val) {
           console.log(val);
           // //FOR CP
-          // this.navCtrl.navigateRoot("/myperformance", {
+          // this.navCtrl.navigateRoot("/comingsoon", {
           //   replaceUrl: true,
           // });
           // return;
@@ -232,14 +235,20 @@ export class Helper {
             if (val.data.verification_status_id == 1) {
               // 1 for success.
 
+              /* For future code
               if (val.data.aop_qop_accepted == 1) {
                 this.navCtrl.navigateRoot("/home", { replaceUrl: true });
               } else {
+
                 this.navCtrl.navigateRoot("/aop-approval-benefit", {
                   replaceUrl: true,
                   queryParams: { pending: true },
                 });
               }
+              */
+              this.navCtrl.navigateRoot("/home", {
+                replaceUrl: true,
+              });
             } else if (val.data.verification_status_id == 2) {
               // 2 for pending
               this.navCtrl.navigateRoot("/verificationpending", {

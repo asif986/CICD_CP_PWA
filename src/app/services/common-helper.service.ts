@@ -1,13 +1,26 @@
-import { AlertController, LoadingController, NavController, ToastController } from '@ionic/angular';
+import {
+  AlertController,
+  LoadingController,
+  ModalController,
+  NavController,
+  ToastController,
+} from "@ionic/angular";
 
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
+import { BottomNavPage } from "../bottom-nav/bottom-nav.page";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class CommonHelperService {
   loader: any;
-  constructor(private loadingController:LoadingController,public navCtrl:NavController,public toastController:ToastController,public alertCtrl:AlertController) { }
+  constructor(
+    private loadingController: LoadingController,
+    public navCtrl: NavController,
+    public toastController: ToastController,
+    public alertCtrl: AlertController,
+    public modalController: ModalController
+  ) {}
   async presentLoading() {
     this.loader = await this.loadingController.create({
       translucent: true,
@@ -44,5 +57,13 @@ export class CommonHelperService {
       ],
     });
     await alert.present();
+  }
+  async sideMenu() {
+    const modal = await this.modalController.create({
+      component: BottomNavPage,
+      componentProps: { value: 123 },
+      cssClass: "my-custom-modal-css",
+    });
+    return await modal.present();
   }
 }

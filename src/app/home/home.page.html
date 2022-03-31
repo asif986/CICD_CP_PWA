@@ -195,36 +195,16 @@
                             <!-- FOR ELAPSED TIME -->
 
                             <!-- <div style="padding-top: 7px!important;margin-top: 2px!important;" *ngIf="c.ids.lead_status_id==1 ">
-                  <ion-card-title role="heading" aria-level="3">
-                    <div class="salesPersonName_datealso"
-                      style="margin-top: -2%!important;margin-left: 12px!important;margin-bottom: 6%!important;">
-                      {{c.tag_elapsed_time}}</div>
-                  </ion-card-title>
-                </div> -->
+                                 <ion-card-title role="heading" aria-level="3">
+                            <div class="salesPersonName_datealso"
+                              style="margin-top: -2%!important;margin-left: 12px!important;margin-bottom: 6%!important;">
+                             {{c.tag_elapsed_time}}</div>
+                                    </ion-card-title>
+                                 </div> -->
 
                         </div>
-
-                        <!-- FOR CLAIMED:2...USE FOR SLAESPERSON -->
-                        <div style="width: 100%!important;" *ngIf="c.ids.lead_status_id==2"
-                            style="margin-bottom: -11px!important;">
-                            <ion-card-title>
-                                <div class="salesPersonName_datealso"
-                                    style="margin-top: 4%!important;color:var(--ion-color-primary);margin-bottom: -12px!important;margin-left: 18px; ">
-                                    {{c.status_sub_text}}</div>
-                            </ion-card-title>
-                        </div>
-
                         <!-- flex-container -->
-                        <div class="" *ngIf="c.ids.lead_status_id==2">
-                            <div class="tagtext">
-                                <!-- style="text-align: start;;padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px" -->
-                                {{c.ids.lead_status_name}}
 
-                                <div class="status bg-{{c.ids.lead_status_id}}" style="border-radius: 50%;"></div>
-
-                            </div>
-
-                        </div>
 
                         <!-- FOR ELAPSED TIME -->
                         <!-- <div style="display:block;margin-left: 13px!important;" *ngIf=" c.ids.lead_status_id==2">
@@ -236,9 +216,8 @@
 
                         <!-- Finished CLAIMED -->
 
-                        <!-- Mat Expand Panel Condition -->
-                        <div style="width: 100%!important;"
-                            *ngIf="c.ids.lead_status_id==5 || c.ids.lead_status_id==6 || c.ids.lead_status_id==7 || c.ids.lead_status_id==8 || c.ids.lead_status_id==9 || c.ids.lead_status_id==10 || c.ids.lead_status_id==13 || c.ids.lead_status_id>13 ">
+
+                        <div style="width: 100%!important;" *ngIf="c.ids.lead_status_id>1">
                             <ion-card-title>
                                 <div class="salesPersonName_datealso"
                                     style="margin-top: 4%!important;color:var(--ion-color-primary);margin-bottom: -20px;margin-left: 18px;">
@@ -246,42 +225,12 @@
                             </ion-card-title>
                         </div>
 
-                        <!-- FOR DETAILS OF THAT LEAD WITH STATUS AND ELAPSED TIME -->
+                        <div *ngIf="c.ids.lead_status_id>1" style="margin-top: 30px!important;">
 
-                        <div *ngIf="c.ids.lead_status_id==6 || c.ids.lead_status_id==7 || c.ids.lead_status_id==8 || c.ids.lead_status_id==13 || c.ids.lead_status_id==9|| c.ids.lead_status_id==10 || c.ids.lead_status_id>13"
-                            style="margin-top: 30px!important;">
-
-
-                            <div class="tagtext" *ngIf="c.ids.lead_status_id!==6 && c.ids.lead_status_id!==13">
-
+                            <div class="tagtext">
                                 <div class="status_text">{{c.status_text}} </div>
                                 <div class="status bg-{{c.ids.lead_status_id}}"></div>
                             </div>
-
-                            <div class="tagtext" *ngIf="c.ids.lead_status_id==6 && c.ids.token_type_id==1">
-
-                                <div class="status_text">{{c.status_text}} </div>
-                                <div class="status bg-{{c.ids.lead_status_id}}"></div>
-                            </div>
-
-                            <div class="tagtext" *ngIf="c.ids.lead_status_id==13 && c.ids.token_type_id==1">
-
-                                <div class="status_text">GHP payment pending</div>
-                                <div class="status bg-{{c.ids.lead_status_id}}"></div>
-                            </div>
-
-                            <div class="tagtext" *ngIf="c.ids.lead_status_id==13 && c.ids.token_type_id==3 ">
-
-                                <div class="status_text"> GHP+ payment pending</div>
-                                <div class="status bg-13"></div>
-                            </div>
-
-                            <div class="tagtext" *ngIf="c.ids.lead_status_id==6 && c.ids.token_type_id==3">
-
-                                <div class="status_text">GHP+ Generated </div>
-                                <div class="status bg-15"></div>
-                            </div>
-
                         </div>
 
                         <div *ngIf="c.ids.lead_status_id==6 || c.ids.lead_status_id==7 || c.ids.lead_status_id==8 || c.ids.lead_status_id==13 || c.ids.lead_status_id==9|| c.ids.lead_status_id==10 || c.ids.lead_status_id>13"

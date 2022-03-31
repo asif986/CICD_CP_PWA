@@ -22,6 +22,7 @@ import { Storage } from "@ionic/storage";
 import { TeamLeaderOrNot } from "../models/TeamLeaderOrNot";
 import { UniqueDeviceID } from "@ionic-native/unique-device-id/ngx";
 import { responsefromlogin } from "../models/Login";
+import { CommonHelperService } from "../services/common-helper.service";
 
 @Component({
   selector: "app-home",
@@ -76,6 +77,7 @@ export class HomePage implements OnInit {
     public actionSheetController: ActionSheetController,
     public loadingController: LoadingController,
     public alertController: AlertController,
+    public commonHelperService: CommonHelperService,
     public helper: Helper,
     public apiservice: APIService,
     private network: Network,
@@ -87,7 +89,7 @@ export class HomePage implements OnInit {
     private uniqueDeviceID: UniqueDeviceID,
     public navCtrl: NavController,
     private dataService: DataService,
-    private modalController: ModalController,
+
     public events: Events
   ) {
     //  Unique Device ID
@@ -650,20 +652,17 @@ export class HomePage implements OnInit {
 
   // Bottom App Bar (SideMenu,GoReminder,GoNotifications)
   async sideNavMenu() {
-    const modal = await this.modalController.create({
-      component: BottomNavPage,
-      componentProps: { value: 123 },
-      cssClass: "my-custom-modal-css",
-    });
-    return await modal.present();
+    this.commonHelperService.sideMenu();
   }
 
   goReminder() {
-    this.router.navigate(["/reminder/"]);
+    // this.router.navigate(["/reminder/"]);
+    this.router.navigate(["/comingsoon/"]);
   }
 
   goNotification() {
-    this.router.navigate(["/notification/"]);
+    // this.router.navigate(["/notification/"]);
+    this.router.navigate(["/comingsoon/"]);
   }
 
   // Fab Click Functions (Add New Lead,GO CUID,Add FOS)
