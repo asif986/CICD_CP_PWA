@@ -177,10 +177,16 @@ export class BottomNavPage implements OnInit {
   }
 
   // || val=='readytosubmit-bills'|| val=='submitted-bill-page'
-  navigateMenu(val) {
+  navigateMenu(url) {
     this.modalController.dismiss();
 
-    this.navCtrl.navigateForward(val);
+    // this.navCtrl.navigateForward(val);
+    if (url == "/profile") {
+      this.navCtrl.navigateRoot(url, { replaceUrl: true });
+      // this.navCtrl.navigateForward(url);
+    } else {
+      this.navCtrl.navigateForward(url);
+    }
   }
 
   goback() {

@@ -13,6 +13,7 @@ import { HttpClient } from "@angular/common/http";
 import { Storage } from "@ionic/storage";
 import { UniqueDeviceID } from "@ionic-native/unique-device-id/ngx";
 import { responsefromlogin } from "./../models/Login";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-profile",
@@ -53,7 +54,8 @@ export class ProfilePage implements OnInit {
     public navCtrl: NavController,
     private http: HttpClient,
     public modalController: ModalController,
-    private uniqueDeviceID: UniqueDeviceID
+    private uniqueDeviceID: UniqueDeviceID,
+    public router: Router
   ) {
     this.uniqueDeviceID
       .get()
@@ -96,22 +98,28 @@ export class ProfilePage implements OnInit {
         {
           text: "Logout",
           handler: () => {
-            this.updateToken();
+            // this.updateToken();
             // setTimeout(() => {
-            this.storage.remove("data");
-            this.storage.remove("user_info");
-            this.storage.remove("cpLoginData");
-            this.storage.remove("cp_executive_id");
-            this.storage.remove("apiToken");
-            this.storage.remove("cp_id");
-            this.storage.remove("verification_status_id");
-            this.storage.remove("fullname");
-            this.storage.remove("channelname");
-            this.navCtrl.navigateRoot("/login", { replaceUrl: true });
-            this.helper.presentToastSuccess("Logout Successfully!");
+            // this.storage.remove("data");
+            // this.storage.remove("user_info");
+            // this.storage.remove("cpLoginData");
+            // this.storage.remove("cp_executive_id");
+            // this.storage.remove("apiToken");
+            // this.storage.remove("cp_id");
+            // this.storage.remove("verification_status_id");
+            // this.storage.remove("fullname");
+            // this.storage.remove("channelname");
+            this.storage
+              .clear()
+              .then(() => {
+                this.navCtrl.navigateRoot("login", { replaceUrl: true });
+                // this.router.navigate(["/login"], { replaceUrl: true });
+                this.helper.presentToastSuccess("Logout Successfully!");
+                this.alertController.dismiss();
+                this.modalController.dismiss();
+              })
+              .catch(() => {});
 
-            this.alertController.dismiss();
-            this.modalController.dismiss();
             // }, 500);
           },
         },
@@ -159,6 +167,6 @@ export class ProfilePage implements OnInit {
   }
 
   goto(url) {
-    this.navCtrl.navigateForward(url, { replaceUrl: true });
+    this.navCtrl.navigateForward(url);
   }
 }

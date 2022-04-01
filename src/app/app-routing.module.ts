@@ -242,6 +242,7 @@ const routes: Routes = [
     path: "cpstatus",
     loadChildren: "./cpstatus/cpstatus.module#CpstatusPageModule",
   },
+  { path: 'comingsoon', loadChildren: './comingsoon/comingsoon.module#ComingsoonPageModule' },
 ];
 
 @NgModule({

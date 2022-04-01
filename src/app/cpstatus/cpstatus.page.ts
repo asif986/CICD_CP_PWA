@@ -122,6 +122,7 @@ export class CpstatusPage implements OnInit {
                 this.storage.set("user_info", JSON.stringify(val)).then(() => {
                   this.navCtrl.navigateRoot("select-cp", {
                     replaceUrl: true,
+                    queryParams: { pending: true },
                   });
                 });
               });

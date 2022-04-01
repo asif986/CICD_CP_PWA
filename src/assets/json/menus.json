@@ -8,12 +8,42 @@
         {
             "image": "/assets/new_icons/profilea.png",
             "label": " Profile",
-            "navigation": "profile"
+            "navigation": "/profile"
         },
         {
             "image": "/assets/new_icons/performance.png",
             "label": "My Performance",
             "navigation": "myperformance"
+        },
+        {
+            "image": "/assets/new_icons/stats.png",
+            "label": "Team Leader Stats",
+            "navigation": "commingsoon"
+        },
+        {
+            "image": "/assets/new_icons/salesperformance.png",
+            "label": "Sales Performance",
+            "navigation": "commingsoon"
+        },
+        {
+            "image": "/assets/new_icons/list.png",
+            "label": "FOS List",
+            "navigation": "comingsoon"
+        },
+        {
+            "image": "/assets/new_icons/profile.png",
+            "label": "Team Leaders List",
+            "navigation": "comingsoon"
+        },
+        {
+            "image": "/assets/new_icons/reminder.png",
+            "label": "Reminder",
+            "navigation": "comingsoon"
+        },
+        {
+            "image": "/assets/new_icons/notification.png",
+            "label": "Notification",
+            "navigation": "comingsoon"
         }
     ],
     "menu_list_fos": [
@@ -25,12 +55,42 @@
         {
             "image": "/assets/new_icons/profilea.png",
             "label": " Profile",
-            "navigation": "profile"
+            "navigation": "/profile"
         },
         {
             "image": "/assets/new_icons/performance.png",
             "label": "My Performance",
             "navigation": "myperformance"
+        },
+        {
+            "image": "/assets/new_icons/stats.png",
+            "label": "Team Leader Stats",
+            "navigation": "commingsoon"
+        },
+        {
+            "image": "/assets/new_icons/salesperformance.png",
+            "label": "Sales Performance",
+            "navigation": "commingsoon"
+        },
+        {
+            "image": "/assets/new_icons/list.png",
+            "label": "FOS List",
+            "navigation": "comingsoon"
+        },
+        {
+            "image": "/assets/new_icons/profile.png",
+            "label": "Team Leaders List",
+            "navigation": "comingsoon"
+        },
+        {
+            "image": "/assets/new_icons/reminder.png",
+            "label": "Reminder",
+            "navigation": "comingsoon"
+        },
+        {
+            "image": "/assets/new_icons/notification.png",
+            "label": "Notification",
+            "navigation": "comingsoon"
         }
     ]
 }
