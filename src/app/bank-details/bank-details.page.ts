@@ -56,7 +56,7 @@ export class BankDetailsPage implements OnInit {
             patternError: "Please proper Branch Name!.",
             validators: {
               required: true,
-              pattern: "^s*[a-zA-Z,s]+s*$",
+              pattern: "[a-zA-Z0-9][a-zA-Z0-9 ]+[a-zA-Z0-9]$",
             },
           },
           {
