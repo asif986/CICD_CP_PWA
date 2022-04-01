@@ -6,13 +6,14 @@ import {
   NavController,
   PopoverController,
 } from "@ionic/angular";
-import { Storage } from "@ionic/storage";
 
+import { APIService } from "../services/APIService";
+import { BehaviorSubject } from "rxjs";
 import { CommonHelperService } from "./../services/common-helper.service";
 import { CustomModelComponent } from "../components/custom-model/custom-model.component";
 import { DataService } from "../services/data.service";
-import { APIService } from "../services/APIService";
 import { Helper } from "../services/Helper";
+import { Storage } from "@ionic/storage";
 import { responsefromlogin } from "../models/Login";
 
 @Component({
@@ -23,6 +24,7 @@ import { responsefromlogin } from "../models/Login";
 export class SelectCPPage implements OnInit {
   public myForm: FormGroup = this.fb.group({});
   public firms = [];
+  public allCps = new BehaviorSubject<any>(null);
   private static readonly searchbox = "searchbox";
   private static readonly firm = "firm";
   searchbox_nm;
@@ -54,7 +56,7 @@ export class SelectCPPage implements OnInit {
     // this.getCPList();
     this.getUserInfo();
     // this.navctrl.navigateForward("cpstatus");
-
+    this.getCplistTemp("");
     this.myForm = this.fb.group({
       [SelectCPPage.searchbox]: [""],
       [SelectCPPage.firm]: [""],
@@ -72,7 +74,7 @@ export class SelectCPPage implements OnInit {
       this.commonser.presentToast("Please select any one of Firm");
       return;
     } else {
-      name = this.firms.find((item) => item.cp_entity_id == cp_id).cp_name;
+      name = this.firms.find((item) => item.cp_entity_id == cp_id).billing_name;
     }
     const model = await this.modalController.create({
       component: CustomModelComponent,
@@ -132,23 +134,47 @@ export class SelectCPPage implements OnInit {
   }
 
   public search(events: any) {
-    console.log(events.target.value);
+    // console.log(events.target.value);
     // const inputtype =
     //   this.myForm.controls[SelectCPPage.searchbox].value.toLowerCase();
     let inputtype = events.target.value;
     // console.log(inputtype);
-    if (inputtype.length == "" || inputtype.length <= 3) {
+    if (inputtype == "") {
       // this.firms = [...this.data.firms()];
+      this.firms = [];
+      this.getCplistTemp('')
       // this.searchbox_nm = null;
       return;
     }
-    this.getCPList(inputtype);
-    // this.firms = this.firms.filter((item) =>
-    //   item.name.toLowerCase().includes(inputtype)
-    // );
+    const cpFirms: Array<any> = this.allCps.value;
+    // this.getCPList(inputtype);
+    this.firms = cpFirms.filter((item) =>
+      (item.billing_name).toLowerCase().startsWith(inputtype.toLowerCase())
+    );
     // console.log(events.data)
   }
-
+  getCplistTemp(name: any) {
+    this.helper.showLoader("Plese wait");
+    this.apiService
+      .getcpEntitySearch(name)
+      .map((r) => r.body)
+      .subscribe(
+        (res: Array<any>) => {
+          // this.firms = res;
+          // res = res.map((item) => {
+          //   return { billing_name: item.billing_name };
+          // });
+          console.log(res);
+          this.allCps.next(null)
+          this.allCps.next(res);
+          this.helper.hideLoader();
+        },
+        (e) => {
+          this.helper.hideLoader();
+          this.helper.presentToastError("something went wrong");
+        }
+      );
+  }
   getCPList(name) {
     this.helper.showLoader("Plese wait");
     this.apiService

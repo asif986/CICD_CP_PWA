@@ -18,26 +18,24 @@
                         <input formControlName="searchbox" (input)="valuechange($event)"  matInput type="text">
                     </mat-form-field> -->
 
-                    <ion-searchbar formControlName="searchbox" placeholder="Enter CP name" [(ngModel)]="searchbox_nm"
-                        debounce="270" (ionInput)="search($event)" (ionClear)="clear()" class="search">
+                    <ion-searchbar formControlName="searchbox" placeholder="Enter CP name" debounce="270" (ionInput)="search($event)" (ionClear)="clear()" class="search">
                     </ion-searchbar>
                 </ion-col>
             </ion-row>
             <ion-row>
                 <ion-col size="12" class="cp_list">
 
-                    <mat-radio-group (change)="changeOrgz($event)" formControlName="firm"
-                        class="d-flex justify-content-around pt-4 pb-4">
+                    <mat-radio-group (change)="changeOrgz($event)" formControlName="firm" class="d-flex justify-content-around pt-4 pb-4">
                         <div class="d-flex flex-column w-100">
-                            <!-- | filter:searchbox_nm -->
+                            <!-- | filter:myForm.controls['searchbox']  -->
                             <mat-radio-button class="pt-3" [value]="firm.cp_entity_id" *ngFor="let firm of firms ">
-                                {{firm.cp_name}}
+                                {{firm.billing_name}}
                             </mat-radio-button>
                         </div>
                     </mat-radio-group>
 
-                    <p *ngIf="firms.length ===0 && searchbox_nm!=null" style="color: black;text-align: center;">No CP
-                        found.</p>
+                    <p *ngIf="firms.length ==0 && myForm.controls['searchbox'].value !=null" style="color: black;text-align: center;">No CP found.
+                    </p>
                 </ion-col>
             </ion-row>
         </form>
@@ -51,7 +49,6 @@
 
 <ion-footer *ngIf="is_cp_tagging_requested ==0" collapse="fade" class="ion-no-border" transparent>
     <div class='btn-box'>
-        <button [routerLink]="['/profile']" routerLinkActive="router-link-active" mat-button
-            class="common-btn">Profile</button>
+        <button [routerLink]="['/profile']" routerLinkActive="router-link-active" mat-button class="common-btn">Profile</button>
     </div>
 </ion-footer>
