@@ -51,7 +51,6 @@ export class MyperformancePage implements OnInit {
   /**
    * Options for sliders
    */
-  value;
   approxArokerageInCr;
   isCollapsed = false;
 
@@ -62,6 +61,7 @@ export class MyperformancePage implements OnInit {
   login_type;
 
   sales_brokerage_range: any = [];
+  total_sales_in_cr: number = 0;
 
   constructor(
     private dateAdapter: DateAdapter<Date>,
@@ -99,75 +99,75 @@ export class MyperformancePage implements OnInit {
 
   dynamicSlider(val, flag) {
     if (flag == 1) {
-      if (val < 20) {
-        return 0;
-      } else if (val >= 20 && val <= 100) {
-        return 25;
-      } else {
-        return 75;
-      }
+      // for first intial value in slider
+      return this.sales_brokerage_range[0].amount;
     } else if (flag == 2) {
-      if (val < 20) {
-        return 25;
-      } else if (val >= 20 && val <= 100) {
-        return 100;
-      } else {
-        return 200;
-      }
+      //for last value in slider
+      // if (val < 20) {
+      //   return 25;
+      // } else if (val >= 20 && val <= 100) {
+      //   return 100;
+      // } else {
+      //   return 200;
+      // }
+      return this.sales_brokerage_range[this.sales_brokerage_range.length - 1]
+        .amount;
     } else if (flag == 3) {
-      if (val < 20) {
-        return [0, 5, 10, 15, 20, 25];
-      } else if (val >= 20 && val <= 100) {
-        return [25, 50, 75, 100, 125];
-      } else {
-        return [100, 125, 150, 175, 200];
-      }
-    } else if (flag == 4) {
-      if (val < 20) {
-        return 5;
-      } else if (val >= 20 && val <= 100) {
-        return 25;
-      } else {
-        return 25;
-      }
+      // if (val < 20) {
+      //   return [0, 5, 10, 15, 20, 25];
+      // } else if (val >= 20 && val <= 100) {
+      //   return [25, 50, 75, 100, 125];
+      // } else {
+      //   return [100, 125, 150, 175, 200];
+      // }
+      let data = this.sales_brokerage_range.map((res) => {
+        return res.amount;
+      });
+      console.log(data);
     }
   }
 
   createSlider() {
+    // value: this.total_sales_in_cr,
     this.options = {
-      floor: 0 || this.dynamicSlider(this.value, 1),
-      ceil: this.dynamicSlider(this.value, 2),
-      ticksArray: this.dynamicSlider(this.value, 3),
+      // floor: this.dynamicSlider(this.total_sales_in_cr, 1),
+      // ceil: this.dynamicSlider(this.total_sales_in_cr, 2),
+      // // ticksArray: this.dynamicSlider(this.total_sales_in_cr, 3),
+      floor: 0,
+      ceil: 100,
+      step: 0.2,
+      // ticksArray: this.dynamicSlider(this.total_sales_in_cr, 3),
       readOnly: true,
-      showTicks: true,
+      // pushRange: true,
+
       selectionBarGradient: {
         from: "white",
         to: "#FC0",
       },
-      translate: (value: number): string => {
-        return `
-      <div class='img-slider'>
-      <img class='man-img' src='assets/new_icons/man.png'/>
-      <b>You are here (${value} CR)</b>
-      </div>
-      `;
-      },
-      showSelectionBar: true,
+      // translate: (value: number): any => {
+      //   console.log(value);
+      //   return `
+      // <div class='img-slider'>
+      // <img class='man-img' src='assets/new_icons/man.png'/>
+      // <b>You are here (${value} CR)</b>
+      // </div>
+      // `;
+      // },
+      // showSelectionBar: true,
       // showTicksValues: true,
-      // tickStep: this.dynamicSlider(this.value, 4),
-      getLegend: (value: number): any => {
-        // console.log(value);
-        let modified;
-        this.sales_brokerage_range.filter((res) => {
-          if (res.amount == value) {
-            modified = `<div class='d-flex flex-column'> <div>${res.amount}<b>CR</b></div>
-            <div>${res.brokerage}</div>
-            </div>
-            `;
-          }
-        });
-        return modified;
-      },
+      // tickStep: this.dynamicSlider(this.total_sales_in_cr, 4),
+      // getLegend: (value: number): any => {
+      //   let modified;
+      //   this.sales_brokerage_range.filter((res) => {
+      //     if (res.amount == value) {
+      //       modified = `<div class='d-flex flex-column'> <div>${res.amount}<b>CR</b></div>
+      //       <div>${res.brokerage}</div>
+      //       </div>
+      //       `;
+      //     }
+      //   });
+      //   return modified;
+      // },
     };
   }
 
@@ -276,13 +276,14 @@ export class MyperformancePage implements OnInit {
                   this.lead_tokens_ghp_plus = res.data.ps_count;
                   this.booking_master = res.data.allotments;
                   this.dismissLoading();
-                  console.log(this.PerformanceList);
-                  console.log(this.selectedCategory);
-                  console.log(this.leads_site_visits);
-                  console.log(this.leads);
-                  console.log(this.lead_tokens);
-                  console.log(this.booking_master);
-                  this.value = res.data.total_sales_in_cr;
+                  // console.log(this.PerformanceList);
+                  // console.log(this.selectedCategory);
+                  // console.log(this.leads_site_visits);
+                  // console.log(this.leads);
+                  // console.log(this.lead_tokens);
+                  // console.log(this.booking_master);
+                  this.total_sales_in_cr = +res.data.total_sales_in_cr;
+                  console.log(this.total_sales_in_cr);
                   this.sales_brokerage_range = res.data.sales_brokerage_range;
                   this.approxArokerageInCr = res.data.approx_brokerage_in_cr;
                   this.createSlider();

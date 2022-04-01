@@ -180,13 +180,13 @@ export class BottomNavPage implements OnInit {
   navigateMenu(url) {
     this.modalController.dismiss();
 
-    // this.navCtrl.navigateForward(val);
-    if (url == "/profile") {
-      this.navCtrl.navigateRoot(url, { replaceUrl: true });
-      // this.navCtrl.navigateForward(url);
-    } else {
-      this.navCtrl.navigateForward(url);
-    }
+    this.navCtrl.navigateForward(url);
+    // if (url == "/profile") {
+    //   this.navCtrl.navigateRoot(url, { replaceUrl: true });
+    //   // this.navCtrl.navigateForward(url);
+    // } else {
+    //   this.navCtrl.navigateForward(url);
+    // }
   }
 
   goback() {

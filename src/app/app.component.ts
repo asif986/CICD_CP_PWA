@@ -71,9 +71,10 @@ export class AppComponent {
     private update: SwUpdate,
     private appRef: ApplicationRef
   ) {
-    this.initializeApp();
     this.updateClient();
     this.checkUpdate();
+    this.initializeApp();
+
     events.subscribe("user:update_fcm", () => {
       // user and time are the same arguments passed in events.publish(user, time)
       console.log("Welcome");

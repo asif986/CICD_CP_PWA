@@ -92,6 +92,8 @@ export class HomePage implements OnInit {
 
     public events: Events
   ) {
+    this.helper.redirectionOfUser();
+
     //  Unique Device ID
     this.uniqueDeviceID
       .get()

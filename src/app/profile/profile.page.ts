@@ -112,7 +112,7 @@ export class ProfilePage implements OnInit {
             this.storage
               .clear()
               .then(() => {
-                this.navCtrl.navigateRoot("login", { replaceUrl: true });
+                this.navCtrl.navigateRoot("/login", { replaceUrl: true });
                 // this.router.navigate(["/login"], { replaceUrl: true });
                 this.helper.presentToastSuccess("Logout Successfully!");
                 this.alertController.dismiss();
