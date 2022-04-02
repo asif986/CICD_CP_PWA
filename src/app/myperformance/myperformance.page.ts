@@ -61,8 +61,8 @@ export class MyperformancePage implements OnInit {
   login_type;
 
   sales_brokerage_range: any = [];
-  total_sales_in_cr: number = 0;
-  cr_val = 0;
+  total_sales_in_cr: number;
+  cr_val;
 
   constructor(
     private dateAdapter: DateAdapter<Date>,
@@ -101,10 +101,7 @@ export class MyperformancePage implements OnInit {
   dynamicSlider(val, flag) {
     if (flag == 1) {
       // for first intial value in slider
-      // return
-      return this.sales_brokerage_range.length != 0
-        ? this.sales_brokerage_range[0].amount
-        : 0;
+      return this.sales_brokerage_range[0].amount;
     } else if (flag == 2) {
       // for last value in slider
       if (val < 20) {
@@ -298,7 +295,10 @@ export class MyperformancePage implements OnInit {
                   // console.log(this.total_sales_in_cr);
                   this.sales_brokerage_range = res.data.sales_brokerage_range;
                   this.approxArokerageInCr = res.data.approx_brokerage_in_cr;
-                  this.createSlider();
+                  if (this.login_type == 1) {
+                    this.isCollapsed = true;
+                    this.createSlider();
+                  }
                   this.cardInfo = [
                     {
                       name: "Leads",
@@ -321,7 +321,6 @@ export class MyperformancePage implements OnInit {
                       bg_color: "bg3",
                     },
                   ];
-                  this.isCollapsed = true;
                 } else {
                   this.dismissLoading();
                   this.isSpinner = false;
