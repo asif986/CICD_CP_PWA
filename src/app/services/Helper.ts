@@ -225,7 +225,7 @@ export class Helper {
         if (val) {
           console.log(val);
           // //FOR CP
-          this.navCtrl.navigateRoot("/select-cp", {
+          this.navCtrl.navigateRoot("/myperformance", {
             replaceUrl: true,
           });
           return;
@@ -235,20 +235,14 @@ export class Helper {
             if (val.data.verification_status_id == 1) {
               // 1 for success.
 
-              /* For future code
               if (val.data.aop_qop_accepted == 1) {
                 this.navCtrl.navigateRoot("/home", { replaceUrl: true });
               } else {
-
                 this.navCtrl.navigateRoot("/aop-approval-benefit", {
                   replaceUrl: true,
                   queryParams: { pending: true },
                 });
               }
-              */
-              this.navCtrl.navigateRoot("/home", {
-                replaceUrl: true,
-              });
             } else if (val.data.verification_status_id == 2) {
               // 2 for pending
               this.navCtrl.navigateRoot("/verificationpending", {

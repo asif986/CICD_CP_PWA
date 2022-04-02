@@ -77,6 +77,8 @@ export class ProfilePage implements OnInit {
       this.verification_status_id = val.data.verification_status_id;
       this.is_cp_tagging_requested = val.is_cp_tagging_requested;
       this.detailsArray = getOnlyFields.map((item: any) => {
+        console.log(item);
+        // if (val.data.billing_name !=null)
         // console.log(item.control);
         // console.log(val.data[item.control]);
 

@@ -135,10 +135,12 @@ export class MyperformancePage implements OnInit {
       // // ticksArray: this.dynamicSlider(this.total_sales_in_cr, 3),
       floor: 0,
       ceil: 100,
-      step: 0.2,
+      // step: 0.2,
       // ticksArray: this.dynamicSlider(this.total_sales_in_cr, 3),
       readOnly: true,
-      // pushRange: true,
+      showTicks: true,
+      showTicksValues: true,
+      tickStep: this.dynamicSlider(this.total_sales_in_cr, 4),
 
       selectionBarGradient: {
         from: "white",
@@ -155,7 +157,6 @@ export class MyperformancePage implements OnInit {
       // },
       // showSelectionBar: true,
       // showTicksValues: true,
-      // tickStep: this.dynamicSlider(this.total_sales_in_cr, 4),
       // getLegend: (value: number): any => {
       //   let modified;
       //   this.sales_brokerage_range.filter((res) => {
@@ -304,7 +305,7 @@ export class MyperformancePage implements OnInit {
                       bg_color: "bg3",
                     },
                     {
-                      name: "G+ Generated",
+                      name: "Preselect",
                       count: this.lead_tokens_ghp_plus,
                       bg_color: "bg3",
                     },

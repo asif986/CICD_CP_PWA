@@ -100,7 +100,7 @@ export class AppComponent {
       if (
         this.helper.presentAlert(
           "Update",
-          "update available for the app please conform",
+          "update available for the app please confirm",
           "OK",
           () => {
             this.update.activateUpdate().then(() => location.reload());
