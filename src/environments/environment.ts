@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  BASE_URL:
+    "https://vjpartners.co.in/ongoing/v7_new_clone_2/vj-sales-modules/public/api/",
 };
 
 /*
