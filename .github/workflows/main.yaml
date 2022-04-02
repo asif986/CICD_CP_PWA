@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@main
       - name: Initialize Node
-        uses: actions/setup-node@master
+        uses: actions/setup-node@main
       - name: Install Dependencies
         run: npm install
       - name: Build
