@@ -15,7 +15,7 @@ jobs:
       - name: Initialize Node
         uses: actions/setup-node@main
       - name: Install Dependencies
-        run: npm install
+        run: sudo npm install
       - name: Build
         run: npm run build
       - name: Deploy
