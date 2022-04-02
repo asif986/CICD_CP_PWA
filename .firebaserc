@@ -5,11 +5,11 @@
   "targets": {
     "vjdcpapp": {
       "hosting": {
-        "test": [
-          "testvjdcpapp"
-        ],
         "live": [
           "vjdcpapp"
+        ],
+        "test": [
+          "testvjdcpapp"
         ]
       }
     }
