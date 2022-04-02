@@ -1,4 +1,7 @@
 {
+  "projects": {
+    "default": "vjdcpapp"
+  },
   "targets": {
     "vjdcpapp": {
       "hosting": {
