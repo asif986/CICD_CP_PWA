@@ -1,6 +1,7 @@
 {
   "projects": {
-    "default": "vjdcpapp"
+    "default": "vjdcpapp",
+    "production": "vjdcpapp"
   },
   "targets": {
     "vjdcpapp": {
