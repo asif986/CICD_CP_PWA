@@ -23,6 +23,6 @@ jobs:
       - name: Deploy
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only hosting:[live]
+          args: deploy --only hosting:[vjdcpapp]
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
