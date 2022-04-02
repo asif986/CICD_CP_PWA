@@ -22,11 +22,7 @@ jobs:
         run: npm run build
       - name: GitHub Action for Firebase
         uses: w9jds/firebase-action@v2.0.0
-      - name: Deploy to Firebase Hosting using target name
-        uses: tomket2/deploy-firebase@v0.1
-
+        with:
+          args: deploy --only hosting:[vjdcpapp]
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          FIREBASE_PROJECT: vjdcpapp
-          TARGET_BRANCH: main
-          TARGET_NAME: test
