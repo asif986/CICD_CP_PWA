@@ -13,11 +13,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@main
       - name: Initialize Node
-        uses: actions/setup-node@main
+        uses: actions/setup-node@master
         with:
           node-version: "10.x"
       - name: Install Dependencies
-        run: sudo npm install
+        run: npm install
       - name: Build
         run: npm run build
       - name: Deploy
