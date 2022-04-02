@@ -20,6 +20,8 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
+      - name: Add Firebase
+        uses: w9jds/firebase-action@master
       - name: Deploy to Firebase Hosting using target name
         uses: tomket2/deploy-firebase@v0.1
         env:
