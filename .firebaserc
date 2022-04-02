@@ -1,8 +1,4 @@
 {
-  "projects": {
-    "default": "vjdcpapp",
-    "production": "vjdcpapp"
-  },
   "targets": {
     "vjdcpapp": {
       "hosting": {
