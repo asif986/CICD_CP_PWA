@@ -47,6 +47,7 @@ export class CpstatusPage implements OnInit {
             this.cpName = res[0].billing_name;
             this.tagging_id = res[0].tagging_id;
           }
+
           if (this.is_redirection) {
             if (sucess == 3) {
               this.helper.getUserInfo().then((val: responsefromlogin) => {
