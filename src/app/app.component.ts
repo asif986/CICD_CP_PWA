@@ -71,43 +71,39 @@ export class AppComponent {
     private update: SwUpdate,
     private appRef: ApplicationRef
   ) {
-    this.updateClient();
-    this.checkUpdate();
     this.initializeApp();
 
-    events.subscribe("user:update_fcm", () => {
-      // user and time are the same arguments passed in events.publish(user, time)
-      console.log("Welcome");
-      this.updateToken();
-    });
-    events.subscribe("user:remove_token", () => {
-      // user and time are the same arguments passed in events.publish(user, time)
+    // events.subscribe("user:update_fcm", () => {
+    //   // user and time are the same arguments passed in events.publish(user, time)
+    //   console.log("Welcome");
+    //   this.updateToken();
+    // });
+    // events.subscribe("user:remove_token", () => {
+    //   // user and time are the same arguments passed in events.publish(user, time)
 
-      this.notificationUnregistered();
-    });
+    //   this.notificationUnregistered();
+    // });
     // events.subscribe('user:logout', () => {
     //
     //   this.checkTokenValidity();
     // });
   }
   updateClient() {
-    if (!this.update.isEnabled) {
-      console.log("Not Enabled");
-      return;
-    }
+    // if (!this.update.isEnabled) {
+    //   console.log("Not Enabled");
+    //   return;
+    // }
     this.update.available.subscribe((event) => {
       console.log(`current`, event.current, `available `, event.available);
-      if (
-        this.helper.presentAlert(
-          "Update",
-          "update available for the app please confirm",
-          "OK",
-          () => {
-            this.update.activateUpdate().then(() => location.reload());
-          }
-        )
-      ) {
-      }
+
+      this.helper.presentAlert(
+        "Update",
+        "update available for the app please confirm",
+        "OK",
+        () => {
+          this.update.activateUpdate().then(() => window.location.reload());
+        }
+      );
     });
 
     this.update.activated.subscribe((event) => {
@@ -130,6 +126,10 @@ export class AppComponent {
 
   initializeApp() {
     this.platform.ready().then(() => {
+      console.log("platform ready");
+      this.updateClient();
+      // this.checkUpdate();
+
       this.mobileAccessibility.usePreferredTextZoom(false);
 
       if (this.platform.is("cordova")) {
@@ -169,12 +169,13 @@ export class AppComponent {
         );
       }
 
-      this.uniqueDeviceID
-        .get()
-        .then((uuid: any) => {
-          this.uuid = uuid;
-        })
-        .catch((error: any) => {});
+      // this.uniqueDeviceID
+      //   .get()
+      //   .then((uuid: any) => {
+      //     this.uuid = uuid;
+      //   })
+      //   .catch((error: any) => {});
+
       // this.storage.get('login').then((val) => {
       //   console.log('Your login', val);
       //   if (val) {
