@@ -93,6 +93,7 @@ export class ProfilePage implements OnInit {
         console.log(item);
         // if (val.data.billing_name !=null)
         // console.log(item.control);
+
         // console.log(val.data[item.control]);
 
         return { ...item, info: val.data[item.control] };
