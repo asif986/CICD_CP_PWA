@@ -26,4 +26,4 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           FIREBASE_PROJECT: vjdcpapp
           TARGET_BRANCH: main
-          TARGET_NAME: live
+          TARGET_NAME: test
