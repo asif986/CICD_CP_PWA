@@ -44,8 +44,8 @@ export class CpstatusPage implements OnInit {
         (res) => {
           console.log(res);
           if (res != null) {
-            this.cpName = res.cp_entity_name;
-            this.tagging_id = res.tagging_id;
+            this.cpName = res[0].billing_name;
+            this.tagging_id = res[0].tagging_id;
           }
           if (this.is_redirection) {
             if (sucess == 3) {

@@ -76,6 +76,19 @@ export class ProfilePage implements OnInit {
       this.login_type = val.login_type;
       this.verification_status_id = val.data.verification_status_id;
       this.is_cp_tagging_requested = val.is_cp_tagging_requested;
+
+      console.log(this.is_cp_tagging_requested);
+
+      getOnlyFields = getOnlyFields.filter((res) => {
+        if (
+          this.is_cp_tagging_requested == 1 &&
+          res.control == "billing_name"
+        ) {
+          return false;
+        }
+        return res;
+      });
+
       this.detailsArray = getOnlyFields.map((item: any) => {
         console.log(item);
         // if (val.data.billing_name !=null)

@@ -889,7 +889,7 @@ export class APIService {
         `${
           login_type == 1
             ? "?cp_entity_id=" + cp_entity_id
-            : "?cp_fos_id=" + cp_fos_id
+            : "?fos_id=" + cp_fos_id
         }`
     );
   }
@@ -928,13 +928,17 @@ export class APIService {
     }
     return this.http.post(url, { id_number }, { headers });
   }
-  kycVerifications_registrationforBankOnly( id_number,ifsc) {
+  kycVerifications_registrationforBankOnly(id_number, ifsc) {
     let TOKEN =
       "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTY0NzEwNDcxNCwianRpIjoiOWNhMDViZTAtZTMwYS00NTc5LTk5MzEtYWY3MmVmYzg1ZGFhIiwidHlwZSI6ImFjY2VzcyIsImlkZW50aXR5IjoiZGV2LmphdmRla2Fyc0BhYWRoYWFyYXBpLmlvIiwibmJmIjoxNjQ3MTA0NzE0LCJleHAiOjE5NjI0NjQ3MTQsInVzZXJfY2xhaW1zIjp7InNjb3BlcyI6WyJyZWFkIl19fQ.cGYIaxfNm0BDCol5_7I1DaJFZE-jXSel2E63EHl2A4A";
     const headers = new HttpHeaders().set(
       "Authorization",
       `${"Bearer" + " " + TOKEN}`
     );
-    return this.http.post(this.webServer.bankValidation, { id_number,ifsc }, { headers });
+    return this.http.post(
+      this.webServer.bankValidation,
+      { id_number, ifsc },
+      { headers }
+    );
   }
 }

@@ -62,6 +62,7 @@ export class MyperformancePage implements OnInit {
 
   sales_brokerage_range: any = [];
   total_sales_in_cr: number = 0;
+  cr_val = 0;
 
   constructor(
     private dateAdapter: DateAdapter<Date>,
@@ -100,75 +101,83 @@ export class MyperformancePage implements OnInit {
   dynamicSlider(val, flag) {
     if (flag == 1) {
       // for first intial value in slider
-      return this.sales_brokerage_range[0].amount;
+      // return
+      return this.sales_brokerage_range.length != 0
+        ? this.sales_brokerage_range[0].amount
+        : 0;
     } else if (flag == 2) {
-      //for last value in slider
-      // if (val < 20) {
-      //   return 25;
-      // } else if (val >= 20 && val <= 100) {
-      //   return 100;
-      // } else {
-      //   return 200;
-      // }
-      return this.sales_brokerage_range[this.sales_brokerage_range.length - 1]
-        .amount;
+      // for last value in slider
+      if (val < 20) {
+        return 25;
+      } else if (val >= 20 && val <= 100) {
+        return 100;
+      } else {
+        return 200;
+      }
+      // return this.sales_brokerage_range[this.sales_brokerage_range.length - 1]
+      //   .amount;
     } else if (flag == 3) {
-      // if (val < 20) {
-      //   return [0, 5, 10, 15, 20, 25];
-      // } else if (val >= 20 && val <= 100) {
-      //   return [25, 50, 75, 100, 125];
-      // } else {
-      //   return [100, 125, 150, 175, 200];
-      // }
-      let data = this.sales_brokerage_range.map((res) => {
-        return res.amount;
-      });
-      console.log(data);
+      // slider down range
+      if (val < 20) {
+        return [0, 5, 10, 15, 20, 25];
+      } else if (val >= 20 && val <= 100) {
+        return [25, 50, 75, 100, 125];
+      } else {
+        return [75, 100, 125, 150, 175, 200];
+      }
+      // let data = this.sales_brokerage_range.map((res) => {
+      //   return res.amount;
+      // });
+      // console.log(data);
+    } else {
+      if (val < 20) {
+        return 5;
+      } else if (val >= 20 && val <= 100) {
+        return 25;
+      } else {
+        return 25;
+      }
     }
   }
 
   createSlider() {
     // value: this.total_sales_in_cr,
     this.options = {
-      // floor: this.dynamicSlider(this.total_sales_in_cr, 1),
-      // ceil: this.dynamicSlider(this.total_sales_in_cr, 2),
-      // // ticksArray: this.dynamicSlider(this.total_sales_in_cr, 3),
-      floor: 0,
-      ceil: 100,
-      // step: 0.2,
-      // ticksArray: this.dynamicSlider(this.total_sales_in_cr, 3),
+      floor: this.dynamicSlider(this.total_sales_in_cr, 1),
+      ceil: this.dynamicSlider(this.total_sales_in_cr, 2),
+      ticksArray: this.dynamicSlider(this.total_sales_in_cr, 3),
+
       readOnly: true,
       showTicks: true,
-      showTicksValues: true,
+
       tickStep: this.dynamicSlider(this.total_sales_in_cr, 4),
 
       selectionBarGradient: {
         from: "white",
         to: "#FC0",
       },
-      // translate: (value: number): any => {
-      //   console.log(value);
-      //   return `
-      // <div class='img-slider'>
-      // <img class='man-img' src='assets/new_icons/man.png'/>
-      // <b>You are here (${value} CR)</b>
-      // </div>
-      // `;
-      // },
-      // showSelectionBar: true,
-      // showTicksValues: true,
-      // getLegend: (value: number): any => {
-      //   let modified;
-      //   this.sales_brokerage_range.filter((res) => {
-      //     if (res.amount == value) {
-      //       modified = `<div class='d-flex flex-column'> <div>${res.amount}<b>CR</b></div>
-      //       <div>${res.brokerage}</div>
-      //       </div>
-      //       `;
-      //     }
-      //   });
-      //   return modified;
-      // },
+      translate: (value: number): any => {
+        // console.log(value);
+        return `
+      <div class='img-slider'>
+      <img class='man-img' src='assets/new_icons/man.png'/>
+      <b>You are here (${this.cr_val} CR)</b>
+      </div>
+      `;
+      },
+      showSelectionBar: true,
+      getLegend: (value: number): any => {
+        let modified;
+        this.sales_brokerage_range.filter((res) => {
+          if (res.amount == value) {
+            modified = `<div class='d-flex flex-column'> <div>${res.amount}<b>CR</b></div>
+            <div>${res.brokerage}</div>
+            </div>
+            `;
+          }
+        });
+        return modified;
+      },
     };
   }
 
@@ -283,8 +292,10 @@ export class MyperformancePage implements OnInit {
                   // console.log(this.leads);
                   // console.log(this.lead_tokens);
                   // console.log(this.booking_master);
-                  this.total_sales_in_cr = +res.data.total_sales_in_cr;
-                  console.log(this.total_sales_in_cr);
+                  this.total_sales_in_cr = res.data.total_sales_in_cr;
+                  this.cr_val = this.total_sales_in_cr;
+
+                  // console.log(this.total_sales_in_cr);
                   this.sales_brokerage_range = res.data.sales_brokerage_range;
                   this.approxArokerageInCr = res.data.approx_brokerage_in_cr;
                   this.createSlider();
