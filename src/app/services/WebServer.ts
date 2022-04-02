@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { APIService } from "./APIService";
 import { Injectable } from "@angular/core";
 import Swal from "sweetalert2";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -18,8 +19,7 @@ export class WebServer {
 
   //public BASE_URL = "http://vjpartners.co.in/ongoing/v7_new_merge/public/api/"; //Live Test Version Without CORS
   // public BASE_URL = " https://vjpartners.co.in/ongoing/v7_new_clone/vj-sales-modules/public/api/"; //Live Test Version Without CORS
-  public BASE_URL =
-    " https://vjpartners.co.in/ongoing/v7_new_clone_2/vj-sales-modules/public/api/"; //Live Test Version Without CORS
+  public BASE_URL = environment.BASE_URL; //Live Test Version Without CORS
 
   /*Web External Token*/
   public API_TOKEN_EXTERNAL =
@@ -68,13 +68,13 @@ export class WebServer {
   public POSTREGKYCDocument = this.BASE_URL + "addUploadRegDocs";
 
   //get all sales person
-  public salesPersons = this.BASE_URL+"getAllSalesPersons"
-  //get approve-fosrequest 
-  public approve_fos_requests = this.BASE_URL+"cpEntityTaggingRequestList";
+  public salesPersons = this.BASE_URL + "getAllSalesPersons";
+  //get approve-fosrequest
+  public approve_fos_requests = this.BASE_URL + "cpEntityTaggingRequestList";
   //reject fos
-  public rejectFosRequest = this.BASE_URL+"cancelTagging";
+  public rejectFosRequest = this.BASE_URL + "cancelTagging";
   //accept fos
-  public acceptFosRequest  = this.BASE_URL+"cpEntityTaggingRequestUpdate";
+  public acceptFosRequest = this.BASE_URL + "cpEntityTaggingRequestUpdate";
   public verifyPan = "https://kyc-api.aadhaarkyc.io/api/v1/pan/pan";
   public verifyrera = "https://kyc-api.aadhaarkyc.io/api/v1/pan/pan";
   public verifyGST = "https://kyc-api.aadhaarkyc.io/api/v1/corporate/gstin";
@@ -220,5 +220,6 @@ export class WebServer {
   //cp Registration
   public cpRegistration = this.BASE_URL + "cpRegistration";
   //cp bank with validation
-  public bankValidation = "https://kyc-api.aadhaarkyc.io/api/v1/bank-verification/";
+  public bankValidation =
+    "https://kyc-api.aadhaarkyc.io/api/v1/bank-verification/";
 }
