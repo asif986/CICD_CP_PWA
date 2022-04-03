@@ -93,8 +93,9 @@ export class AppComponent {
     //   console.log("Not Enabled");
     //   return;
     // }
+
     this.update.available.subscribe((event) => {
-      console.log(`current`, event.current, `available `, event.available);
+      console.log(`Current`, event.current, `Available `, event.available);
 
       this.helper.presentAlert(
         "Update",
