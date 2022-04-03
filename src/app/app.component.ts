@@ -88,77 +88,45 @@ export class AppComponent {
     //   this.checkTokenValidity();
     // });
   }
-  updateClient() {
+  async updateClient() {
     // if (!this.update.isEnabled) {
     //   console.log("Not Enabled");
     //   return;
     // }
-    return new Promise(async (resolve, reject) => {
-      try {
-        // Check if Service Worker is supported by the Browser
-        if (this.update.isEnabled) {
-          const isNewVersion: any = await this.update.checkForUpdate();
-          // Check if the new version is available
-          if (isNewVersion) {
-            const isNewVersionActivated: any =
-              await this.update.activateUpdate();
-            // Check if the new version is activated and reload the app if it is
-            if (isNewVersionActivated) {
-              this.helper.presentAlert(
-                "Update",
-                "update available for the app please confirm",
-                "OK",
-                () => {
-                  this.update
-                    .activateUpdate()
-                    .then(() => window.location.reload());
-                }
-              );
 
-              //  resolve(true);
-            }
+    try {
+      // Check if Service Worker is supported by the Browser
+      if (this.update.isEnabled) {
+        console.log(this.update.isEnabled);
+        const isNewVersion: any = await this.update.checkForUpdate();
+        console.log(isNewVersion);
+        // Check if the new version is available
+        if (isNewVersion) {
+          const isNewVersionActivated: any = await this.update.activateUpdate();
+          // Check if the new version is activated and reload the app if it is
+          if (isNewVersionActivated) {
+            this.helper.presentAlert(
+              "Update",
+              "update available for the app please confirm",
+              "OK",
+              () => {
+                this.update
+                  .activateUpdate()
+                  .then(() => window.location.reload());
+              }
+            );
+
+            //  resolve(true);
           }
-          //  resolve(true);
-        } else {
-          console.log("please enable the service worker");
-          console.log("app update is available");
         }
-        resolve(true);
-      } catch (error) {
-        console.log(error);
-        window.location.reload();
+        //  resolve(true);
+      } else {
+        console.log("please enable the service worker");
+        // console.log("app update is available");
       }
-    });
-
-    this.update.available.subscribe((event) => {
-      console.log(`Current`, event.current, `available `, event.available);
-
-      this.helper.presentAlert(
-        "Update",
-        "update available for the app please confirm",
-        "OK",
-        () => {
-          this.update.activateUpdate().then(() => window.location.reload());
-        }
-      );
-    });
-
-    this.update.activated.subscribe((event) => {
-      console.log(`current`, event.previous, `available `, event.current);
-    });
-  }
-
-  checkUpdate() {
-    this.appRef.isStable.subscribe((isStable) => {
-      if (isStable) {
-        const timeInterval = interval(9 * 60 * 60 * 1000);
-
-        timeInterval.subscribe(() => {
-          this.update.checkForUpdate().then(() => console.log("checked"));
-          console.log("update checked");
-        });
-      }
-    });
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   initializeApp() {
