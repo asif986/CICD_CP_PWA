@@ -107,7 +107,7 @@ export class AppComponent {
           if (isNewVersionActivated) {
             this.helper.presentAlert(
               "Update",
-              "update available for the app please confirm",
+              "Update available for the app please confirm",
               "OK",
               () => {
                 this.update
