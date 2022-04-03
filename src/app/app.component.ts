@@ -121,6 +121,7 @@ export class AppComponent {
           //  resolve(true);
         } else {
           console.log("please enable the service worker");
+          console.log("app update is available");
         }
         resolve(true);
       } catch (error) {
