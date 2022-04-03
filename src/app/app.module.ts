@@ -44,14 +44,16 @@ export const checkForUpdates = (
   swUpdate: SwUpdate,
   helper: Helper
 ): (() => Promise<any>) => {
+  console.log("checking update");
   return (): Promise<void> =>
     new Promise((resolve) => {
       swUpdate.checkForUpdate();
 
       swUpdate.available.subscribe(() => {
+        console.log("app update");
         //   showAppUpdateAlert();
-        const header = "App Update Available";
-        const message = "Choose OK to update";
+        // const header = "App Update Available";
+        // const message = "Choose OK to update";
 
         // helper.presentAlert(header, message, "UPDATE", (cb) => {
         //   window.location.reload();
