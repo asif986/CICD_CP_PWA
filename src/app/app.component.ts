@@ -120,7 +120,7 @@ export class AppComponent {
           }
           //  resolve(true);
         } else {
-          console.log("service worker not enables");
+          console.log("please enable the service worker");
         }
         resolve(true);
       } catch (error) {
