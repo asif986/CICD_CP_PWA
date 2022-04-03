@@ -9,6 +9,16 @@
         "**/node_modules/**"
       ],
       "rewrites": []
+    },
+    {
+      "target": "live",
+      "public": "www",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": []
     }
   ]
 }
