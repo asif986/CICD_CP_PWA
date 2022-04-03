@@ -38,33 +38,32 @@ import { UniqueDeviceID } from "@ionic-native/unique-device-id/ngx";
 import { environment } from "../environments/environment";
 
 import { KycModalPageModule } from "./addnewlead/kyc-modal/kyc-modal.module";
+import { Helper } from "./services/Helper";
 
-export function initializeApp(): Promise<any> {
-  return new Promise(async (resolve, reject) => {
-    try {
-      // Check if Service Worker is supported by the Browser
-      if (this.swUpdate.isEnabled) {
-        const isNewVersion = await this.swUpdate.checkForUpdate();
-        // Check if the new version is available
-        if (isNewVersion) {
-          const isNewVersionActivated = await this.swUpdate.activateUpdate();
-          // Check if the new version is activated and reload the app if it is
-          if (isNewVersionActivated) {
-            if (confirm("Update available for the app please confirm")) {
-              console.log("app update confirm");
-              window.location.reload();
-              resolve(true);
-            }
-          }
-        }
-        resolve(true);
-      }
-      resolve(true);
-    } catch (error) {
-      // window.location.reload();
-    }
-  });
-}
+export const checkForUpdates = (
+  swUpdate: SwUpdate,
+  helper: Helper
+): (() => Promise<any>) => {
+  return (): Promise<void> =>
+    new Promise((resolve) => {
+      swUpdate.checkForUpdate();
+
+      swUpdate.available.subscribe(() => {
+        //   showAppUpdateAlert();
+        const header = "App Update Available";
+        const message = "Choose OK to update";
+
+        //alert('App Update Available');
+        // Use MatDialog or ionicframework's AlertController or similar
+        helper.presentAlert(header, message, "UPDATE", (cb) => {
+          window.location.reload();
+        });
+        // window.location.reload();
+      });
+
+      resolve();
+    });
+};
 
 @NgModule({
   declarations: [AppComponent],
@@ -91,14 +90,14 @@ export function initializeApp(): Promise<any> {
   providers: [
     StatusBar,
     SplashScreen,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeApp,
-      deps: [SwUpdate],
-      multi: true,
-    },
 
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: checkForUpdates,
+      deps: [SwUpdate, Helper],
+      multi: true,
+    },
     Network,
     DatePipe,
     Push,
