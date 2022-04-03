@@ -58,6 +58,7 @@ import { KycModalPageModule } from "./addnewlead/kyc-modal/kyc-modal.module";
     KycModalPageModule,
     ServiceWorkerModule.register("ngsw-worker.js", {
       enabled: environment.production,
+      registrationStrategy: "registerImmediately",
     }),
   ],
   providers: [

@@ -93,9 +93,44 @@ export class AppComponent {
     //   console.log("Not Enabled");
     //   return;
     // }
+    return new Promise(async (resolve, reject) => {
+      try {
+        // Check if Service Worker is supported by the Browser
+        if (this.update.isEnabled) {
+          const isNewVersion: any = await this.update.checkForUpdate();
+          // Check if the new version is available
+          if (isNewVersion) {
+            const isNewVersionActivated: any =
+              await this.update.activateUpdate();
+            // Check if the new version is activated and reload the app if it is
+            if (isNewVersionActivated) {
+              this.helper.presentAlert(
+                "Update",
+                "update available for the app please confirm",
+                "OK",
+                () => {
+                  this.update
+                    .activateUpdate()
+                    .then(() => window.location.reload());
+                }
+              );
+
+              //  resolve(true);
+            }
+          }
+          //  resolve(true);
+        } else {
+          console.log("service worker not enables");
+        }
+        resolve(true);
+      } catch (error) {
+        console.log(error);
+        window.location.reload();
+      }
+    });
 
     this.update.available.subscribe((event) => {
-      console.log(`Current`, event.current, `Available `, event.available);
+      console.log(`Current`, event.current, `available `, event.available);
 
       this.helper.presentAlert(
         "Update",
