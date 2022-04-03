@@ -283,12 +283,12 @@ export class MyperformancePage implements OnInit {
                   this.lead_tokens_ghp_plus = res.data.ps_count;
                   this.booking_master = res.data.allotments;
                   this.dismissLoading();
-                  // console.log(this.PerformanceList);
-                  // console.log(this.selectedCategory);
-                  // console.log(this.leads_site_visits);
-                  // console.log(this.leads);
-                  // console.log(this.lead_tokens);
-                  // console.log(this.booking_master);
+                  console.log(this.PerformanceList);
+                  console.log(this.selectedCategory);
+                  console.log(this.leads_site_visits);
+                  console.log(this.leads);
+                  console.log(this.lead_tokens);
+                  console.log(this.booking_master);
                   this.total_sales_in_cr = res.data.total_sales_in_cr;
                   this.cr_val = this.total_sales_in_cr;
 
