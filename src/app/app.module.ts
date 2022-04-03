@@ -1,7 +1,7 @@
 import { APP_INITIALIZER, NgModule } from "@angular/core";
 import { IonicModule, IonicRouteStrategy } from "@ionic/angular";
 import { MatDatepickerModule, MatNativeDateModule } from "@angular/material";
-import { ServiceWorkerModule } from "@angular/service-worker";
+import { ServiceWorkerModule, SwUpdate } from "@angular/service-worker";
 
 import { AmazingTimePickerModule } from "amazing-time-picker";
 import { AppComponent } from "./app.component";
@@ -39,6 +39,33 @@ import { environment } from "../environments/environment";
 
 import { KycModalPageModule } from "./addnewlead/kyc-modal/kyc-modal.module";
 
+export function initializeApp(): Promise<any> {
+  return new Promise(async (resolve, reject) => {
+    try {
+      // Check if Service Worker is supported by the Browser
+      if (this.swUpdate.isEnabled) {
+        const isNewVersion = await this.swUpdate.checkForUpdate();
+        // Check if the new version is available
+        if (isNewVersion) {
+          const isNewVersionActivated = await this.swUpdate.activateUpdate();
+          // Check if the new version is activated and reload the app if it is
+          if (isNewVersionActivated) {
+            if (confirm("Update available for the app please confirm")) {
+              console.log("app update confirm");
+              window.location.reload();
+              resolve(true);
+            }
+          }
+        }
+        resolve(true);
+      }
+      resolve(true);
+    } catch (error) {
+      // window.location.reload();
+    }
+  });
+}
+
 @NgModule({
   declarations: [AppComponent],
 
@@ -64,6 +91,13 @@ import { KycModalPageModule } from "./addnewlead/kyc-modal/kyc-modal.module";
   providers: [
     StatusBar,
     SplashScreen,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [SwUpdate],
+      multi: true,
+    },
+
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     Network,
     DatePipe,

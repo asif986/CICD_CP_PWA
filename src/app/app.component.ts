@@ -132,7 +132,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       console.log("platform ready");
-      this.updateClient();
+      // this.updateClient();
       // this.checkUpdate();
 
       this.mobileAccessibility.usePreferredTextZoom(false);
