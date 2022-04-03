@@ -7,6 +7,9 @@
       "hosting": {
         "test": [
           "testvjdcpapp"
+        ],
+        "live": [
+          "vjdcpapp"
         ]
       }
     }
