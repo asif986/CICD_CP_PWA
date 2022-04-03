@@ -53,11 +53,12 @@ export const checkForUpdates = (
         const header = "App Update Available";
         const message = "Choose OK to update";
 
-        //alert('App Update Available');
-        // Use MatDialog or ionicframework's AlertController or similar
-        helper.presentAlert(header, message, "UPDATE", (cb) => {
+        // helper.presentAlert(header, message, "UPDATE", (cb) => {
+        //   window.location.reload();
+        // });
+        if (confirm("Update available for the app please confirm")) {
           window.location.reload();
-        });
+        }
         // window.location.reload();
       });
 
