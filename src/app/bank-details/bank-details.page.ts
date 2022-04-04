@@ -9,6 +9,7 @@ import { NavController } from "@ionic/angular";
 import { StateService } from "./../services/state.service";
 import { Storage } from "@ionic/storage";
 import { responsefromserver } from "../models/Registration";
+import { Helper } from "../services/Helper";
 
 @Component({
   selector: "app-bank-details",
@@ -30,7 +31,7 @@ export class BankDetailsPage implements OnInit {
             placeholder: "Bank Name",
             name: "bank_name",
             cssClass: "col",
-            icon:'business',
+            icon: "business",
             label: "Name:",
             value: "",
             inital: 0,
@@ -39,14 +40,14 @@ export class BankDetailsPage implements OnInit {
             patternError: "Please proper Bank Name!.",
             validators: {
               required: true,
-              pattern: "^s*[a-zA-Z,s]+s*$",
+              pattern: "[a-zA-Z0-9][a-zA-Z0-9 ]+[a-zA-Z0-9]$",
             },
           },
           {
             inputtype: 2,
             placeholder: "Branch Name",
             name: "branch_name",
-            icon:'business',
+            icon: "business",
             cssClass: "col",
             label: "Name:",
             value: "",
@@ -64,7 +65,7 @@ export class BankDetailsPage implements OnInit {
             placeholder: "Account Name",
             name: "account_name",
             cssClass: "col",
-            icon:'person',
+            icon: "person",
             label: "Name:",
             value: "",
             inital: 0,
@@ -80,7 +81,7 @@ export class BankDetailsPage implements OnInit {
             inputtype: 2,
             placeholder: "IFSC Number",
             name: "ifsc_code",
-            icon:'card',
+            icon: "card",
             // validateError: "Please validated account number!.",
             // isValidatedError: 1,
             // isBankSupportKey:1,
@@ -103,7 +104,7 @@ export class BankDetailsPage implements OnInit {
             cssClass: "col",
             label: "Name:",
             value: "",
-            icon:'keypad',
+            icon: "keypad",
             // isBank:1,
             inital: 0,
             // validateError: "Please validated account number",
@@ -159,7 +160,8 @@ export class BankDetailsPage implements OnInit {
     private navctrl: NavController,
     private storage: Storage,
     public state: StateService,
-    private CommonHelper: CommonHelperService
+    private CommonHelper: CommonHelperService,
+    public helper: Helper
   ) {}
   createForm(controls: JsonFormControls[]) {
     for (const control of controls) {
@@ -498,7 +500,6 @@ export class BankDetailsPage implements OnInit {
         let controls = $event.controls;
         let invalid = false;
 
-
         let form_fields = [];
         let form_fields_for_DB = [];
         this.form.header.forEach((element: any) => {
@@ -518,7 +519,7 @@ export class BankDetailsPage implements OnInit {
         newcontrols = newcontrols.reverse();
         newcontrols.forEach((key) => {
           console.log({ key });
-    
+
           if (
             controls[key].hasError("required") ||
             controls[key].hasError("pattern")
@@ -594,7 +595,7 @@ export class BankDetailsPage implements OnInit {
         delete body.btn1;
         delete body.btn2;
         delete body.checkbx1;
-console.log({body})
+        console.log({ body });
         // return;
         this.apiservice.cpRegistration(body).subscribe(
           (data: HttpResponse<any>) => {
@@ -614,9 +615,9 @@ console.log({body})
             this.storage.set("userinfo", JSON.stringify(info.data));
             this.navctrl.navigateRoot("login", { replaceUrl: true });
           },
-          (error) =>     
-          {
-            console.log(error)
+          (error) => {
+            console.log(error);
+            this.helper.presentAlertError("Something went to Wrong");
           }
         );
         console.log("body", body);
