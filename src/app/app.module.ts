@@ -58,10 +58,17 @@ export const checkForUpdates = (
         // helper.presentAlert(header, message, "UPDATE", (cb) => {
         //   window.location.reload();
         // });
-        if (confirm("Update available for the app please confirm")) {
-          window.location.reload();
-        }
-        // window.location.reload();
+        // if (confirm("Update available for the app please confirm")) {
+        //   window.location.reload();
+        // }
+        helper.presentAlert(
+          "Update",
+          "Update available for the app please confirm",
+          "OK",
+          () => {
+            swUpdate.activateUpdate().then(() => window.location.reload());
+          }
+        );
       });
 
       resolve();
