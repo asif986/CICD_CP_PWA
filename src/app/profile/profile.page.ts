@@ -73,6 +73,7 @@ export class ProfilePage implements OnInit {
       { control: "billing_name", iconnm: "person" },
     ];
     this.helper.getUserInfo().then((val: responsefromlogin) => {
+      console.log(val);
       this.login_type = val.login_type;
       this.verification_status_id = val.data.verification_status_id;
       this.is_cp_tagging_requested = val.is_cp_tagging_requested;
@@ -82,6 +83,11 @@ export class ProfilePage implements OnInit {
       getOnlyFields = getOnlyFields.filter((res) => {
         if (
           this.is_cp_tagging_requested == 1 &&
+          res.control == "billing_name"
+        ) {
+          return false;
+        } else if (
+          this.is_cp_tagging_requested == 0 &&
           res.control == "billing_name"
         ) {
           return false;
