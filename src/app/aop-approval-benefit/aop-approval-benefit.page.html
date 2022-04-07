@@ -14,7 +14,7 @@
   </ion-toolbar>
 </ion-header> -->
 
-<app-header headernam="Approve AOP/QOP" url="profile"></app-header>
+<app-header headernam="Approve AOP/STANDARD" url="profile"></app-header>
 <ion-content>
   <div class="main">
     <ion-row align-items-center>
@@ -35,7 +35,7 @@
                   <th>Value</th>
 
                   <th>Brokerage</th>
-                  <th>Total</th>
+                  <th *ngIf="has_cp_bouns">Bonus</th>
 
                 </tr>
               </thead>
@@ -48,7 +48,7 @@
 
                   <td>{{item.brokerage}}</td>
 
-                  <td>{{item.total}}</td>
+                  <td *ngIf="has_cp_bouns">{{item.aop_bonus}}</td>
                 </tr>
 
               </tbody>

@@ -17,6 +17,7 @@ export class AopApprovalBenefitPage implements OnInit {
   cp_entity_id;
   cpBenefitId;
   isAccepted = 0;
+  has_cp_bouns = false;
 
   isArrowHide = true;
   benefitsData: any = [];
@@ -49,6 +50,7 @@ export class AopApprovalBenefitPage implements OnInit {
         (res) => {
           this.benefitsData = res.data.benefitsData;
           this.cpBenefitId = res.data.benefitsData[0].cp_benefit_id;
+          this.has_cp_bouns = res.data.has_cp_bouns;
           if (res.data.is_accepted == 1) {
             this.isChecked = true;
             this.isAccepted = 1;

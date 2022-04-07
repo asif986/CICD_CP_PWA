@@ -95,7 +95,8 @@ export class SelectCPPage implements OnInit {
       // return res;
       if (res.data != null) {
         console.log(res.data);
-        let cp_entity_id = res.data.cp_entity_id;
+        let cp_entity_id = res.data.data.id;
+        console.log(cp_entity_id);
         this.apiService
           .cpEntityTaggingRequest({
             cp_entity_id,

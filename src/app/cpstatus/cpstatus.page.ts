@@ -50,6 +50,7 @@ export class CpstatusPage implements OnInit {
 
           if (this.is_redirection) {
             if (sucess == 3) {
+              this.sucess = true;
               this.helper.getUserInfo().then((val: responsefromlogin) => {
                 // val.data.cp_entity_id = res.cp_entity_id;
                 val.is_cp_tagging_requested = 3;
@@ -60,7 +61,7 @@ export class CpstatusPage implements OnInit {
                 });
               });
             } else {
-              this.sucess = true;
+              this.sucess = false;
             }
           } else {
           }

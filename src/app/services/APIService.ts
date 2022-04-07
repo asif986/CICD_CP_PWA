@@ -875,6 +875,7 @@ export class APIService {
     );
   }
   cpEntityTaggingRequest(psData) {
+    console.log(psData);
     return this.apiClient.post(this.webServer.cpEntityTaggingRequest, psData);
   }
   cpEntityTaggingRequestList(cp_fos_id, cp_entity_id, login_type) {

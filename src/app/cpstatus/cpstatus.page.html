@@ -6,7 +6,7 @@
         </ion-refresher-content>
     </ion-refresher>
     <ion-grid>
-        <ion-row *ngIf="sucess">
+        <ion-row *ngIf="sucess==false">
             <ion-col class="d-flex justify-content-center">
                 <div class="center-page">
                     <div>
@@ -35,7 +35,7 @@
 
             </ion-col>
         </ion-row>
-        <ion-row *ngIf="!sucess">
+        <ion-row *ngIf="sucess">
             <ion-col size="12">
                 <!-- <h3>Your Organisation</h3> -->
             </ion-col>
@@ -62,7 +62,7 @@
 
 
 </ion-content>
-<ion-footer *ngIf="sucess" collapse="fade" class="ion-no-border" transparent>
+<ion-footer *ngIf="sucess ==false" collapse="fade" class="ion-no-border" transparent>
     <div class='btn-box'>
         <button [routerLink]="['/profile']" routerLinkActive="router-link-active" mat-button
             class="common-btn">Profile</button>
