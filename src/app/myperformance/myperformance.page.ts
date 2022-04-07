@@ -135,17 +135,17 @@ export class MyperformancePage implements OnInit {
       // } else {
       //   return 25;
       // }
-      function diff(ary) {
-        var newA = [];
-        for (var i = 1; i < ary.length; i++) newA.push(ary[i] - ary[i - 1]);
-        return newA;
-      }
 
-      console.log(diff(this.sales_brokerage_range));
-      return diff(this.sales_brokerage_range);
+      console.log(this.diff(this.sales_brokerage_range));
+      return this.diff(this.sales_brokerage_range);
     }
   }
 
+  diff(ary) {
+    var newA = [];
+    for (var i = 1; i < ary.length; i++) newA.push(ary[i] - ary[i - 1]);
+    return newA;
+  }
   createSlider() {
     // value: this.total_sales_in_cr,
     this.options = {
