@@ -31,6 +31,7 @@ export interface Data {
   aop_qop_accepted?: any;
   aop_qop_type?: any;
   verification_status_id?: any;
+  billing_name?: any;
 }
 
 export interface responsefromlogin {

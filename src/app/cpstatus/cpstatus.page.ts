@@ -44,8 +44,15 @@ export class CpstatusPage implements OnInit {
         (res) => {
           console.log(res);
           if (res != null) {
-            this.cpName = res[0].billing_name;
-            this.tagging_id = res[0].tagging_id;
+            this.cpName = res.billing_name;
+            this.tagging_id = res.tagging_id;
+
+            this.helper.getUserInfo().then((val: responsefromlogin) => {
+              // val.data.cp_entity_id = res.cp_entity_id;
+              val.data.billing_name = res.billing_name;
+              // console.log(val);
+              this.storage.set("user_info", JSON.stringify(val)).then(() => {});
+            });
           }
 
           if (this.is_redirection) {
@@ -54,6 +61,7 @@ export class CpstatusPage implements OnInit {
               this.helper.getUserInfo().then((val: responsefromlogin) => {
                 // val.data.cp_entity_id = res.cp_entity_id;
                 val.is_cp_tagging_requested = 3;
+                // val.data.billing_name = res.billing_name;
                 console.log(val);
                 this.helper.presentToast("cp tagging successful!");
                 this.storage.set("user_info", JSON.stringify(val)).then(() => {
@@ -64,6 +72,9 @@ export class CpstatusPage implements OnInit {
               this.sucess = false;
             }
           } else {
+            if (sucess == 3) {
+              this.sucess = true;
+            }
           }
         },
         (e) => {
@@ -76,6 +87,7 @@ export class CpstatusPage implements OnInit {
       this.fosId = val.data.fos_id;
       this.cpEntityId = val.data.cp_entity_id;
       this.login_type = val.login_type;
+      this.cpName = val.data.billing_name;
       console.log(this.cpEntityId);
       this.checkTagging();
     });
@@ -120,6 +132,7 @@ export class CpstatusPage implements OnInit {
               this.helper.getUserInfo().then((val: responsefromlogin) => {
                 // val.data.cp_entity_id = res.cp_entity_id;
                 val.is_cp_tagging_requested = 0;
+                val.data.billing_name = null;
 
                 this.storage.set("user_info", JSON.stringify(val)).then(() => {
                   this.navCtrl.navigateRoot("select-cp", {
