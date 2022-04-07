@@ -32,9 +32,8 @@ export class ApproveFOSRequestPage implements OnInit {
     this.commonHelper.presentLoading().then(() => {
       this.helper.getUserInfo().then(
         (res: responsefromlogin) => {
-          try
-          {
-            let body = "?cp_entity_id=" +1;
+          try {
+            let body = "?cp_entity_id=" + res.data.cp_entity_id;
             // let body = "?cp_entity_id=" +res.data.cp_entity_id;
             //  res.data.cp_entity_id;
             this.apiService.allFosRequests(body).subscribe(
@@ -42,17 +41,15 @@ export class ApproveFOSRequestPage implements OnInit {
                 console.log(data.body);
                 this.allRequests = data.body;
                 this.commonHelper.dismissLoading();
-            // let body = "?cp_entity_id=" + 1;
+                // let body = "?cp_entity_id=" + 1;
               },
               (error) => {
                 this.commonHelper.dismissLoading();
               }
             );
-
-          }catch(error)
-          {
+          } catch (error) {
             this.commonHelper.dismissLoading();
-            this.commonHelper.presentToast("Something goes wrong")
+            this.commonHelper.presentToast("Something goes wrong");
           }
         },
         (error) => {
@@ -116,7 +113,7 @@ export class ApproveFOSRequestPage implements OnInit {
     console.log({ $event });
     setTimeout(() => {
       // this.VerficationStatus();
-      this.getAllFosRequest()
+      this.getAllFosRequest();
       console.log("Async operation has ended");
       $event.target.complete();
     }, 500);

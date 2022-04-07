@@ -20,6 +20,7 @@ export class AopApprovalBenefitPage implements OnInit {
   has_cp_bouns = false;
 
   isArrowHide = true;
+
   benefitsData: any = [];
   constructor(
     public router: Router,
