@@ -3,17 +3,19 @@
         <ion-row>
             <ion-col size="12" class="pt-3 text-center">
                 <label class="cp_text">
-                    Confirmation for CP
+                    <!-- {{Confirmation for CP}} -->
+                    {{header}}
                 </label>
             </ion-col>
             <ion-col size="12">
                 <div>
                     <p class="mb-0 text-center">
-                        Are you sure you want to<br> continue with
+                        <!-- Are you sure you want to<br> continue with -->
+                        {{message}}
                     </p>
                     <p class="text-center">
                         <b>
-                            {{firmnm}}
+                            {{dataInfo.name}}
                         </b>
                     </p>
                 </div>
@@ -22,7 +24,7 @@
         <ion-row class="">
             <ion-col size="6"><button mat-button class="common-btn-outline" (click)="closeModel()">Cancel</button><br>
             </ion-col>
-            <ion-col size="6"><button mat-button class="common-btn" (click)="SendMailMsg()">Ok</button><br></ion-col>
+            <ion-col size="6"><button mat-button class="common-btn" (click)="ok()">Ok</button><br></ion-col>
         </ion-row>
     </ion-grid>
 </ion-content>

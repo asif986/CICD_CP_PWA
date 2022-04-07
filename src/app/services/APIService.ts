@@ -230,16 +230,10 @@ export class APIService {
     return this.apiClient.post(this.webServer.PostFOS, psdata);
   }
 
-  CpFosList(cpUserID: any, apitoken: any, cpTeamLeadId: any) {
+  CpFosList(cp_entity_id: any) {
     // tslint:disable-next-line:max-line-length
     return this.apiClient.get(
-      this.webServer.CpFosList +
-        "?api_token=" +
-        apitoken +
-        "&cp_id=" +
-        cpUserID +
-        "&cp_team_lead_id=" +
-        cpTeamLeadId
+      this.webServer.CpFosList + "?cp_entity_id=" + cp_entity_id
     );
     /*return this.apiClient.get(this.webServer.GetCPFeed + '?' + cpfee);*/
   }

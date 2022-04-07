@@ -12,6 +12,9 @@ import { NavController } from "@ionic/angular";
 export class CustomModelComponent implements OnInit {
   cp_entity_id;
   firmnm = "";
+  header;
+  message;
+  dataInfo;
   constructor(
     public data: DataService,
     public popoverctrl: PopoverController,
@@ -22,18 +25,21 @@ export class CustomModelComponent implements OnInit {
 
   ngOnInit() {
     // this.firms = this.data.firms();
-    this.cp_entity_id = this.navParams.get("cp_id");
-    this.firmnm = this.navParams.get("name");
-
-    console.log("cp_id");
+    // this.cp_entity_id = this.navParams.get("cp_id");
+    // this.firmnm = this.navParams.get("name");
+    // console.log("cp_id");
+    this.header = this.navParams.get("header");
+    this.message = this.navParams.get("message");
+    this.dataInfo = this.navParams.get("data");
   }
   closeModel() {
     this.modalCtrl.dismiss(null);
   }
-  SendMailMsg() {
+  ok() {
     this.modalCtrl.dismiss({
-      cp_entity_id: this.cp_entity_id,
-      cp_nm: this.firmnm,
+      // cp_entity_id: this.cp_entity_id,
+      // cp_nm: this.firmnm,
+      data: this.dataInfo,
     });
   }
 }

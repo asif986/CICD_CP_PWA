@@ -108,9 +108,9 @@ export class WebServer {
   // Post CP FOS
   public PostFOS = this.BASE_URL + "addCpFos";
 
-  public CpFosList = this.BASE_URL + "getCpFosList";
+  public CpFosList = this.BASE_URL + "getAllFos";
 
-  public DeleteFos = this.BASE_URL + "deleteCpFos";
+  public DeleteFos = this.BASE_URL + "deleteFos";
 
   public updateCpFOS = this.BASE_URL + "updateCpFOS";
 

@@ -104,36 +104,45 @@ export class MyperformancePage implements OnInit {
       return this.sales_brokerage_range[0].amount;
     } else if (flag == 2) {
       // for last value in slider
-      if (val < 20) {
-        return 25;
-      } else if (val >= 20 && val <= 100) {
-        return 100;
-      } else {
-        return 200;
-      }
-      // return this.sales_brokerage_range[this.sales_brokerage_range.length - 1]
-      //   .amount;
+      // if (val < 20) {
+      //   return 150;
+      // } else if (val >= 20 && val <= 100) {
+      //   return 100;
+      // } else {
+      //   return 200;
+      // }
+      return this.sales_brokerage_range[this.sales_brokerage_range.length - 1]
+        .amount;
     } else if (flag == 3) {
       // slider down range
-      if (val < 20) {
-        return [0, 5, 10, 15, 20, 25];
-      } else if (val >= 20 && val <= 100) {
-        return [25, 50, 75, 100, 125];
-      } else {
-        return [75, 100, 125, 150, 175, 200];
-      }
-      // let data = this.sales_brokerage_range.map((res) => {
-      //   return res.amount;
-      // });
-      // console.log(data);
+
+      // if (val < 20) {
+      //   return [0, 5, 10, 15, 20, 25];
+      // } else if (val >= 20 && val <= 100) {
+      //   return [25, 50, 75, 100, 125];
+      // } else {
+      //   return [75, 100, 125, 150, 175, 200];
+      // }
+      return this.sales_brokerage_range.map((res) => {
+        return res.amount;
+      });
     } else {
-      if (val < 20) {
-        return 5;
-      } else if (val >= 20 && val <= 100) {
-        return 25;
-      } else {
-        return 25;
+      // diiferent range
+      // if (val < 20) {
+      //   return 25;
+      // } else if (val >= 20 && val <= 100) {
+      //   return 25;
+      // } else {
+      //   return 25;
+      // }
+      function diff(ary) {
+        var newA = [];
+        for (var i = 1; i < ary.length; i++) newA.push(ary[i] - ary[i - 1]);
+        return newA;
       }
+
+      console.log(diff(this.sales_brokerage_range));
+      return diff(this.sales_brokerage_range);
     }
   }
 

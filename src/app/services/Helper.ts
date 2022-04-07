@@ -235,14 +235,17 @@ export class Helper {
             if (val.data.verification_status_id == 1) {
               // 1 for success.
 
-              if (val.data.aop_qop_accepted == 1) {
-                this.navCtrl.navigateRoot("/home", { replaceUrl: true });
-              } else {
-                this.navCtrl.navigateRoot("/aop-approval-benefit", {
-                  replaceUrl: true,
-                  queryParams: { pending: true },
-                });
-              }
+              this.navCtrl.navigateRoot("/home", { replaceUrl: true });
+
+              // Future code
+              // if (val.data.aop_qop_accepted == 1) {
+              //   this.navCtrl.navigateRoot("/home", { replaceUrl: true });
+              // } else {
+              //   this.navCtrl.navigateRoot("/aop-approval-benefit", {
+              //     replaceUrl: true,
+              //     queryParams: { pending: true },
+              //   });
+              // }
             } else if (val.data.verification_status_id == 2) {
               // 2 for pending
               this.navCtrl.navigateRoot("/verificationpending", {

@@ -66,21 +66,26 @@ export class SelectCPPage implements OnInit {
     // console.log($event);
   }
   async confirmBox() {
-    const cp_id = this.myForm.controls[SelectCPPage.firm].value;
+    //id means cp_id
+    const id = this.myForm.controls[SelectCPPage.firm].value;
     let name;
-    // console.log(typeof cp_id);
-    // console.log(cp_id);
-    if (!cp_id) {
+    // console.log(typeof id);
+    // console.log(id);
+    if (!id) {
       this.commonser.presentToast("Please select any one of Firm");
       return;
     } else {
-      name = this.firms.find((item) => item.cp_entity_id == cp_id).billing_name;
+      name = this.firms.find((item) => item.cp_entity_id == id).billing_name;
     }
     const model = await this.modalController.create({
       component: CustomModelComponent,
       // translucent: true,
-      cssClass: "cp-confirm-modal",
-      componentProps: { cp_id, name },
+      cssClass: "fos-delete-modal",
+      componentProps: {
+        header: "Confirmation for CP",
+        message: "Are you sure you want to continue with",
+        data: { id, name },
+      },
     });
 
     model.present();
@@ -142,14 +147,14 @@ export class SelectCPPage implements OnInit {
     if (inputtype == "") {
       // this.firms = [...this.data.firms()];
       this.firms = [];
-      this.getCplistTemp('')
+      this.getCplistTemp("");
       // this.searchbox_nm = null;
       return;
     }
     const cpFirms: Array<any> = this.allCps.value;
     // this.getCPList(inputtype);
     this.firms = cpFirms.filter((item) =>
-      (item.billing_name).toLowerCase().startsWith(inputtype.toLowerCase())
+      item.billing_name.toLowerCase().startsWith(inputtype.toLowerCase())
     );
     // console.log(events.data)
   }
@@ -165,7 +170,7 @@ export class SelectCPPage implements OnInit {
           //   return { billing_name: item.billing_name };
           // });
           console.log(res);
-          this.allCps.next(null)
+          this.allCps.next(null);
           this.allCps.next(res);
           this.helper.hideLoader();
         },
