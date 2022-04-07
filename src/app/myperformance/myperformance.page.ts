@@ -306,7 +306,9 @@ export class MyperformancePage implements OnInit {
                   this.approxArokerageInCr = res.data.approx_brokerage_in_cr;
                   if (this.login_type == 1) {
                     this.isCollapsed = true;
-                    this.createSlider();
+                    if (this.sales_brokerage_range.length != 0) {
+                      this.createSlider();
+                    }
                   }
                   this.cardInfo = [
                     {
@@ -330,6 +332,7 @@ export class MyperformancePage implements OnInit {
                       bg_color: "bg3",
                     },
                   ];
+                  // console.log(this.cardInfo);
                 } else {
                   this.dismissLoading();
                   this.isSpinner = false;

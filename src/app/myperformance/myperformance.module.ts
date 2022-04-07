@@ -13,6 +13,7 @@ import {
   MatExpansionModule,
 } from "@angular/material";
 import { NgxSliderModule } from "@angular-slider/ngx-slider";
+import { SharedComponentModule } from "../shared/shared-component/shared-component.module";
 const routes: Routes = [
   {
     path: "",
@@ -32,6 +33,7 @@ const routes: Routes = [
     MatDividerModule,
     MatDatepickerModule,
     NgxSliderModule,
+    SharedComponentModule,
   ],
   declarations: [MyperformancePage],
 })

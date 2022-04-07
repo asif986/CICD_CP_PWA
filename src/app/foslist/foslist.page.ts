@@ -166,9 +166,10 @@ export class FOSListPage implements OnInit {
           (data) => {
             console.log(data);
             this.isSpinner = false;
+            this.dismissLoading();
+
             if (data.length !== 0) {
               this.fosList = data;
-              this.dismissLoading();
               // for (let i = 0; i < this.fosList.length; i++) {
               //   if (this.fosList[i]) {
               //     this.is_team_lead_New = this.fosList[i].is_team_lead;

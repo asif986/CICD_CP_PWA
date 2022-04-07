@@ -40,10 +40,11 @@
     </ng-container>
 
     <!--Check If Data is available or not-->
-    <div *ngIf="fosList.length==0 && isSpinner==false" class="ion-text-center">
-      <div class="datanotfound">
-        <img src="assets/channelPartner_Icons/user_Photo_Icon/user-grey.svg" style="width: 90px;height: 90px">
-        <ion-card-title class="noData">Currently,No FOS Available!</ion-card-title>
+    <div *ngIf="fosList.length==0 && isSpinner==false" class="m-4">
+      <div class="d-flex flex-column align-items-center">
+        <ion-icon src="assets/channelPartner_Icons/card_Update_Delete_Icon/personoutline.svg" style="font-size: 46px;">
+        </ion-icon>
+        <label>Currently, No FOS Available!</label>
       </div>
     </div>
   </ion-content>

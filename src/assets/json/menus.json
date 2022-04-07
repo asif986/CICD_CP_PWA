@@ -28,7 +28,7 @@
         {
             "image": "/assets/new_icons/list.png",
             "label": "FOS List",
-            "navigation": "comingsoon"
+            "navigation": "foslist"
         },
         {
             "image": "/assets/new_icons/profile.png",
@@ -70,11 +70,6 @@
         {
             "image": "/assets/new_icons/salesperformance.png",
             "label": "Sales Performance",
-            "navigation": "comingsoon"
-        },
-        {
-            "image": "/assets/new_icons/list.png",
-            "label": "FOS List",
             "navigation": "comingsoon"
         },
         {
