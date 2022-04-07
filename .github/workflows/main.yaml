@@ -23,6 +23,6 @@ jobs:
       - name: GitHub Action for Firebase
         uses: w9jds/firebase-action@v2.0.0
         with:
-          args: deploy --only hosting:live
+          args: deploy --only hosting:test
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
