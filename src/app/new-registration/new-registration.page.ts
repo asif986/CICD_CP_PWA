@@ -121,9 +121,11 @@ public dataSer:DataService,
     public statefromservices: StateService,
     private menuctrl: MenuController
   ) {
+
     this.postregistrationresponce = new PostRegistrationResponce();
     this.kycregDocuments = new KYCRegDocuments();
     this.newRegistration = new NewRegistration();
+
     this.bankdetails = this.formBuilder.group({
       bank_name: ["", Validators.required],
       bank_branch_name: ["", Validators.required],
@@ -131,6 +133,7 @@ public dataSer:DataService,
       iffc_code: ["", Validators.required],
       isChecked: [false, Validators.required],
     });
+
     this.personaldetailsForm = this.formBuilder.group({
       fullName: [
         "",
@@ -205,6 +208,7 @@ public dataSer:DataService,
         ]),
       ],
     });
+
     this.credentialsForm = this.formBuilder.group({
       mobile: [
         "",
@@ -278,6 +282,7 @@ public dataSer:DataService,
 let data =     this.dataSer.persondetailsForm();
 this.form = {...data}
     this.state.next(data.header);
+    
     this.form.header.forEach((element: any) => {
       console.log("controls", element.controls);
       this.createForm(element.controls);

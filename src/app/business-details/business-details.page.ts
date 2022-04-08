@@ -16,21 +16,20 @@ import { responsefromSalesPerson } from "../models/business-details";
 })
 export class BusinessDetailsPage implements OnInit {
   getAllSalesPerson = [];
-  temp: any = {
-  };
+  temp: any = {};
   form: any = {};
 
   constructor(
     private CommonHelper: CommonHelperService,
     private state: StateService,
     private apiSer: APIService,
-    public dataService:DataService,
+    public dataService: DataService,
     private navCtrl: NavController
   ) {}
 
   ngOnInit() {
     this.dataService.persondetailsForm();
-    this.temp ={...this.dataService.businessDetailsForms()};
+    this.temp = { ...this.dataService.businessDetailsForms() };
     this.form.header = [
       ...this.temp.header.map((item) => {
         const filtered = item.controls.filter((item2) => item2.is_cp == 1);
@@ -56,7 +55,7 @@ export class BusinessDetailsPage implements OnInit {
     this.CommonHelper.presentLoading().then(() => {
       try {
         let controls = $event.controls;
-        console.log({ controls });
+        // console.log({ controls });
         let invalid = false;
 
         let form_fields = [];
@@ -64,10 +63,15 @@ export class BusinessDetailsPage implements OnInit {
         this.form.header.forEach((element: any) => {
           element.controls.map((item) => {
             if (item.isValidatedError == 1) {
-              form_fields.push(item.name);
+              if ($event.controls[item.name].value != "") {
+                form_fields.push(item.name);
+              }
+              // console.log($event.controls[item.name].value);
             }
             if (item.isValidatedtoDBError == 1) {
-              form_fields_for_DB.push(item.name);
+              if ($event.controls[item.name].value != "") {
+                form_fields_for_DB.push(item.name);
+              }
             }
             return item;
           });
@@ -107,6 +111,8 @@ export class BusinessDetailsPage implements OnInit {
               controls[key].enabled
             ) {
               console.log("Invalid");
+              console.log(this);
+              // for
               this.form.header.forEach((element: any) => {
                 let errormsg = element.controls.find(
                   (item) => item.name == key
@@ -136,7 +142,7 @@ export class BusinessDetailsPage implements OnInit {
         let formdata = this.state.formValue.value;
         this.navCtrl.navigateForward("new-registration");
         let aftersubmit = $event.getRawValue();
-        console.log({aftersubmit})
+        console.log({ aftersubmit });
         this.state.formValue.next({ ...formdata, ...aftersubmit });
       } catch (error) {
         this.CommonHelper.dismissLoading();
@@ -187,5 +193,4 @@ export class BusinessDetailsPage implements OnInit {
   validationApi(event: any) {
     console.log(event);
   }
-
 }

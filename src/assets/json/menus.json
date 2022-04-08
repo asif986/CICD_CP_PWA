@@ -63,21 +63,6 @@
             "navigation": "myperformance"
         },
         {
-            "image": "/assets/new_icons/stats.png",
-            "label": "Team Leader Stats",
-            "navigation": "comingsoon"
-        },
-        {
-            "image": "/assets/new_icons/salesperformance.png",
-            "label": "Sales Performance",
-            "navigation": "comingsoon"
-        },
-        {
-            "image": "/assets/new_icons/profile.png",
-            "label": "Team Leaders List",
-            "navigation": "comingsoon"
-        },
-        {
             "image": "/assets/new_icons/reminder.png",
             "label": "Reminder",
             "navigation": "comingsoon"
