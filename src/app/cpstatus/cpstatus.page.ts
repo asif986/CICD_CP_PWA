@@ -48,7 +48,7 @@ export class CpstatusPage implements OnInit {
             this.tagging_id = res.tagging_id;
 
             this.helper.getUserInfo().then((val: responsefromlogin) => {
-              // val.data.cp_entity_id = res.cp_entity_id;
+              val.data.cp_entity_id = res.cp_entity_id;
               val.data.billing_name = res.billing_name;
               // console.log(val);
               this.storage.set("user_info", JSON.stringify(val)).then(() => {});
@@ -132,6 +132,7 @@ export class CpstatusPage implements OnInit {
               this.helper.getUserInfo().then((val: responsefromlogin) => {
                 // val.data.cp_entity_id = res.cp_entity_id;
                 val.is_cp_tagging_requested = 0;
+                val.data.cp_entity_id = null;
                 val.data.billing_name = null;
 
                 this.storage.set("user_info", JSON.stringify(val)).then(() => {
