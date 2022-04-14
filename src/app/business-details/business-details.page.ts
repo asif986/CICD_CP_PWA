@@ -28,8 +28,12 @@ export class BusinessDetailsPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.dataService.persondetailsForm();
+    //     console.log(data);
+    // resolve(data);
+    // data = data;
+
     this.temp = { ...this.dataService.businessDetailsForms() };
+    console.log(this.temp);
     this.form.header = [
       ...this.temp.header.map((item) => {
         const filtered = item.controls.filter((item2) => item2.is_cp == 1);
@@ -38,8 +42,12 @@ export class BusinessDetailsPage implements OnInit {
         );
         getPerson_name = getPerson_name.name;
         const attacthedsales = filtered.map((item) => {
+          // if (item.issalesperson_available == 1) {
+          //   item.list = [];
+          // }
           return item;
         });
+
         console.log({ attacthedsales });
         return {
           headernm: item.headernm,
@@ -48,8 +56,9 @@ export class BusinessDetailsPage implements OnInit {
         };
       }),
     ];
+    // });
     // this.form  = { ...this.temp };
-    console.log("form", this.form);
+    // console.log(this.form);
   }
   businessFormValidation($event: FormGroup) {
     this.CommonHelper.presentLoading().then(() => {
@@ -161,6 +170,7 @@ export class BusinessDetailsPage implements OnInit {
     console.log({ $event });
     let filteredcontrols = [];
     if ($event == 1) {
+      console.log(this.temp);
       filteredcontrols = this.temp.header.map((items) => {
         const subfiltered = items.controls.filter((filtered) => {
           return filtered.is_cp == 1;

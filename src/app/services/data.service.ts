@@ -1,7 +1,9 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { responsefromSalesPerson } from "../models/business-details";
 import { StateService } from "./state.service";
+import { APIService } from "src/app/services/APIService";
 
 @Injectable({
   providedIn: "root",
@@ -10,7 +12,14 @@ export class DataService {
   public leadlist: any = [];
   apiUrl: any = "https://restcountries.eu/rest/v2/all";
   apiData: any;
-  constructor(public httpClient: HttpClient, public state: StateService) {
+  salePersonList: any = [];
+  constructor(
+    public httpClient: HttpClient,
+    public state: StateService,
+    public apiService: APIService
+  ) {
+    // });
+
     this.leadlist = [
       // tslint:disable-next-line:max-line-length
       {
@@ -91,7 +100,24 @@ export class DataService {
       return item.leadname.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
     });
   }
-
+  async getSalesPersonList() {
+    return new Promise((resolve, reject) => {
+      this.apiService
+        .getAllSalesPerson()
+        .map((res) => {
+          return res.body.data.map((r: any) => {
+            return { id: r.person_id, name: r.full_name };
+          });
+        })
+        .subscribe((data: any) => {
+          console.log(data);
+          // resolve(data);
+          // data = data;
+        });
+    });
+    console.log("getPerson function");
+    // return data;
+  }
   getCountries() {
     return this.httpClient.get(this.apiUrl).subscribe(
       (res) => {
@@ -121,9 +147,9 @@ export class DataService {
     ];
     return Firms;
   }
-  public persondetailsForm(name?: string) :any{
+  public persondetailsForm(name?: string): any {
     let personDetails = this.state.persondetails.value;
-    let filels:any;
+    let filels: any;
     console.log({ personDetails });
     if (personDetails != null) {
       return personDetails;
@@ -146,7 +172,7 @@ export class DataService {
                 type: "text",
                 ischekble: 1,
                 requiredError: "Please enter a valid full name!.",
-                validationSucess:"Sucessfully verified PAN",
+                validationSucess: "Sucessfully verified PAN",
                 patternError: "Please proper full name!.",
                 validators: {
                   required: true,
@@ -234,19 +260,22 @@ export class DataService {
           },
         ],
       };
-      this.state.persondetails.next(filels)
+      this.state.persondetails.next(filels);
     }
 
     return filels;
   }
+
   public businessDetailsForms() {
-    const businessDetails = {
+    let businessDetails;
+    // this.getSalesPersonList().then((data) => {
+    // console.log(data);
+    businessDetails = {
       header: [
         {
           headernm: "Business Details",
           index: 1,
           controls: [
-            
             {
               inputtype: 4,
               placeholder: "CP Name",
@@ -326,6 +355,41 @@ export class DataService {
             {
               is_fos: 0,
               is_cp: 1,
+              is_cp_indivial: 0,
+              inputtype: 11,
+              placeholder: "GST Applicable",
+              name: "gst_applicable",
+              cssClass: "col",
+              icon: "card",
+              verificationmsg: "",
+              label: "Select GST Applicable",
+              value: "",
+              inital: 0,
+              // defaultValue: "Yes",
+              list: [
+                {
+                  id: "Yes",
+                  name: "Yes",
+                },
+                {
+                  id: "No",
+                  name: "No",
+                },
+              ],
+              // issalesperson_available: 1,
+
+              type: "text",
+              requiredError: "Please select GST Applicable!.",
+              // patternError: "Please proper PAN!.",
+              // sales_person_ids: [...this.getAllSalesPerson],
+              validateError: "Please select GST Applicable!.",
+              validators: {
+                required: true,
+              },
+            },
+            {
+              is_fos: 0,
+              is_cp: 1,
               is_cp_indivial: 1,
               inputtype: 9,
               placeholder: "GST Number",
@@ -344,7 +408,7 @@ export class DataService {
               isValidatedtoDBError: 1,
               isValidatedid: 4,
               validators: {
-                // required: true,
+                required: true,
                 pattern:
                   "^[0-9]{2}[A-Z]{5}[0-9]{4}" +
                   "[A-Z]{1}[1-9A-Z]{1}" +
@@ -366,8 +430,8 @@ export class DataService {
               type: "text",
               requiredError: "Please enter a valid CP full name!.",
               patternError: "Please proper CP full name!.",
-              validationSucess:"Sucessfully verified PAN",
-              validationFailed:"Failed verified PAN",
+              validationSucess: "Sucessfully verified PAN",
+              validationFailed: "Failed verified PAN",
               validators: {
                 required: true,
                 pattern: "[a-zA-Z0-9][a-zA-Z0-9 ]+[a-zA-Z0-9]$",
@@ -381,8 +445,8 @@ export class DataService {
               ischekbleforcp: 1,
               placeholder: "Billing Name",
               name: "billing_name",
-              validationSucess:"Sucessfully verified PAN",
-              validationFailed:"Failed verified PAN",
+              validationSucess: "Sucessfully verified PAN",
+              validationFailed: "Failed verified PAN",
               cssClass: "col",
               label: "Name:",
               value: "",
@@ -464,7 +528,12 @@ export class DataService {
               type: "text",
               requiredError: "Please enter a select sales person!.",
               // patternError: "Please proper PAN!.",
-              // sales_person_ids: [...this.getAllSalesPerson],
+              // list: [
+              //   { id: 1, name: "asif" },
+              //   { id: 1, name: "asif" },
+              // ],
+              list: "",
+              defaultValue: "",
               validateError: "Please validated PAN!.",
               validators: {
                 required: true,
@@ -478,7 +547,7 @@ export class DataService {
               placeholder: "btn2",
               name: "btn2",
               cssClass: "col",
-              label: "Proceed to Bank Details",
+              label: "Proceed to Personal Details",
               value: "",
               inital: 0,
               type: "text",
@@ -490,6 +559,8 @@ export class DataService {
         },
       ],
     };
+    console.log("hi");
+    // });
     return businessDetails;
   }
 }

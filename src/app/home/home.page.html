@@ -357,17 +357,13 @@
 
 
         <ion-fab-list side="top">
-            <ion-fab-button color="fab" *ngIf="login_type !=1" (click)="gotoNewLead()" data-desc="New Lead"
-                class="fab-btn-item">
-                <ion-icon name="person-add" class="fab-icon" (click)="gotoNewLead()"></ion-icon>
-            </ion-fab-button>
-            <!-- <ion-fab-button color="fab" (click)="gotoGHP()" data-desc="Generate GHP" class="fab-btn-item">
-        <ion-icon name="document" class="fab-icon" (click)="gotoGHP()"></ion-icon>
-      </ion-fab-button> -->
-            <ion-fab-button color="fab" *ngIf="login_type !=2" (click)="approvefos()" data-desc="Approve FOS"
-                class="fab-btn-item">
-                <ion-icon name="person-add" class="fab-icon" (click)="approvefos()"></ion-icon>
-            </ion-fab-button>
+            <ng-container>
+                <ion-fab-button *ngFor="let item of fabIconList" color="fab" routerLink="{{item.url}}"
+                    title="{{item.name}}" class="fab-btn-item">
+                    <ion-icon name="{{item.iconName}}" class="fab-icon" routerLink="{{item.url}}"
+                        routerLinkActive="router-link-active"></ion-icon>
+                </ion-fab-button>
+            </ng-container>
         </ion-fab-list>
 
     </ion-fab>

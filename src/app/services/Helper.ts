@@ -220,12 +220,16 @@ export class Helper {
   }
 
   redirectionOfUser() {
+    // this.navCtrl.navigateRoot("/business-details", {
+    //   replaceUrl: true,
+    // });
+    // return;
     this.getUserInfo()
       .then((val: responsefromlogin) => {
         if (val) {
           console.log(val);
           // //FOR CP
-          // this.navCtrl.navigateRoot("/myperformance", {
+          // this.navCtrl.navigateRoot("/business-details", {
           //   replaceUrl: true,
           // });
           // return;

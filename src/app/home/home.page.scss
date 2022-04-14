@@ -420,23 +420,20 @@ ion-refresher-content {
   margin-right: 8px;
 }
 
-// Ion FabList,Ion-Fab
-ion-fab-button[data-desc] {
+ion-fab-button[title] {
   position: relative;
 }
 
-ion-fab-button[data-desc]::after {
+ion-fab-button[title]::after {
   position: absolute;
-  content: attr(data-desc);
+  content: attr(title);
   z-index: 1;
   right: 55px;
   bottom: 4px;
+  background-color: #ffeeff;
   padding: 9px;
-  border-radius: 5px;
-  color: black !important;
-  background-color: white !important;
-  //
-  font-size: 16px !important;
+  border-radius: 15px;
+  color: black;
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2),
     0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
 }

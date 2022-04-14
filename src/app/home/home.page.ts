@@ -71,6 +71,22 @@ export class HomePage implements OnInit {
     { media_type_id: "1", media_path: "assets/new_icons/banner_img/1.png" },
   ];
 
+  fabIconList = [
+    {
+      name: "New Lead",
+      iconName: "person-add",
+      url: "/addnewlead",
+      login_type: 2,
+    },
+    {
+      name: "Approve FOS",
+      iconName: "person-add",
+      url: "/approve-fosrequest",
+      login_type: 1,
+    },
+    { name: "Fos List", iconName: "list", url: "/foslist", login_type: 1 },
+  ];
+
   // tslint:disable-next-line:max-line-length
   constructor(
     private storage: Storage,
@@ -123,6 +139,19 @@ export class HomePage implements OnInit {
 
   ngOnInit() {}
 
+  getFabIconsList(login_type) {
+    // console.log(login_type);
+
+    this.fabIconList = this.fabIconList.filter((r) => {
+      if (r.login_type === login_type) {
+        // console.log(r);
+        // console.log(r);
+        return true;
+      }
+      // return true;
+    });
+  }
+
   ionViewDidEnter() {
     // Used it For Team Lead Event Call
     this.events.subscribe("forAddFOS", () => {
@@ -137,6 +166,8 @@ export class HomePage implements OnInit {
       this.apiToken = val.data.api_token;
       this.fos_id = val.data.fos_id;
       this.login_type = val.login_type;
+      this.getFabIconsList(this.login_type);
+
       this.getFeedData();
     });
     // From Call API

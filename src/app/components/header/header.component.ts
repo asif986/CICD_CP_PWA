@@ -44,8 +44,10 @@ export class HeaderComponent implements OnInit {
     });
 
     this.helper.getUserInfo().then((val: responsefromlogin) => {
-      this.verification_status_id = val.data.verification_status_id;
-      this.is_cp_tagging_requested = val.is_cp_tagging_requested;
+      if (val != null) {
+        this.verification_status_id = val.data.verification_status_id;
+        this.is_cp_tagging_requested = val.is_cp_tagging_requested;
+      }
       // this.userInfo.login_type = val.login_type;
     });
   }

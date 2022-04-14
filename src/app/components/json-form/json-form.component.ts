@@ -34,6 +34,8 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
   @Output() returnformdata = new EventEmitter<FormGroup>();
   @Output() returnchangeorg = new EventEmitter<any>();
   @Output() returnvaliadation = new EventEmitter<any>();
+
+  defGstApplicable = "Yes";
   salePersonList: any = [];
   foods: any[] = [
     { value: "steak-0", viewValue: "Steak" },
@@ -88,6 +90,7 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
             this.createForm(element.controls);
           });
         } else {
+          console.log(this.jsonFormData);
           this.jsonFormData.header.forEach((element: any) => {
             console.log("controls", element.controls);
             this.createForm(element.controls);
@@ -100,7 +103,7 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
         this.createForm(element.controls);
       });
     }
-    console.log("controls", "element.controls");
+    // console.log("controls", "element.controls");
   }
   // console.log("changes");
 
@@ -155,7 +158,7 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
           validatorsToAdd
         )
       );
-      console.log("name", control.name);
+      // console.log("name", control.name);
       // this.myForm.controls[control.name].setErrors(null);
       // this.myForm.controls[control.value].updateValueAndValidity();
     }
@@ -165,50 +168,84 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
     let event: any = {};
     event.value = 1;
     this.changeOrgz(event);
-    console.log("Im'm calling 164");
+    // console.log("Im'm calling 164");
+
     this.apiService.getAllSalesPerson().subscribe((data: HttpResponse<any>) => {
       let allSalesPerson: responsefromSalesPerson = data.body;
       if (allSalesPerson.success == 1) {
         this.salePersonList = allSalesPerson.data;
-        // console.log(allSalesPerson.data);
+        console.log(this.salePersonList);
       }
     });
+
     // console.log("Compentned called")
     // event.value =1;
     // console.log("data",this.jsonFormData)
     //  this.changeOrgz(1)
   }
+
+  changeGstApplicable(event: any) {
+    console.log(event);
+    if (event == "No") {
+      this.openDialog(
+        "Terms and Conditions",
+        "We have not applicable for GST, Will Share No GST Deceleration with you.",
+        2
+      );
+      this.defGstApplicable = "No";
+      this.myForm.controls["gst_no"].setValidators(null);
+      this.myForm.controls["gst_no"].updateValueAndValidity();
+      console.log(this.myForm);
+    } else {
+      this.myForm.controls["gst_no"].setValidators([Validators.required]);
+      this.myForm.controls["gst_no"].updateValueAndValidity();
+      console.log(this.myForm);
+    }
+  }
   onSubmit() {
     console.log("Form valid: ", this.myForm.valid);
     console.log("Form values: ", this.myForm.value);
   }
-  openDialog() {
+  openDialog(header, message = "Terms and Conditions", dialogType) {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      disableClose: true,
       data: {
-        header: "Terms and Conditions",
-        message: "Terms and Conditions",
+        header: header,
+        message: message,
         buttonText: {
           ok: "Agree",
           cancel: "Disgree",
         },
+        dialogType: dialogType,
       },
     });
     // const snack = this.snackBar.open('Snack bar open before dialog');
 
-    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
-      if (confirmed) {
-        // snack.dismiss();
-        console.log("Confirmed");
-        this.myForm.controls["checkbx1"].setValue(true);
-        const a = document.createElement("a");
-        a.click();
-        a.remove();
-        // snack.dismiss();
-        // this.snackBar.open('Closing snack bar in a few seconds', 'Fechar', {
-        //   duration: 2000,
-        // });
+    dialogRef.afterClosed().subscribe((data: any) => {
+      console.log(data);
+      if (data.dialogType == 2) {
+        if (data.close) {
+          this.myForm.addControl("gst_msg", this.fb.control(message, []));
+        } else {
+          this.myForm.controls["gst_no"].setValidators([Validators.required]);
+          this.myForm.controls["gst_no"].updateValueAndValidity();
+          this.defGstApplicable = "Yes";
+        }
       } else {
-        this.myForm.controls["checkbx1"].setValue(false);
+        if (data.close) {
+          // snack.dismiss();
+          console.log("Confirmed");
+          this.myForm.controls["checkbx1"].setValue(true);
+          const a = document.createElement("a");
+          a.click();
+          a.remove();
+          // snack.dismiss();
+          // this.snackBar.open('Closing snack bar in a few seconds', 'Fechar', {
+          //   duration: 2000,
+          // });
+        } else {
+          this.myForm.controls["checkbx1"].setValue(false);
+        }
       }
     });
   }
@@ -265,7 +302,9 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
     }
     this.returnchangeorg.emit(value);
   }
+
   submitData() {
+    console.log(this.myForm);
     this.returnformdata.emit(this.myForm);
   }
 
@@ -743,59 +782,60 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
             //bankSupportFieldCheckArray
 
             if (bankFieldCheckArray.includes(doc_type)) {
-              let id_number = this.myForm.controls[doc_type].value
+              let id_number = this.myForm.controls[doc_type].value;
               let subFormcheck = false;
               bankSupportFieldCheckArray.forEach((element: any) => {
-                console.log({element})
+                console.log({ element });
                 let checkRequired =
                   this.myForm.controls[element.name].hasError("required");
                 let checkpattern =
                   this.myForm.controls[element.name].hasError("pattern");
-                  // let supportBankfiled = element.name;
+                // let supportBankfiled = element.name;
 
-                  let kyc = this.myForm.controls[element.name]
+                let kyc = this.myForm.controls[element.name];
                 if (checkRequired || checkpattern) {
                   subFormcheck = true;
-                  if(checkRequired)
-                  {
-
-                    this.CommonHelper.presentToast(element.requiredError)
+                  if (checkRequired) {
+                    this.CommonHelper.presentToast(element.requiredError);
                   }
-                  if(checkpattern)
-                  {
-                    this.CommonHelper.presentToast(element.patternError)
-
+                  if (checkpattern) {
+                    this.CommonHelper.presentToast(element.patternError);
                   }
                 }
-                if(subFormcheck)
-                {
-                this.CommonHelper.dismissLoading();
-                }else
-                {
-           
-  // kycVerifications_registrationforBankOnly( id_number,ifsc) {
-    this.apiService.kycVerifications_registrationforBankOnly(id_number,kyc.value).subscribe((data:any)=>
-    {
-      // console.log(data.account_exists)
-      // console.log(data.data.account_exists)
-      if(data.data.account_exists==true)
-      {
-        this.myForm.controls[doc_type].disable()
-        kyc.disable();
-        // console.log({supportBankfiled})
-        // this.myForm.controls[supportBankfiled].disable()
-        this.CommonHelper.presentToast("Bank account verified");
-      }
-      // console.log({data})
-
-    },error=>
-    {
-    console.log(error.error.data.remarks)
-    // console.log(error.data.remarks)
-    // console.log(error.remarks)
-      this.CommonHelper.presentToast(error.error.data.remarks);
-    })
-                  console.log("Call my api")
+                if (subFormcheck) {
+                  this.CommonHelper.dismissLoading();
+                } else {
+                  // kycVerifications_registrationforBankOnly( id_number,ifsc) {
+                  this.apiService
+                    .kycVerifications_registrationforBankOnly(
+                      id_number,
+                      kyc.value
+                    )
+                    .subscribe(
+                      (data: any) => {
+                        // console.log(data.account_exists)
+                        // console.log(data.data.account_exists)
+                        if (data.data.account_exists == true) {
+                          this.myForm.controls[doc_type].disable();
+                          kyc.disable();
+                          // console.log({supportBankfiled})
+                          // this.myForm.controls[supportBankfiled].disable()
+                          this.CommonHelper.presentToast(
+                            "Bank account verified"
+                          );
+                        }
+                        // console.log({data})
+                      },
+                      (error) => {
+                        console.log(error.error.data.remarks);
+                        // console.log(error.data.remarks)
+                        // console.log(error.remarks)
+                        this.CommonHelper.presentToast(
+                          error.error.data.remarks
+                        );
+                      }
+                    );
+                  console.log("Call my api");
                 }
               });
               // console.log({ bankFieldCheckArray });
