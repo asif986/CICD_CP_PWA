@@ -55,20 +55,21 @@ export const checkForUpdates = (
         // const header = "App Update Available";
         // const message = "Choose OK to update";
 
-        // helper.presentAlert(header, message, "UPDATE", (cb) => {
+        // swUpdate.available.subscribe(() => {
         //   window.location.reload();
         // });
-        // if (confirm("Update available for the app please confirm")) {
-        //   window.location.reload();
-        // }
-        helper.presentAlert(
-          "Update",
-          "Update available for the app please confirm",
-          "OK",
-          () => {
-            swUpdate.activateUpdate().then(() => window.location.reload());
-          }
-        );
+
+        alert("Update available for the app please confirm");
+        swUpdate.activateUpdate().then(() => window.location.reload());
+
+        // helper.presentAlert(
+        //   "Update",
+        //   "Update available for the app please confirm",
+        //   "OK",
+        //   () => {
+        //     swUpdate.activateUpdate().then(() => window.location.reload());
+        //   }
+        // );
       });
 
       resolve();
@@ -128,4 +129,6 @@ export const checkForUpdates = (
   bootstrap: [AppComponent],
   entryComponents: [],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(public helper: Helper) {}
+}
