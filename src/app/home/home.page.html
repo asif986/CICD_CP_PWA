@@ -353,9 +353,6 @@
         <ion-fab-button color="fab" (click)="presentActionSheet()">
             <ion-icon name="add" style="color: white!important;"></ion-icon>
         </ion-fab-button>
-
-
-
         <ion-fab-list side="top">
             <ng-container>
                 <ion-fab-button *ngFor="let item of fabIconList" color="fab" routerLink="{{item.url}}"
@@ -365,9 +362,7 @@
                 </ion-fab-button>
             </ng-container>
         </ion-fab-list>
-
     </ion-fab>
-
 </ion-content>
 
 <!--Bottom App Bar in Footer  -->
