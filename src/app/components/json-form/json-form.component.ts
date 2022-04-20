@@ -56,6 +56,8 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
       height: "50px",
     },
   };
+
+  imageName = "Select File";
   public myForm: FormGroup = this.fb.group({});
   isChecked: Boolean = false;
 
@@ -294,6 +296,7 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
       },
     ];
   }
+
   changeOrgz(event: any) {
     console.log("s", event.value);
     let value = 1;
@@ -301,6 +304,39 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
       value = event.value;
     }
     this.returnchangeorg.emit(value);
+  }
+
+  /**
+   * Determines whether image picked on
+   * @param event
+   */
+  onImagePicked(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.myForm.get("file_uri").patchValue(file);
+    console.log(file);
+    if (file) {
+      // Array.from(file.target.files).forEach((file: File) => {
+      //   console.log(file);
+      //   this.imageName += file.name + ",";
+      // });
+      this.imageName = "File  Selected";
+      //  reader.readAsDataURL(fileInput.target.files[0]);
+
+      // Reset File Input to Selct Same file again
+      // this.filePick.nativeElement.value = "";
+      // this.filePick.nativeElement.value = "";
+    } else {
+      this.imageName = "Select File";
+    }
+
+    console.log(this.myForm);
+
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+    // reader.onload = () => {
+    //   this.imagePreview = reader.result;
+    // };
   }
 
   submitData() {

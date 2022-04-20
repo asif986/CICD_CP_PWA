@@ -1,16 +1,46 @@
 p {
-    font-family: "Metropolis Light";
+  font-family: "Metropolis Light";
 }
 
 .verify {
-    margin-right: 1.3rem;
+  margin-right: 1.3rem;
 }
 
-.verify>a {
-    color: #0a58ca;
-    text-decoration: underline;
+.verify > a {
+  color: #0a58ca;
+  text-decoration: underline;
 }
 
 .img-mx {
-    max-width: 80%;
+  max-width: 80%;
+}
+
+.myfilebrowser {
+  // margin: 50px;
+  height: 32px;
+  .mat-toolbar-single-row {
+    height: auto !important;
+    background: transparent;
+  }
+}
+.pick-img-btn {
+  background-color: var(--ion-color-btn-primary);
+  color: white;
+  width: 100%;
+}
+#filePick {
+  position: absolute;
+  z-index: 9;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  left: 0px;
+  top: 0px;
+  cursor: pointer;
+}
+.imgPicker {
+  visibility: hidden;
+}
+.file_name {
+  font-size: 14px;
 }

@@ -56,7 +56,7 @@
             </mat-form-field>
 
 
-            <mat-form-field appearance="outline" class="pb-3 " *ngIf="controls.inputtype==11">
+            <mat-form-field appearance="outline" class="pb-3" *ngIf="controls.inputtype==11">
                 <mat-label>{{controls.label}}</mat-label>
                 <!-- [(value)]="controls.defaultValue" -->
                 <mat-select [formControlName]="controls.name" (selectionChange)="changeGstApplicable($event.value)"
@@ -66,6 +66,26 @@
                         {{item.name}}
                     </mat-option>
                 </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" floatLabel="always" class="pb-3" *ngIf="controls.inputtype==12">
+                <mat-label>{{controls.label}}</mat-label>
+                <div class="myfilebrowser">
+                    <mat-toolbar>
+
+                        <input matInput [value]="imageName" readonly name="imageName" class="file_name" />
+                        <!-- <input matInput [(ngModel)]="imageName" type="text" readonly name="memberContactNo" /> -->
+                        <button mat-flat-button class="pick-img-btn" (click)="filePick.click()">Pick
+                            image</button>
+
+                    </mat-toolbar>
+
+
+                    <input type="file" name="controls.name" class="imgPicker" id="fileUpload" accept="image/*"
+                        (change)="onImagePicked($event)" #filePick>
+
+                </div>
+
             </mat-form-field>
 
 

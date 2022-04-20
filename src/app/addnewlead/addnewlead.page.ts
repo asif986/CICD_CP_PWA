@@ -197,46 +197,47 @@ export class AddnewleadPage implements OnInit {
       this.api_token = val.data.api_token;
       this.cp_entity_id = val.data.cp_entity_id;
       this.fos_id = val.data.fos_id;
+      this.getLeadFormdata();
     });
 
     // get CP Info
-    this.storage.get("fullname").then((val) => {
-      // this.username = val;
-      this.storage.get("position").then((val1) => {
-        this.position = val1;
-        this.storage.get("cp_executive_id").then((val2) => {
-          this.postNewLead.cp_executive_id = val2;
-          this.storage.get("apiToken").then((val3) => {
-            // this.newapi = val3;
-            // this.api_token = val3;
-            // this.kycDocuments.api_token = val3;
-            // console.log("newleadflag " + this.newapi);
-            // console.log("newleadflag " + this.kycDocuments.api_token);
-            this.postNewLead.buying_for = 1;
-            if (
-              !(this.network.type !== "none" && this.network.type !== "unknown")
-            ) {
-              this.helper.presentToast("Please on Internet Connection");
-            } else {
-              this.storage.get("NewLead").then((val4) => {
-                if (val4 === 1) {
-                  this.postNewLead = new PostNewLead();
-                  this.getLeadFormdata();
-                } else if (val4 === 2) {
-                  this.storage.get("LeadModelFormData").then((data) => {
-                    if (data != null) {
-                      this.postNewLead = data;
-                      this.getLeadFormdata();
-                    }
-                  });
-                }
-                console.log("LeadModelFormData " + this.postNewLead);
-              });
-            }
-          });
-        });
-      });
-    });
+    // this.storage.get("fullname").then((val) => {
+    //   // this.username = val;
+    //   this.storage.get("position").then((val1) => {
+    //     this.position = val1;
+    //     this.storage.get("cp_executive_id").then((val2) => {
+    //       this.postNewLead.cp_executive_id = val2;
+    //       this.storage.get("apiToken").then((val3) => {
+    //         // this.newapi = val3;
+    //         // this.api_token = val3;
+    //         // this.kycDocuments.api_token = val3;
+    //         // console.log("newleadflag " + this.newapi);
+    //         // console.log("newleadflag " + this.kycDocuments.api_token);
+    //         this.postNewLead.buying_for = 1;
+    //         if (
+    //           !(this.network.type !== "none" && this.network.type !== "unknown")
+    //         ) {
+    //           this.helper.presentToast("Please on Internet Connection");
+    //         } else {
+    //           this.storage.get("NewLead").then((val4) => {
+    //             if (val4 === 1) {
+    //               this.postNewLead = new PostNewLead();
+    //               this.getLeadFormdata();
+    //             } else if (val4 === 2) {
+    //               this.storage.get("LeadModelFormData").then((data) => {
+    //                 if (data != null) {
+    //                   this.postNewLead = data;
+    //                   this.getLeadFormdata();
+    //                 }
+    //               });
+    //             }
+    //             console.log("LeadModelFormData " + this.postNewLead);
+    //           });
+    //         }
+    //       });
+    //     });
+    //   });
+    // });
 
     /*Get Country Code*/
     if (this.route.snapshot.paramMap.get("countryCode") != null) {
