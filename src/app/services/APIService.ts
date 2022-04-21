@@ -68,6 +68,15 @@ export class APIService {
     );
   }
 
+  cpReraDocUpload(data: any) {
+    const formData = new FormData();
+    formData.append("file_uri", data.file_uri);
+    formData.append("cp_entity_id", data.cp_entity_id);
+
+    console.log(formData);
+    return this.apiClient.post(this.webServer.cpReraDocUpload, formData);
+  }
+
   /*Get CP Registration*/
   getRegistrationFormData() {
     return this.apiClient.get(

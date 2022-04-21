@@ -577,7 +577,6 @@ export class BankDetailsPage implements OnInit {
           this.CommonHelper.dismissLoading();
           return;
         }
-
         // if (
         //   this.personaldetailsForm.valid &&
         //   !this.personaldetailsForm.controls["mobile"].disabled
@@ -602,30 +601,52 @@ export class BankDetailsPage implements OnInit {
         // return;
         this.apiservice.cpRegistration(body).subscribe(
           (data: HttpResponse<any>) => {
-            this.CommonHelper.presentToast("Thank u for registration");
-            let info: responsefromserver = data.body;
-            for (let key in info.data) {
-              console.log("Object", key);
-              if (key != "api_token") {
-                this.storage.set(key, info.data[key]);
-              } else {
-                this.storage.set("apiToken", info.data[key]);
-                this.storage.set("api_token", info.data[key]);
-              }
-              // console.log("value", info.data[key]);
-            }
+            console.log(data);
 
-            this.storage.set("userinfo", JSON.stringify(info.data));
-            this.navctrl.navigateRoot("login", { replaceUrl: true });
+            this.apiservice
+              .cpReraDocUpload({
+                cp_entity_id: data.body.data.cp_entity_id,
+                file_uri: body.file_uri,
+              })
+              .subscribe(
+                (res) => {
+                  console.log(res);
+                  if (res.success == 1) {
+                    this.CommonHelper.presentToast("Registration Successful.");
+                    let info: responsefromserver = data.body;
+                    for (let key in info.data) {
+                      console.log("Object", key);
+                      if (key != "api_token") {
+                        this.storage.set(key, info.data[key]);
+                      } else {
+                        this.storage.set("apiToken", info.data[key]);
+                        this.storage.set("api_token", info.data[key]);
+                      }
+                      // console.log("value", info.data[key]);
+                    }
+
+                    this.storage.set("userinfo", JSON.stringify(info.data));
+                    this.navctrl.navigateRoot("login", {
+                      replaceUrl: true,
+                    });
+                  } else {
+                    this.helper.presentAlertError("Something went to Wrong.");
+                  }
+                },
+                (e) => {
+                  this.helper.presentAlertError("Something went to Wrong");
+                }
+              );
           },
+
           (error) => {
             console.log(error);
             this.helper.presentAlertError("Something went to Wrong");
           }
         );
-        console.log("body", body);
-        console.log("validated1", this.state.formValue.value);
-        console.log("validated", $event.value);
+        // console.log("body", body);
+        // console.log("validated1", this.state.formValue.value);
+        // console.log("validated", $event.value);
       } catch (error) {
         this.CommonHelper.dismissLoading();
 

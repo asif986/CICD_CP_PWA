@@ -499,7 +499,7 @@ export class DataService {
               inital: 0,
               verificationmsg: "RERA NUMBER  IS VERIFIED",
               type: "text",
-              requiredError: "Please enter a valid Rera Number!.",
+              requiredError: "Please upload Rera file!.",
               patternError: "Please proper Rera Number!.",
               validateError: "Please validated Rera Number!.",
               isValidatedError: 0,

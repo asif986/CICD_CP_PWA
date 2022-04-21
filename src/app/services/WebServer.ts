@@ -55,6 +55,8 @@ export class WebServer {
   // Get CP LeadForm Data[is used for all dropdown]
   public GetLeadFormData = this.BASE_URL + "getLeadFormData";
 
+  public cpReraDocUpload = this.BASE_URL + "cpReraDocUpload";
+
   // Get CP RegistrationForm Data
   public GetRegistrationFormData = this.BASE_URL + "getCpRegistrationFormData";
 

@@ -315,11 +315,18 @@ export class JsonFormComponent implements OnChanges, AfterContentChecked {
     this.myForm.get("file_uri").patchValue(file);
     console.log(file);
     if (file) {
-      // Array.from(file.target.files).forEach((file: File) => {
-      //   console.log(file);
-      //   this.imageName += file.name + ",";
-      // });
-      this.imageName = "File  Selected";
+      const fileSize = file.size; // in MiB
+      if (fileSize > 1000000) {
+        this.CommonHelper.presentToast("File size must under 1MB!");
+        this.myForm.get("file_uri").patchValue(null);
+        this.imageName = "Select File";
+      } else {
+        // Array.from(file.target.files).forEach((file: File) => {
+        //   console.log(file);
+        //   this.imageName += file.name + ",";
+        // });
+        this.imageName = "File  Selected";
+      }
       //  reader.readAsDataURL(fileInput.target.files[0]);
 
       // Reset File Input to Selct Same file again
