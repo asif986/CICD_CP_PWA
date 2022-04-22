@@ -243,6 +243,7 @@ const routes: Routes = [
     loadChildren: "./cpstatus/cpstatus.module#CpstatusPageModule",
   },
   { path: 'comingsoon', loadChildren: './comingsoon/comingsoon.module#ComingsoonPageModule' },
+  { path: 'update-is-team-fos', loadChildren: './update-is-team-fos/update-is-team-fos.module#UpdateIsTeamFosPageModule' },
 ];
 
 @NgModule({

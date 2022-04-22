@@ -262,6 +262,14 @@ export class FOSListPage implements OnInit {
     });
   }
 
+  /**
+   * Updates fos
+   * @param fosData
+   */
+  updateFos(fosData) {
+    console.log(fosData);
+    this.router.navigate(["/update-is-team-fos"]);
+  }
   /* console.log(val);
     const navigationExtras: NavigationExtras = {
       state: {

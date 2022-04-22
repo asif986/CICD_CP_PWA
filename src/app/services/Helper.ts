@@ -220,7 +220,7 @@ export class Helper {
   }
 
   redirectionOfUser() {
-    // this.navCtrl.navigateRoot("/business-details", {
+    // this.navCtrl.navigateRoot("/foslist", {
     //   replaceUrl: true,
     // });
     // return;
