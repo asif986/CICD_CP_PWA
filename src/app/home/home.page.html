@@ -330,7 +330,8 @@
     </div>
 
     <!--Infinite Scroll-->
-    <ion-infinite-scroll threshold="500px" id="infinite-scroll" *ngIf="leadlist.length!=0 && IDFromPerformance==2"
+    <!-- && IDFromPerformance==2 -->
+    <ion-infinite-scroll threshold="500px" id="infinite-scroll" *ngIf="leadlist.length!=0"
         (ionInfinite)="doInfinite(leadlist.length,$event)" style="margin-bottom: 20%!important;">
         <ion-infinite-scroll-content loading-spinner="bubbles" loading-text="Loading data.."
             style="color: white!important;font-size: 20px!important;">

@@ -360,6 +360,8 @@ export class HomePage implements OnInit {
 
   // Infinite Scroll For Search and Regular
   doInfinite(count, infiniteScroll) {
+    console.log(count);
+    console.log(infiniteScroll);
     if (this.searchVal != "") {
       const title = this.searchVal;
       const me = this;
@@ -538,6 +540,7 @@ export class HomePage implements OnInit {
 
   // DoInfiniteScrollViewForFilter
   doInfiniteFilter(count, infiniteScroll) {
+    console.log(infiniteScroll);
     if (this.SelectCategoryID_FromFilter == 0) {
       if (this.token_type_id_FromFilter == 1) {
         var param = {
@@ -630,6 +633,7 @@ export class HomePage implements OnInit {
 
   // Refresh Home Page
   doRefresh(event) {
+    console.log(event);
     event.target.disabled = true;
     this.isSpinner = true;
     setTimeout(() => {
