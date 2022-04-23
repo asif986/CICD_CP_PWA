@@ -629,12 +629,15 @@ export class BankDetailsPage implements OnInit {
                     this.navctrl.navigateRoot("login", {
                       replaceUrl: true,
                     });
+                    this.CommonHelper.dismissLoading();
                   } else {
                     this.helper.presentAlertError("Something went to Wrong.");
+                    this.CommonHelper.dismissLoading();
                   }
                 },
                 (e) => {
                   this.helper.presentAlertError("Something went to Wrong");
+                  this.CommonHelper.dismissLoading();
                 }
               );
           },
@@ -654,9 +657,9 @@ export class BankDetailsPage implements OnInit {
       }
       // console.log("form",controls);
       //  console.log("loading started")
-      setTimeout(() => {
-        this.CommonHelper.dismissLoading();
-      }, 2000);
+      // setTimeout(() => {
+      //   this.CommonHelper.dismissLoading();
+      // }, 2000);
     });
     console.log($event);
   }
