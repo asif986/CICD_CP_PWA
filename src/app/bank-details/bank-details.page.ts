@@ -608,6 +608,7 @@ export class BankDetailsPage implements OnInit {
                 cp_entity_id: data.body.data.cp_entity_id,
                 file_uri: body.file_uri,
               })
+              .map((r) => r.body)
               .subscribe(
                 (res) => {
                   console.log(res);

@@ -329,19 +329,21 @@ export class HomePage implements OnInit {
           )
           .subscribe(
             (data) => {
+              // console.log(data);
               me.isSpinner = false;
               this.successvalue = JSON.stringify(data.body);
               const Value = JSON.parse(this.successvalue);
               if (Value.success === 1) {
                 this.leadlist = Value.data;
-                this.last_lead_updated_at =
-                  this.leadlist[this.leadlist.length - 1].ids.updated_at;
-                for (let i = 0; i < this.leadlist.length; i++) {
-                  if (this.leadlist[i]) {
-                    this.lead_status_id = this.leadlist[i].ids.lead_status_id;
-                    // console.log("this.is_kyc_uploaded", this.lead_status_id);
-                  }
-                }
+
+                // this.last_lead_updated_at =
+                //   this.leadlist[this.leadlist.length - 1].ids.updated_at;
+                // for (let i = 0; i < this.leadlist.length; i++) {
+                //   if (this.leadlist[i]) {
+                //     this.lead_status_id = this.leadlist[i].ids.lead_status_id;
+                //     // console.log("this.is_kyc_uploaded", this.lead_status_id);
+                //   }
+                // }
               } else {
                 me.isSpinner = false;
                 // this.helper.presentToast("Something Went Wrong");

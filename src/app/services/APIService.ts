@@ -117,7 +117,7 @@ export class APIService {
         `${
           login_type == 1
             ? "?cp_entity_id=" + cp_entity_id
-            : "?cp_fos_id=" + fos_id
+            : "?cp_fos_id=" + fos_id + "&cp_entity_id=" + cp_entity_id
         }` +
         "&api_token=" +
         apitoken +

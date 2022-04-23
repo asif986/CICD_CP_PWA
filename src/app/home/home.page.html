@@ -176,33 +176,6 @@
                                 {{c.description}}</div>
                         </ion-card-subtitle>
 
-
-                        <!-- FOR UNCLAIMED:1-->
-                        <div class="" *ngIf="c.ids.lead_status_id==1">
-
-                            <!-- <ion-card-subtitle> -->
-
-                            <div class="tagtext">
-                                <!-- style="text-align: start;;padding-top: 7px;padding-bottom: 7px;padding-left: 15px;padding-right: 10px" -->
-                                <div class="status_text"> {{c.ids.lead_status_name}}</div>
-
-                                <div class="status bg-{{c.ids.lead_status_id}}" style="border-radius: 50%;"></div>
-
-                            </div>
-
-                            <!-- </ion-card-subtitle> -->
-
-                            <!-- FOR ELAPSED TIME -->
-
-                            <!-- <div style="padding-top: 7px!important;margin-top: 2px!important;" *ngIf="c.ids.lead_status_id==1 ">
-                                 <ion-card-title role="heading" aria-level="3">
-                            <div class="salesPersonName_datealso"
-                              style="margin-top: -2%!important;margin-left: 12px!important;margin-bottom: 6%!important;">
-                             {{c.tag_elapsed_time}}</div>
-                                    </ion-card-title>
-                                 </div> -->
-
-                        </div>
                         <!-- flex-container -->
 
 
@@ -214,10 +187,9 @@
               </ion-card-title>
             </div> -->
 
-                        <!-- Finished CLAIMED -->
 
-
-                        <div style="width: 100%!important;" *ngIf="c.ids.lead_status_id>1">
+                        <!-- *ngIf="c.ids.lead_status_id>1" -->
+                        <div style="width: 100%!important;">
                             <ion-card-title>
                                 <div class="salesPersonName_datealso"
                                     style="margin-top: 4%!important;color:var(--ion-color-primary);margin-bottom: -20px;margin-left: 18px;">
@@ -225,7 +197,8 @@
                             </ion-card-title>
                         </div>
 
-                        <div *ngIf="c.ids.lead_status_id>1" style="margin-top: 30px!important;">
+                        <!-- *ngIf="c.ids.lead_status_id>1" -->
+                        <div style="margin-top: 30px!important;">
 
                             <div class="tagtext">
                                 <div class="status_text">{{c.status_text}} </div>
@@ -233,8 +206,8 @@
                             </div>
                         </div>
 
-                        <div *ngIf="c.ids.lead_status_id==6 || c.ids.lead_status_id==7 || c.ids.lead_status_id==8 || c.ids.lead_status_id==13 || c.ids.lead_status_id==9|| c.ids.lead_status_id==10 || c.ids.lead_status_id>13 || c.ids.lead_status_id==0"
-                            style="">
+                        <!-- *ngIf="c.ids.lead_status_id==6 || c.ids.lead_status_id==7 || c.ids.lead_status_id==8 || c.ids.lead_status_id==13 || c.ids.lead_status_id==9|| c.ids.lead_status_id==10 || c.ids.lead_status_id>13 || c.ids.lead_status_id==0 -->
+                        <div style="">
                             <mat-accordion
                                 style="padding-left: 0%!important;padding-top: 0!important; margin-top: 3%!important;margin-bottom: 3%!important;padding-bottom: 2%!important;">
                                 <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false"
@@ -245,8 +218,8 @@
 
 
                                             <!-- FOR ELAPSED TIME -->
-                                            <div style="padding-top: 7px!important;"
-                                                *ngIf="c.ids.lead_status_id==5 || c.ids.lead_status_id==6 || c.ids.lead_status_id==7 || c.ids.lead_status_id==8 || c.ids.lead_status_id==9 ||  c.ids.lead_status_id==10 ||c.ids.lead_status_id==13 ">
+                                            <!-- *ngIf="c.ids.lead_status_id==5 || c.ids.lead_status_id==6 || c.ids.lead_status_id==7 || c.ids.lead_status_id==8 || c.ids.lead_status_id==9 ||  c.ids.lead_status_id==10 ||c.ids.lead_status_id==13 " -->
+                                            <div style="padding-top: 7px!important;">
                                                 <ion-card-title role="heading" aria-level="3">
                                                     <div class="salesPersonName_datealso"
                                                         style="margin-top: -2%!important;margin-left: 12px!important;margin-bottom: 2%!important;width: 100%!important;">
@@ -258,10 +231,10 @@
                                             <hr>
 
                                             <!-- WHEN PANEL OPEN DETAILS NAME SHOW EG.CP DETAILS,SITE VISIT DETAILS ETC. -->
-                                            <ion-card-title class="expansion-title"
+                                            <!-- <ion-card-title class="expansion-title"
                                                 style="color:var(--ion-color-primary);">
                                                 {{c.status_sub_text}}
-                                            </ion-card-title>
+                                            </ion-card-title> -->
                                         </mat-panel-title>
                                     </mat-expansion-panel-header>
 
