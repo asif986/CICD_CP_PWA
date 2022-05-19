@@ -290,4 +290,18 @@ export class Helper {
         this.navCtrl.navigateRoot("/login", { replaceUrl: true });
       });
   }
+
+  /**
+   * Forcefullys logout
+   */
+  forcefullyLogout() {
+    this.storage
+      .clear()
+      .then(() => {
+        console.log("forcefully logout");
+        window.location.reload();
+        this.navCtrl.navigateRoot("/login", { replaceUrl: true });
+      })
+      .catch(() => {});
+  }
 }

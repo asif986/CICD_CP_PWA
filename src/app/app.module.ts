@@ -60,7 +60,9 @@ export const checkForUpdates = (
         // });
 
         alert("Update available for the app please confirm");
-        swUpdate.activateUpdate().then(() => window.location.reload());
+        swUpdate.activateUpdate().then(() => {
+          helper.forcefullyLogout();
+        });
 
         // helper.presentAlert(
         //   "Update",
