@@ -26,6 +26,7 @@ export class Helper {
   previousStatus;
   // tslint:disable-next-line:ban-types
   isConnected: Boolean = false;
+  static forcefullyLogout: any;
   // tslint:disable-next-line:max-line-length
   constructor(
     private network: Network,
