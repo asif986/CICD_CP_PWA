@@ -23,6 +23,7 @@ import { HTTP } from "@ionic-native/http/ngx";
 import { HttpClientModule } from "@angular/common/http";
 import { InAppBrowser } from "@ionic-native/in-app-browser/ngx";
 import { IonicStorageModule } from "@ionic/storage";
+import { Storage } from "@ionic/storage";
 import { MobileAccessibility } from "@ionic-native/mobile-accessibility/ngx";
 import { Network } from "@ionic-native/network/ngx";
 import { PhotoViewer } from "@ionic-native/photo-viewer/ngx";
@@ -59,7 +60,7 @@ export const checkForUpdates = (
         // });
         alert("Update available for the app please confirm.");
         swUpdate.activateUpdate().then(() => {
-          Helper.forcefullyLogout();
+          helper.forcefullyLogout();
         });
 
         // helper.presentAlert(
@@ -130,5 +131,5 @@ export const checkForUpdates = (
   entryComponents: [],
 })
 export class AppModule {
-  constructor(public helper: Helper) {}
+  // constructor(public helper: Helper, public storage: Storage) {}
 }
