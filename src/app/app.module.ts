@@ -51,15 +51,13 @@ export const checkForUpdates = (
 
       swUpdate.available.subscribe(() => {
         console.log("app update");
-        //   showAppUpdateAlert();
+        //showAppUpdateAlert();
         // const header = "App Update Available";
         // const message = "Choose OK to update";
-
         // swUpdate.available.subscribe(() => {
         //   window.location.reload();
         // });
-
-        alert("Update available for the app please confirm");
+        alert("Update available for the app please confirm.");
         swUpdate.activateUpdate().then(() => {
           helper.forcefullyLogout();
         });
