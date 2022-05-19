@@ -50,7 +50,7 @@ export const checkForUpdates = (
       swUpdate.checkForUpdate();
 
       swUpdate.available.subscribe(() => {
-        console.log("app update");
+        console.log("app Update");
         //showAppUpdateAlert();
         // const header = "App Update Available";
         // const message = "Choose OK to update";
