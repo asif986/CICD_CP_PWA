@@ -100,7 +100,8 @@ export class AppComponent {
       // swUpdate.available.subscribe(() => {
       //   window.location.reload();
       // });
-      alert("Update available for the app please confirm.");
+
+      alert("Update available for the app please confirm");
       this.update.activateUpdate().then(() => {
         this.helper.forcefullyLogout();
       });
