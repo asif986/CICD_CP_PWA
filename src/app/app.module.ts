@@ -45,7 +45,7 @@ export const checkForUpdates = (
   swUpdate: SwUpdate,
   helper: Helper
 ): (() => Promise<any>) => {
-  console.log("checking update");
+  // console.log("checking update");
   return (): Promise<void> =>
     new Promise((resolve) => {
       swUpdate.checkForUpdate();
@@ -104,12 +104,13 @@ export const checkForUpdates = (
     SplashScreen,
 
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    {
-      provide: APP_INITIALIZER,
-      useFactory: checkForUpdates,
-      deps: [SwUpdate, Helper],
-      multi: true,
-    },
+
+    // {
+    //   provide: APP_INITIALIZER,
+    //   useFactory: checkForUpdates,
+    //   deps: [SwUpdate, Helper],
+    //   multi: true,
+    // },
     Network,
     DatePipe,
     Push,

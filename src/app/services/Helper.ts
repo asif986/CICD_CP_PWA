@@ -299,9 +299,11 @@ export class Helper {
     this.storage
       .clear()
       .then(() => {
-        console.log("forcefully logout");
-        window.location.reload();
         this.navCtrl.navigateRoot("/login", { replaceUrl: true });
+        // this.router.navigate(["/login"], { replaceUrl: true });
+        this.presentToastSuccess("App update successfully!");
+        this.alertController.dismiss();
+        this.modalController.dismiss();
       })
       .catch(() => {});
   }

@@ -110,9 +110,10 @@ export class AppComponent {
               "Update available for the app please confirm",
               "OK",
               () => {
-                this.update
-                  .activateUpdate()
-                  .then(() => window.location.reload());
+                this.update.activateUpdate().then(() => {
+                  window.location.reload();
+                  this.helper.forcefullyLogout();
+                });
               }
             );
 
@@ -132,7 +133,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       console.log("platform ready");
-      // this.updateClient();
+      this.updateClient();
       // this.checkUpdate();
 
       this.mobileAccessibility.usePreferredTextZoom(false);
