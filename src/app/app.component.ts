@@ -105,6 +105,7 @@ export class AppComponent {
           const isNewVersionActivated: any = await this.update.activateUpdate();
           // Check if the new version is activated and reload the app if it is
           if (isNewVersionActivated) {
+            console.log("App update popup");
             this.helper.presentAlert(
               "Update",
               "Update available for the app please confirm",
