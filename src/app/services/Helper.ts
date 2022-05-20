@@ -302,8 +302,8 @@ export class Helper {
         this.navCtrl.navigateRoot("/login", { replaceUrl: true });
         // this.router.navigate(["/login"], { replaceUrl: true });
         this.presentToastSuccess("App update successfully!");
-        this.alertController.dismiss();
-        this.modalController.dismiss();
+        // this.alertController.dismiss();
+        // this.modalController.dismiss();
       })
       .catch(() => {});
   }
