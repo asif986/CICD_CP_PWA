@@ -88,6 +88,25 @@ export class AppComponent {
     //   this.checkTokenValidity();
     // });
   }
+
+  checkForUpdates() {
+    this.update.checkForUpdate();
+
+    this.update.available.subscribe(() => {
+      console.log("app Update");
+      //showAppUpdateAlert();
+      // const header = "App Update Available";
+      // const message = "Choose OK to update";
+      // swUpdate.available.subscribe(() => {
+      //   window.location.reload();
+      // });
+      alert("Update available for the app please confirm.");
+      this.update.activateUpdate().then(() => {
+        this.helper.forcefullyLogout();
+      });
+    });
+  }
+
   async updateClient() {
     // if (!this.update.isEnabled) {
     //   console.log("Not Enabled");
@@ -134,7 +153,8 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       console.log("platform ready");
-      this.updateClient();
+      this.checkForUpdates();
+      // this.updateClient();
       // this.checkUpdate();
 
       this.mobileAccessibility.usePreferredTextZoom(false);
