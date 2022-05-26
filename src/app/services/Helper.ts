@@ -13,6 +13,7 @@ import { Network } from "@ionic-native/network/ngx";
 import { Storage } from "@ionic/storage";
 import Swal from "sweetalert2";
 import { responsefromlogin } from "../models/Login";
+import { APIService } from "./APIService";
 
 export enum ConnectionStatusEnum {
   Online,
@@ -36,7 +37,8 @@ export class Helper {
     public modalController: ModalController,
     public navCtrl: NavController,
     private http: HttpClient,
-    public storage: Storage
+    public storage: Storage,
+    public apiService: APIService
   ) {
     this.previousStatus = ConnectionStatusEnum.Online;
   }
@@ -234,7 +236,6 @@ export class Helper {
           //   replaceUrl: true,
           // });
           // return;
-
           //For CP Login
           if (val.login_type == 1) {
             if (val.data.verification_status_id == 1) {
@@ -261,25 +262,39 @@ export class Helper {
           // FOR FOS
           else {
             console.log("FOS Login INFO", val);
-            if (val.is_cp_tagging_requested == 0) {
-              // this.navCtrl.navigateRoot("/home");
-              this.navCtrl.navigateRoot("/select-cp", {
-                replaceUrl: true,
-                queryParams: { pending: true },
+
+            // check Everytime the CP - FOS relation is maintain or not. (Delete)
+            this.apiService
+              .cpFosCheckEntity(val.data.fos_id)
+              .map((r) => r.body)
+              .subscribe((res: any) => {
+                // console.log(res);
+                console.log("FOS Entity Deleted.");
+                if (
+                  val.is_cp_tagging_requested == 0 ||
+                  res.cp_entity_tagging == "Deleted"
+                ) {
+                  // this.navCtrl.navigateRoot("/home");
+                  this.navCtrl.navigateRoot("/select-cp", {
+                    replaceUrl: true,
+                    queryParams: { pending: true },
+                  });
+                } else if (val.is_cp_tagging_requested == 1) {
+                  // for 1 is for pending tagging
+                  this.navCtrl.navigateRoot("/cpstatus", {
+                    replaceUrl: true,
+                    queryParams: { pending: true },
+                  });
+                  // this.navCtrl.navigateRoot("/home");
+                  // this.navCtrl.navigateRoot("/cpstatus", {
+                  //   queryParams: { pending: true },
+                  // });
+                } else {
+                  this.navCtrl.navigateRoot("/home", {
+                    replaceUrl: true,
+                  });
+                }
               });
-            } else if (val.is_cp_tagging_requested == 1) {
-              // for 1 is for pending tagging
-              this.navCtrl.navigateRoot("/cpstatus", {
-                replaceUrl: true,
-                queryParams: { pending: true },
-              });
-              // this.navCtrl.navigateRoot("/home");
-              // this.navCtrl.navigateRoot("/cpstatus", {
-              //   queryParams: { pending: true },
-              // });
-            } else {
-              this.navCtrl.navigateRoot("/home", { replaceUrl: true });
-            }
           }
         } else {
           // alert('4');

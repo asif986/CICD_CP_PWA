@@ -191,6 +191,8 @@ export class WebServer {
 
   public cpEntityCancelTagging = this.BASE_URL + "cancelTagging";
 
+  public cpFosCheckEntity = this.BASE_URL + "cpFosCheckEntity";
+
   // For Submitted List(Get)
   public getAOPBills = this.BASE_URL + "cpbills/getAllAOPForCP";
 
