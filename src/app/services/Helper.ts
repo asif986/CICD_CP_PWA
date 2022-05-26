@@ -269,7 +269,7 @@ export class Helper {
               .map((r) => r.body)
               .subscribe((res: any) => {
                 // console.log(res);
-                console.log("FOS Entity Deleted.");
+                console.log("FOS Entity Deleted...");
                 if (
                   val.is_cp_tagging_requested == 0 ||
                   res.cp_entity_tagging == "Deleted"
