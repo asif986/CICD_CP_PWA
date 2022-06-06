@@ -268,7 +268,7 @@ export class FOSListPage implements OnInit {
    */
   updateFos(fosData) {
     console.log(fosData);
-    this.router.navigate(["/update-is-team-fos"]);
+    this.router.navigate(["/update-is-team-fos"], { queryParams: fosData });
   }
   /* console.log(val);
     const navigationExtras: NavigationExtras = {

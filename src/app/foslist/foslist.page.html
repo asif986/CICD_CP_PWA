@@ -14,7 +14,15 @@
     </div>
 
     <ng-container *ngFor="let c of fosList let i=index">
+
+
+
       <div class="d-flex flex-column flex-start fos-card">
+
+        <span class="d-flex flex-start" *ngIf="c.is_team_lead ==1">
+          <ion-label class="team-leader">Team Leader</ion-label>
+        </span>
+
         <div class="d-flex align-items-center fos-card-info">
           <ion-icon class="fos-card-icon" src="assets/channelPartner_Icons/card_Update_Delete_Icon/personoutline.svg">
           </ion-icon>
@@ -30,6 +38,7 @@
           </ion-icon>
           <label>{{c.mobile}} </label>
         </div>
+
         <div class="d-flex justify-content-end action-icon-box">
           <ion-icon (click)="updateFos(c)" class="fos-card-icon"
             src="assets/channelPartner_Icons/card_Update_Delete_Icon/pencil-sharp.svg">

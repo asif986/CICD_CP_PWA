@@ -226,4 +226,6 @@ export class WebServer {
   //cp bank with validation
   public bankValidation =
     "https://kyc-api.aadhaarkyc.io/api/v1/bank-verification/";
+
+  public setFosTeamLead = this.BASE_URL + "setFosTeamLead";
 }

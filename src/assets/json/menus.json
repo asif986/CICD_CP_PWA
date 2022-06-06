@@ -33,7 +33,7 @@
         {
             "image": "/assets/new_icons/profile.png",
             "label": "Team Leaders List",
-            "navigation": "comingsoon"
+            "navigation": "teamlist"
         },
         {
             "image": "/assets/new_icons/reminder.png",

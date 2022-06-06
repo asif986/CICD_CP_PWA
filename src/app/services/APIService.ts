@@ -952,4 +952,7 @@ export class APIService {
       { headers }
     );
   }
+  setFosTeamLead(fos_data) {
+    return this.apiClient.post(this.webServer.setFosTeamLead, fos_data);
+  }
 }

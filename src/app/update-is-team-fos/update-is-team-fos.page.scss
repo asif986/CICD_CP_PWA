@@ -1,0 +1,24 @@
+.fos-card {
+  border-radius: var(--border-radius);
+  padding: 18px;
+  margin: 22px;
+  //   border: 1px solid grey;
+  .fos-card-info {
+    gap: 42px;
+    margin-bottom: 28px;
+  }
+  .fos-card-icon {
+    font-size: 26px;
+  }
+  .fos-card-label {
+    font-size: 1.1rem;
+  }
+}
+.fos-img {
+  margin: 12px;
+  height: 200px;
+}
+::ng-deep .mat-checkbox-inner-container {
+  width: 20px !important;
+  height: 20px !important;
+}

@@ -188,7 +188,8 @@ export class Helper {
           text: text,
           role: "ok",
           cssClass: "secondary",
-          handler: (cancel) => {
+          handler: (res) => {
+            console.log(res);
             //              resolve('ok');
             if (callback) {
               callback();
