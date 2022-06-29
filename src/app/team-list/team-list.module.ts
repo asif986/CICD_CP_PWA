@@ -1,18 +1,19 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { Routes, RouterModule } from "@angular/router";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
-import { TeamListPage } from './team-list.page';
-import {MatButtonModule, MatDividerModule} from '@angular/material';
+import { TeamListPage } from "./team-list.page";
+import { MatButtonModule, MatDividerModule } from "@angular/material";
+import { SharedComponentModule } from "../shared/shared-component/shared-component.module";
 
 const routes: Routes = [
   {
-    path: '',
-    component: TeamListPage
-  }
+    path: "",
+    component: TeamListPage,
+  },
 ];
 
 @NgModule({
@@ -22,8 +23,9 @@ const routes: Routes = [
     MatDividerModule,
     MatButtonModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    SharedComponentModule,
+    RouterModule.forChild(routes),
   ],
-  declarations: [TeamListPage]
+  declarations: [TeamListPage],
 })
 export class TeamListPageModule {}

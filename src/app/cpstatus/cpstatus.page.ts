@@ -117,7 +117,7 @@ export class CpstatusPage implements OnInit {
   }
 
   cancelRequest() {
-    this.helper.presentAlert("Cancel", "Cancel the Request?", "OK", () => {
+    this.helper.presentAlert("Cancel", "Cancel the Request?", "OK", "",() => {
       console.log("ok");
 
       // return;

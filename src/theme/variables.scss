@@ -6,6 +6,7 @@
 :root {
   /** primary **/
   --ion-color-primary: #070604;
+  --ion-app-background-primary: linear-gradient(0deg, #ffffff 0%, #ffeeff 100%);
   --ion-color-btn-primary: #f38383;
   --ion-color-new-primary: #2ac9a9;
   // custom color
@@ -230,12 +231,10 @@ ion-toast.toastController {
   padding-right: 16px;
   margin-top: 5px;
 }
-
+//app backfround color
 ion-content {
-  --background: linear-gradient(
-    0deg,
-    #ffffff 0%,
-    #ffeeff 100%
+  --background: var(
+    --ion-app-background-primary
   ); // Replace this with color of your choice
 }
 

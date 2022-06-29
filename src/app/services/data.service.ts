@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { responsefromSalesPerson } from "../models/business-details";
 import { StateService } from "./state.service";
 import { APIService } from "src/app/services/APIService";
@@ -11,6 +11,19 @@ import { APIService } from "src/app/services/APIService";
 export class DataService {
   public leadlist: any = [];
   apiUrl: any = "https://restcountries.eu/rest/v2/all";
+
+  private _leadMobileCode = new BehaviorSubject<any>("91");
+
+  private _leadMobileCode$ = this._leadMobileCode.asObservable();
+
+  getLeadMobileCode(): Observable<any> {
+    return this._leadMobileCode$;
+  }
+
+  setLeadMobileCode(latestVal: any) {
+    return this._leadMobileCode.next(latestVal);
+  }
+
   apiData: any;
   salePersonList: any = [];
   constructor(

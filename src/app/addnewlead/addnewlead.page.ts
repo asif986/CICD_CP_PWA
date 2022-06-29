@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { Storage } from "@ionic/storage";
 import { StatusBar } from "@ionic-native/status-bar/ngx";
 import {
@@ -27,12 +27,14 @@ import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 
 import { MatDialog, DateAdapter } from "@angular/material";
 import { KycModalPage } from "./kyc-modal/kyc-modal.page";
+import { DataService } from "../services/data.service";
+import { Subscription } from "rxjs";
 @Component({
   selector: "app-addnewlead",
   templateUrl: "./addnewlead.page.html",
   styleUrls: ["./addnewlead.page.scss"],
 })
-export class AddnewleadPage implements OnInit {
+export class AddnewleadPage implements OnInit, OnDestroy {
   loader: any;
   verifyOTP: VerifyOTP = new VerifyOTP();
   loginifo: Login = new Login();
@@ -111,6 +113,8 @@ export class AddnewleadPage implements OnInit {
     // },
   ];
 
+  leadMobileCodeSub = new Subscription();
+
   // tslint:disable-next-line:max-line-length
   constructor(
     private dateAdapter: DateAdapter<Date>,
@@ -133,7 +137,8 @@ export class AddnewleadPage implements OnInit {
     public apiservice: APIService,
     private webserver: WebServer,
     private alertCtrl: AlertController,
-    public modalController: ModalController
+    public modalController: ModalController,
+    public _dataService: DataService
   ) {
     dateAdapter.setLocale("en-In");
     this.addNewLead = new AddNewLead();
@@ -172,15 +177,26 @@ export class AddnewleadPage implements OnInit {
 
   ngOnInit() {
     /*Get Country Code*/
-    if (this.route.snapshot.paramMap.get("countryCode") != null) {
-      this.postNewLead.country_code =
-        this.route.snapshot.paramMap.get("countryCode");
-      this.countrycode = this.route.snapshot.paramMap.get("countryCode");
-    } else {
-      this.postNewLead.country_code = "91";
-      this.countrycode = "91";
-    }
+    // if (this.route.snapshot.paramMap.get("countryCode") != null) {
+    //   this.postNewLead.country_code =
+    //     this.route.snapshot.paramMap.get("countryCode");
+    //   this.countrycode = this.route.snapshot.paramMap.get("countryCode");
+    // } else {
+    //   this.postNewLead.country_code = "91";
+    //   this.countrycode = "91";
+    // }
+
+    this.leadMobileCodeSub = this._dataService
+      .getLeadMobileCode()
+      .subscribe((mcode) => {
+        this.postNewLead.country_code = "+" + mcode.toString();
+        this.countrycode = "+" + mcode.toString();
+      });
     // this.presentActionSheet();
+  }
+
+  ngOnDestroy() {
+    this.leadMobileCodeSub.unsubscribe();
   }
 
   ionViewDidEnter() {
@@ -240,14 +256,7 @@ export class AddnewleadPage implements OnInit {
     // });
 
     /*Get Country Code*/
-    if (this.route.snapshot.paramMap.get("countryCode") != null) {
-      this.postNewLead.country_code =
-        "+" + this.route.snapshot.paramMap.get("countryCode");
-      this.countrycode = "+" + this.route.snapshot.paramMap.get("countryCode");
-    } else {
-      this.postNewLead.country_code = "+91";
-      this.countrycode = "+91";
-    }
+
     /* this.storage.get('id').then((val) => {
   console.log(val);
   if (val == 0) {
@@ -339,8 +348,8 @@ export class AddnewleadPage implements OnInit {
   }
 
   selectcountry() {
-    this.storage.set("LeadModelFormData", this.postNewLead);
-    this.storage.set("NewLead", 2);
+    // this.storage.set("LeadModelFormData", this.postNewLead);
+    // this.storage.set("NewLead", 2);
     this.router.navigate(["/countrycodelist/"]);
   }
 
@@ -372,15 +381,17 @@ export class AddnewleadPage implements OnInit {
     } else {
       /*Add New Lead*/
       /*Get Country Code*/
-      if (this.route.snapshot.paramMap.get("countryCode") != null) {
-        this.postNewLead.country_code =
-          "+" + this.route.snapshot.paramMap.get("countryCode");
-        this.countrycode =
-          "+" + this.route.snapshot.paramMap.get("countryCode");
-      } else {
-        this.postNewLead.country_code = "+91";
-        this.countrycode = "+91";
-      }
+      // if (this.route.snapshot.paramMap.get("countryCode") != null) {
+      //   this.postNewLead.country_code =
+      //     "+" + this.route.snapshot.paramMap.get("countryCode");
+      //   this.countrycode =
+      //     "+" + this.route.snapshot.paramMap.get("countryCode");
+      // } else {
+      //   this.postNewLead.country_code = "+91";
+      //   this.countrycode = "+91";
+      // }
+      console.log(value);
+      this.postNewLead.mobile_number = value.mobile;
       this.postNewLead.api_token = this.newapi;
       this.postNewLead.prefix = this.selectedNameprefixName;
       this.postNewLead.project_id = this.selectedProjectId;

@@ -138,15 +138,15 @@ export class WebServer {
   // Post CP Token
   public PostGenerateUpgradeToken = this.BASE_URL + "updateCPToken";
 
-  public getCpTeamLeads = this.BASE_URL + "getCpTeamLeads";
+  public getCpEntityTeamLeads = this.BASE_URL + "getCpEntityTeamLeads";
 
   public getCpTeamMembers = this.BASE_URL + "getCpTeamMembers";
 
-  public removeCpTeamMember = this.BASE_URL + "removeCpTeamMember";
+  public removeCpTeamMember = this.BASE_URL + "removeCpTLMember";
 
-  public addCpTeamMember = this.BASE_URL + "addCpTeamMembers";
+  public addCpTeamMember = this.BASE_URL + "addCpTLMember";
 
-  public getCpFosList = this.BASE_URL + "getCpFosList";
+  public getCpEntityFosList = this.BASE_URL + "getCpEntityFosList";
 
   public getCpTeamAllStats = this.BASE_URL + "getCpTeamAllStats";
 

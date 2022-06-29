@@ -1,62 +1,39 @@
-<ion-header>
-  <ion-toolbar color="color_d" >
-  <ion-row>
-    <ion-col>
-      <div>
-        <ion-buttons slot="start" style="margin-left: 3%">
-          <i class="material-icons icon"  (click)="goback()">arrow_back_ios</i>
-           </ion-buttons>
-      </div>
-    </ion-col>
-    <ion-col style="text-align: start;margin-left: -30px!important;">
-      <div>
-        <ion-title class="TITLETOOLBAR" style="margin-left: 0px!important;">Country List</ion-title>
-      </div>
-    </ion-col>
-    <ion-col style="text-align: end;margin-right: 10px;">
-      <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 30%!important;">
-    </ion-col>
-  </ion-row>
-  </ion-toolbar>
-</ion-header>
+<app-header headernam="Country List"></app-header>
+
 
 
 <ion-content>
 
-  <ion-searchbar
-          (ionInput)="setFilteredItems($event)"
-          (ionClear)="onCancel()" class="cuid"></ion-searchbar>
+  <ion-searchbar (ionInput)="setFilteredItems($event)" (ionClear)="onCancel()" class="cuid"></ion-searchbar>
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content
-            pullingIcon="arrow-dropdown"
-            pullingText="Pull to refresh"
-            refreshingSpinner="circles"
-            refreshingText="Refreshing Data">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Pull to refresh" refreshingSpinner="circles"
+      refreshingText="Refreshing Data">
     </ion-refresher-content>
   </ion-refresher>
 
   <ion-list>
-    <ion-card style="box-shadow: none!important;" *ngFor="let c of countries let i= index" text-wrap (click)="openDetails(i)" >
-      <ion-grid >
-       <ion-row style="margin-top: 5px">
-         <ion-col size="2" style="width: 100%;" >
-           <div class="leadname" style="margin-left: 5px!important;">
-             <ion-img src="{{c.flags.svg}}"></ion-img>
-           </div>
-         </ion-col>
-         <ion-col size="6" style="width: 100%">
-           <div style="margin-bottom: 20px">
-             <ion-card-title  class="countryname">{{c.name}}</ion-card-title>
-           </div>
-         </ion-col>
-         <ion-col size="4" style="width: 100%">
-           <div >
-             <ion-card-title  class="countrynumber">{{c.callingCodes}}</ion-card-title>
-           </div>
-         </ion-col>
-       </ion-row>
-     </ion-grid>
-      <mat-divider class="divider" ></mat-divider>
+    <ion-card style="box-shadow: none!important;" *ngFor="let c of countries let i= index" text-wrap
+      (click)="openDetails(i)">
+      <ion-grid>
+        <ion-row style="margin-top: 5px">
+          <ion-col size="2" style="width: 100%;">
+            <div class="leadname" style="margin-left: 5px!important;">
+              <ion-img src="{{c.flags.svg}}"></ion-img>
+            </div>
+          </ion-col>
+          <ion-col size="6" style="width: 100%">
+            <div style="margin-bottom: 20px">
+              <ion-card-title class="countryname">{{c.name}}</ion-card-title>
+            </div>
+          </ion-col>
+          <ion-col size="4" style="width: 100%">
+            <div>
+              <ion-card-title class="countrynumber">{{c.callingCodes}}</ion-card-title>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <mat-divider class="divider"></mat-divider>
     </ion-card>
   </ion-list>
   <div *ngIf="countries.length==0 && isSpinner==false" class="ion-text-center">

@@ -38,6 +38,7 @@ export class UpdateIsTeamFosPage implements OnInit {
       "FOS",
       "Are you sure to update this FOS?",
       "Yes",
+      "No",
       () => {
         this.apiService
           .setFosTeamLead({

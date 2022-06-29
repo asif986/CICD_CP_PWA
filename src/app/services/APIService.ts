@@ -391,13 +391,13 @@ export class APIService {
     return this.apiClient.post(this.webServer.PostGenerateUpgradeToken, psdata);
   }
 
-  getCpTeamLeads(apitoken: any, cp_id: any) {
+  getCpTeamLeads(cp_id: any) {
     return this.apiClient.get(
-      this.webServer.getCpTeamLeads +
-        "?api_token=" +
-        apitoken +
-        "&cp_id=" +
-        cp_id
+      this.webServer.getCpEntityTeamLeads +
+        "?cp_entity_id=" +
+        cp_id +
+        "&is_team_lead=" +
+        1
     );
   }
 
@@ -425,10 +425,10 @@ export class APIService {
     is_team_lead: any
   ) {
     return this.apiClient.get(
-      this.webServer.getCpFosList +
+      this.webServer.getCpEntityFosList +
         "?api_token=" +
         apitoken +
-        "&cp_id=" +
+        "&cp_entity_id=" +
         cp_id +
         "&cp_team_lead_id=" +
         cp_team_lead_id +

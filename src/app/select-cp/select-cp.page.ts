@@ -111,6 +111,7 @@ export class SelectCPPage implements OnInit {
                   "Success",
                   "CP tagging successfully!",
                   "OK",
+                  "",
                   () => {
                     this.helper.getUserInfo().then((val: responsefromlogin) => {
                       // val.data.cp_entity_id = res.cp_entity_id;

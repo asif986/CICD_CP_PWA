@@ -166,6 +166,7 @@ export class Helper {
     header?: any,
     msg?: any,
     text = "OK",
+    text1 = "Cancel",
     callback?: any,
     enableBackdropDismiss = false
   ) {
@@ -179,7 +180,7 @@ export class Helper {
       message: msg,
       buttons: [
         {
-          text: "cancel",
+          text: text1,
           role: "cancel",
           cssClass: "secondary",
           handler: (cancel) => {},
@@ -224,7 +225,7 @@ export class Helper {
   }
 
   redirectionOfUser() {
-    // this.navCtrl.navigateRoot("/foslist", {
+    // this.navCtrl.navigateRoot("/addnewlead", {
     //   replaceUrl: true,
     // });
     // return;

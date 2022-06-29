@@ -130,6 +130,7 @@ export class AppComponent {
               "Update",
               "Update available for the app please confirm",
               "OK",
+              "",
               () => {
                 this.update.activateUpdate().then(() => {
                   window.location.reload();

@@ -23,6 +23,8 @@
 
 
 
+
+
 <ion-content class="ion-text-left">
 
   <!--Header Of Channel Partner Name-->
@@ -112,12 +114,12 @@
 
     <!--Enter Mobile Number With Country Code-->
     <ion-row style="margin-top: -8px;">
-      <!-- <ion-col size="3" class="ion-text-center">
+      <ion-col size="3" class="ion-text-center">
         <div class="Countrycode" (click)="selectcountry()" style="">
           <mat-label class="countrycodetext">{{countrycode}}</mat-label>
         </div>
-      </ion-col> -->
-      <ion-col size="12">
+      </ion-col>
+      <ion-col size="9">
 
         <div [formGroup]="credentialsForm">
           <mat-form-field appearance="outline" style="width: 100%;padding-right: 5px">
@@ -367,7 +369,8 @@
 
 </ion-content>
 
+<!-- [disabled]="credentialsForm.invalid" -->
 <div class="ion-text-center footer-box">
-  <button mat-raised-button class="common-btn loginbutton" [disabled]="credentialsForm.invalid"
-    (click)="addlead(credentialsForm.value)" routerDirection="forward">Submit Lead</button><br>
+  <button mat-raised-button class="common-btn loginbutton" (click)="addlead(credentialsForm.value)"
+    routerDirection="forward">Submit Lead</button><br>
 </div>
