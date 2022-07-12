@@ -90,7 +90,7 @@ export class AppComponent {
     // });
   }
 
-  // First Code for update PWA
+  // First Code for update PWA -recommended
   checkForUpdates() {
     const isNewVersion: any = this.update.checkForUpdate();
     console.log(isNewVersion);
@@ -158,9 +158,9 @@ export class AppComponent {
     this.platform.ready().then(() => {
       console.log("platform ready");
 
-      // this.checkForUpdates();
+      this.checkForUpdates();
       // this.updateClient();
-      this.checkAppUpdate();
+      // this.checkAppUpdate();
 
       this.mobileAccessibility.usePreferredTextZoom(false);
 
