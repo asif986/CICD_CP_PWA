@@ -215,7 +215,7 @@ export class WebServer {
   public GetCpClaimAwards = this.BASE_URL + "getAwardClaimList";
 
   //For App Update
-  public appUpdateAvailable = this.BASE_URL + "appUpdateSociety";
+  public appUpdateAvailable = this.BASE_URL + "appUpdateForCpPWA";
 
   //new cp app 2.0
   public getAllProjectName = this.BASE_URL + "getAllProjectNames";

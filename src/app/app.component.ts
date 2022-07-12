@@ -71,6 +71,7 @@ export class AppComponent {
     private update: SwUpdate,
     private appRef: ApplicationRef
   ) {
+    // alert('Latest version');
     this.initializeApp();
 
     // events.subscribe("user:update_fcm", () => {
@@ -89,9 +90,10 @@ export class AppComponent {
     // });
   }
 
+  // First Code for update PWA
   checkForUpdates() {
-    this.update.checkForUpdate();
-
+    const isNewVersion: any = this.update.checkForUpdate();
+    console.log(isNewVersion);
     this.update.available.subscribe(() => {
       console.log("app Update");
       //showAppUpdateAlert();
@@ -100,7 +102,6 @@ export class AppComponent {
       // swUpdate.available.subscribe(() => {
       //   window.location.reload();
       // });
-
       alert("Update available for the app please confirm");
       this.update.activateUpdate().then(() => {
         this.helper.forcefullyLogout();
@@ -108,6 +109,7 @@ export class AppComponent {
     });
   }
 
+  // second code for update PWA
   async updateClient() {
     // if (!this.update.isEnabled) {
     //   console.log("Not Enabled");
@@ -155,9 +157,10 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       console.log("platform ready");
-      this.checkForUpdates();
+
+      // this.checkForUpdates();
       // this.updateClient();
-      // this.checkUpdate();
+      this.checkAppUpdate();
 
       this.mobileAccessibility.usePreferredTextZoom(false);
 
@@ -416,31 +419,31 @@ export class AppComponent {
   }
 
   checkAppUpdate() {
-    this.versionNumber = 0.1;
+    this.versionNumber = 1;
     this.updateApp(this.versionNumber);
   }
 
   updateApp(versionNumber) {
-    this.postUpdate = new PostAppUpdate();
-    this.postUpdate.platform = "android";
-    this.postUpdate.appVersion = versionNumber;
-    console.log("UrlAppUpdate", this.postUpdate);
-    this.apiservice
-      .appUpdateAvailable(this.postUpdate.platform, this.postUpdate.appVersion)
-      .subscribe(
-        (data) => {
-          this.successValue = JSON.stringify(data.body);
-          const Value = JSON.parse(this.successValue);
-          console.log("successValue", Value.success);
-          if (Value.success === 1) {
-            console.log("UrlAppUpdate", Value.url);
-            this.appUpdateAlert(
-              "https://play.google.com/store/apps/details?id=com.vjd.cpNew"
-            );
-          }
-        },
-        (err) => {}
-      );
+    this.apiservice.appUpdateAvailable(versionNumber).subscribe(
+      (data) => {
+        this.successValue = JSON.stringify(data.body);
+        const Value = JSON.parse(this.successValue);
+        console.log("successValue", Value.success);
+        if (Value.success === 1) {
+          this.helper.presentAlert(
+            "Update",
+            "Update available for the app please confirm",
+            "OK",
+            "",
+            () => {
+              window.location.reload();
+              this.helper.forcefullyLogout();
+            }
+          );
+        }
+      },
+      (err) => {}
+    );
   }
 
   async appUpdateAlert(link: any) {

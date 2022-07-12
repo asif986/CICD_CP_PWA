@@ -278,7 +278,7 @@ export class DataService {
 
     return filels;
   }
-
+  // json for rendering cp/fos register form
   public businessDetailsForms() {
     let businessDetails;
     // this.getSalesPersonList().then((data) => {

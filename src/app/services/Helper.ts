@@ -194,7 +194,6 @@ export class Helper {
             //              resolve('ok');
             if (callback) {
               callback();
-
               // return false;
             }
           },

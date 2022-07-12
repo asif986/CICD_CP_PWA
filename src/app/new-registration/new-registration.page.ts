@@ -75,8 +75,8 @@ export class NewRegistrationPage implements OnInit {
   alive: boolean;
   hideMe: Boolean = false;
   read: Boolean = false;
-  
-  form: any = { };
+
+  form: any = {};
   kycregDocuments: KYCRegDocuments;
   color1 = true;
   public disabled = true;
@@ -97,7 +97,7 @@ export class NewRegistrationPage implements OnInit {
   // tslint:disable-next-line:max-line-length
   constructor(
     private statusBar: StatusBar,
-public dataSer:DataService,
+    public dataSer: DataService,
     private CommonHelper: CommonHelperService,
     public navCtrl: NavController,
     public loadingController: LoadingController,
@@ -121,7 +121,6 @@ public dataSer:DataService,
     public statefromservices: StateService,
     private menuctrl: MenuController
   ) {
-
     this.postregistrationresponce = new PostRegistrationResponce();
     this.kycregDocuments = new KYCRegDocuments();
     this.newRegistration = new NewRegistration();
@@ -279,10 +278,10 @@ public dataSer:DataService,
   }
 
   ngOnInit() {
-let data =     this.dataSer.persondetailsForm();
-this.form = {...data}
+    let data = this.dataSer.persondetailsForm();
+    this.form = { ...data };
     this.state.next(data.header);
-    
+
     this.form.header.forEach((element: any) => {
       console.log("controls", element.controls);
       this.createForm(element.controls);
@@ -768,7 +767,7 @@ this.form = {...data}
 
   goback() {
     if (this.newRegistration) {
-      this.navCtrl.back()
+      this.navCtrl.back();
     } else {
       this.navCtrl.navigateRoot("login");
       console.log("Click on backpress");
@@ -1102,6 +1101,7 @@ this.form = {...data}
     console.log(this.form.header);
     console.log(index);
   }
+
   changeOrgz(event: any) {
     let arr: any = {
       header: [
@@ -1117,7 +1117,7 @@ this.form = {...data}
               label: "Name:",
               value: "",
               inital: 0,
-              
+
               type: "text",
               requiredError: "Please enter a valid full name!.",
               patternError: "Please proper full name!.",
@@ -1133,7 +1133,7 @@ this.form = {...data}
               cssClass: "col",
               label: "Name:",
               value: "",
-            
+
               inital: 0,
               type: "text",
               requiredError: "Please enter a valid mobile number!.",
@@ -1150,7 +1150,7 @@ this.form = {...data}
               cssClass: "col",
               label: "Name:",
               value: "",
-              icon:"mail",
+              icon: "mail",
               inital: 0,
               type: "text",
               requiredError: "Please enter a valid email address!.",
@@ -1167,7 +1167,7 @@ this.form = {...data}
               cssClass: "col",
               label: "Name:",
               value: "",
-          
+
               inital: 0,
               type: "text",
               requiredError: "Please enter a valid full name!.",

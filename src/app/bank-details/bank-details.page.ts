@@ -602,45 +602,37 @@ export class BankDetailsPage implements OnInit {
         this.apiservice.cpRegistration(body).subscribe(
           (data: HttpResponse<any>) => {
             console.log(data);
-
-            this.apiservice
-              .cpReraDocUpload({
-                cp_entity_id: data.body.data.cp_entity_id,
-                file_uri: body.file_uri,
-              })
-              .map((r) => r.body)
-              .subscribe(
-                (res) => {
-                  console.log(res);
-                  if (res.success == 1) {
-                    this.CommonHelper.presentToast("Registration Successful.");
-                    let info: responsefromserver = data.body;
-                    for (let key in info.data) {
-                      console.log("Object", key);
-                      if (key != "api_token") {
-                        this.storage.set(key, info.data[key]);
-                      } else {
-                        this.storage.set("apiToken", info.data[key]);
-                        this.storage.set("api_token", info.data[key]);
-                      }
-                      // console.log("value", info.data[key]);
+            //if fos
+            if (body.registration_type_id == 2) {
+              if (data.body.success == 1) {
+                this.AfterRegisterSuccess();
+              } else {
+                this.helper.presentAlertError("Something went to Wrong.");
+                this.CommonHelper.dismissLoading();
+              }
+            } else {
+              this.apiservice
+                .cpReraDocUpload({
+                  cp_entity_id: data.body.data.cp_entity_id,
+                  file_uri: body.file_uri,
+                })
+                .map((r) => r.body)
+                .subscribe(
+                  (res) => {
+                    console.log(res);
+                    if (res.success == 1) {
+                      this.AfterRegisterSuccess();
+                    } else {
+                      this.helper.presentAlertError("Something went to Wrong.");
+                      this.CommonHelper.dismissLoading();
                     }
-
-                    this.storage.set("userinfo", JSON.stringify(info.data));
-                    this.navctrl.navigateRoot("login", {
-                      replaceUrl: true,
-                    });
-                    this.CommonHelper.dismissLoading();
-                  } else {
-                    this.helper.presentAlertError("Something went to Wrong.");
+                  },
+                  (e) => {
+                    this.helper.presentAlertError("Rera File Not Uploaded.");
                     this.CommonHelper.dismissLoading();
                   }
-                },
-                (e) => {
-                  this.helper.presentAlertError("Something went to Wrong");
-                  this.CommonHelper.dismissLoading();
-                }
-              );
+                );
+            }
           },
 
           (error) => {
@@ -652,9 +644,10 @@ export class BankDetailsPage implements OnInit {
         // console.log("validated1", this.state.formValue.value);
         // console.log("validated", $event.value);
       } catch (error) {
+        this.helper.presentAlertError("Something went to Wrong.");
         this.CommonHelper.dismissLoading();
 
-        console.log(error);
+        // console.log(error);
       }
       // console.log("form",controls);
       //  console.log("loading started")
@@ -662,6 +655,14 @@ export class BankDetailsPage implements OnInit {
       //   this.CommonHelper.dismissLoading();
       // }, 2000);
     });
-    console.log($event);
+    // console.log($event);
+  }
+
+  AfterRegisterSuccess() {
+    this.helper.presentAlert("", "Registration successful.", "OK", " ");
+    this.navctrl.navigateRoot("login", {
+      replaceUrl: true,
+    });
+    this.CommonHelper.dismissLoading();
   }
 }

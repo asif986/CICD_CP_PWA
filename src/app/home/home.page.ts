@@ -23,6 +23,7 @@ import { TeamLeaderOrNot } from "../models/TeamLeaderOrNot";
 import { UniqueDeviceID } from "@ionic-native/unique-device-id/ngx";
 import { responsefromlogin } from "../models/Login";
 import { CommonHelperService } from "../services/common-helper.service";
+import { IonInfiniteScroll } from "@ionic/angular";
 
 @Component({
   selector: "app-home",
@@ -280,7 +281,7 @@ export class HomePage implements OnInit {
           (data) => {
             this.successvalue = JSON.stringify(data.body);
             const Value = JSON.parse(this.successvalue);
-            console.log("successvalue", Value.success);
+            // console.log("successvalue", Value.success);
             this.isSpinner = false;
             if (Value.success === 1) {
               // this.getTeamLeaderRemoveOrUpdate();
@@ -294,7 +295,7 @@ export class HomePage implements OnInit {
                 }
               }
 
-              console.log(this.leadlist);
+              // console.log(this.leadlist);
             }
           },
           (err) => {
@@ -308,9 +309,11 @@ export class HomePage implements OnInit {
   // Search Function Without Pagination
   search(event) {
     const title = event.target.value;
+
     const me = this;
     if (title.length >= 1) {
-      me.isSpinner = true;
+      this.isSpinner = true;
+      // me.isSpinner = true;
       me.leadlist = [];
       this.cpfeedData.api_token = this.newLoginApi;
       this.cpfeedData.cp_executive_id = this.newExecutiveId;
@@ -329,8 +332,9 @@ export class HomePage implements OnInit {
           )
           .subscribe(
             (data) => {
-              // console.log(data);
-              me.isSpinner = false;
+              console.log("search data =");
+              console.log(data);
+              this.isSpinner = false;
               this.successvalue = JSON.stringify(data.body);
               const Value = JSON.parse(this.successvalue);
               if (Value.success === 1) {
@@ -345,12 +349,12 @@ export class HomePage implements OnInit {
                 //   }
                 // }
               } else {
-                me.isSpinner = false;
+                this.isSpinner = false;
                 // this.helper.presentToast("Something Went Wrong");
               }
             },
             (err) => {
-              me.isSpinner = false;
+              this.isSpinner = false;
               // this.helper.presentToast("Something Went Wrong");
             }
           );
@@ -362,12 +366,13 @@ export class HomePage implements OnInit {
 
   // Infinite Scroll For Search and Regular
   doInfinite(count, infiniteScroll) {
-    console.log(count);
+    // console.log(count);
     console.log(infiniteScroll);
     if (this.searchVal != "") {
       const title = this.searchVal;
       const me = this;
       if (title.length >= 1) {
+        // console.log("search val");
         me.isSpinner = true;
         this.cpfeedData.api_token = this.newLoginApi;
         this.cpfeedData.cp_executive_id = this.newExecutiveId;
@@ -383,8 +388,11 @@ export class HomePage implements OnInit {
           )
           .subscribe(
             (data) => {
+              me.isSpinner = false;
+
               this.successvalue = JSON.stringify(data.body);
               const Value = JSON.parse(this.successvalue);
+              console.log(Value.data);
               if (Value.success === 1) {
                 if (Value.data.length != 0) {
                   this.last_lead_updated_at =
@@ -397,12 +405,22 @@ export class HomePage implements OnInit {
                       this.leadlist.push(val);
                     }
 
-                    infiniteScroll.target.complete();
+                    // infiniteScroll.target.complete();
                   }
                 } else {
+                  this.helper.presentToast("No Data Found");
+                  // this.lea
+                  // let tempLeadList = [];
+                  // tempLeadList = this.leadlist;
+                  // console.log(tempLeadList);
+                  // this.leadlist = tempLeadList;
+                  // console.log(this.leadlist);
+                  // this.leadlist.push();
+                  infiniteScroll.target.complete();
+                  // infiniteScroll.disabled = true;
                 }
               }
-              infiniteScroll.target.complete();
+              // infiniteScroll.target.complete();
             },
             (err) => {
               infiniteScroll.target.complete();

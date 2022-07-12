@@ -176,16 +176,6 @@ export class AddnewleadPage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    /*Get Country Code*/
-    // if (this.route.snapshot.paramMap.get("countryCode") != null) {
-    //   this.postNewLead.country_code =
-    //     this.route.snapshot.paramMap.get("countryCode");
-    //   this.countrycode = this.route.snapshot.paramMap.get("countryCode");
-    // } else {
-    //   this.postNewLead.country_code = "91";
-    //   this.countrycode = "91";
-    // }
-
     this.leadMobileCodeSub = this._dataService
       .getLeadMobileCode()
       .subscribe((mcode) => {

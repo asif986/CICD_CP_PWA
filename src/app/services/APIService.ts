@@ -836,13 +836,9 @@ export class APIService {
   }
 
   //APP UPDATE
-  appUpdateAvailable(platformVer: any, version: any) {
+  appUpdateAvailable(version: any) {
     return this.apiClient.get(
-      this.webServer.appUpdateAvailable +
-        "?platform=" +
-        platformVer +
-        "&appVersion=" +
-        version
+      this.webServer.appUpdateAvailable + "?appVersion=" + version
     );
   }
   cpRegistration(psData: any) {
