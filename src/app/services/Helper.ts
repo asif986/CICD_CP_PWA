@@ -224,7 +224,10 @@ export class Helper {
   }
 
   redirectionOfUser() {
-    // this.navCtrl.navigateRoot("/addnewlead", {
+    // this.navCtrl.navigateRoot("/verify-otp-screen/123456", {
+    //   replaceUrl: true,
+    // });
+    // this.navCtrl.navigateRoot("/enter-mobile-screen", {
     //   replaceUrl: true,
     // });
     // return;

@@ -146,7 +146,13 @@ export class AddnewleadPage implements OnInit, OnDestroy {
     this.kycDocuments = new KYCDocuments();
     this.credentialsForm = this.formBuilder.group({
       // dob: ['', Validators.required],
-      mobile: ["", Validators.compose([Validators.required])],
+      mobile: [
+        "",
+        Validators.compose([
+          Validators.required,
+          Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"),
+        ]),
+      ],
       email: [
         "",
         Validators.compose([
@@ -556,6 +562,8 @@ export class AddnewleadPage implements OnInit, OnDestroy {
 
   /*Verfiy OTP Method*/
   click(newValue: any) {
+    // console.log(typeof newValue);
+    // return;
     if (!newValue.mobile) {
       this.helper.presentToast("Please Enter Mobile Number!");
     } else if (
@@ -579,6 +587,7 @@ export class AddnewleadPage implements OnInit, OnDestroy {
             this.successvalue = JSON.stringify(response.body);
             const Value = JSON.parse(this.successvalue);
             if (Value.success === 1) {
+              this.credentialsForm.controls["mobile"].disable();
               this.alive = !this.alive;
               const otpData = Value.data;
               this.loginifo.otp = otpData.otp;
@@ -586,6 +595,7 @@ export class AddnewleadPage implements OnInit, OnDestroy {
               this.Resendotp();
               this.dismissLoading();
             } else {
+              this.credentialsForm.controls["mobile"].enable();
               this.helper.presentToastError("Something went wrong!");
             }
             return response;

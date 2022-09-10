@@ -1,66 +1,49 @@
-<!-- <ion-header>
-    <ion-toolbar color="primary" class="toolbar-text">
-        <ion-buttons slot="start" style="margin-left: 3%" (click)="GoBack()">
-            <ion-icon name="close"  style="padding-top: 3%;color: var(--ion-color-close);width: 24px;height: 24px;padding: 16px!important" ></ion-icon>
-        </ion-buttons>
-        <ion-title class="toolbar-title">Forgot Password</ion-title>
-    </ion-toolbar>
-</ion-header> -->
-
-
-<ion-header >
-    <ion-toolbar color="color_d" >
-    <ion-row>
-      <ion-col>
-        <div>
-          <ion-buttons slot="start" style="margin-left: 3%">
-            <i class="material-icons icon"  (click)="GoBack()">arrow_back_ios</i>
-             </ion-buttons>
-        </div>
-      </ion-col>
-      <ion-col style="text-align: start;margin-left: -30px!important;">
-        <div>
-          <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;">Forgot Password</ion-title>
-        </div>
-      </ion-col>
-      <ion-col style="text-align: end;margin-right: 10px;">
-        <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 37%!important;">
-      </ion-col>
-    </ion-row>
-    </ion-toolbar>
-  </ion-header>
+<app-header headernam="Forgot Password" url="/"></app-header>
 <ion-content class="ion-text-center">
 
-    <ion-row class="input-field">
 
-        <!--+91-->
-        <ion-col size="3">
-            <div class="countrycode" style="width: 100%;margin-right: 5px">
-                <mat-label class="countrycodetext">
-                    +91
-                </mat-label>
+  <ion-row class="input-field">
+
+    <ion-col size="12">
+      <ion-title class="text-start enter-otp">Forgot Password ?</ion-title>
+      <!-- <p>We've sent an OTP to your mobile number.</p> -->
+    </ion-col>
+    <ion-col size="12">
+      <div class="forgot-box">
+        <ion-icon class="person-icon" name="person"></ion-icon>
+        <mat-radio-group aria-label="Select an option" (change)="changeUser($event)"
+          class="d-flex justify-content-center pt-4 pb-3 user-selection">
+          <mat-radio-button [value]="user.id" *ngFor="let user of users">{{user.userName}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </ion-col>
+    <!--+91-->
+    <ion-col size="3">
+      <div class="countrycode">
+        <mat-label class="countrycodetext">
+          +91
+        </mat-label>
+      </div>
+    </ion-col>
+    <!--Enter Mobile Number-->
+    <ion-col size="9" style="height: 0px;">
+      <div [formGroup]="credentialsForm">
+        <mat-form-field appearance="outline">
+          <mat-label class="inputtextfield">Mobile Number</mat-label>
+          <input matInput [formControl]="credentialsForm.controls['mobile']" maxlength="10" type="tel"
+            class="inputtextfield" required>
+          <mat-hint>
+            <div *ngIf="!credentialsForm.controls.mobile.valid && credentialsForm.controls.mobile.dirty" class="error">
+              Please enter a valid mobile number.
             </div>
-        </ion-col>
-        <!--Enter Mobile Number-->
-        <ion-col size="9" style="width: 100%">
-          
-            <div [formGroup]="credentialsForm">
-                <mat-form-field appearance="outline" style="width: 100%;padding-right: 5px">
-                    <mat-label class="inputtextfield">Mobile Number</mat-label>
-                    <input matInput [formControl]="credentialsForm.controls['mobile']" type="number" class="inputtextfield" required>
-                    <mat-hint>
-                        <div *ngIf="!credentialsForm.controls.mobile.valid && credentialsForm.controls.mobile.dirty"
-                             class="error">
-                            Please enter a valid mobile number.
-                        </div>
-                    </mat-hint>
-                </mat-form-field>
-            </div>
-        </ion-col>
-    </ion-row>
-
-      <!--Verify Button-->
-      <button mat-stroked-button  class="buttons" (click)="sendOTP(credentialsForm.value)" routerDirection="forward">Next</button>
-
-
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </ion-col>
+  </ion-row>
+  <div class='btn-box'>
+    <button (click)="sendOTP(credentialsForm.value)" routerLinkActive="router-link-active"
+      class="common-btn">Submit</button>
+  </div>
 </ion-content>

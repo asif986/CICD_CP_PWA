@@ -43,11 +43,10 @@ export class WebServer {
   public GETCPLogin = this.BASE_URL + "cpNewLogin";
 
   // Forgot Password
-  public POSTForgotPasswordSendOTP =
-    this.BASE_URL + "forgotPasswordSendOTPToMobile";
+  public POSTForgotPasswordSendOTP = this.BASE_URL + "validateCPMobile";
 
   // Change Password
-  public POSTUpdatePassword = this.BASE_URL + "changePassword";
+  public POSTUpdatePassword = this.BASE_URL + "updateCPPassword";
 
   // POST CP Registration
   public PostCPRegistration = this.BASE_URL + "cpRegister";

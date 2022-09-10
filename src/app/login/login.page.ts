@@ -235,6 +235,7 @@ export class LoginPage implements OnInit {
       this.presentToast("Please on Internet Connection");
     } else {
       this.router.navigate(["/enter-mobile-screen/"]);
+      // this.router.navigate(["/comingsoon"]);
     }
   }
 

@@ -26,11 +26,10 @@
 }
 .input-field {
   margin: 5%;
-  margin-top: 50%;
+  margin-top: 30%;
 }
 .input-field-text {
   color: var(--ion-color-primary);
-
   font-size: large;
   text-align: start;
   margin: 3%;
@@ -62,4 +61,8 @@ Resendbuttonss[disabled] {
   text-align: start;
 
   font-size: 11px;
+}
+.enter-otp {
+  font-size: 2em;
+  padding-left: 12px;
 }

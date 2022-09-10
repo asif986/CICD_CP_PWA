@@ -1,50 +1,36 @@
-<!-- <ion-header>
-    <ion-toolbar color="primary" class="toolbar-text">
-        <ion-buttons slot="start" style="margin-left: 3%" (click)="goBackMobile()">
-            <ion-icon name="close"  style="padding-top: 3%;color: var(--ion-color-close);width: 24px;height: 24px;padding: 16px!important" ></ion-icon>
-        </ion-buttons>
-        <ion-title class="toolbar-title">Verify OTP</ion-title>
-    </ion-toolbar>
-</ion-header> -->
-<ion-header >
-    <ion-toolbar color="color_d" >
-    <ion-row>
-      <ion-col>
-        <div>
-          <ion-buttons slot="start" style="margin-left: 3%">
-            <i class="material-icons icon"  (click)="goBackMobile()">arrow_back_ios</i>
-             </ion-buttons>
-        </div>
-      </ion-col>
-      <ion-col style="text-align: start;margin-left: -30px!important;">
-        <div>
-          <ion-title class="TITLETOOLBAR" style="margin-left: -40px!important;">Verify OTP</ion-title>
-        </div>
-      </ion-col>
-      <ion-col style="text-align: end;margin-right: 10px;">
-        <img src="assets/channelPartner_Icons/vjd_Logos/vj_logo.svg" class='srcIMGLOGO'style="text-align: right;width: 37%!important;">
-      </ion-col>
-    </ion-row>
-    </ion-toolbar>
-  </ion-header>
-
+<app-header headernam="Verify OTP" url="/"></app-header>
 <ion-content class="ion-text-center">
-        <div class="input-field">
-            <!--Enter OTP-->
-            <div class="input-field-text">
-                <mat-form-field appearance="outline" style="width: 100%">
-                    <mat-label class="inputtextfield">OTP</mat-label>
-                    <input matInput name="otptext" [(ngModel)]="loginifo.confirmotp" type="text" class="inputtextfield" required>
-                </mat-form-field>
-            </div>
-            <button mat-stroked-button  class="buttons" (click)="goToChangePassword()">Verify</button>
-        </div>
+  <div class="input-field">
+    <!--Enter OTP-->
 
-        <div id="otpMessage" class="inputtextfield">
-            <mat-label class="inputtextfield">In case you didn't received an OTP in 7 seconds retry here.</mat-label>
-        </div>
+    <ion-title class="text-start enter-otp">Enter OTP</ion-title>
+    <p>We've sent an OTP to your mobile number.</p>
+    <div class="input-field-text">
+      <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label class="inputtextfield">OTP</mat-label>
+        <input matInput name="otptext" [(ngModel)]="loginifo.confirmotp" type="text" class="inputtextfield" required>
+      </mat-form-field>
+    </div>
 
-    <!--Register Button-->
-        <button mat-stroked-button class="Resendbuttons" [disabled]="disabled"  [style.background-color]="this.color1 === true ? '#a5a5a5' : '#F5A22C'"  (click)="ResendOtp()" >Resend OTP</button>
+    <div class='btn-box'>
+      <button (click)="goToChangePassword()" routerLinkActive="router-link-active" class="common-btn">Verify</button>
+    </div>
+    <!-- <button mat-stroked-button class="buttons" (click)="goToChangePassword()">Verify</button> -->
+  </div>
+
+  <!-- <div id="otpMessage" class="inputtextfield"> -->
+  <!-- <mat-label class="inputtextfield">Resend OTP in.</mat-label> -->
+  <ng-container>
+    <p style="color: #949090;" *ngIf="isResendOtp">Resend OTP in {{counter}}</p>
+    <p (click)="ResendOtp()" *ngIf="!isResendOtp">Resend OTP</p>
+  </ng-container>
+  <!-- </div> -->
+
+
+  <!-- <button mat-stroked-button class="Resendbuttons" [disabled]="disabled" (click)="ResendOtp()">Resend OTP</button> -->
+
+  <!-- <div class='btn-box'>
+    <button (click)="ResendOtp()" [style.background-color]="this.color1 === true ? '#a5a5a5' : ''" [disabled]="disabled"
+      routerLinkActive="router-link-active" class="common-btn">Resend OTP</button>
+  </div> -->
 </ion-content>
-

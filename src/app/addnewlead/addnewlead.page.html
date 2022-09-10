@@ -10,7 +10,7 @@
       </ion-col>
       <ion-col style="text-align: start;margin-left: -40px;">
         <div>
-          <ion-title class="TITLETOOLBAR" style="margin-left: 0px!important;">Add NEW LEAD</ion-title>
+          <ion-title class="TITLETOOLBAR" style="margin-left: 0px!important;">ADD NEW LEAD</ion-title>
         </div>
       </ion-col>
       <ion-col style="text-align: end;margin-right: 10px;">
@@ -125,7 +125,7 @@
           <mat-form-field appearance="outline" style="width: 100%;padding-right: 5px">
             <mat-label class="inputtextfield">Mobile Number</mat-label>
             <input matInput [readonly]="read" [formControl]="credentialsForm.controls['mobile']" type="tel"
-              pattern="[0-9]*" class="inputtextfield" required>
+              pattern="[0-9]*" maxlength="10" class="inputtextfield" required>
             <mat-hint>
               <div *ngIf="!credentialsForm.controls.mobile.valid && credentialsForm.controls.mobile.dirty"
                 class="error">

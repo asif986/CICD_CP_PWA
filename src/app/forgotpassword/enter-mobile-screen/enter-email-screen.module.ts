@@ -1,19 +1,20 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from "@angular/forms";
+import { Routes, RouterModule } from "@angular/router";
 
-import { IonicModule } from '@ionic/angular';
+import { IonicModule } from "@ionic/angular";
 
+import { EnterEmailScreenPage } from "./enter-email-screen.page";
+import { MaterialModule } from "src/app/material.module";
+import { SharedComponentModule } from "../../shared/shared-component/shared-component.module";
 
-import { EnterEmailScreenPage } from './enter-email-screen.page';
-import { MaterialModule } from 'src/app/material.module';
 const routes: Routes = [
   {
-    path: '',
-    component: EnterEmailScreenPage
-  }
+    path: "",
+    component: EnterEmailScreenPage,
+  },
 ];
 
 @NgModule({
@@ -23,8 +24,9 @@ const routes: Routes = [
     IonicModule,
     MaterialModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    SharedComponentModule,
+    RouterModule.forChild(routes),
   ],
-  declarations: [EnterEmailScreenPage]
+  declarations: [EnterEmailScreenPage],
 })
 export class EnterEmailScreenPageModule {}
