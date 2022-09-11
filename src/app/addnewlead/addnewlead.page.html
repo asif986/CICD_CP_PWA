@@ -127,10 +127,10 @@
             <input matInput [readonly]="read" [formControl]="credentialsForm.controls['mobile']" type="tel"
               pattern="[0-9]*" maxlength="10" class="inputtextfield" required>
             <mat-hint>
-              <div *ngIf="!credentialsForm.controls.mobile.valid && credentialsForm.controls.mobile.dirty"
+              <!-- <div *ngIf="!credentialsForm.controls.mobile.valid && credentialsForm.controls.mobile.dirty"
                 class="error">
                 Please enter a valid mobile number.
-              </div>
+              </div> -->
             </mat-hint>
           </mat-form-field>
         </div>
