@@ -150,7 +150,7 @@ export class AddnewleadPage implements OnInit, OnDestroy {
         "",
         Validators.compose([
           Validators.required,
-          Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"),
+          // Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$"),
         ]),
       ],
       email: [
@@ -350,6 +350,7 @@ export class AddnewleadPage implements OnInit, OnDestroy {
   }
 
   addlead(value: any) {
+    console.log(value);
     if (!this.selectedNameprefixName) {
       this.helper.presentToast("Please Select Name Prefix");
     } else if (!this.postNewLead.first_name) {
@@ -562,7 +563,7 @@ export class AddnewleadPage implements OnInit, OnDestroy {
 
   /*Verfiy OTP Method*/
   click(newValue: any) {
-    // console.log(typeof newValue);
+    console.log(newValue);
     // return;
     if (!newValue.mobile) {
       this.helper.presentToast("Please Enter Mobile Number!");
@@ -587,7 +588,7 @@ export class AddnewleadPage implements OnInit, OnDestroy {
             this.successvalue = JSON.stringify(response.body);
             const Value = JSON.parse(this.successvalue);
             if (Value.success === 1) {
-              this.credentialsForm.controls["mobile"].disable();
+              // this.credentialsForm.controls["mobile"].disable();
               this.alive = !this.alive;
               const otpData = Value.data;
               this.loginifo.otp = otpData.otp;
@@ -595,7 +596,7 @@ export class AddnewleadPage implements OnInit, OnDestroy {
               this.Resendotp();
               this.dismissLoading();
             } else {
-              this.credentialsForm.controls["mobile"].enable();
+              // this.credentialsForm.controls["mobile"].enable();
               this.helper.presentToastError("Something went wrong!");
             }
             return response;
