@@ -72,6 +72,8 @@ export class AppComponent {
     private appRef: ApplicationRef
   ) {
     // alert('Latest version');
+    window.location.reload();
+
     this.initializeApp();
 
     // events.subscribe("user:update_fcm", () => {
