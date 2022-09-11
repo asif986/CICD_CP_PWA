@@ -72,7 +72,7 @@ export class AppComponent {
     private appRef: ApplicationRef
   ) {
     // alert('Latest version');
-    window.location.reload();
+    // window.location.reload();
 
     this.initializeApp();
 
@@ -98,7 +98,7 @@ export class AppComponent {
     console.log(isNewVersion);
     this.update.available.subscribe(() => {
       console.log("app Update");
-      window.location.reload();
+      // window.location.reload();
       //showAppUpdateAlert();
       // const header = "App Update Available";
       // const message = "Choose OK to update";
