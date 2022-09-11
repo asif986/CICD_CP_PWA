@@ -96,6 +96,7 @@ export class AppComponent {
     console.log(isNewVersion);
     this.update.available.subscribe(() => {
       console.log("app Update");
+      window.location.reload();
       //showAppUpdateAlert();
       // const header = "App Update Available";
       // const message = "Choose OK to update";
@@ -104,7 +105,8 @@ export class AppComponent {
       // });
       alert("Update available for the app please confirm");
       this.update.activateUpdate().then(() => {
-        this.helper.forcefullyLogout();
+        // this.helper.forcefullyLogout();
+        window.location.reload();
       });
     });
   }
