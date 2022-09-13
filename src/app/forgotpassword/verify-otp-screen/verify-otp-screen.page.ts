@@ -17,7 +17,7 @@ import {
 import { ErrorStateMatcher } from "@angular/material/core";
 import { ActivatedRoute, Router, RouterModule } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
-import { Login } from "../../models/Login";
+import { ForgotPassword, Login } from "../../models/Login";
 import { WebServer } from "../../services/WebServer";
 import { Network } from "@ionic-native/network/ngx";
 import { APIService } from "../../services/APIService";
@@ -49,12 +49,11 @@ export class VerifyOtpScreenPage implements OnInit {
   successvalue: any;
   mobile: any;
   baseUrl: any;
-  OTP = "";
   public disabled = true;
-  loginifo: Login = new Login();
+  forgotPasswordInfo: ForgotPassword;
   credentialsForm: FormGroup;
   isResendOtp = true;
-  postregistrationresponce: PostRegistrationResponce;
+  confirmOtp: any;
 
   counter: any;
 
@@ -73,28 +72,14 @@ export class VerifyOtpScreenPage implements OnInit {
     private formBuilder: FormBuilder,
     public platform: Platform,
     private toastController: ToastController
-  ) {
-    this.postregistrationresponce = new PostRegistrationResponce();
-    this.platform.resume.subscribe(() => {});
-
-    this.platform.backButton.subscribeWithPriority(1, () => {
-      this.router.navigate(["/enter-mobile-screen/"]);
-    });
-  }
+  ) {}
 
   ngOnInit() {
-    this.timer(1);
-    this.loginifo.otp = this.route.snapshot.paramMap.get("otp");
-    /* this.presentToast(this.loginifo.otp);*/
-    console.log(this.loginifo.otp);
-    const me = this;
-    me.storage.get("apiData").then((val) => {
-      me.baseUrl = val.external_token;
-      me.mobile = val.username;
-      console.log(this.baseUrl);
-      console.log(this.mobile);
+    this.route.queryParams.subscribe((otpData: ForgotPassword) => {
+      this.forgotPasswordInfo = otpData;
+      console.log(this.forgotPasswordInfo);
     });
-    this.ResendOtp();
+    this.otpTimeStart(0);
   }
 
   timer(minute) {
@@ -125,83 +110,70 @@ export class VerifyOtpScreenPage implements OnInit {
   }
 
   goToChangePassword() {
-    this.router.navigate(["/change-password/"]);
-    return;
-    console.log("confirmotp", this.loginifo.confirmotp);
-    console.log("confirmotp", this.loginifo.otp);
+    // this.router.navigate(["/change-password/"]);
+    // return;
+    console.log("confirmotp", this.confirmOtp);
+    console.log("confirmotp", this.forgotPasswordInfo.otp);
     if (!(this.network.type !== "none" && this.network.type !== "unknown")) {
-      this.presentToast("Please on Internet Connection!");
-    } else if (this.loginifo.confirmotp != this.loginifo.otp) {
+      this.helper.presentToast("Please on Internet Connection!");
+    } else if (this.confirmOtp != this.forgotPasswordInfo.otp) {
       // Remember
-      this.presentToast("OTP does not match!");
+      this.helper.presentToast("OTP does not match!");
     } else {
       this.helper.showLoader("");
-      this.router.navigate(["/change-password/"]);
+      this.router.navigate(["/change-password/"], {
+        queryParams: {
+          user_id: this.forgotPasswordInfo.user_id,
+          user_type_id: this.forgotPasswordInfo.user_type_id,
+        },
+      });
       this.helper.hideLoader();
     }
   }
 
-  /*Toast Message*/
-  async presentToast(msg) {
-    const toast = await this.toastController.create({
-      message: msg,
-      duration: 2000,
-      cssClass: "my-custom-class",
-    });
-    toast.present();
-  }
-
-  /*Loading*/
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      message: "Please wait...",
-      duration: 1500,
-    });
-    await loading.present();
-
-    const { role, data } = await loading.onDidDismiss();
-  }
-
-  /*Resend OTP*/
-  ResendOtp() {
+  /**
+   * Otps time start
+   * @param num  0 means first time loaded page / 1  , means resend otp
+   */
+  otpTimeStart(num: number) {
     this.isResendOtp = true;
     this.timer(1);
+    if (num === 1) {
+      this.resendOtp();
+    }
   }
+
   /*Click For Resend API Call*/
-  
-  click() {
-    const me = this;
-    me.storage.get("apiData").then((val) => {
-      me.baseUrl = val.external_token;
-      me.mobile = val.username;
-      this.loginifo.username = me.mobile;
-      this.loginifo.api_token = me.baseUrl;
-      if (!(this.network.type !== "none" && this.network.type !== "unknown")) {
-        this.presentToast("Please on Internet Connection");
-      } else {
-        // Call API
-        this.apiservice.forgotPasswordSendOTP(this.loginifo).subscribe(
-          (response) => {
-            console.log("responseBody**" + JSON.stringify(response.body));
-            this.successvalue = JSON.stringify(response.body);
-            const Value = JSON.parse(this.successvalue);
-            if (Value.success === 1) {
-              const otpData = Value.data;
-              console.log("responseBody 1" + otpData);
-              this.loginifo.otp = otpData.otp;
-              console.log(otpData.user_id);
-              /*this.presentToast(this.loginifo.otp);*/
-              console.log("otp" + this.loginifo.otp);
+  resendOtp() {
+    if (!(this.network.type !== "none" && this.network.type !== "unknown")) {
+      this.helper.presentToast("Please on Internet Connection");
+    } else {
+      // Call API
+      const data = {
+        api_token: this.webServer.API_TOKEN_EXTERNAL,
+        mobile: this.forgotPasswordInfo.mobile_no,
+        user_type_id: this.forgotPasswordInfo.user_type_id,
+      };
+      this.apiservice
+        .forgotPasswordSendOTP(data)
+        .map((httpResponse) => httpResponse.body)
+        .subscribe(
+          (otpInfo) => {
+            if (otpInfo.success === 1) {
+              const otpData = otpInfo.data;
+              this.forgotPasswordInfo.otp = otpData.otp;
+              console.log(otpData);
             } else {
-              this.presentToast("Something went wrong!");
+              this.helper.presentToast("Something went wrong!");
             }
-            return response;
           },
           (error) => {
-            this.presentToast("Something went wrong!");
+            this.helper.presentToast("Something went wrong!");
           }
         );
-      }
-    });
+    }
+  }
+  ionViewDidLeave() {
+    this.confirmOtp = null;
   }
 }

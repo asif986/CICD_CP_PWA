@@ -11,7 +11,7 @@
     <ion-col size="12">
       <div class="forgot-box">
         <ion-icon class="person-icon" name="person"></ion-icon>
-        <mat-radio-group aria-label="Select an option" (change)="changeUser($event)"
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="userTypeId" (change)="changeUser($event)"
           class="d-flex justify-content-center pt-4 pb-3 user-selection">
           <mat-radio-button [value]="user.id" *ngFor="let user of users">{{user.userName}}
           </mat-radio-button>

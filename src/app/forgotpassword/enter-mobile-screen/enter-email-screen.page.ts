@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from "@angular/core";
 import {
   ActionSheetController,
   LoadingController,
@@ -27,7 +34,7 @@ import { Helper } from "../../services/Helper";
   templateUrl: "./enter-email-screen.page.html",
   styleUrls: ["./enter-email-screen.page.scss"],
 })
-export class EnterEmailScreenPage implements OnInit {
+export class EnterEmailScreenPage implements OnInit, OnDestroy {
   successValue: any;
   credentialsForm: FormGroup;
   Regex = /^(\+\d{1,3}[- ]?)?\d{10}$/;
@@ -77,28 +84,23 @@ export class EnterEmailScreenPage implements OnInit {
     // tslint:disable-next-line:prefer-const
   }
 
-  GoBack() {
-    this.router.navigate(["/login/"]);
-    console.log("Click on backpress");
-  }
-
   /*SendOTP*/
   sendOTP(value: any) {
     // this.router.navigate(["/verify-otp-screen/" + "123456"]);
     // return;
     if (this.userTypeId == null) {
-      this.presentToast("Please Select the CP OR FOS!");
+      this.helper.presentToast("Please Select the CP OR FOS!");
     } else if (value.mobile.toString().length < 10) {
-      this.presentToast("Please Enter valid Mobile Number!");
+      this.helper.presentToast("Please Enter valid Mobile Number!");
     } else if (
       !(this.network.type !== "none" && this.network.type !== "unknown")
     ) {
-      this.presentToast("Please on Internet Connection!");
+      this.helper.presentToast("Please on Internet Connection!");
     } else {
-      let mobile_no = "91" + value.mobile;
+      let mobile_no = value.mobile;
       const data = {
         api_token: this.webServer.API_TOKEN_EXTERNAL,
-        mobile_no,
+        mobile: mobile_no,
         user_type_id: this.userTypeId,
       };
 
@@ -111,36 +113,36 @@ export class EnterEmailScreenPage implements OnInit {
             this.helper.showLoader("");
             if (response.success === 1) {
               const otpData = response.data;
-              // this.loginifo.otp = Value.data;
-              // console.log("otp" + otpData.otp);
-              // this.loginifo.user_id = otpData.user_id;
-
-              this.router.navigate(["/verify-otp-screen/" + otpData.otp]);
               this.helper.hideLoader();
+              this.router.navigate(["/verify-otp-screen/"], {
+                queryParams: {
+                  ...otpData,
+                  user_type_id: this.userTypeId,
+                  mobile_no,
+                },
+                // replaceUrl: true
+              });
             } else {
-              this.presentToast("Your account does not exists!");
+              this.helper.presentToast("Your account does not exists!");
             }
             // return response;
           },
           (error) => {
-            this.presentToast("Something went wrong!");
+            this.helper.presentToast("Something went wrong!");
           }
         );
     }
   }
 
-  /*Toast Message*/
-  async presentToast(msg) {
-    const toast = await this.toastController.create({
-      message: msg,
-      duration: 2000,
-      cssClass: "my-custom-class",
-    });
-    toast.present();
-  }
-
   changeUser(userTypeId: any) {
     console.log(userTypeId.value);
     this.userTypeId = userTypeId.value;
+  }
+  ngOnDestroy() {}
+  ionViewDidLeave() {
+    console.log("component destoryed");
+    this.userTypeId = null;
+    this.credentialsForm.get("mobile").patchValue("");
+    this.credentialsForm.reset();
   }
 }

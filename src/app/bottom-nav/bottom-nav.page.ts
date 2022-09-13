@@ -181,12 +181,6 @@ export class BottomNavPage implements OnInit {
     this.modalController.dismiss();
 
     this.navCtrl.navigateForward(url);
-    // if (url == "/profile") {
-    //   this.navCtrl.navigateRoot(url, { replaceUrl: true });
-    //   // this.navCtrl.navigateForward(url);
-    // } else {
-    //   this.navCtrl.navigateForward(url);
-    // }
   }
 
   goback() {

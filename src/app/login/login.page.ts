@@ -189,15 +189,15 @@ export class LoginPage implements OnInit {
                   this.helper.redirectionOfUser();
                 });
               this.storage.set("cpLoginData", this.successvalue.data);
-              this.events.publish("user:update_fcm");
-              this.events.publish("user:logout");
+              //       this.events.publish("user:update_fcm");
+              //     this.events.publish("user:logout");
               this.helper.presentToastHomePage("Login Successful!");
               // this.navCtrl.navigateRoot("home");
               this.dismissLoading();
               // console.log("IDV", this.postloginresponce.verification_status_id);
             } else {
               this.dismissLoading();
-              this.helper.presentToastError("Your account does not exists!");
+              this.helper.presentToastError("Invalid username or password");
             }
             return response;
           },

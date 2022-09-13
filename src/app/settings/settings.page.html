@@ -1,0 +1,32 @@
+<app-header headernam="SETTINGS" url="/"></app-header>
+
+<ion-content>
+  <ion-grid class="pt-4">
+
+    <ion-row align-items-baseline>
+      <ion-col size="10" offsetXs="1" offsetSm="1" class="pt-4">
+        <div *ngFor="let item of settingsList; let i=index" (click)="settingsClick(i)"
+          class="d-flex gap-3 justify-content-start mb-2">
+          <div>
+            <mat-icon>
+              <ion-icon [name]="item.iconnm"></ion-icon>
+            </mat-icon>
+          </div>
+          <div>
+            <h5>{{item.name}}</h5>
+          </div>
+
+        </div>
+
+        <!-- <mat-divider class="divider pt-3"></mat-divider> -->
+
+
+      </ion-col>
+      <ion-col size="10" offsetXs="1" offsetSm="1" class="">
+
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

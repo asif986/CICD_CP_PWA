@@ -8,6 +8,7 @@ export class Login {
   "confirmotp" = "";
   "confirmpassword" = "";
   "user_id" = "";
+  "user_type_id" = 1;
 }
 export interface Data {
   fos_id: number;
@@ -39,4 +40,12 @@ export interface responsefromlogin {
   data: Data;
   login_type: number;
   is_cp_tagging_requested?: any;
+}
+
+export interface ForgotPassword {
+  user_id?: any;
+  otp?: any;
+  user_type_id?: any;
+  confirmotp?: any;
+  mobile_no?: any;
 }

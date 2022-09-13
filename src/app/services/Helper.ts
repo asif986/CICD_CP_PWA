@@ -224,8 +224,9 @@ export class Helper {
   }
 
   redirectionOfUser() {
-    // this.navCtrl.navigateRoot("/verify-otp-screen/123456", {
+    // this.navCtrl.navigateRoot(["/settings"], {
     //   replaceUrl: true,
+    //    queryParams: { user_id: 28, user_type_id: 1 },
     // });
     // this.navCtrl.navigateRoot("/enter-mobile-screen", {
     //   replaceUrl: true,

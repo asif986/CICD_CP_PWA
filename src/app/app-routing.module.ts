@@ -251,6 +251,7 @@ const routes: Routes = [
     loadChildren:
       "./update-is-team-fos/update-is-team-fos.module#UpdateIsTeamFosPageModule",
   },
+  { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
 ];
 
 @NgModule({

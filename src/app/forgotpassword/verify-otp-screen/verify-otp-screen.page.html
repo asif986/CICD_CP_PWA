@@ -8,7 +8,7 @@
     <div class="input-field-text">
       <mat-form-field appearance="outline" style="width: 100%">
         <mat-label class="inputtextfield">OTP</mat-label>
-        <input matInput name="otptext" [(ngModel)]="loginifo.confirmotp" type="text" class="inputtextfield" required>
+        <input matInput name="otptext" [(ngModel)]="confirmOtp" type="text" class="inputtextfield" required>
       </mat-form-field>
     </div>
 
@@ -22,7 +22,7 @@
   <!-- <mat-label class="inputtextfield">Resend OTP in.</mat-label> -->
   <ng-container>
     <p style="color: #949090;" *ngIf="isResendOtp">Resend OTP in {{counter}}</p>
-    <p (click)="ResendOtp()" *ngIf="!isResendOtp">Resend OTP</p>
+    <p (click)="otpTimeReStart(1)" *ngIf="!isResendOtp">Resend OTP</p>
   </ng-container>
   <!-- </div> -->
 

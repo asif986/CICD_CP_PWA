@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
     // console.log(this.url);
     this.route.queryParams.subscribe((params) => {
       if (Object.keys(params).length != 0) {
-        console.log(params);
+        // console.log(params);
         if (params["pending"] == true || params.pending == "true") {
           console.log("hi");
           this.isArrowHide = false;
