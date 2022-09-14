@@ -33,6 +33,7 @@ export interface Data {
   aop_qop_type?: any;
   verification_status_id?: any;
   billing_name?: any;
+  user_id?:any;
 }
 
 export interface responsefromlogin {

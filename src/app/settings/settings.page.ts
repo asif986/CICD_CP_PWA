@@ -21,7 +21,7 @@ export class SettingsPage implements OnInit {
     this.helper.getUserInfo().then((val: responsefromlogin) => {
       // console.log(val);
       this.userInfo.user_type_id = val.login_type;
-      this.userInfo.user_id = 38;
+      this.userInfo.user_id = val.data.user_id;
     });
   }
 

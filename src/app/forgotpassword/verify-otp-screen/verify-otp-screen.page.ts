@@ -50,7 +50,7 @@ export class VerifyOtpScreenPage implements OnInit {
   mobile: any;
   baseUrl: any;
   public disabled = true;
-  forgotPasswordInfo: ForgotPassword;
+  forgotPasswordInfo: any = {};
   credentialsForm: FormGroup;
   isResendOtp = true;
   confirmOtp: any;
@@ -76,8 +76,12 @@ export class VerifyOtpScreenPage implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe((otpData: ForgotPassword) => {
-      this.forgotPasswordInfo = otpData;
-      console.log(this.forgotPasswordInfo);
+      this.forgotPasswordInfo.otp = otpData.otp;
+      this.forgotPasswordInfo.mobile_no = otpData.mobile_no;
+      this.forgotPasswordInfo.user_id = otpData.user_id;
+      this.forgotPasswordInfo.user_type_id = otpData.user_type_id;
+
+      // console.log(this.forgotPasswordInfo);
     });
     this.otpTimeStart(0);
   }
@@ -102,7 +106,7 @@ export class VerifyOtpScreenPage implements OnInit {
       this.counter = `${prefix}${Math.floor(seconds / 60)}:${textSec}`;
 
       if (seconds == 0) {
-        console.log("finished");
+        // console.log("finished");
         clearInterval(timer);
         this.isResendOtp = false;
       }
@@ -112,8 +116,8 @@ export class VerifyOtpScreenPage implements OnInit {
   goToChangePassword() {
     // this.router.navigate(["/change-password/"]);
     // return;
-    console.log("confirmotp", this.confirmOtp);
-    console.log("confirmotp", this.forgotPasswordInfo.otp);
+    // console.log("confirmotp", this.confirmOtp);
+    // console.log("confirmotp", this.forgotPasswordInfo.otp);
     if (!(this.network.type !== "none" && this.network.type !== "unknown")) {
       this.helper.presentToast("Please on Internet Connection!");
     } else if (this.confirmOtp != this.forgotPasswordInfo.otp) {
@@ -162,7 +166,9 @@ export class VerifyOtpScreenPage implements OnInit {
             if (otpInfo.success === 1) {
               const otpData = otpInfo.data;
               this.forgotPasswordInfo.otp = otpData.otp;
-              console.log(otpData);
+              this.helper.presentToast("OTP sent.");
+
+              // console.log(otpData);
             } else {
               this.helper.presentToast("Something went wrong!");
             }

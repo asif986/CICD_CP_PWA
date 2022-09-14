@@ -109,7 +109,7 @@ export class EnterEmailScreenPage implements OnInit, OnDestroy {
         .map((httpResponse) => httpResponse.body)
         .subscribe(
           (response) => {
-            console.log(response);
+            // console.log(response);
             this.helper.showLoader("");
             if (response.success === 1) {
               const otpData = response.data;
@@ -135,12 +135,12 @@ export class EnterEmailScreenPage implements OnInit, OnDestroy {
   }
 
   changeUser(userTypeId: any) {
-    console.log(userTypeId.value);
+    // console.log(userTypeId.value);
     this.userTypeId = userTypeId.value;
   }
   ngOnDestroy() {}
   ionViewDidLeave() {
-    console.log("component destoryed");
+    // console.log("component destoryed");
     this.userTypeId = null;
     this.credentialsForm.get("mobile").patchValue("");
     this.credentialsForm.reset();
