@@ -932,7 +932,7 @@ export class APIService {
         url = this.webServer.verifyBank;
         break;
     }
-    return this.http.post(url, { id_number }, { headers });
+    return this.http.post(url, { id_number, less_info: true }, { headers });
   }
 
   kycVerifications_registrationforBankOnly(id_number, ifsc) {
