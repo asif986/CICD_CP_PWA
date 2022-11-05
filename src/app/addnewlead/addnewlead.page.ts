@@ -115,6 +115,23 @@ export class AddnewleadPage implements OnInit, OnDestroy {
 
   leadMobileCodeSub = new Subscription();
 
+  singleProject = [
+    {
+      project_id: 10,
+      project_name: "DUMMY PROJECT",
+      unit_categories: [
+        {
+          unit_category_id: 2,
+          unit_category: "2 BHK",
+        },
+        {
+          unit_category_id: 3,
+          unit_category: "3 BHK",
+        },
+      ],
+    },
+  ];
+
   // tslint:disable-next-line:max-line-length
   constructor(
     private dateAdapter: DateAdapter<Date>,
@@ -191,6 +208,16 @@ export class AddnewleadPage implements OnInit, OnDestroy {
     // this.presentActionSheet();
   }
 
+  getStaticCpEntityList(cp_enity_id) {
+    this.http.get("assets/json/cp_ids.json").subscribe((cpList: any[]) => {
+      console.log(cpList);
+      if (cpList.includes(cp_enity_id)) {
+        console.log(cp_enity_id);
+        this.addNewLead.projects = this.singleProject;
+      }
+    });
+  }
+
   ngOnDestroy() {
     this.leadMobileCodeSub.unsubscribe();
   }
@@ -209,7 +236,7 @@ export class AddnewleadPage implements OnInit, OnDestroy {
       this.api_token = val.data.api_token;
       this.cp_entity_id = val.data.cp_entity_id;
       this.fos_id = val.data.fos_id;
-      this.getLeadFormdata();
+      this.getLeadFormdata(val.data.cp_entity_id);
     });
 
     // get CP Info
@@ -268,7 +295,7 @@ export class AddnewleadPage implements OnInit, OnDestroy {
 });*/
   }
 
-  getLeadFormdata() {
+  getLeadFormdata(cp_entity_id) {
     if (this.network.type !== "none" && this.network.type !== "unknown") {
       this.apiservice.getLeadFormData(this.newapi).subscribe(
         (data) => {
@@ -277,6 +304,9 @@ export class AddnewleadPage implements OnInit, OnDestroy {
 
           if (Value.success === 1) {
             this.addNewLead = Value.data;
+
+            this.getStaticCpEntityList(cp_entity_id);
+
             this.selectedNameprefixName =
               this.addNewLead.person_name_prefix[0].name_prefix;
           } else {

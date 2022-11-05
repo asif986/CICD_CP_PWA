@@ -82,6 +82,8 @@ export class CpstatusPage implements OnInit {
         }
       );
   }
+
+
   getUserInfo() {
     this.helper.getUserInfo().then((val: responsefromlogin) => {
       this.fosId = val.data.fos_id;
@@ -150,6 +152,7 @@ export class CpstatusPage implements OnInit {
         );
     });
   }
+  
   doRefresh(event) {
     console.log("Begin async operation");
     setTimeout(() => {
