@@ -115,22 +115,20 @@ export class AddnewleadPage implements OnInit, OnDestroy {
 
   leadMobileCodeSub = new Subscription();
 
-  singleProject = [
-    {
-      project_id: 10,
-      project_name: "DUMMY PROJECT",
-      unit_categories: [
-        {
-          unit_category_id: 2,
-          unit_category: "2 BHK",
-        },
-        {
-          unit_category_id: 3,
-          unit_category: "3 BHK",
-        },
-      ],
-    },
-  ];
+  singleProject = {
+    project_id: 55,
+    project_name: "DUMMY PROJECT",
+    unit_categories: [
+      {
+        unit_category_id: 2,
+        unit_category: "2 BHK",
+      },
+      {
+        unit_category_id: 3,
+        unit_category: "3 BHK",
+      },
+    ],
+  };
 
   // tslint:disable-next-line:max-line-length
   constructor(
@@ -210,10 +208,14 @@ export class AddnewleadPage implements OnInit, OnDestroy {
 
   getStaticCpEntityList(cp_enity_id) {
     this.http.get("assets/json/cp_ids.json").subscribe((cpList: any[]) => {
-      console.log(cpList);
+      // console.log(cpList);
       if (cpList.includes(cp_enity_id)) {
-        console.log(cp_enity_id);
-        this.addNewLead.projects = this.singleProject;
+        // console.log(cp_enity_id);
+        let combineProjects: any[] = [
+          ...this.addNewLead.projects,
+          this.singleProject,
+        ];
+        this.addNewLead.projects = combineProjects;
       }
     });
   }
